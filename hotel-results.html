@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking | RouteLine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/hotel.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color: white; text-decoration: none;">RouteLine</a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="index.html">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html" class="active">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hotel-stage"><canvas id="hotel-canvas"></canvas></div>
+
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Find your perfect<br>place to stay.</h1>
+            <p class="hero-subtitle">Discover amazing deals on hotels, resorts, and vacation rentals.<br>From cozy budget stays to 5-star luxury experiences.</p>
+            
+            <!-- Booking Widget -->
+            <div class="booking-widget">
+                <!-- Mode & Trip Toggle Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <!-- Mode Selector -->
+                    <div class="mode-selector" style="margin-bottom: 0;">
+                        <div class="active-pill" id="active-pill" style="left: 75%;"></div>
+                        <button class="mode-btn" onclick="window.location.href='index.html'">
+                            <i data-lucide="train-front"></i> Trains
+                        </button>
+                        <button class="mode-btn" onclick="window.location.href='flight-results.html'">
+                            <i data-lucide="plane"></i> Flights
+                        </button>
+                        <button class="mode-btn" onclick="window.location.href='bus-results.html'">
+                            <i data-lucide="bus-front"></i> Buses
+                        </button>
+                        <button class="mode-btn active" data-mode="Hotels">
+                            <i data-lucide="building-2"></i> Hotels
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="booking-form-container">
+                    <form id="search-form" action="hotel-results.html" method="GET">
+                        <div class="inputs-row" id="dynamic-inputs">
+                            
+                            <div class="input-group" id="location-group" style="flex: 1.5;">
+                                <i data-lucide="map-pin" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="location-label">City, Property name or Location</label>
+                                    <input type="text" id="location-input" name="location" value="Goa" list="city-list" required style="width: 100%;">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group" id="checkin-group">
+                                <i data-lucide="calendar-check" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="checkin-label">Check-in</label>
+                                    <input type="date" id="checkin-input" name="checkin" required style="font-size: 0.95rem; font-family: inherit;">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group" id="checkout-group">
+                                <i data-lucide="calendar-off" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="checkout-label">Check-out</label>
+                                    <input type="date" id="checkout-input" name="checkout" required style="font-size: 0.95rem; font-family: inherit;">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group class-selector" id="guests-field" style="cursor: pointer; position: relative; min-width: 160px;">
+                                <i data-lucide="users" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>Rooms & Guests</label>
+                                    <div class="value" id="guests-summary" style="font-size: 0.95rem; font-weight: 600; margin-top: 4px;">1 Room, 2 Adults</div>
+                                </div>
+                                <i data-lucide="chevron-down" class="icon-sm" style="margin-left:auto;"></i>
+                                
+                                <!-- Guests Dropdown -->
+                                <div class="guests-panel" id="guests-panel" onclick="event.stopPropagation()">
+                                    <div class="counter-row">
+                                        <div>
+                                            <div class="label">Rooms</div>
+                                        </div>
+                                        <div class="stepper">
+                                            <button type="button" id="rooms-dec">–</button>
+                                            <span id="rooms-count" style="font-weight: 600; margin: 0 8px;">1</span>
+                                            <button type="button" id="rooms-inc">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="counter-row">
+                                        <div>
+                                            <div class="label">Adults</div>
+                                            <div class="sub">12+ yrs</div>
+                                        </div>
+                                        <div class="stepper">
+                                            <button type="button" id="adults-dec">–</button>
+                                            <span id="adults-count" style="font-weight: 600; margin: 0 8px;">2</span>
+                                            <button type="button" id="adults-inc">+</button>
+                                        </div>
+                                    </div>
+                                    <div class="counter-row">
+                                        <div>
+                                            <div class="label">Children</div>
+                                            <div class="sub">1-11 yrs</div>
+                                        </div>
+                                        <div class="stepper">
+                                            <button type="button" id="children-dec" disabled="disabled">–</button>
+                                            <span id="children-count" style="font-weight: 600; margin: 0 8px;">0</span>
+                                            <button type="button" id="children-inc">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="search-btn" id="search-btn">
+                                <i data-lucide="search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="result-banner" id="result-banner" style="margin:10px 0; padding: 0 20px;">
+                        <span id="result-text" style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
+                    </div>
+
+                    <!-- Features Banner -->
+                    <div class="features-banner">
+                        <div class="feature-item">
+                            <i data-lucide="check-square" class="feature-icon"></i>
+                            <span>Lowest Price Guarantee</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="calendar-clock" class="feature-icon"></i>
+                            <span>Free Cancellation</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="star" class="feature-icon"></i>
+                            <span>Verified Reviews</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <datalist id="city-list">
+        <option value="Goa"></option>
+        <option value="Mumbai"></option>
+        <option value="Delhi"></option>
+        <option value="Udaipur"></option>
+        <option value="Jaipur"></option>
+        <option value="Shimla"></option>
+        <option value="Manali"></option>
+        <option value="Kerala"></option>
+        <option value="Ooty"></option>
+        <option value="Darjeeling"></option>
+    </datalist>
+
+    <!-- Quick Services -->
+    <section class="quick-services">
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="building"></i></div>
+            <span>Homestays</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="sun"></i></div>
+            <span>Resorts</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="trees"></i></div>
+            <span>Villas</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="coffee"></i></div>
+            <span>Bed & Breakfast</span>
+        </a>
+    </section>
+
+    <script type="module" src="./src/js/hotel.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

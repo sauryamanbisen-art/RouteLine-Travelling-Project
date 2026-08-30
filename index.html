@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RouteLine | Your journey, Just a Tap Away</title>
+    <!-- Use Inter font to match the clean design -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide icons via CDN for vanilla JS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color: white; text-decoration:           none;">RouteLine</a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="index.html" class="active">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Your journey,<br>Just a Tap Away</h1>
+            <p class="hero-subtitle">Search great deals on train, flights, buses<br>and hotels in one place.</p>
+            
+            <!-- Booking Widget -->
+            <div class="booking-widget">
+                <!-- Mode Selector -->
+                <div class="mode-selector">
+                    <div class="active-pill" id="active-pill"></div>
+                    <button class="mode-btn active" data-mode="Trains">
+                        <i data-lucide="train-front"></i> Trains
+                    </button>
+                    <button class="mode-btn" onclick="window.location.href='flight-results.html'" data-mode="Flights">
+                        <i data-lucide="plane"></i> Flights
+                    </button>
+                    <button class="mode-btn" onclick="window.location.href='bus-results.html'" data-mode="Buses">
+                        <i data-lucide="bus-front"></i> Buses
+                    </button>
+                    <button class="mode-btn" onclick="window.location.href='hotel-results.html'" data-mode="Hotels">
+                        <i data-lucide="building-2"></i> Hotels
+                    </button>
+                </div>
+
+                <!-- Input Area (Dynamic) -->
+                <div class="booking-form-container">
+                    <form id="search-form" action="train-results.html" method="GET">
+                        <!-- Dynamic inputs will be injected here by JS -->
+                        <div class="inputs-row" id="dynamic-inputs">
+                            <!-- Default Train Inputs -->
+                            <div class="input-group">
+                                <i data-lucide="map-pin" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>From</label>
+                                    <input type="text" name="origin" value="Jawai Bandh (JWB)">
+                                </div>
+                            </div>
+                            
+                            <div class="swap-icon-container">
+                                <button type="button" class="swap-btn"><i data-lucide="arrow-left-right" class="icon-sm"></i></button>
+                            </div>
+                            
+                            <div class="input-group">
+                                <i data-lucide="map-pin" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>To</label>
+                                    <input type="text" name="destination" value="Bandra Terminus (BDTS)">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group">
+                                <i data-lucide="calendar" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>Date</label>
+                                    <input type="text" name="date" value="Sat, 31 June">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group class-selector">
+                                <div class="input-text">
+                                    <label>Class</label>
+                                    <select name="class">
+                                        <option value="Sleeper">Sleeper</option>
+                                        <option value="3A">3A</option>
+                                        <option value="2A">2A</option>
+                                        <option value="1A">1A</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="search-btn">
+                                <i data-lucide="search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Features Banner -->
+                    <div class="features-banner">
+                        <div class="feature-item">
+                            <i data-lucide="check-square" class="feature-icon"></i>
+                            <span>Confirmed Tickets</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="shield-check" class="feature-icon"></i>
+                            <span>Instant Refunds</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="headphones" class="feature-icon"></i>
+                            <span>24/7 Customer Support</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="lock" class="feature-icon"></i>
+                            <span>Secure & Trusted Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Services -->
+    <section class="quick-services">
+        <a href="metro-ticket.html" class="service-item">
+            <div class="icon-circle"><i data-lucide="train"></i></div>
+            <span>Metro<br>Ticket</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="order-food.html" class="service-item">
+            <div class="icon-circle"><i data-lucide="utensils"></i></div>
+            <span>Order Food<br>On Train</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="train-status.html" class="service-item">
+            <div class="icon-circle"><i data-lucide="search"></i></div>
+            <span>Train by Name/No.</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="seat-availability.html" class="service-item">
+            <div class="icon-circle"><i data-lucide="armchair"></i></div>
+            <span>Seat<br>Availability</span>
+        </a>
+    </section>
+
+    <script type="module" src="./src/js/main.js"></script>
+    <script>
+        // Initialize lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

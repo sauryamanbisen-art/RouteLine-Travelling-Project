@@ -1,0 +1,58 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E1B4B"/>
+      <stop offset="100%" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="rlFill" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#818CF8"/>
+      <stop offset="55%" stop-color="#38BDF8"/>
+      <stop offset="100%" stop-color="#2DD4BF"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Rounded badge background -->
+  <rect x="6" y="6" width="228" height="228" rx="52" fill="url(#bgGrad)"/>
+  <rect x="6" y="6" width="228" height="228" rx="52" fill="none" stroke="#334155" stroke-width="1.5"/>
+
+  <!-- R: bold slanted geometric block letter, sharp-cut counter, aggressive spur -->
+  <path d="M 50 190
+           L 50 50
+           L 108 50
+           C 132 50, 138 90, 114 100
+           L 138 190
+           L 112 190
+           L 92 106
+           L 74 106
+           L 74 190
+           Z
+           M 74 74 L 74 88 L 104 88 C 116 88, 116 74, 104 74 Z"
+        fill="url(#rlFill)" filter="url(#glow)" transform="skewX(-6)"/>
+
+  <!-- L: bold slanted geometric block letter -->
+  <path d="M 150 50
+           L 176 50
+           L 176 166
+           L 200 166
+           L 200 190
+           L 150 190
+           Z"
+        fill="url(#rlFill)" filter="url(#glow)" transform="skewX(-6)"/>
+
+  <!-- Sharp accent slash cutting through, echoing a route line -->
+  <path d="M 42 200 L 208 40" stroke="#2DD4BF" stroke-width="3" opacity="0.55" stroke-linecap="round"/>
+
+  <!-- Start point -->
+  <circle cx="44" cy="196" r="6.5" fill="#2DD4BF"/>
+
+  <!-- Destination pin -->
+  <circle cx="206" cy="44" r="10" fill="#0F172A" stroke="#818CF8" stroke-width="4"/>
+  <circle cx="206" cy="44" r="3.5" fill="#818CF8"/>
+</svg>
