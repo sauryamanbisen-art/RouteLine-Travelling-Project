@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Booking | RouteLine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/bus.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color: white; text-decoration: none;">RouteLine</a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="index.html">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html" class="active">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="road-stage"><canvas id="road-canvas"></canvas></div>
+
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Hit the road,<br>Discover new places.</h1>
+            <p class="hero-subtitle">Compare thousands of bus routes and operators.<br>Find the best seats at the lowest prices instantly.</p>
+            
+            <!-- Booking Widget -->
+            <div class="booking-widget">
+                <!-- Mode & Trip Toggle Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <!-- Mode Selector -->
+                    <div class="mode-selector" style="margin-bottom: 0;">
+                        <div class="active-pill" id="active-pill" style="left: 50%;"></div>
+                        <button class="mode-btn" onclick="window.location.href='index.html'">
+                            <i data-lucide="train-front"></i> Trains
+                        </button>
+                        <button class="mode-btn" onclick="window.location.href='flight-results.html'">
+                            <i data-lucide="plane"></i> Flights
+                        </button>
+                        <button class="mode-btn active" data-mode="Buses">
+                            <i data-lucide="bus-front"></i> Buses
+                        </button>
+                        <button class="mode-btn" onclick="window.location.href='hotel-results.html'">
+                            <i data-lucide="building-2"></i> Hotels
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="booking-form-container">
+                    <form id="search-form" action="bus-results.html" method="GET">
+                        <div class="inputs-row" id="dynamic-inputs">
+                            
+                            <div class="input-group" id="from-group">
+                                <i data-lucide="map-pin" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="from-label">From</label>
+                                    <input type="text" id="from-input" name="origin" value="Delhi" list="city-list" required>
+                                </div>
+                            </div>
+                            
+                            <div class="swap-icon-container">
+                                <button type="button" class="swap-btn" id="swap-btn"><i data-lucide="arrow-left-right" class="icon-sm"></i></button>
+                            </div>
+                            
+                            <div class="input-group" id="to-group">
+                                <i data-lucide="map-pin" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="to-label">To</label>
+                                    <input type="text" id="to-input" name="destination" value="Manali" list="city-list" required>
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group" id="depart-group">
+                                <i data-lucide="calendar" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="depart-label">Travel Date</label>
+                                    <input type="date" id="depart-input" name="date" required style="font-size: 0.95rem; font-family: inherit;">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group class-selector" id="travellers-field" style="cursor: pointer; position: relative; min-width: 140px;">
+                                <i data-lucide="users" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>Passengers</label>
+                                    <div class="value" id="travellers-summary" style="font-size: 0.95rem; font-weight: 600; margin-top: 4px;">1 Passenger</div>
+                                </div>
+                                <i data-lucide="chevron-down" class="icon-sm" style="margin-left:auto;"></i>
+                                
+                                <!-- Travellers Dropdown -->
+                                <div class="travellers-panel" id="travellers-panel" onclick="event.stopPropagation()">
+                                    <div class="counter-row" style="display: flex; justify-content: space-between; align-items: center;">
+                                        <div><div class="label" style="font-weight: 600; color: #333;">Passengers</div></div>
+                                        <div class="stepper" style="display: flex; align-items: center; gap: 10px;">
+                                            <button type="button" id="btn-dec">–</button>
+                                            <span id="passengers-count" style="font-weight: 600;">1</span>
+                                            <button type="button" id="btn-inc">+</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="search-btn" id="search-btn">
+                                <i data-lucide="search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="result-banner" id="result-banner" style="margin:10px 0; padding: 0 20px;">
+                        <span id="result-text" style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
+                    </div>
+
+                    <!-- Features Banner -->
+                    <div class="features-banner">
+                        <div class="feature-item">
+                            <i data-lucide="check-square" class="feature-icon"></i>
+                            <span>Verified Operators</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="shield-check" class="feature-icon"></i>
+                            <span>Secure Booking</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="headphones" class="feature-icon"></i>
+                            <span>24/7 Support</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <datalist id="city-list">
+        <option value="Delhi"></option>
+        <option value="Manali"></option>
+        <option value="Jaipur"></option>
+        <option value="Chandigarh"></option>
+        <option value="Shimla"></option>
+        <option value="Agra"></option>
+        <option value="Mumbai"></option>
+        <option value="Pune"></option>
+        <option value="Bangalore"></option>
+        <option value="Chennai"></option>
+        <option value="Hyderabad"></option>
+        <option value="Kochi"></option>
+    </datalist>
+
+    <!-- Quick Services -->
+    <section class="quick-services">
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="map"></i></div>
+            <span>Track<br>My Bus</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="ticket"></i></div>
+            <span>Cancel<br>Ticket</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="bus"></i></div>
+            <span>Charter<br>Bus</span>
+        </a>
+        <div class="divider-vertical-light"></div>
+        <a href="#" class="service-item">
+            <div class="icon-circle"><i data-lucide="shield"></i></div>
+            <span>Travel<br>Insurance</span>
+        </a>
+    </section>
+
+    <script type="module" src="./src/js/bus.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
