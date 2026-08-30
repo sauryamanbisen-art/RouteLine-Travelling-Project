@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Dashboard | RouteLine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/flight.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color: white; text-decoration: none;">RouteLine</a>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="index.html">Trains</a>
+                <a href="flight-results.html" class="active">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            
+            <div class="header-actions">
+                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="cloud-stage"><canvas id="cloud-canvas"></canvas></div>
+        
+        <!-- Plane Wing (Window Seat View) -->
+        <div class="plane-wing-wrapper">
+            <img src="https://assets.aceternity.com/components/plane-wing.png" alt="Airplane wing above the clouds" class="plane-wing-img" />
+        </div>
+
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Book the whole sky<br>between here and there.</h1>
+            <p class="hero-subtitle">Compare every route across 400+ operators, watch fares update live,<br>and lock a seat in under a minute — one search, no hidden fees.</p>
+            
+            <!-- Booking Widget -->
+            <div class="booking-widget">
+                <!-- Mode & Trip Toggle Header -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <!-- Mode Selector -->
+                    <div class="mode-selector" style="margin-bottom: 0;">
+                        <div class="active-pill" id="active-pill" style="left: 25%;"></div>
+                        <button class="mode-btn" onclick="window.location.href='index.html'">
+                            <i data-lucide="train-front"></i> Trains
+                        </button>
+                        <button class="mode-btn active" data-mode="Flights">
+                            <i data-lucide="plane"></i> Flights
+                        </button>
+                        <button class="mode-btn" onclick="window.location.href='bus-results.html'">
+                            <i data-lucide="bus-front"></i> Buses
+                        </button>
+                        <button class="mode-btn" onclick="window.location.href='hotel-results.html'">
+                            <i data-lucide="building-2"></i> Hotels
+                        </button>
+                    </div>
+
+                    <!-- Trip Toggle -->
+                    <div class="trip-toggle-container">
+                        <div class="trip-toggle" id="trip-toggle">
+                            <button type="button" class="is-active" data-trip="oneway">One way</button>
+                            <button type="button" data-trip="round">Round trip</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area -->
+                <div class="booking-form-container">
+                    <form id="search-form" action="flight-results.html" method="GET">
+                        <div class="inputs-row flight-inputs-row" id="dynamic-inputs">
+                            
+                            <div class="input-group" id="from-group">
+                                <i data-lucide="plane-takeoff" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="from-label">From</label>
+                                    <input type="text" id="from-input" name="origin" value="Ahmedabad" list="city-list" required>
+                                </div>
+                            </div>
+                            
+                            <div class="swap-icon-container">
+                                <button type="button" class="swap-btn" id="swap-btn"><i data-lucide="arrow-left-right" class="icon-sm"></i></button>
+                            </div>
+                            
+                            <div class="input-group" id="to-group">
+                                <i data-lucide="plane-landing" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="to-label">To</label>
+                                    <input type="text" id="to-input" name="destination" value="Mumbai" list="city-list" required>
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group" id="depart-group">
+                                <i data-lucide="calendar" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label id="depart-label">Departure</label>
+                                    <input type="date" id="depart-input" name="date" required style="font-size: 0.95rem; font-family: inherit;">
+                                </div>
+                            </div>
+                            
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group" id="return-group" style="opacity: 0.4;">
+                                <i data-lucide="calendar-plus" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>Return</label>
+                                    <input type="date" id="return-input" name="returnDate" disabled style="font-size: 0.95rem; font-family: inherit;">
+                                </div>
+                            </div>
+
+                            <div class="divider-vertical"></div>
+                            
+                            <div class="input-group class-selector" id="travellers-field" style="cursor: pointer; position: relative; min-width: 140px;">
+                                <i data-lucide="users" class="input-icon"></i>
+                                <div class="input-text">
+                                    <label>Travellers & class</label>
+                                    <div class="value" id="travellers-summary" style="font-size: 0.95rem; font-weight: 600; margin-top: 4px;">1 traveller · Economy</div>
+                                </div>
+                                <i data-lucide="chevron-down" class="icon-sm" style="margin-left:auto;"></i>
+                                
+                                <!-- Travellers Dropdown -->
+                                <div class="travellers-panel" id="travellers-panel">
+                                    <div class="counter-row">
+                                        <div><div class="label">Adults</div><div class="sub">12+ years</div></div>
+                                        <div class="stepper"><button type="button" data-step="adults" data-dir="-1">–</button><span id="adults-count">1</span><button type="button" data-step="adults" data-dir="1">+</button></div>
+                                    </div>
+                                    <div class="counter-row">
+                                        <div><div class="label">Children</div><div class="sub">2–11 years</div></div>
+                                        <div class="stepper"><button type="button" data-step="children" data-dir="-1">–</button><span id="children-count">0</span><button type="button" data-step="children" data-dir="1">+</button></div>
+                                    </div>
+                                    <div class="class-select" id="class-select">
+                                        <div class="class-pill is-active" data-class="Economy">Economy</div>
+                                        <div class="class-pill" data-class="Premium">Premium</div>
+                                        <div class="class-pill" data-class="Business">Business</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="search-btn" id="search-btn">
+                                <i data-lucide="search"></i> Search
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="result-banner" id="result-banner" style="margin:10px 0; padding: 0 20px;">
+                        <span id="result-text" style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
+                    </div>
+
+                    <!-- Features Banner -->
+                    <div class="features-banner">
+                        <div class="feature-item">
+                            <i data-lucide="check-square" class="feature-icon"></i>
+                            <span>Confirmed Tickets</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="shield-check" class="feature-icon"></i>
+                            <span>Instant Refunds</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="headphones" class="feature-icon"></i>
+                            <span>24/7 Customer Support</span>
+                        </div>
+                        <div class="feature-divider"></div>
+                        <div class="feature-item">
+                            <i data-lucide="lock" class="feature-icon"></i>
+                            <span>Secure & Trusted Payments</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <datalist id="city-list">
+        <option value="Ahmedabad"></option>
+        <option value="Mumbai"></option>
+        <option value="Delhi"></option>
+        <option value="Bengaluru"></option>
+        <option value="Jaipur"></option>
+        <option value="Goa"></option>
+        <option value="Kolkata"></option>
+        <option value="Chennai"></option>
+        <option value="Hyderabad"></option>
+        <option value="Pune"></option>
+        <option value="Kochi"></option>
+        <option value="Lucknow"></option>
+    </datalist>
+
+    <script type="module" src="./src/js/flight.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
