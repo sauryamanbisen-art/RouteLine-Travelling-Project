@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Results | RouteLine</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/train.css">
+</head>
+<body>
+    <header class="header" style="background: var(--dark-blue);">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="results-container">
+        <div class="search-summary">
+            <h2 id="route-summary"><i data-lucide="train-front"></i> Searching Trains...</h2>
+            <button class="search-btn" style="padding: 10px 20px;" onclick="window.location.href='index.html'">Modify Search</button>
+        </div>
+        
+        <div style="padding: 40px; text-align: center; border: 1px dashed #ccc; border-radius: 12px;">
+            <h3>Search Results will appear here</h3>
+            <p style="color: var(--text-grey); margin-top: 10px;">This page handles the routing from the index search form.</p>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        // Parse URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const origin = urlParams.get('origin');
+        const destination = urlParams.get('destination');
+        const date = urlParams.get('date');
+        
+        if(origin && destination) {
+            document.getElementById('route-summary').innerHTML = `<i data-lucide="train-front"></i> ${origin} to ${destination} <span style="font-size:14px; color:#666; margin-left:15px;">${date}</span>`;
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
