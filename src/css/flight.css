@@ -1,0 +1,29 @@
+/* Flight Dashboard Specific Overrides */
+.hero {
+    background: transparent; /* overridden by canvas */
+    overflow: hidden;
+}
+
+.cloud-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Below overlay */
+}
+
+#cloud-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-overlay {
+    z-index: 2;
+    background: linear-gradient(to bottom, rgba(8,16,34,.30), transparent 32%);
+}
+
+.hero-content, .booking-widget {
+    position: relative;
+    z-index: 5;
+}
