@@ -1,6 +1,7 @@
 // bus.js
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize the bus search functionality
     // 1. Initial Setup
     const fromInput = document.getElementById('from-input');
     const toInput = document.getElementById('to-input');
