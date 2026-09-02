@@ -1,0 +1,946 @@
+/* ======================================================
+   HOMEPAGE SECTIONS — Below Quick Services
+   Uses existing :root variables from style.css
+   ====================================================== */
+
+/* --- Shared Section Styles --- */
+.rl-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+
+.rl-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+}
+
+.rl-section-header h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.rl-section-subtitle {
+    font-size: 15px;
+    color: var(--text-grey);
+    margin-bottom: 28px;
+}
+
+.rl-view-all {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.rl-view-all:hover {
+    text-decoration: underline;
+}
+
+/* ======================================================
+   SECTION 1 — Popular Destinations
+   ====================================================== */
+.destinations-wrapper {
+    background: #f8f9fc;
+    border-radius: 20px;
+    padding: 24px 24px 32px 24px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+.destinations-wrapper .rl-section-header {
+    margin-bottom: 20px;
+}
+
+.destinations-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.destination-card {
+    text-decoration: none;
+    color: var(--text-dark);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg-white);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.destination-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.destination-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+}
+
+.destination-card-body {
+    padding: 16px;
+}
+
+.destination-card-body h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.destination-card-body .dest-state {
+    font-size: 13px;
+    color: var(--text-grey);
+    margin-bottom: 16px;
+}
+
+.destination-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.destination-card-footer .dest-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.destination-card-footer .dest-arrow {
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.destination-card:hover .dest-arrow {
+    transform: translateX(4px);
+}
+
+/* ======================================================
+   SECTION 2 — Trending Routes
+   ====================================================== */
+.routes-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.route-card {
+    text-decoration: none;
+    color: var(--text-dark);
+    background: var(--bg-white);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.route-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+}
+
+.route-card-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.route-card-icons .route-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1.5px solid #dbeafe;
+    color: var(--primary-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.route-card-icons .route-icon:not(:last-child)::after {
+    content: "···";
+    position: absolute;
+    right: -16px;
+    color: #cbd5e1;
+    font-size: 10px;
+    letter-spacing: 1px;
+    transform: translateX(50%);
+}
+
+.route-card-icons .route-icon i {
+    width: 16px;
+    height: 16px;
+}
+
+.route-card h3 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.route-card .route-modes {
+    font-size: 12px;
+    color: var(--text-grey);
+    margin-bottom: 16px;
+}
+
+.route-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.route-card-footer .route-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #00a86b; /* green */
+}
+
+.route-card-footer .route-arrow {
+    font-size: 16px;
+    color: var(--primary-blue);
+    transition: transform 0.2s ease;
+}
+
+.route-card:hover .route-arrow {
+    transform: translateX(3px);
+}
+
+/* ======================================================
+   SECTION 3 — Multi-City Feature
+   ====================================================== */
+.multi-city-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.multi-city-text {
+    flex: 0 0 280px;
+}
+
+.multi-city-text h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #1e1e4a;
+    line-height: 1.25;
+    margin-bottom: 12px;
+}
+
+.multi-city-text p {
+    font-size: 14px;
+    color: var(--text-grey);
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.multi-city-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #005ce6;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.multi-city-cta:hover {
+    background: #004dc0;
+}
+
+.multi-city-journey {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    overflow-x: auto;
+}
+
+.journey-stop-card {
+    background: white;
+    border-radius: 12px;
+    width: 110px;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.journey-stop-card .stop-number {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #005ce6;
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 14px;
+    margin-bottom: 10px;
+}
+
+.journey-stop-card .stop-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+}
+
+.journey-stop-card img {
+    width: 100%;
+    flex: 1;
+    object-fit: contain; /* changed from cover so the cutout fits nicely */
+    background: white; /* just in case */
+}
+
+.journey-arrow {
+    color: #005ce6;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* ======================================================
+   SECTION 4 — Travel Collections
+   ====================================================== */
+.collections-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.collection-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 180px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.collection-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.collection-card:hover img {
+    transform: scale(1.08);
+}
+
+.collection-card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.1) 100%);
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+}
+
+.collection-card-overlay span {
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* ======================================================
+   SECTION 5 & 6 — Deals + Reviews side by side
+   ====================================================== */
+.deals-reviews-container {
+    max-width: 1200px;
+    margin: 0 auto 20px auto; /* Removed top margin to close gap */
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: auto 380px;
+    gap: 20px;
+}
+
+.deals-wrapper, .reviews-wrapper {
+    background: #f8f9fc;
+    border-radius: 20px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+}
+
+.deals-wrapper .rl-section-header,
+.reviews-wrapper .rl-section-header {
+    margin-bottom: 16px;
+}
+
+.deals-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    flex: 1;
+}
+
+.deal-card {
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--text-dark);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    height: 140px;
+}
+
+.deal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.deal-content {
+    position: relative;
+    padding: 16px;
+    z-index: 2;
+}
+
+.deal-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.deal-card .deal-offer {
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.4;
+}
+
+.deal-card .deal-offer span {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary-blue);
+    display: block;
+    margin-top: 2px;
+}
+
+.deal-card .deal-offer.green span {
+    color: #00875a;
+}
+
+.deal-card .deal-offer.purple span {
+    color: #5d28b1;
+}
+
+.deal-card .deal-offer.dark-purple span {
+    color: #2b1c81;
+}
+
+/* Background Colors */
+.deal-train {
+    background-color: #f0f4ff;
+}
+.deal-bus {
+    background-color: #e5fbf0;
+}
+.deal-hotel {
+    background-color: #f7efff;
+}
+.deal-flight {
+    background-color: #f4ecff;
+}
+
+/* Deal Images */
+.deal-card img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    border-radius: 14px;
+}
+
+/* Reviews */
+.reviews-slider {
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 12px;
+    flex: 1;
+    display: flex;
+}
+
+.reviews-track {
+    display: flex;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 100%;
+}
+
+.review-card {
+    background: var(--bg-white);
+    border-radius: 14px;
+    padding: 16px 20px;
+    flex: 0 0 100%;
+    min-width: 100%;
+    box-sizing: border-box;
+}
+
+.review-stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 16px;
+}
+
+.review-card p {
+    font-size: 14px;
+    color: var(--text-dark);
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.review-author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.review-author-info .name {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text-dark);
+    display: block;
+}
+
+.review-author-info .city {
+    font-size: 13px;
+    color: var(--text-grey);
+}
+
+.review-pagination {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-top: auto;
+    padding-bottom: 4px;
+}
+
+.review-pagination .dot {
+    cursor: pointer;
+    transition: background 0.2s ease;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #cbd5e1;
+}
+
+.review-pagination .dot.active {
+    background: var(--primary-blue);
+}
+
+/* ======================================================
+   SECTION 7 — Why RouteLine
+   ====================================================== */
+.why-routeline {
+    padding: 10px 24px 30px 24px; /* Reduced bottom padding from 60px to 30px */
+}
+
+.why-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    border: 1px solid #eef0f4;
+    border-radius: 16px;
+    padding: 28px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+}
+
+.why-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.why-divider {
+    width: 1px;
+    height: 40px;
+    background: #eef0f4;
+    margin: 0 16px;
+}
+
+.why-item .why-icon {
+    color: #1e293b; /* dark slate/navy */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.why-item .why-icon i {
+    width: 32px;
+    height: 32px;
+    stroke-width: 1.5px;
+}
+
+.why-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.why-text h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0;
+}
+
+.why-text p {
+    font-size: 13px;
+    color: #475569;
+    margin: 0;
+}
+
+/* ======================================================
+   SECTION 8 — App Download / Final CTA
+   ====================================================== */
+.app-section {
+    background: linear-gradient(135deg, #0a1f44 0%, #0f2d66 50%, #1a3d7a 100%);
+    padding: 40px 24px; /* Reduced top/bottom padding from 60px to 40px */
+}
+
+.app-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.app-text {
+    flex: 1;
+}
+
+.app-text h2 {
+    font-size: 32px;
+    font-weight: 800;
+    color: white;
+    line-height: 1.2;
+    margin-bottom: 14px;
+}
+
+.app-text p {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    margin-bottom: 24px;
+    max-width: 420px;
+}
+
+.app-download-area {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.app-download-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 16px;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.app-buttons a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: var(--text-dark);
+    padding: 12px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.app-buttons a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.app-buttons a i {
+    width: 22px;
+    height: 22px;
+}
+
+.app-btn-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.app-btn-text .small {
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-grey);
+    line-height: 1;
+}
+
+.app-btn-text .big {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.app-qr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.app-qr-box {
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+}
+
+.app-qr-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.app-qr span {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+.site-footer {
+    background: #f5f7fa;
+    padding: 40px 24px 24px;
+    border-top: 1px solid #eef0f4;
+}
+
+.footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-decoration: none;
+}
+
+.footer-logo img {
+    width: 28px;
+    height: 28px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links a {
+    font-size: 14px;
+    color: var(--text-grey);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: var(--primary-blue);
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: var(--text-grey);
+}
+
+/* ======================================================
+   RESPONSIVE — Tablet
+   ====================================================== */
+@media (max-width: 1024px) {
+    .destinations-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .collections-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .routes-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .deals-reviews-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .deals-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .multi-city-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .multi-city-text {
+        flex: none;
+    }
+
+    .app-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .app-text p {
+        max-width: 100%;
+    }
+
+    .app-download-area {
+        flex-direction: column;
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ======================================================
+   RESPONSIVE — Mobile
+   ====================================================== */
+@media (max-width: 640px) {
+    .rl-section {
+        padding: 36px 16px;
+    }
+
+    .rl-section-header h2 {
+        font-size: 20px;
+    }
+
+    .destinations-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .destination-card img {
+        height: 110px;
+    }
+
+    .collections-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 12px;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .collection-card {
+        min-width: 150px;
+        height: 160px;
+        flex-shrink: 0;
+    }
+
+    .routes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .multi-city-journey {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .multi-city-text h2 {
+        font-size: 24px;
+    }
+
+    .deals-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .why-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+    }
+
+    .app-inner {
+        gap: 30px;
+    }
+
+    .app-text h2 {
+        font-size: 24px;
+    }
+
+    .app-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .app-buttons a {
+        justify-content: center;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+}
