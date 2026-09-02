@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="./src/css/style.css">
     <link rel="stylesheet" href="./src/css/train.css">
+    <link rel="stylesheet" href="./src/css/homepage.css">
 </head>
 <body>
     <header class="header" style="background: var(--dark-blue);">
@@ -23,12 +24,17 @@
                 <a href="hotel-results.html">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
+            <div class="header-actions">
+                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+            </div>
         </div>
     </header>
 
     <div class="results-container">
         <div class="search-summary">
-            <h2 id="route-summary"><i data-lucide="train-front"></i> Searching Trains...</h2>
+            <h2 id="route-summary"><i data-lucide="train"></i> Searching Trains...</h2>
             <button class="search-btn" style="padding: 10px 20px;" onclick="window.location.href='index.html'">Modify Search</button>
         </div>
         
@@ -38,19 +44,237 @@
         </div>
     </div>
 
+    <!-- Quick Services — Train -->
+    <section class="quick-services">
+        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="ticket-check"></i></div><span>PNR<br>Status</span></a>
+        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="calendar-range"></i></div><span>Train<br>Schedule</span></a>
+        <a href="metro-ticket.html" class="service-item"><div class="icon-circle"><i data-lucide="train-front"></i></div><span>Metro<br>Ticket</span></a>
+        <a href="order-food.html" class="service-item"><div class="icon-circle"><i data-lucide="utensils"></i></div><span>Order Food<br>On Train</span></a>
+        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="train"></i></div><span>Coach<br>Position</span></a>
+        <a href="seat-availability.html" class="service-item"><div class="icon-circle"><i data-lucide="armchair"></i></div><span>Seat<br>Availability</span></a>
+        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="users"></i></div><span>Group<br>Booking</span></a>
+        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="shield-check"></i></div><span>Travel<br>Insurance</span></a>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="destinations-wrapper"><div class="rl-section-header"><h2>Popular Destinations</h2><a href="#" class="rl-view-all">View All</a></div>
+        <div class="destinations-grid">
+            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&h=260&fit=crop" alt="Manali"><div class="destination-card-body"><h3>Manali</h3><p class="dest-state">Himachal Pradesh</p><div class="destination-card-footer"><span class="dest-price">From ₹799</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=260&fit=crop" alt="Goa"><div class="destination-card-body"><h3>Goa</h3><p class="dest-state">Goa</p><div class="destination-card-footer"><span class="dest-price">From ₹999</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&h=260&fit=crop" alt="Jaipur"><div class="destination-card-body"><h3>Jaipur</h3><p class="dest-state">Rajasthan</p><div class="destination-card-footer"><span class="dest-price">From ₹499</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=260&fit=crop" alt="Kerala"><div class="destination-card-body"><h3>Kerala</h3><p class="dest-state">Kerala</p><div class="destination-card-footer"><span class="dest-price">From ₹899</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&h=260&fit=crop" alt="Mumbai"><div class="destination-card-body"><h3>Mumbai</h3><p class="dest-state">Maharashtra</p><div class="destination-card-footer"><span class="dest-price">From ₹599</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=260&fit=crop" alt="Varanasi"><div class="destination-card-body"><h3>Varanasi</h3><p class="dest-state">Uttar Pradesh</p><div class="destination-card-footer"><span class="dest-price">From ₹649</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+        </div>
+    </section>
+
+    <!-- Trending Routes -->
+    <section class="destinations-wrapper"><div class="rl-section-header"><h2>Trending Routes</h2><a href="#" class="rl-view-all">View All</a></div>
+        <div class="routes-grid">
+            <a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="plane"></i></span></div><h3>Delhi → Mumbai</h3><p class="route-modes">Train · Bus · Flight</p><div class="route-card-footer"><span class="route-price">From ₹599</span><span class="route-arrow">→</span></div></a>
+            <a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="plane"></i></span></div><h3>Mumbai → Goa</h3><p class="route-modes">Train · Bus · Flight</p><div class="route-card-footer"><span class="route-price">From ₹499</span><span class="route-arrow">→</span></div></a>
+            <a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span></div><h3>Delhi → Jaipur</h3><p class="route-modes">Train · Bus</p><div class="route-card-footer"><span class="route-price">From ₹299</span><span class="route-arrow">→</span></div></a>
+            <a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="plane"></i></span></div><h3>Bangalore → Hyderabad</h3><p class="route-modes">Train · Bus · Flight</p><div class="route-card-footer"><span class="route-price">From ₹399</span><span class="route-arrow">→</span></div></a>
+            <a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span></div><h3>Kolkata → Puri</h3><p class="route-modes">Train · Bus</p><div class="route-card-footer"><span class="route-price">From ₹349</span><span class="route-arrow">→</span></div></a>
+            <a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="car"></i></span></div><h3>Chennai → Pondicherry</h3><p class="route-modes">Bus · Cab</p><div class="route-card-footer"><span class="route-price">From ₹279</span><span class="route-arrow">→</span></div></a>
+        </div>
+    </section>
+
+    <!-- Multi-City -->
+    <section class="destinations-wrapper"><div class="multi-city-inner"><div class="multi-city-text"><h2>One Trip.<br>Multiple Destinations.</h2><p>Plan multiple stops in one journey with RouteLine.</p><a href="#" class="multi-city-cta">Plan Multi-City Trip</a></div><div class="multi-city-journey"><div class="journey-stop-card"><span class="stop-number">1</span><span class="stop-name">Delhi</span><img src="./src/assets/delhi.jpg" alt="Delhi"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">2</span><span class="stop-name">Jaipur</span><img src="./src/assets/jaipur.jpg" alt="Jaipur"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">3</span><span class="stop-name">Jodhpur</span><img src="./src/assets/jodhpur.jpg" alt="Jodhpur"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">4</span><span class="stop-name">Udaipur</span><img src="./src/assets/udaipur.jpg" alt="Udaipur"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">5</span><span class="stop-name">Mumbai</span><img src="./src/assets/mumbai.jpg" alt="Mumbai"></div></div></div></section>
+
+    <!-- Travel Collections -->
+    <section class="rl-section"><div class="rl-section-header"><h2>Travel Collections</h2></div><p class="rl-section-subtitle">Find a journey that matches your mood</p>
+        <div class="collections-grid">
+            <a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=360&fit=crop" alt="Weekend Getaways"><div class="collection-card-overlay"><span>Weekend<br>Getaways</span></div></a>
+            <a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&h=360&fit=crop" alt="Family Trips"><div class="collection-card-overlay"><span>Family<br>Trips</span></div></a>
+            <a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=400&h=360&fit=crop" alt="Romantic Escapes"><div class="collection-card-overlay"><span>Romantic<br>Escapes</span></div></a>
+            <a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=400&h=360&fit=crop" alt="Adventure Trips"><div class="collection-card-overlay"><span>Adventure<br>Trips</span></div></a>
+            <a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=360&fit=crop" alt="Beach Holidays"><div class="collection-card-overlay"><span>Beach<br>Holidays</span></div></a>
+            <a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=360&fit=crop" alt="Spiritual Journeys"><div class="collection-card-overlay"><span>Spiritual<br>Journeys</span></div></a>
+        </div>
+    </section>
+
+        <!-- Deals + Reviews -->
+    <div class="deals-reviews-container" id="deals-reviews">
+        <!-- Deals Column -->
+        <div class="deals-wrapper">
+            <div class="rl-section-header">
+                <h2>Best Deals & Offers</h2>
+                <a href="#" class="rl-view-all">View All</a>
+            </div>
+
+            <div class="deals-grid">
+                <a href="#" class="deal-card deal-train">
+                    <div class="deal-content">
+                        <h4>Train Tickets</h4>
+                        <p class="deal-offer">Up to<br><span>20% OFF</span></p>
+                    </div>
+                    <img src="./src/assets/train_img.png" alt="Train">
+                </a>
+                <a href="#" class="deal-card deal-bus">
+                    <div class="deal-content">
+                        <h4>Bus Journeys</h4>
+                        <p class="deal-offer green">Save<br><span>₹200+</span></p>
+                    </div>
+                    <img src="./src/assets/bus_img.jpeg" alt="Bus">
+                </a>
+                <a href="#" class="deal-card deal-hotel">
+                    <div class="deal-content">
+                        <h4>Hotels</h4>
+                        <p class="deal-offer purple">Up to<br><span>40% OFF</span></p>
+                    </div>
+                    <img src="./src/assets/hotel_img.png" alt="Hotel">
+                </a>
+                <a href="#" class="deal-card deal-flight">
+                    <div class="deal-content">
+                        <h4>Flight Deals</h4>
+                        <p class="deal-offer dark-purple">Special<br><span>Fares</span></p>
+                    </div>
+                    <img src="./src/assets/plane_img.png" alt="Flight">
+                </a>
+            </div>
+        </div>
+
+        <!-- Reviews Column -->
+        <div class="reviews-wrapper">
+            <div class="rl-section-header">
+                <h2>What Travellers Say</h2>
+                <a href="#" class="rl-view-all">View All</a>
+            </div>
+
+            <div class="reviews-slider">
+                <div class="reviews-track" id="reviews-track">
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"Planning my Delhi → Jaipur → Udaipur trip was incredibly easy. Got confirmed tickets and great hotel deals!"</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Rahul Verma">
+                            <div class="review-author-info">
+                                <span class="name">Rahul Verma</span>
+                                <span class="city">Mumbai</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"Booked a family trip to Kerala — buses, trains, and hotel all in one place. Saved so much time!"</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Sneha Iyer">
+                            <div class="review-author-info">
+                                <span class="name">Sneha Iyer</span>
+                                <span class="city">Bangalore</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <div class="review-stars">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                        </div>
+                        <p>"The multi-city feature is a game changer. Planned 5 stops in Rajasthan without any hassle."</p>
+                        <div class="review-author">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Amit Sharma">
+                            <div class="review-author-info">
+                                <span class="name">Amit Sharma</span>
+                                <span class="city">Delhi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review-pagination" id="review-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot" data-index="2"></span>
+            </div>
+        </div>
+    </div>
+
+        <!-- Why RouteLine -->
+    <section class="rl-section why-routeline" id="why-routeline">
+        <div class="why-container">
+            <div class="why-item">
+                <div class="why-icon"><i data-lucide="badge-check"></i></div>
+                <div class="why-text">
+                    <h4>Best Price Guarantee</h4>
+                    <p>We ensure the best prices</p>
+                </div>
+            </div>
+            <div class="why-divider"></div>
+            <div class="why-item">
+                <div class="why-icon"><i data-lucide="calendar-days"></i></div>
+                <div class="why-text">
+                    <h4>Easy Booking</h4>
+                    <p>Quick & hassle-free</p>
+                </div>
+            </div>
+            <div class="why-divider"></div>
+            <div class="why-item">
+                <div class="why-icon"><i data-lucide="lock"></i></div>
+                <div class="why-text">
+                    <h4>Safe & Secure</h4>
+                    <p>Your safety is our priority</p>
+                </div>
+            </div>
+            <div class="why-divider"></div>
+            <div class="why-item">
+                <div class="why-icon"><i data-lucide="headset"></i></div>
+                <div class="why-text">
+                    <h4>24/7 Support</h4>
+                    <p>We are always here to help</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download -->
+    <section class="app-section"><div class="app-inner"><div class="app-text"><h2>Your Entire Journey,<br>In Your Pocket.</h2><p>Book tickets, check PNR status, get live updates and manage your trips anywhere, anytime.</p></div><div class="app-download-area"><div><p class="app-download-label">Download the RouteLine App</p><div class="app-buttons"><a href="#"><i data-lucide="play"></i><div class="app-btn-text"><span class="small">GET IT ON</span><span class="big">Google Play</span></div></a><a href="#"><i data-lucide="apple"></i><div class="app-btn-text"><span class="small">Download on the</span><span class="big">App Store</span></div></a></div></div><div class="app-qr"><div class="app-qr-box"><i data-lucide="qr-code" style="width:64px;height:64px;color:#333;"></i></div><span>Scan to download</span></div></div></div></section>
+
+    <!-- Footer -->
+    <footer class="site-footer"><div class="footer-inner"><a href="index.html" class="footer-logo"><img src="./public/logo.svg" alt="RouteLine">RouteLine</a><div class="footer-links"><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div><p class="footer-copy">© 2026 RouteLine. All rights reserved.</p></div></footer>
+
     <script>
         lucide.createIcons();
-        
-        // Parse URL parameters
         const urlParams = new URLSearchParams(window.location.search);
         const origin = urlParams.get('origin');
         const destination = urlParams.get('destination');
         const date = urlParams.get('date');
-        
         if(origin && destination) {
-            document.getElementById('route-summary').innerHTML = `<i data-lucide="train-front"></i> ${origin} to ${destination} <span style="font-size:14px; color:#666; margin-left:15px;">${date}</span>`;
+            document.getElementById('route-summary').innerHTML = `<i data-lucide="train"></i> ${origin} to ${destination} <span style="font-size:14px; color:#666; margin-left:15px;">${date}</span>`;
             lucide.createIcons();
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('reviews-track');
+            const dots = document.querySelectorAll('#review-dots .dot');
+            if (track && dots.length > 0) {
+                dots.forEach((dot, index) => {
+                    dot.addEventListener('click', () => {
+                        dots.forEach(d => d.classList.remove('active'));
+                        dot.classList.add('active');
+                        track.style.transform = `translateX(-${index * 100}%)`;
+                    });
+                });
+            }
+        });
     </script>
 </body>
 </html>
