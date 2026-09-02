@@ -358,12 +358,14 @@ body {
 .quick-services {
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 40px 0;
+    align-items: stretch;
+    padding: 40px 24px;
     background: var(--bg-white);
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
-    border-bottom: 1px solid #e0e0e0;
+    gap: 12px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .service-item {
@@ -374,11 +376,17 @@ body {
     text-decoration: none;
     color: var(--text-dark);
     flex: 1;
-    transition: transform 0.3s ease;
+    min-width: 100px;
+    padding: 18px 12px;
+    border-radius: 14px;
+    border: 1px solid #eef0f4;
+    background: var(--bg-white);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .service-item:hover {
     transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .icon-circle {
@@ -394,7 +402,7 @@ body {
 }
 
 .service-item span {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     line-height: 1.4;
 }
