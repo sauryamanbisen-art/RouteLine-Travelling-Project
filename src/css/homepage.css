@@ -32,7 +32,7 @@
 .rl-view-all {
     font-size: 14px;
     font-weight: 600;
-    color: var(--primary-blue);
+    color: #dca767;
     text-decoration: none;
     white-space: nowrap;
 }
@@ -113,7 +113,7 @@
 }
 
 .destination-card-footer .dest-arrow {
-    color: var(--primary-blue);
+    color: #ebc090;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -162,8 +162,8 @@
     height: 32px;
     border-radius: 50%;
     background: transparent;
-    border: 1.5px solid #dbeafe;
-    color: var(--primary-blue);
+    border: 1.5px solid #ebc090;
+    color: #ebc090;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -211,7 +211,7 @@
 
 .route-card-footer .route-arrow {
     font-size: 16px;
-    color: var(--primary-blue);
+    color: #ebc090;
     transition: transform 0.2s ease;
 }
 
@@ -251,7 +251,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #005ce6;
+    background: #dca767;
     color: white;
     padding: 12px 24px;
     border-radius: 8px;
@@ -262,7 +262,7 @@
 }
 
 .multi-city-cta:hover {
-    background: #004dc0;
+    background: #cd9f68;
 }
 
 .multi-city-journey {
@@ -290,7 +290,7 @@
     width: 22px;
     height: 22px;
     border-radius: 50%;
-    background: #005ce6;
+    background: #ebc090;
     color: white;
     font-size: 11px;
     font-weight: 700;
@@ -316,7 +316,7 @@
 }
 
 .journey-arrow {
-    color: #005ce6;
+    color: #ebc090;
     font-size: 18px;
     font-weight: 700;
 }

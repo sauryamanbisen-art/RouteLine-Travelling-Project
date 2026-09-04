@@ -58,7 +58,7 @@ body {
 
 .logo i {
     background: white;
-    color: var(--primary-blue);
+    color: #ebc090;
     border-radius: 8px;
     padding: 6px;
 }
@@ -147,7 +147,7 @@ body {
 }
 
 .hero-title {
-    color: white;
+    color: #eaa360;
     font-size: 64px;
     font-weight: 700;
     line-height: 1.1;
@@ -237,7 +237,7 @@ body {
 }
 
 .input-icon {
-    color: var(--primary-blue);
+    color: #ebc090;
     width: 20px;
     height: 20px;
 }
@@ -286,7 +286,7 @@ body {
     border-radius: 50%;
     border: 1px solid #e0e0e0;
     background: white;
-    color: var(--primary-blue);
+    color: #ebc090;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -307,8 +307,8 @@ body {
 }
 
 .search-btn {
-    background: var(--primary-blue);
-    color: white;
+    background: #ebc090;
+    color: var(--text-dark);
     border: none;
     padding: 16px 36px;
     border-radius: 30px;
@@ -323,7 +323,7 @@ body {
 }
 
 .search-btn:hover {
-    background: var(--dark-blue);
+    background: #dca767;
 }
 
 .features-banner {
@@ -394,7 +394,7 @@ body {
     height: 50px;
     border-radius: 50%;
     background: #f0f4ff;
-    color: var(--primary-blue);
+    color: #ebc090;
     display: flex;
     align-items: center;
     justify-content: center;
