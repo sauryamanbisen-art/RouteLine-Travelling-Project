@@ -1,6 +1,6 @@
 /* Bus Dashboard Specific Overrides */
 .hero {
-    background: #111; /* Dark background for road view */
+    background: url('../assets/bus_background_img.png') no-repeat center center/cover;
     overflow: hidden;
     position: relative;
 }
