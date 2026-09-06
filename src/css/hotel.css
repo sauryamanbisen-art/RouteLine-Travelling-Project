@@ -1,6 +1,6 @@
 /* Hotel Dashboard Specific Overrides */
 .hero {
-    background: #0d1b2a; /* Deep night blue */
+    background: url('../assets/Hotel-front-view.png') no-repeat center center/cover;
     overflow: hidden;
     position: relative;
 }
