@@ -1,24 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results | RouteLine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Seat Availability & Vacancy | RouteLine</title>
+    <meta name="description" content="Check real-time seat availability across all coach classes, 6-day PRS vacancy trends, and quota availability on RouteLine.">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/train/train.css">
+    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
+    <link rel="stylesheet" href="./src/css/home/homepage.css">
+    <link rel="stylesheet" href="./src/css/train/seat-availability.css">
 </head>
-<body>
+
+<body class="seat-avail-page-body">
+    <!-- Header -->
     <header class="header" style="background: var(--dark-blue);">
         <div class="header-container">
             <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
                 <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            <div class="header-actions">
+                <a href="javascript:void(0)" id="header-pnr-status-btn" class="help-link" onclick="openPNRModal()">
+                    <i data-lucide="activity" class="icon-small"></i> PNR Status
+                </a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> My Account</a>
             </div>
         </div>
     </header>
-    <div style="max-width: 1200px; margin: 120px auto; padding: 20px; text-align: center;">
-        <h2>Page: seat-availability.html</h2>
-        <p>This is a placeholder for the routed page.</p>
-        <button onclick="window.location.href='index.html'" style="padding: 10px 20px; margin-top: 20px; cursor: pointer;">Go Back</button>
+
+    <!-- Subbar Breadcrumbs -->
+    <div class="sa-subbar">
+        <div class="sa-subbar-container">
+            <div class="sa-breadcrumb">
+                <a href="index.html">Home</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="train-results.html">Trains</a>
+                <i data-lucide="chevron-right"></i>
+                <span>Seat Vacancy & Availability</span>
+            </div>
+            <div class="sa-header-badge">
+                <span class="live-dot"></span>
+                <span>Live Indian Railways PRS Engine</span>
+            </div>
+        </div>
     </div>
+
+    <!-- Main Container -->
+    <main class="sa-page-main">
+        <!-- 1. Search Box Card (Dark Theme) -->
+        <section class="sa-search-card">
+            <form id="sa-search-form" onsubmit="return false;">
+                <!-- Train Number or Name Field -->
+                <div class="sa-field-group">
+                    <label for="sa-train-input" class="sa-field-label">TRAIN NUMBER OR NAME</label>
+                    <div class="sa-input-wrap">
+                        <i data-lucide="train" class="sa-input-icon"></i>
+                        <input 
+                            type="text" 
+                            id="sa-train-input" 
+                            class="sa-text-input" 
+                            placeholder="Search train by name or number (e.g. 12951)..." 
+                            value="12952 - Mumbai Rajdhani"
+                            autocomplete="off"
+                            spellcheck="false"
+                        />
+                        <div id="sa-train-dropdown" class="sa-autocomplete-list"></div>
+                    </div>
+                </div>
+
+                <!-- Journey Route Group (Vertical Connected Stations) -->
+                <div class="sa-field-group">
+                    <label class="sa-field-label">JOURNEY ROUTE</label>
+                    <div class="sa-route-box">
+                        <div class="sa-route-connector"></div>
+                        <!-- From Station -->
+                        <div class="sa-route-station-row">
+                            <span class="sa-dot-indicator green"></span>
+                            <input 
+                                type="text" 
+                                id="sa-from-input" 
+                                class="sa-route-input" 
+                                placeholder="From Station" 
+                                value="NDLS - New Delhi"
+                                autocomplete="off"
+                            />
+                            <div id="sa-from-dropdown" class="sa-autocomplete-list"></div>
+                        </div>
+
+                        <!-- Station Swap Button -->
+                        <button type="button" id="sa-swap-btn" class="sa-station-swap-btn" title="Swap Stations">
+                            <i data-lucide="arrow-up-down"></i>
+                        </button>
+
+                        <!-- To Station -->
+                        <div class="sa-route-station-row">
+                            <span class="sa-dot-indicator blue"></span>
+                            <input 
+                                type="text" 
+                                id="sa-to-input" 
+                                class="sa-route-input" 
+                                placeholder="To Station" 
+                                value="MMCT - Mumbai Central"
+                                autocomplete="off"
+                            />
+                            <div id="sa-to-dropdown" class="sa-autocomplete-list"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3-Column Controls Row: Date, Class, Quota -->
+                <div class="sa-controls-grid">
+                    <!-- Journey Date -->
+                    <div class="sa-control-col">
+                        <label for="sa-date-input" class="sa-field-label">JOURNEY DATE</label>
+                        <div class="sa-select-wrap sa-date-wrap" id="sa-date-wrap">
+                            <i data-lucide="calendar" class="sa-select-icon" id="sa-calendar-icon"></i>
+                            <input type="date" id="sa-date-input" class="sa-date-input" />
+                        </div>
+                    </div>
+
+                    <!-- Travel Class -->
+                    <div class="sa-control-col">
+                        <label for="sa-class-select" class="sa-field-label">CLASS</label>
+                        <div class="sa-select-wrap">
+                            <select id="sa-class-select" class="sa-select-input">
+                                <option value="SL">Sleeper Class (SL)</option>
+                                <option value="3A" selected>AC 3 Tier (3A)</option>
+                                <option value="2A">AC 2 Tier (2A)</option>
+                                <option value="1A">AC First Class (1A)</option>
+                                <option value="3E">AC 3 Economy (3E)</option>
+                                <option value="CC">AC Chair Car (CC)</option>
+                                <option value="2S">Second Sitting (2S)</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="sa-dropdown-icon"></i>
+                        </div>
+                    </div>
+
+                    <!-- Booking Quota -->
+                    <div class="sa-control-col">
+                        <label for="sa-quota-select" class="sa-field-label">QUOTA</label>
+                        <div class="sa-select-wrap">
+                            <select id="sa-quota-select" class="sa-select-input">
+                                <option value="GN" selected>General (GN)</option>
+                                <option value="TQ">Tatkal (TQ)</option>
+                                <option value="LD">Ladies (LD)</option>
+                                <option value="PT">Premium Tatkal (PT)</option>
+                                <option value="SS">Senior Citizen (SS)</option>
+                            </select>
+                            <i data-lucide="chevron-down" class="sa-dropdown-icon"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button -->
+                <button type="submit" id="sa-submit-btn" class="sa-submit-btn">
+                    → Check Availability
+                </button>
+
+                <!-- Popular Route Presets -->
+                <div class="sa-quick-trains">
+                    <span class="sa-quick-label">Popular Trains:</span>
+                    <button type="button" class="sa-quick-chip" data-train="12952" data-src="NDLS" data-dst="MMCT" data-class="3A">
+                        12952 Mumbai Rajdhani
+                    </button>
+                    <button type="button" class="sa-quick-chip" data-train="16318" data-src="NDLS" data-dst="CAPE" data-class="3A">
+                        16318 Himsagar Exp (Delhi ⇄ Kanyakumari)
+                    </button>
+                    <button type="button" class="sa-quick-chip" data-train="22436" data-src="NDLS" data-dst="BSB" data-class="CC">
+                        22436 Vande Bharat
+                    </button>
+                    <button type="button" class="sa-quick-chip" data-train="12002" data-src="NDLS" data-dst="RKMP" data-class="CC">
+                        12002 Shatabdi Exp
+                    </button>
+                    <button type="button" class="sa-quick-chip" data-train="16032" data-src="NDLS" data-dst="MAS" data-class="SL">
+                        16032 Andaman Exp
+                    </button>
+                    <button type="button" class="sa-quick-chip" data-train="11040" data-src="NDLS" data-dst="MAS" data-class="2A">
+                        11040 Maharashtra Exp
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 2. Dynamic Content Area (Initial Mascot Card OR Live Results) -->
+        <div id="sa-content-area">
+            <!-- Initial State Card Matching User Screenshot 2 -->
+            <div class="sa-live-info-card">
+                <div class="sa-info-card-header">
+                    <i data-lucide="train"></i>
+                    <span>Live Seat Vacancy & Availability</span>
+                </div>
+
+                <div class="sa-info-card-body">
+                    <!-- Left Column: Conductor Mascot Elephant -->
+                    <div class="sa-mascot-column">
+                        <div class="sa-mascot-img-wrap">
+                            <img src="./public/mascot_elephant_trans.png" alt="Indian Railways Bholu Mascot" class="sa-mascot-img" />
+                        </div>
+                        <p class="sa-mascot-desc">
+                            Check real-time seat availability across all coach classes, 6-day availability trends, and quota vacancy.
+                        </p>
+                    </div>
+
+                    <!-- Right Column: What You Check -->
+                    <div class="sa-checklist-column">
+                        <span class="sa-checklist-title">WHAT YOU CHECK</span>
+                        <ul class="sa-checklist">
+                            <li>
+                                <span class="sa-check-icon green"><i data-lucide="check-circle-2"></i></span>
+                                <span>Available berths & waitlist queue count</span>
+                            </li>
+                            <li>
+                                <span class="sa-check-icon blue"><i data-lucide="check-circle-2"></i></span>
+                                <span>Class-wise 6–day availability calendar</span>
+                            </li>
+                            <li>
+                                <span class="sa-check-icon amber"><i data-lucide="check-circle-2"></i></span>
+                                <span>General, Tatkal & Ladies quota vacancy</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sa-info-card-footer">
+                    <span>💡 Select your train and stations above to check live seat vacancy.</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer" style="margin-top: 40px;">
+        <div class="footer-inner">
+            <a href="index.html" class="footer-logo">
+                <img src="./public/logo.svg" alt="RouteLine">RouteLine
+            </a>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">IRCTC Terms</a>
+                <a href="#">Cancellation Rules</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+            </div>
+            <p class="footer-copy">© 2026 RouteLine Technologies. Official IRCTC Travel Partner.</p>
+        </div>
+    </footer>
+
+    <!-- Modules -->
+    <script type="module" src="./src/js/train/seat-availability.js"></script>
+    <script>
+        if (window.lucide) window.lucide.createIcons();
+    </script>
 </body>
+
 </html>
