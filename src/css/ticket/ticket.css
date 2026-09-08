@@ -1,0 +1,947 @@
+/* =========================================================
+   Booked Ticket Page Layout & ERS Ticket Card
+   ========================================================= */
+.ticket-page-body {
+    background: #f1f5f9;
+    min-height: 100vh;
+}
+
+.ticket-subbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 0;
+}
+
+.subbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ticket-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.82rem;
+    color: #64748b;
+}
+
+.ticket-breadcrumb a {
+    color: #64748b;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.ticket-breadcrumb a:hover {
+    color: var(--primary-blue, #0066ff);
+}
+
+.ticket-breadcrumb i,
+.ticket-breadcrumb svg {
+    width: 14px;
+    height: 14px;
+    color: #94a3b8;
+}
+
+.subbar-btn {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1e293b;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.15s ease;
+}
+
+.subbar-btn:hover {
+    border-color: var(--primary-blue, #0066ff);
+    color: var(--primary-blue, #0066ff);
+}
+
+.ticket-page-main {
+    max-width: 1200px;
+    margin: 28px auto 60px;
+    padding: 0 20px;
+}
+
+.ticket-layout-container {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+/* ERS Ticket Card */
+.ticket-ers-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1.5px solid #cbd5e1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+    padding: 32px 36px;
+}
+
+.ticket-ers-card.ticket-cancelled {
+    border-color: #fca5a5;
+}
+
+.ers-watermark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-25deg);
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: rgba(15, 23, 42, 0.03);
+    pointer-events: none;
+    white-space: nowrap;
+    user-select: none;
+    z-index: 0;
+}
+
+.ers-top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1.5px solid #e2e8f0;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.ers-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.ers-logo {
+    height: 38px;
+}
+
+.brand-text .main-title {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.brand-text .sub-title {
+    font-size: 0.78rem;
+    color: #64748b;
+    font-weight: 600;
+}
+
+.ers-meta-right {
+    text-align: right;
+    font-size: 0.78rem;
+    color: #64748b;
+}
+
+.booking-ref-badge {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+/* PNR Banner */
+.ers-pnr-banner {
+    background: #f8fafc;
+    border: 1.5px solid #cbd5e1;
+    border-radius: 16px;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.pnr-left .pnr-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #64748b;
+    letter-spacing: 0.8px;
+}
+
+.pnr-val-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pnr-val {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #0f172a;
+    letter-spacing: 2px;
+}
+
+.btn-copy-pnr {
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-copy-pnr:hover {
+    border-color: var(--primary-blue, #0066ff);
+    color: var(--primary-blue, #0066ff);
+}
+
+.pnr-status-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.ers-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.ers-status-badge.status-confirmed {
+    background: #dcfce7;
+    color: #15803d;
+    border: 1px solid #86efac;
+}
+
+.ers-status-badge.status-cancelled {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fca5a5;
+}
+
+.ers-chart-badge {
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #475569;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-live-pnr-track {
+    background: #eff6ff;
+    border: 1px solid #93c5fd;
+    color: #1d4ed8;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-live-pnr-track:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.ers-cancellation-notice {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+    color: #991b1b;
+    font-size: 0.88rem;
+}
+
+.ers-cancellation-notice i,
+.ers-cancellation-notice svg {
+    width: 20px;
+    height: 20px;
+    color: #dc2626;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+/* ERS Journey Section */
+.ers-section {
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+}
+
+.journey-primary-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.train-lead {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.train-lead .t-badge {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.train-lead .t-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.t-tags {
+    display: flex;
+    gap: 8px;
+}
+
+.t-tag {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #334155;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ers-schedule-strip {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sched-point {
+    display: flex;
+    flex-direction: column;
+}
+
+.sched-point.arrival {
+    text-align: right;
+}
+
+.sched-point .station-code {
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #0f172a;
+    font-family: monospace;
+}
+
+.sched-point .station-name {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.sched-point .timing {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 4px;
+}
+
+.sched-point .date {
+    font-size: 0.75rem;
+    color: #64748b;
+}
+
+.sched-journey-path {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 24px;
+    position: relative;
+}
+
+.duration-pill {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--primary-blue, #0066ff);
+    background: #eff6ff;
+    padding: 2px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.path-line {
+    width: 100%;
+    height: 2px;
+    background: #cbd5e1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.path-line .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #0f172a;
+    position: absolute;
+}
+
+.path-line .dot.from { left: 0; }
+.path-line .dot.to { right: 0; }
+
+.path-line .train-mid-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    color: var(--primary-blue, #0066ff);
+    background: #f8fafc;
+    padding: 0 4px;
+}
+
+.sched-journey-path .distance {
+    font-size: 0.72rem;
+    color: #94a3b8;
+    margin-top: 6px;
+}
+
+/* Tables */
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.section-heading i,
+.section-heading svg {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-blue, #0066ff);
+}
+
+.section-heading h3 {
+    font-size: 1rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.ers-table-wrap {
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.ers-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.ers-table th {
+    background: #f8fafc;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #475569;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.76rem;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.ers-table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid #f1f5f9;
+    color: #1e293b;
+}
+
+.status-pill {
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 0.74rem;
+    font-weight: 800;
+}
+
+.status-pill.cnf {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+/* Payment & QR Grid */
+.ers-payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 220px;
+    gap: 20px;
+}
+
+.payment-receipt-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px 22px;
+}
+
+.fare-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.f-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.f-row.total {
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 8px;
+    margin-top: 4px;
+    color: #0f172a;
+    font-size: 1.05rem;
+}
+
+.f-row.payment-meta {
+    font-size: 0.78rem;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 8px;
+    margin-top: 4px;
+}
+
+.ticket-qr-box {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.qr-frame {
+    width: 100px;
+    height: 100px;
+    background: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    padding: 6px;
+    margin-bottom: 8px;
+}
+
+.qr-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.qr-caption {
+    font-size: 0.68rem;
+    color: #64748b;
+    line-height: 1.2;
+}
+
+.qr-pnr {
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin-top: 4px;
+}
+
+/* Instructions */
+.ers-instructions {
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 14px;
+    padding: 16px 20px;
+    font-size: 0.78rem;
+    color: #1e40af;
+}
+
+.ers-instructions h4 {
+    margin: 0 0 6px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ers-instructions ol {
+    margin: 0;
+    padding-left: 18px;
+    line-height: 1.5;
+}
+
+/* Actions Footer */
+.ers-actions-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1.5px solid #e2e8f0;
+    padding-top: 24px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.left-actions,
+.right-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.ers-btn {
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.ers-btn.btn-print {
+    background: #0f172a;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.2);
+}
+
+.ers-btn.btn-print:hover {
+    background: #1e293b;
+    transform: translateY(-1px);
+}
+
+.ers-btn.btn-track-pnr {
+    background: #eff6ff;
+    border: 1.5px solid #93c5fd;
+    color: #1d4ed8;
+}
+
+.ers-btn.btn-track-pnr:hover {
+    background: #1d4ed8;
+    color: #ffffff;
+}
+
+.ers-btn.btn-cancel-ticket {
+    background: #fef2f2;
+    border: 1.5px solid #fecaca;
+    color: #b91c1c;
+}
+
+.ers-btn.btn-cancel-ticket:hover {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.ers-btn.btn-book-another {
+    background: #f8fafc;
+    border: 1px solid #cbd5e1;
+    color: #334155;
+}
+
+.ers-btn.btn-book-another:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+/* Sidebar & History */
+.ticket-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar-card {
+    background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    padding: 22px;
+}
+
+.sidebar-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.sidebar-header-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sidebar-header-left i,
+.sidebar-header-left svg {
+    width: 18px;
+    height: 18px;
+    color: var(--primary-blue, #0066ff);
+}
+
+.sidebar-header-left h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0;
+}
+
+.bookings-badge {
+    background: #f1f5f9;
+    color: #64748b;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.all-bookings-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.booking-thumb-card {
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 12px 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.booking-thumb-card:hover {
+    border-color: #cbd5e1;
+    background: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.booking-thumb-card.active {
+    border-color: var(--primary-blue, #0066ff);
+    background: #eff6ff;
+}
+
+.thumb-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.82rem;
+    margin-bottom: 4px;
+}
+
+.thumb-badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.thumb-badge.confirmed {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.thumb-badge.cancelled {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.thumb-route {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 6px;
+}
+
+.thumb-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    color: #0f172a;
+}
+
+.support-card {
+    text-align: center;
+}
+
+.support-icon-wrap {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: var(--primary-blue, #0066ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+
+.support-card h4 {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 0 0 6px;
+}
+
+.support-card p {
+    font-size: 0.8rem;
+    color: #64748b;
+    margin: 0 0 14px;
+    line-height: 1.4;
+}
+
+.contact-pill {
+    background: #0f172a;
+    color: #ffffff;
+    padding: 8px 14px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+}
+
+/* =========================================================
+   Print Stylesheet (@media print)
+   ========================================================= */
+@media print {
+    body, html {
+        background: #ffffff !important;
+        color: #000000 !important;
+        font-size: 12pt;
+    }
+
+    .no-print,
+    .header,
+    .ticket-subbar,
+    .site-footer,
+    .ticket-sidebar,
+    .ers-actions-footer,
+    .btn-live-pnr-track,
+    .btn-copy-pnr {
+        display: none !important;
+    }
+
+    .ticket-page-main {
+        margin: 0 !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+    }
+
+    .ticket-layout-container {
+        display: block !important;
+    }
+
+    .ticket-ers-card {
+        border: 2px solid #000000 !important;
+        box-shadow: none !important;
+        padding: 20px !important;
+        border-radius: 0 !important;
+    }
+
+    .ers-watermark {
+        color: rgba(0, 0, 0, 0.05) !important;
+    }
+
+    .ers-table th,
+    .ers-table td {
+        border: 1px solid #333333 !important;
+        color: #000000 !important;
+    }
+}
+
+/* Responsive Ticket View */
+@media (max-width: 860px) {
+    .ticket-layout-container {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ers-payment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .ticket-ers-card {
+        padding: 20px;
+    }
+
+    .ers-schedule-strip {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+
+    .sched-point.arrival {
+        text-align: center;
+    }
+
+    .sched-journey-path {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+

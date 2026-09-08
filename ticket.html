@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Ticket (ERS) | RouteLine</title>
+    <meta name="description" content="View, download, print your confirmed Indian Railways train ticket and PNR details on RouteLine.">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
+    <link rel="stylesheet" href="./src/css/ticket/ticket.css">
+    <link rel="stylesheet" href="./src/css/home/homepage.css">
+</head>
+
+<body class="ticket-page-body">
+    <!-- Header -->
+    <header class="header" style="background: var(--dark-blue);">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            <div class="header-actions">
+                <a href="javascript:void(0)" id="header-pnr-status-btn" class="help-link" onclick="openPNRModal()">
+                    <i data-lucide="activity" class="icon-small"></i> PNR Status
+                </a>
+                <div class="divider"></div>
+                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> My Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-nav Breadcrumb Bar -->
+    <div class="ticket-subbar no-print">
+        <div class="subbar-container">
+            <div class="ticket-breadcrumb">
+                <a href="index.html">Home</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="train-results.html">Train Results</a>
+                <i data-lucide="chevron-right"></i>
+                <span>Electronic Reservation Slip (ERS)</span>
+            </div>
+            <div class="subbar-quick-actions">
+                <button type="button" class="subbar-btn" onclick="openPNRModal()">
+                    <i data-lucide="search"></i> Check Another PNR
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Ticket Display Layout -->
+    <main class="ticket-page-main">
+        <div class="ticket-layout-container">
+            <!-- Left: Primary Electronic Reservation Slip (ERS) -->
+            <section class="ers-column">
+                <div id="ticket-display-container">
+                    <!-- Rendered dynamically by ticket.js -->
+                    <div class="ticket-skeleton">
+                        <div class="skeleton-line" style="width: 60%; height: 32px;"></div>
+                        <div class="skeleton-line" style="width: 100%; height: 180px; margin-top: 16px;"></div>
+                        <div class="skeleton-line" style="width: 100%; height: 240px; margin-top: 16px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right: My Bookings History & Tools Sidebar (Hidden on print) -->
+            <aside class="ticket-sidebar no-print">
+                <!-- My Bookings History Card -->
+                <div class="sidebar-card bookings-history-card">
+                    <div class="sidebar-card-header">
+                        <div class="sidebar-header-left">
+                            <i data-lucide="layers"></i>
+                            <h4>My Booked Journeys</h4>
+                        </div>
+                        <span class="bookings-badge" id="bookings-count-badge">Saved</span>
+                    </div>
+                    <div class="sidebar-card-body">
+                        <div id="all-bookings-list" class="all-bookings-list">
+                            <!-- Thumbnails rendered dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Support & Help Card -->
+                <div class="sidebar-card support-card">
+                    <div class="support-icon-wrap">
+                        <i data-lucide="headphones"></i>
+                    </div>
+                    <h4>24x7 Railway Travel Support</h4>
+                    <p>Need assistance with your booking, seat upgrade, or refund? Our travel concierge is ready to help.</p>
+                    <div class="support-contacts">
+                        <a href="tel:139" class="contact-pill"><i data-lucide="phone"></i> Railway Helpline: 139</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer no-print">
+        <div class="footer-inner">
+            <a href="index.html" class="footer-logo">
+                <img src="./public/logo.svg" alt="RouteLine">RouteLine
+            </a>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">IRCTC Terms</a>
+                <a href="#">Cancellation Rules</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy</a>
+            </div>
+            <p class="footer-copy">© 2026 RouteLine Technologies. Official IRCTC Partner.</p>
+        </div>
+    </footer>
+
+    <!-- Modules -->
+    <script type="module" src="./src/js/ticket/ticket.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+
+</html>
