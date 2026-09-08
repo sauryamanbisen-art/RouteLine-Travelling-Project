@@ -1,6 +1,9 @@
-// hotel.js
+import { initAuth } from '../auth/auth.js';
+import { initModeSelectorPill } from '../global/mode-selector.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initAuth({ autoPrompt: false });
+    initModeSelectorPill();
     // 1. Initial Setup for Dates
     const checkinInput = document.getElementById('checkin-input');
     const checkoutInput = document.getElementById('checkout-input');

@@ -1,6 +1,9 @@
-// bus.js
+import { initAuth } from '../auth/auth.js';
+import { initModeSelectorPill } from '../global/mode-selector.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    initAuth({ autoPrompt: false });
+    initModeSelectorPill();
     // Initialize the bus search functionality
     // 1. Initial Setup
     const fromInput = document.getElementById('from-input');

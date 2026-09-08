@@ -1,3 +1,6 @@
+import { initAuth } from '../auth/auth.js';
+import { initModeSelectorPill } from '../global/mode-selector.js';
+
 (function(){
   "use strict";
 
@@ -124,6 +127,8 @@
      Booking widget interactivity
   ========================================================= */
   document.addEventListener("DOMContentLoaded", function(){
+    initAuth({ autoPrompt: false });
+    initModeSelectorPill();
 
     const canvas = document.getElementById("cloud-canvas");
     if(canvas) {
