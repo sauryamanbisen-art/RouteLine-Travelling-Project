@@ -1,125 +1,17 @@
-/* Reset & Variables */
-:root {
-    --primary-blue: #0066ff;
-    --dark-blue: #004de6;
-    --text-dark: #1a1a1a;
-    --text-grey: #666666;
-    --bg-white: #ffffff;
-    --bg-light: #f5f7fa;
-    --feature-bg: #e6f9e6;
-    --feature-text: #008000;
-}
+/* ==========================================================================
+   RouteLine - Global Stylesheet Entry (style.css)
+   ========================================================================== */
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    background-color: var(--bg-white);
-    color: var(--text-dark);
-    overflow-x: hidden;
-}
-
-/* Header */
-.header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 100;
-    padding: 20px 40px;
-    background: linear-gradient(to bottom, rgba(0,77,230,0.8) 0%, rgba(0,77,230,0) 100%);
-}
-
-.header-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 24px;
-    font-weight: 700;
-}
-
-.logo i, .logo img {
-    width: 32px;
-    height: 32px;
-}
-
-.logo i {
-    background: white;
-    color: #ebc090;
-    border-radius: 8px;
-    padding: 6px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 500;
-    position: relative;
-    padding-bottom: 5px;
-}
-
-.nav-links a.active::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-}
-
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    font-size: 14px;
-}
-
-.header-actions a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.divider {
-    width: 1px;
-    height: 16px;
-    background-color: rgba(255,255,255,0.3);
-}
-
-.icon-small {
-    width: 16px;
-    height: 16px;
-}
+@import './reset.css';
+@import './variables.css';
+@import './components.css';
 
 /* Hero Section */
 .hero {
     position: relative;
     width: 100%;
     min-height: 85vh;
-    background-image: url('../assets/vandhe-bharat.png');
+    background-image: url('../../assets/vandhe-bharat.png');
     background-size: cover;
     background-position: center;
     display: flex;
@@ -176,19 +68,25 @@ body {
     padding: 5px;
     margin-bottom: 20px;
     position: relative;
+    box-sizing: border-box;
 }
 
 .active-pill {
     position: absolute;
     top: 5px;
-    left: 5px;
     height: calc(100% - 10px);
-    width: 110px; /* will be dynamically updated by JS */
     background: var(--text-dark);
     border-radius: 25px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
+    pointer-events: none;
+    box-sizing: border-box;
+    transition: none;
 }
+
+.mode-selector.is-animated .active-pill {
+    transition: left 0.22s cubic-bezier(0.4, 0, 0.2, 1), width 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 
 .mode-btn {
     position: relative;
@@ -219,14 +117,16 @@ body {
 .booking-form-container {
     background: white;
     border-radius: 16px;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    position: relative;
 }
 
 .inputs-row {
     display: flex;
     align-items: center;
     padding: 20px 25px;
+    position: relative;
 }
 
 .input-group {
@@ -234,7 +134,9 @@ body {
     align-items: center;
     gap: 15px;
     flex: 1;
+    position: relative;
 }
+
 
 .input-icon {
     color: #ebc090;
@@ -607,3 +509,4 @@ body {
     50% { transform: translateY(-12px); }
     100% { transform: translateY(0); }
 }
+

@@ -1,0 +1,24 @@
+/* ==========================================================================
+   RouteLine - Design Tokens & Global Variables (variables.css)
+   ========================================================================== */
+
+:root {
+    --primary-blue: #0066ff;
+    --dark-blue: #004de6;
+    --text-dark: #1a1a1a;
+    --text-grey: #666666;
+    --bg-white: #ffffff;
+    --bg-light: #f5f7fa;
+    --feature-bg: #e6f9e6;
+    --feature-text: #008000;
+
+    /* Extended tokens */
+    --border-color: #e2e8f0;
+    --radius-sm: 6px;
+    --radius-md: 10px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+    --transition: all 0.2s ease;
+}
