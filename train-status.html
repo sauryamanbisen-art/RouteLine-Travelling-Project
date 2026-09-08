@@ -3,22 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results | RouteLine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Train Schedule & Timetable | RouteLine</title>
+    <meta http-equiv="refresh" content="0; url=train-schedule.html">
+    <script>
+        window.location.replace('train-schedule.html' + window.location.search);
+    </script>
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/train/train-status.css">
 </head>
-<body>
-    <header class="header" style="background: var(--dark-blue);">
-        <div class="header-container">
-            <div class="logo">
-                <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
-            </div>
-        </div>
-    </header>
-    <div style="max-width: 1200px; margin: 120px auto; padding: 20px; text-align: center;">
-        <h2>Page: train-status.html</h2>
-        <p>This is a placeholder for the routed page.</p>
-        <button onclick="window.location.href='index.html'" style="padding: 10px 20px; margin-top: 20px; cursor: pointer;">Go Back</button>
-    </div>
+<body style="font-family: 'Inter', sans-serif; text-align: center; padding: 50px;">
+    <h2>Redirecting to RouteLine Train Schedule...</h2>
+    <p>If you are not redirected automatically, please <a href="train-schedule.html">click here</a>.</p>
+    <script type="module" src="./src/js/train/train-status.js"></script>
 </body>
 </html>
