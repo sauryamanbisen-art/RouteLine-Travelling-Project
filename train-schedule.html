@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Train Schedule & Timetable | RouteLine</title>
+    <meta name="description" content="Check live Indian Railways train schedules, timetable, route halts, platform numbers, arrival and departure timings on RouteLine.">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/train/train.css">
+    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
+    <link rel="stylesheet" href="./src/css/train/train-schedule.css">
+    <link rel="stylesheet" href="./src/css/train/coach-position.css">
+</head>
+
+<body class="train-sched-page-body">
+    <!-- Header -->
+    <header class="header" style="background: var(--dark-blue);">
+        <div class="header-container">
+            <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
+                <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            <div class="header-actions">
+                <a href="javascript:void(0)" id="header-pnr-status-btn" class="help-link" onclick="openPNRModal()">
+                    <i data-lucide="activity" class="icon-small"></i> PNR Status
+                </a>
+                <div class="divider"></div>
+                <a href="ticket.html" class="login-link"><i data-lucide="ticket" class="icon-small"></i> My Account</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Subbar Breadcrumb -->
+    <div class="ts-subbar">
+        <div class="ts-subbar-container">
+            <div class="ts-breadcrumb">
+                <a href="index.html">Home</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="train-results.html">Trains</a>
+                <i data-lucide="chevron-right"></i>
+                <span>Train Schedule & Timetable</span>
+            </div>
+            <div class="ts-header-badge">
+                <span class="live-dot"></span>
+                <span>Official Indian Railways Timetable</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="ts-main-container">
+        <!-- Search Hero Section -->
+        <section class="ts-search-hero">
+            <div class="ts-hero-badge">
+                <i data-lucide="calendar-range"></i> Live Train Timetable Engine
+            </div>
+            <h1>Check Train Schedule & Route Halts</h1>
+            <p>Get authentic station arrival/departure times, platform numbers, halt durations, and coach positions across Indian Railways.</p>
+
+            <form id="train-sched-form" class="ts-search-bar" onsubmit="return false;">
+                <div class="ts-search-input-wrapper">
+                    <i data-lucide="train" class="ts-search-icon"></i>
+                    <input type="text" id="ts-train-input" value="12952" placeholder="Enter 5-digit Train No. or Name (e.g. 12952, Rajdhani)" autocomplete="off" spellcheck="false" required>
+                    <button type="button" id="ts-clear-btn" class="ts-clear-btn" title="Clear input" style="display:none;">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <button type="submit" id="ts-search-btn" class="ts-search-btn">
+                    <i data-lucide="search"></i> View Schedule
+                </button>
+            </form>
+
+            <!-- Popular Quick Chips -->
+            <div class="ts-chips-wrapper">
+                <span class="ts-chips-label">Popular Trains:</span>
+                <button type="button" class="ts-chip active" data-train="12952">12952 NDLS - MMCT Rajdhani</button>
+                <button type="button" class="ts-chip" data-train="12919">12919 Malwa Express</button>
+                <button type="button" class="ts-chip" data-train="22436">22436 Vande Bharat (NDLS-BSB)</button>
+                <button type="button" class="ts-chip" data-train="12002">12002 Shatabdi (NDLS-BPL)</button>
+                <button type="button" class="ts-chip" data-train="16318">16318 Himsagar Express</button>
+            </div>
+        </section>
+
+        <!-- Loading Skeleton / Spinner -->
+        <div id="ts-loading" class="ts-loading-state" style="display:none;">
+            <div class="ts-spinner"></div>
+            <h3>Fetching authentic timetable from RailRadar...</h3>
+            <p>Retrieving halt timings, platforms, and route geometry for the requested train.</p>
+        </div>
+
+        <!-- Error State -->
+        <div id="ts-error" class="ts-error-state" style="display:none;">
+            <div class="ts-error-icon">
+                <i data-lucide="alert-circle"></i>
+            </div>
+            <h3 id="ts-error-title">Unable to Find Train Schedule</h3>
+            <p id="ts-error-desc">Please check the train number or try one of the popular trains above.</p>
+            <button type="button" class="btn-primary" id="ts-error-retry-btn">
+                <i data-lucide="refresh-cw"></i> Try With 12952 Rajdhani
+            </button>
+        </div>
+
+        <!-- Schedule Results Container -->
+        <div id="ts-results-container" class="ts-results-container">
+            <!-- Train Overview Card -->
+            <div class="ts-card ts-overview-card">
+                <div class="ts-overview-header">
+                    <div class="ts-train-ident">
+                        <div class="ts-train-number" id="ts-train-number">12952</div>
+                        <div class="ts-train-name-wrap">
+                            <h2 id="ts-train-name">New Delhi - Mumbai Central Tejas Rajdhani Express</h2>
+                            <div class="ts-train-tags">
+                                <span class="ts-tag ts-tag-cat" id="ts-train-cat">Premium</span>
+                                <span class="ts-tag ts-tag-type" id="ts-train-type">Rajdhani Express</span>
+                                <span class="ts-tag ts-tag-return" id="ts-train-return">Return: 12951</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ts-action-buttons">
+                        <a href="seat-availability.html?train=12952&from=NDLS&to=MMCT" id="ts-check-seats-btn" class="ts-btn-action ts-btn-avail">
+                            <i data-lucide="armchair"></i> Check Seat Availability
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Stats Strip -->
+                <div class="ts-stats-grid">
+                    <div class="ts-stat-item">
+                        <div class="ts-stat-icon"><i data-lucide="map-pin"></i></div>
+                        <div class="ts-stat-body">
+                            <span class="ts-stat-label">Source ➔ Destination</span>
+                            <strong id="ts-route-endpoints">NDLS (New Delhi) ➔ MMCT (Mumbai Central)</strong>
+                        </div>
+                    </div>
+                    <div class="ts-stat-item">
+                        <div class="ts-stat-icon"><i data-lucide="navigation"></i></div>
+                        <div class="ts-stat-body">
+                            <span class="ts-stat-label">Total Distance</span>
+                            <strong id="ts-total-distance">1,384 km</strong>
+                        </div>
+                    </div>
+                    <div class="ts-stat-item">
+                        <div class="ts-stat-icon"><i data-lucide="clock"></i></div>
+                        <div class="ts-stat-body">
+                            <span class="ts-stat-label">Duration</span>
+                            <strong id="ts-total-duration">15h 40m</strong>
+                        </div>
+                    </div>
+                    <div class="ts-stat-item">
+                        <div class="ts-stat-icon"><i data-lucide="gauge"></i></div>
+                        <div class="ts-stat-body">
+                            <span class="ts-stat-label">Avg / Max Speed</span>
+                            <strong id="ts-speed-stats">88.4 km/h (Max 101.5)</strong>
+                        </div>
+                    </div>
+                    <div class="ts-stat-item">
+                        <div class="ts-stat-icon"><i data-lucide="git-commit"></i></div>
+                        <div class="ts-stat-body">
+                            <span class="ts-stat-label">Total Halts</span>
+                            <strong id="ts-total-halts">8 Stations</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Running Days Strip -->
+                <div class="ts-days-row">
+                    <span class="ts-days-title"><i data-lucide="calendar"></i> Running Days:</span>
+                    <div class="ts-days-list" id="ts-running-days">
+                        <span class="day-pill active">M</span>
+                        <span class="day-pill active">T</span>
+                        <span class="day-pill active">W</span>
+                        <span class="day-pill active">T</span>
+                        <span class="day-pill active">F</span>
+                        <span class="day-pill active">S</span>
+                        <span class="day-pill active">S</span>
+                    </div>
+                </div>
+
+                <!-- Coach Arrangement Preview -->
+                <div class="ts-coach-strip" id="ts-coach-strip-wrap">
+                    <div class="ts-coach-header">
+                        <div class="ts-coach-title">
+                            <i data-lucide="layers"></i>
+                            <span>Coach Composition / Arrangement:</span>
+                        </div>
+                        <span class="ts-coach-hint">Engine on the left (Front)</span>
+                    </div>
+                    <div class="ts-coach-card-box">
+                        <div class="ts-coach-grid" id="ts-coach-scroller">
+                            <!-- Rendered by JS -->
+                        </div>
+                        <div class="rr-coach-legend">
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#f97316;"></span> Engine (ENG)</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#e2e8f0;"></span> SLRD / EOG</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#fae8b6;"></span> Sleeper (SL)</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#fad8e2;"></span> General (GEN)</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#7dd3fc;"></span> AC 3 Tier (3A/3E)</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#c7d2fe;"></span> AC 2 Tier (2A)</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#fef08a;"></span> AC First Class (1A)</span>
+                            <span class="rr-legend-item"><span class="rr-legend-dot" style="background:#fed7aa;"></span> Pantry Car (PC)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Timetable Halts Section -->
+            <div class="ts-card ts-table-card">
+                <div class="ts-table-header">
+                    <div>
+                        <h3>Station Halts & Timings</h3>
+                        <p class="ts-table-subtitle" id="ts-table-subtitle">Showing all 8 scheduled stoppage stations</p>
+                    </div>
+                    <div class="ts-table-actions">
+                        <div class="ts-filter-box">
+                            <i data-lucide="search"></i>
+                            <input type="text" id="ts-station-filter" placeholder="Filter station name or code..." autocomplete="off">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timetable Table -->
+                <div class="ts-table-responsive">
+                    <table class="ts-timetable" id="ts-timetable">
+                        <thead>
+                            <tr>
+                                <th style="width: 50px;">#</th>
+                                <th>Station</th>
+                                <th>Sch. Arrival</th>
+                                <th>Sch. Departure</th>
+                                <th>Halt Time</th>
+                                <th>Platform</th>
+                                <th>Distance</th>
+                                <th>Day</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ts-table-body">
+                            <!-- Dynamic rows injected by train-schedule.js -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <a href="index.html" class="footer-logo">
+                <img src="./public/logo.svg" alt="RouteLine">
+                RouteLine
+            </a>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+            </div>
+            <p class="footer-copy">© 2026 RouteLine. All rights reserved. Powered by RailRadar.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="./src/js/train/train-schedule.js"></script>
+</body>
+
+</html>
