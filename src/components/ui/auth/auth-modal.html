@@ -1,0 +1,140 @@
+<!-- RouteLine Authentication Modal HTML Template -->
+<div id="rl-auth-modal-backdrop" class="rl-auth-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="rl-auth-modal-title">
+    <div class="rl-auth-modal">
+        <button type="button" class="rl-auth-close-btn" id="rl-auth-close-btn" aria-label="Close Authentication Modal">
+            <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+        </button>
+
+        <div class="rl-auth-header">
+            <div class="rl-auth-badge">
+                <i data-lucide="shield-check" style="width: 15px; height: 15px;"></i>
+                <span>RouteLine Secure Pass</span>
+            </div>
+            <h2 class="rl-auth-title" id="rl-auth-modal-title">Welcome to RouteLine</h2>
+            <p class="rl-auth-subtitle" id="rl-auth-modal-subtitle">Login or create an account to book your tickets and view bookings.</p>
+        </div>
+
+        <!-- Tab Switcher -->
+        <div class="rl-auth-tabs">
+            <button type="button" class="rl-auth-tab-btn active" id="rl-tab-login" data-tab="login">Login</button>
+            <button type="button" class="rl-auth-tab-btn" id="rl-tab-signup" data-tab="signup">Sign Up</button>
+        </div>
+
+        <!-- Alert Notification Box -->
+        <div id="rl-auth-alert" class="rl-auth-alert">
+            <i data-lucide="alert-circle" id="rl-auth-alert-icon" style="width: 16px; height: 16px; flex-shrink: 0;"></i>
+            <span id="rl-auth-alert-text"></span>
+        </div>
+
+        <!-- Login Form -->
+        <form id="rl-login-form" class="rl-auth-form active" novalidate>
+            <div class="rl-form-group">
+                <label for="rl-login-email" class="rl-form-label">Email or Username</label>
+                <div class="rl-input-wrapper">
+                    <i data-lucide="mail" class="rl-input-icon"></i>
+                    <input type="email" id="rl-login-email" class="rl-auth-input" placeholder="e.g. demo@routeline.com" required autocomplete="username">
+                </div>
+            </div>
+
+            <div class="rl-form-group">
+                <label for="rl-login-password" class="rl-form-label">Password</label>
+                <div class="rl-input-wrapper">
+                    <i data-lucide="lock" class="rl-input-icon"></i>
+                    <input type="password" id="rl-login-password" class="rl-auth-input" placeholder="Enter your password" required autocomplete="current-password">
+                    <button type="button" class="rl-toggle-pwd" data-target="rl-login-password" aria-label="Toggle Password Visibility">
+                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="rl-auth-meta-row">
+                <label class="rl-checkbox-label">
+                    <input type="checkbox" id="rl-login-remember" checked>
+                    <span>Remember me</span>
+                </label>
+                <a href="javascript:void(0)" class="rl-link-forgot" id="rl-btn-forgot-pwd">Forgot password?</a>
+            </div>
+
+            <button type="submit" class="rl-auth-submit-btn" id="rl-login-submit-btn">
+                <span>Sign In</span>
+                <i data-lucide="arrow-right" style="width: 17px; height: 17px;"></i>
+            </button>
+
+            <div class="rl-auth-divider">
+                <span>or</span>
+            </div>
+
+            <button type="button" class="rl-guest-btn" id="rl-guest-btn-login">
+                <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                <span>Continue as Guest</span>
+            </button>
+
+            <div class="rl-auth-demo-hint">
+                💡 <strong>Demo Login:</strong> <code>demo@routeline.com</code> / <code>password123</code>
+            </div>
+
+            <div class="rl-auth-footer-text">
+                Don't have an account? <a href="javascript:void(0)" class="rl-auth-footer-link" id="rl-switch-to-signup">Sign up now</a>
+            </div>
+        </form>
+
+        <!-- Sign Up Form -->
+        <form id="rl-signup-form" class="rl-auth-form" novalidate>
+            <div class="rl-form-group">
+                <label for="rl-signup-name" class="rl-form-label">Full Name</label>
+                <div class="rl-input-wrapper">
+                    <i data-lucide="user" class="rl-input-icon"></i>
+                    <input type="text" id="rl-signup-name" class="rl-auth-input" placeholder="e.g. Saurya Man Bisen" required autocomplete="name">
+                </div>
+            </div>
+
+            <div class="rl-form-group">
+                <label for="rl-signup-email" class="rl-form-label">Email Address</label>
+                <div class="rl-input-wrapper">
+                    <i data-lucide="mail" class="rl-input-icon"></i>
+                    <input type="email" id="rl-signup-email" class="rl-auth-input" placeholder="e.g. yourname@example.com" required autocomplete="email">
+                </div>
+            </div>
+
+            <div class="rl-form-group">
+                <label for="rl-signup-password" class="rl-form-label">Password</label>
+                <div class="rl-input-wrapper">
+                    <i data-lucide="lock" class="rl-input-icon"></i>
+                    <input type="password" id="rl-signup-password" class="rl-auth-input" placeholder="At least 6 characters" required autocomplete="new-password">
+                    <button type="button" class="rl-toggle-pwd" data-target="rl-signup-password" aria-label="Toggle Password Visibility">
+                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="rl-form-group">
+                <label for="rl-signup-confirm-password" class="rl-form-label">Confirm Password</label>
+                <div class="rl-input-wrapper">
+                    <i data-lucide="check-check" class="rl-input-icon"></i>
+                    <input type="password" id="rl-signup-confirm-password" class="rl-auth-input" placeholder="Re-enter password" required autocomplete="new-password">
+                    <button type="button" class="rl-toggle-pwd" data-target="rl-signup-confirm-password" aria-label="Toggle Password Visibility">
+                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="rl-auth-submit-btn" id="rl-signup-submit-btn">
+                <span>Create Account</span>
+                <i data-lucide="user-plus" style="width: 17px; height: 17px;"></i>
+            </button>
+
+            <div class="rl-auth-divider">
+                <span>or</span>
+            </div>
+
+            <button type="button" class="rl-guest-btn" id="rl-guest-btn-signup">
+                <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                <span>Continue as Guest</span>
+            </button>
+
+            <div class="rl-auth-footer-text">
+                Already have an account? <a href="javascript:void(0)" class="rl-auth-footer-link" id="rl-switch-to-login">Sign in</a>
+            </div>
+        </form>
+    </div>
+</div>
