@@ -1,0 +1,49 @@
+/* ==========================================================================
+   RouteLine - Live Train Running Status (train-status.css)
+   ========================================================================== */
+
+.ts-live-status-card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid var(--ts-border, #e2e8f0);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+}
+
+.ts-live-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+}
+
+.ts-live-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ecfdf5;
+    color: #059669;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 6px 14px;
+    border-radius: 99px;
+    border: 1px solid #a7f3d0;
+}
+
+.ts-live-badge.delayed {
+    background: #fef2f2;
+    color: #dc2626;
+    border-color: #fecaca;
+}
+
+.ts-live-station-marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0f172a;
+}

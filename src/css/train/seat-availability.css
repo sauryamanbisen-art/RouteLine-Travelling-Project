@@ -1,0 +1,1087 @@
+/**
+ * RouteLine - Seat Availability & Vacancy Module (seat-availability.css)
+ * Premium White / Light Theme Design
+ * Matches RouteLine brand identity with live PRS seat availability, 14-day calendar, and quotas.
+ */
+
+:root {
+    --sa-bg: #f8fafc;
+    --sa-card-bg: #ffffff;
+    --sa-card-subtle: #f1f5f9;
+    --sa-border: #e2e8f0;
+    --sa-border-strong: #cbd5e1;
+    --sa-border-focus: #2563eb;
+    --sa-text-main: #0f172a;
+    --sa-text-muted: #475569;
+    --sa-text-dim: #64748b;
+    --sa-primary-blue: #2563eb;
+    --sa-primary-hover: #1d4ed8;
+    --sa-accent-green: #10b981;
+    --sa-accent-amber: #f59e0b;
+    --sa-accent-red: #ef4444;
+}
+
+body.seat-avail-page-body {
+    background: var(--sa-bg);
+    color: var(--sa-text-main);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.sa-page-main {
+    flex: 1;
+    max-width: 1080px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 24px 20px 60px;
+}
+
+/* Sub-header Breadcrumb Bar */
+.sa-subbar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--sa-border);
+    padding: 12px 24px;
+}
+
+.sa-subbar-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.84rem;
+}
+
+.sa-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--sa-text-dim);
+}
+
+.sa-breadcrumb a {
+    color: var(--sa-text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.15s;
+}
+
+.sa-breadcrumb a:hover {
+    color: var(--sa-primary-blue);
+}
+
+.sa-breadcrumb span {
+    color: var(--sa-text-main);
+    font-weight: 700;
+}
+
+.sa-breadcrumb i,
+.sa-breadcrumb svg {
+    width: 14px;
+    height: 14px;
+    color: var(--sa-text-dim);
+}
+
+.sa-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.sa-header-badge .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+/* Primary Search Card (White Theme) */
+.sa-search-card {
+    background: var(--sa-card-bg);
+    border: 1px solid var(--sa-border);
+    border-radius: 20px;
+    padding: 28px;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    margin-bottom: 24px;
+}
+
+.sa-field-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.sa-field-label {
+    display: block;
+    font-size: 0.76rem;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--sa-text-muted);
+    margin-bottom: 8px;
+}
+
+/* Train Search Input */
+.sa-input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.sa-input-icon {
+    position: absolute;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+    color: var(--sa-primary-blue);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.sa-text-input {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border-strong);
+    border-radius: 12px;
+    padding: 13px 14px 13px 44px;
+    color: var(--sa-text-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.sa-text-input:focus {
+    outline: none;
+    border-color: var(--sa-border-focus);
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.sa-text-input::placeholder {
+    color: var(--sa-text-dim);
+    font-weight: 400;
+}
+
+/* Journey Route Group (Vertical Connected Stations) */
+.sa-route-box {
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border-strong);
+    border-radius: 14px;
+    padding: 6px 14px;
+    position: relative;
+    transition: border-color 0.2s;
+}
+
+.sa-route-box:focus-within {
+    border-color: var(--sa-border-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.sa-route-station-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.sa-route-station-row:first-child {
+    border-bottom: 1px solid var(--sa-border);
+}
+
+.sa-dot-indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.sa-dot-indicator.green {
+    background: #10b981;
+    box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+.sa-dot-indicator.blue {
+    background: #2563eb;
+    box-shadow: 0 0 6px rgba(37, 99, 235, 0.5);
+}
+
+.sa-route-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--sa-text-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+    width: 100%;
+}
+
+.sa-route-input::placeholder {
+    color: var(--sa-text-dim);
+    font-weight: 400;
+}
+
+/* Connecting Line */
+.sa-route-connector {
+    position: absolute;
+    left: 18px;
+    top: 24px;
+    bottom: 24px;
+    width: 2px;
+    border-left: 2px dashed #cbd5e1;
+    pointer-events: none;
+}
+
+/* Station Swap Button */
+.sa-station-swap-btn {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border-strong);
+    color: var(--sa-text-muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+}
+
+.sa-station-swap-btn:hover {
+    background: #eff6ff;
+    border-color: var(--sa-primary-blue);
+    color: var(--sa-primary-blue);
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.sa-station-swap-btn i,
+.sa-station-swap-btn svg {
+    width: 15px;
+    height: 15px;
+}
+
+/* 3-Column Controls Row */
+.sa-controls-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.sa-select-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sa-select-icon {
+    position: absolute;
+    left: 14px;
+    width: 17px;
+    height: 17px;
+    color: var(--sa-primary-blue);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.sa-dropdown-icon {
+    position: absolute;
+    right: 14px;
+    width: 16px;
+    height: 16px;
+    color: var(--sa-text-dim);
+    pointer-events: none;
+}
+
+.sa-select-input {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border-strong);
+    border-radius: 12px;
+    padding: 13px 36px 13px 44px;
+    color: var(--sa-text-main);
+    font-size: 0.92rem;
+    font-weight: 600;
+    appearance: none;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sa-select-input:focus {
+    outline: none;
+    border-color: var(--sa-border-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.sa-select-input option {
+    background: #ffffff;
+    color: var(--sa-text-main);
+}
+
+/* Date Input - High Visibility Calendar Picker */
+.sa-date-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sa-date-input {
+    width: 100%;
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border-strong);
+    border-radius: 12px;
+    padding: 13px 14px 13px 44px;
+    color: var(--sa-text-main);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.sa-date-input:focus {
+    outline: none;
+    border-color: var(--sa-border-focus);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* Ensure Webkit calendar picker icon is clearly visible and clickable */
+.sa-date-input::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    opacity: 0.85;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.sa-date-input::-webkit-calendar-picker-indicator:hover {
+    background: #eff6ff;
+}
+
+/* Check Availability Submit Button */
+.sa-submit-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+}
+
+.sa-submit-btn:hover {
+    background: linear-gradient(135deg, #1d4ed8, #1e40af);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(37, 99, 235, 0.4);
+}
+
+.sa-submit-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Quick Route Chips */
+.sa-quick-trains {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 0.78rem;
+}
+
+.sa-quick-label {
+    color: var(--sa-text-muted);
+    font-weight: 700;
+}
+
+.sa-quick-chip {
+    background: #f1f5f9;
+    border: 1px solid var(--sa-border);
+    color: var(--sa-text-muted);
+    padding: 5px 12px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 0.78rem;
+    font-weight: 600;
+    transition: all 0.15s;
+}
+
+.sa-quick-chip:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+    color: #1d4ed8;
+}
+
+/* Autocomplete Dropdown List */
+.sa-autocomplete-list {
+    position: absolute;
+    top: calc(100% + 4px);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border: 1px solid var(--sa-border-strong);
+    border-radius: 12px;
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 50;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.sa-autocomplete-item {
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--sa-border);
+    color: var(--sa-text-main);
+    transition: background 0.15s;
+}
+
+.sa-autocomplete-item:hover {
+    background: #f1f5f9;
+}
+
+.sa-autocomplete-item strong {
+    color: var(--sa-primary-blue);
+    font-family: ui-monospace, monospace;
+    font-weight: 700;
+}
+
+.sa-autocomplete-item span {
+    color: var(--sa-text-muted);
+    font-weight: 500;
+}
+
+/* =========================================================
+   Initial State Card (Live Seat Vacancy & Availability)
+   Mascot Card with Bholu Conductor
+========================================================= */
+.sa-live-info-card {
+    background: var(--sa-card-bg);
+    border: 1px solid var(--sa-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+}
+
+.sa-info-card-header {
+    padding: 16px 24px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--sa-border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.98rem;
+    font-weight: 800;
+    color: #1e40af;
+}
+
+.sa-info-card-header i,
+.sa-info-card-header svg {
+    width: 20px;
+    height: 20px;
+    color: var(--sa-primary-blue);
+}
+
+.sa-info-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 32px 24px;
+    gap: 30px;
+    align-items: center;
+    background: #ffffff;
+}
+
+.sa-mascot-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding-right: 20px;
+    border-right: 1px solid var(--sa-border);
+}
+
+.sa-mascot-img-wrap {
+    width: 140px;
+    height: 160px;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sa-mascot-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.1));
+    animation: float-gentle 3.5s ease-in-out infinite;
+}
+
+@keyframes float-gentle {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+.sa-mascot-desc {
+    color: var(--sa-text-muted);
+    font-size: 0.9rem;
+    line-height: 1.55;
+    max-width: 320px;
+    margin: 0;
+    font-weight: 500;
+}
+
+.sa-checklist-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.sa-checklist-title {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--sa-text-muted);
+    margin-bottom: 16px;
+}
+
+.sa-checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.sa-checklist li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.92rem;
+    color: var(--sa-text-main);
+    font-weight: 600;
+}
+
+.sa-check-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.sa-check-icon.green {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+.sa-check-icon.blue {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.sa-check-icon.amber {
+    background: #fffbeb;
+    color: #d97706;
+}
+
+.sa-check-icon i,
+.sa-check-icon svg {
+    width: 15px;
+    height: 15px;
+}
+
+.sa-info-card-footer {
+    background: #f8fafc;
+    padding: 14px 24px;
+    border-top: 1px solid var(--sa-border);
+    color: var(--sa-text-muted);
+    font-size: 0.86rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* =========================================================
+   Live Results Container (When Search Executed)
+========================================================= */
+.sa-results-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+/* Train Header Card */
+.sa-train-overview-card {
+    background: var(--sa-card-bg);
+    border: 1px solid var(--sa-border);
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+}
+
+.sa-train-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.sa-train-id {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sa-train-num {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+    padding: 5px 12px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 800;
+}
+
+.sa-train-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--sa-text-main);
+    margin: 0;
+}
+
+.sa-pills-row {
+    display: flex;
+    gap: 8px;
+}
+
+.sa-pill {
+    background: #f1f5f9;
+    border: 1px solid var(--sa-border);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--sa-text-muted);
+}
+
+.sa-pill.verified {
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+    color: #047857;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Station Route Bar */
+.sa-route-bar {
+    background: #f8fafc;
+    border: 1px solid var(--sa-border);
+    border-radius: 14px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sa-station-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.sa-station-item.right {
+    text-align: right;
+}
+
+.sa-station-item .code {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--sa-text-main);
+    font-family: ui-monospace, monospace;
+}
+
+.sa-station-item .name {
+    font-size: 0.82rem;
+    color: var(--sa-text-dim);
+    font-weight: 500;
+}
+
+.sa-route-line-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--sa-primary-blue);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.sa-route-line-wrap .line {
+    width: 80px;
+    height: 2px;
+    background: #cbd5e1;
+}
+
+/* Primary Selected Seat Hero Card (White Theme) */
+.sa-hero-seat-card {
+    background: linear-gradient(135deg, #ffffff, #f8fafc);
+    border: 2px solid #bfdbfe;
+    border-radius: 20px;
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    box-shadow: 0 4px 20px -2px rgba(37, 99, 235, 0.08);
+}
+
+.sa-hero-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.sa-status-big-badge {
+    padding: 12px 22px;
+    border-radius: 14px;
+    font-size: 1.25rem;
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sa-status-big-badge.available {
+    background: #dcfce7;
+    border: 1.5px solid #22c55e;
+    color: #15803d;
+    box-shadow: 0 2px 10px rgba(34, 197, 94, 0.15);
+}
+
+.sa-status-big-badge.rac {
+    background: #fef3c7;
+    border: 1.5px solid #f59e0b;
+    color: #b45309;
+    box-shadow: 0 2px 10px rgba(245, 158, 11, 0.15);
+}
+
+.sa-status-big-badge.waitlist {
+    background: #fee2e2;
+    border: 1.5px solid #ef4444;
+    color: #b91c1c;
+    box-shadow: 0 2px 10px rgba(239, 68, 68, 0.15);
+}
+
+.sa-hero-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.sa-hero-meta .date-sub {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--sa-text-main);
+}
+
+.sa-hero-meta .class-sub {
+    font-size: 0.85rem;
+    color: var(--sa-text-muted);
+    font-weight: 600;
+}
+
+.sa-hero-right {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.sa-fare-block {
+    text-align: right;
+}
+
+.sa-fare-amt {
+    font-size: 1.7rem;
+    font-weight: 900;
+    color: var(--sa-text-main);
+    font-family: ui-monospace, monospace;
+}
+
+.sa-fare-note {
+    font-size: 0.75rem;
+    color: var(--sa-text-dim);
+    font-weight: 500;
+}
+
+.sa-btn-book-now {
+    background: linear-gradient(135deg, #059669, #10b981);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    padding: 13px 26px;
+    font-size: 0.95rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.sa-btn-book-now:hover {
+    background: linear-gradient(135deg, #047857, #059669);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(16, 185, 129, 0.45);
+}
+
+/* Class Tabs Row */
+.sa-classes-tabs {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.sa-class-tab-btn {
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border);
+    border-radius: 12px;
+    padding: 10px 18px;
+    color: var(--sa-text-muted);
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    min-width: 110px;
+    transition: all 0.2s;
+}
+
+.sa-class-tab-btn:hover {
+    border-color: var(--sa-primary-blue);
+    background: #f8fafc;
+}
+
+.sa-class-tab-btn.active {
+    background: #eff6ff;
+    border-color: var(--sa-primary-blue);
+    color: var(--sa-primary-blue);
+    box-shadow: 0 2px 10px rgba(37, 99, 235, 0.15);
+}
+
+.sa-class-tab-btn .tab-status {
+    font-size: 0.72rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.sa-class-tab-btn .tab-status.avl {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.sa-class-tab-btn .tab-status.wl {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* 14-Day Calendar Section (White Theme) */
+.sa-calendar-section {
+    background: var(--sa-card-bg);
+    border: 1px solid var(--sa-border);
+    border-radius: 20px;
+    padding: 24px 28px;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06);
+}
+
+.sa-calendar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+}
+
+.sa-calendar-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--sa-text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sa-calendar-title i,
+.sa-calendar-title svg {
+    color: var(--sa-primary-blue);
+    width: 20px;
+    height: 20px;
+}
+
+.sa-calendar-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 6px 2px 12px;
+    scrollbar-width: thin;
+    scrollbar-color: var(--sa-border-strong) transparent;
+}
+
+.sa-day-card {
+    background: #ffffff;
+    border: 1.5px solid var(--sa-border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    min-width: 145px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
+
+.sa-day-card:hover {
+    border-color: var(--sa-primary-blue);
+    background: #f8fafc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(37, 99, 235, 0.1);
+}
+
+.sa-day-card.selected {
+    background: #eff6ff;
+    border-color: var(--sa-primary-blue);
+    border-width: 2px;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.18);
+}
+
+.sa-day-date {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--sa-text-main);
+}
+
+.sa-day-status {
+    font-size: 0.82rem;
+    font-weight: 800;
+    padding: 5px 8px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+.sa-day-status.available {
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    color: #047857;
+}
+
+.sa-day-status.rac {
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    color: #b45309;
+}
+
+.sa-day-status.waitlist {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+.sa-day-fare {
+    font-size: 0.82rem;
+    color: var(--sa-text-dim);
+    font-family: ui-monospace, monospace;
+    font-weight: 600;
+}
+
+/* Loading State */
+.sa-loading-container {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.sa-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #e2e8f0;
+    border-top-color: var(--sa-primary-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .sa-info-card-body {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .sa-mascot-column {
+        border-right: none;
+        border-bottom: 1px solid var(--sa-border);
+        padding-right: 0;
+        padding-bottom: 20px;
+    }
+
+    .sa-controls-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sa-hero-seat-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .sa-hero-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+}

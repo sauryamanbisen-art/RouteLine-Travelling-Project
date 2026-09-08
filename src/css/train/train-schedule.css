@@ -1,0 +1,751 @@
+/* ==========================================================================
+   RouteLine - Train Schedule & Timetable (train-schedule.css)
+   ========================================================================== */
+
+@import './coach-position.css';
+
+/* ==========================================================================
+   RouteLine — Train Schedule & Timetable Styles (Clean White Theme)
+   ========================================================================== */
+
+:root {
+    --ts-bg: #f8fafc;
+    --ts-card-bg: #ffffff;
+    --ts-border: #e2e8f0;
+    --ts-border-light: #f1f5f9;
+    --ts-text-main: #0f172a;
+    --ts-text-muted: #64748b;
+    --ts-blue: #0066ff;
+    --ts-blue-dark: #004de6;
+    --ts-blue-soft: #eff6ff;
+    --ts-green: #10b981;
+    --ts-amber: #f59e0b;
+    --ts-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --ts-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+}
+
+.train-sched-page-body {
+    background-color: var(--ts-bg);
+    color: var(--ts-text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Subbar */
+.ts-subbar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--ts-border);
+    padding: 14px 40px;
+    margin-top: 72px; /* Clears fixed/absolute header */
+}
+
+.ts-subbar-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.ts-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--ts-text-muted);
+}
+
+.ts-breadcrumb a {
+    color: var(--ts-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.ts-breadcrumb a:hover {
+    color: var(--ts-blue);
+}
+
+.ts-breadcrumb i {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+.ts-breadcrumb span {
+    color: var(--ts-text-main);
+    font-weight: 600;
+}
+
+.ts-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ts-header-badge .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    animation: live-pulse 2s infinite;
+}
+
+@keyframes live-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+/* Main Container */
+.ts-main-container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+    flex: 1;
+}
+
+/* Search Hero */
+.ts-search-hero {
+    background: #ffffff;
+    border: 1px solid var(--ts-border);
+    border-radius: 20px;
+    padding: 36px 32px;
+    text-align: center;
+    box-shadow: var(--ts-shadow-sm);
+    margin-bottom: 28px;
+}
+
+.ts-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--ts-blue-soft);
+    color: var(--ts-blue-dark);
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.ts-hero-badge i {
+    width: 15px;
+    height: 15px;
+}
+
+.ts-search-hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--ts-text-main);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.ts-search-hero p {
+    font-size: 15px;
+    color: var(--ts-text-muted);
+    max-width: 650px;
+    margin: 0 auto 24px;
+}
+
+/* Search Bar */
+.ts-search-bar {
+    max-width: 680px;
+    margin: 0 auto 20px;
+    display: flex;
+    gap: 12px;
+}
+
+.ts-search-input-wrapper {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ts-search-icon {
+    position: absolute;
+    left: 16px;
+    width: 20px;
+    height: 20px;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.ts-search-input-wrapper input {
+    width: 100%;
+    height: 52px;
+    padding: 0 46px 0 48px;
+    border: 2px solid var(--ts-border);
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--ts-text-main);
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.ts-search-input-wrapper input:focus {
+    outline: none;
+    border-color: var(--ts-blue);
+    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
+}
+
+.ts-clear-btn {
+    position: absolute;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: #f1f5f9;
+    color: #64748b;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.ts-clear-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+}
+
+.ts-clear-btn i {
+    width: 14px;
+    height: 14px;
+}
+
+.ts-search-btn {
+    height: 52px;
+    padding: 0 28px;
+    background: var(--ts-blue);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background 0.15s, transform 0.1s;
+    box-shadow: 0 2px 6px rgba(0, 102, 255, 0.25);
+    white-space: nowrap;
+}
+
+.ts-search-btn:hover {
+    background: var(--ts-blue-dark);
+}
+
+.ts-search-btn:active {
+    transform: scale(0.98);
+}
+
+.ts-search-btn i {
+    width: 18px;
+    height: 18px;
+}
+
+/* Quick Chips */
+.ts-chips-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ts-chips-label {
+    font-size: 13px;
+    color: var(--ts-text-muted);
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+.ts-chip {
+    background: #f8fafc;
+    border: 1px solid var(--ts-border);
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ts-text-main);
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.ts-chip:hover {
+    background: var(--ts-blue-soft);
+    border-color: #bfdbfe;
+    color: var(--ts-blue-dark);
+}
+
+.ts-chip.active {
+    background: var(--ts-blue-soft);
+    border-color: var(--ts-blue);
+    color: var(--ts-blue-dark);
+    font-weight: 600;
+}
+
+/* Loading & Error States */
+.ts-loading-state,
+.ts-error-state {
+    background: #ffffff;
+    border: 1px solid var(--ts-border);
+    border-radius: 20px;
+    padding: 60px 24px;
+    text-align: center;
+    box-shadow: var(--ts-shadow-sm);
+    margin-bottom: 28px;
+}
+
+.ts-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--ts-border);
+    border-top-color: var(--ts-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.ts-loading-state h3,
+.ts-error-state h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ts-text-main);
+    margin-bottom: 8px;
+}
+
+.ts-loading-state p,
+.ts-error-state p {
+    font-size: 14px;
+    color: var(--ts-text-muted);
+    max-width: 500px;
+    margin: 0 auto 20px;
+}
+
+.ts-error-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #fef2f2;
+    color: #ef4444;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+}
+
+.ts-error-icon i {
+    width: 28px;
+    height: 28px;
+}
+
+/* Cards Generic */
+.ts-card {
+    background: var(--ts-card-bg);
+    border: 1px solid var(--ts-border);
+    border-radius: 20px;
+    box-shadow: var(--ts-shadow-sm);
+    margin-bottom: 24px;
+    overflow: hidden;
+}
+
+/* Overview Card */
+.ts-overview-card {
+    padding: 28px;
+}
+
+.ts-overview-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--ts-border-light);
+}
+
+.ts-train-ident {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.ts-train-number {
+    background: linear-gradient(135deg, var(--ts-blue), var(--ts-blue-dark));
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 800;
+    padding: 12px 18px;
+    border-radius: 14px;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 102, 255, 0.2);
+}
+
+.ts-train-name-wrap h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--ts-text-main);
+    margin-bottom: 6px;
+}
+
+.ts-train-tags {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.ts-tag {
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 6px;
+}
+
+.ts-tag-cat {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.ts-tag-type {
+    background: #eff6ff;
+    color: #1e40af;
+}
+
+.ts-tag-return {
+    background: #f1f5f9;
+    color: #475569;
+}
+
+.ts-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ts-btn-action {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.15s ease;
+    cursor: pointer;
+}
+
+.ts-btn-avail {
+    background: #10b981;
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.25);
+}
+
+.ts-btn-avail:hover {
+    background: #059669;
+}
+
+.ts-btn-avail i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Stats Grid */
+.ts-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--ts-border-light);
+}
+
+.ts-stat-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8fafc;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--ts-border-light);
+}
+
+.ts-stat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: #ffffff;
+    color: var(--ts-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    flex-shrink: 0;
+}
+
+.ts-stat-icon i {
+    width: 18px;
+    height: 18px;
+}
+
+.ts-stat-body {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.ts-stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--ts-text-muted);
+    letter-spacing: 0.3px;
+    margin-bottom: 2px;
+}
+
+.ts-stat-body strong {
+    font-size: 14px;
+    color: var(--ts-text-main);
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Running Days Strip */
+.ts-days-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 0 20px;
+    border-bottom: 1px solid var(--ts-border-light);
+}
+
+.ts-days-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ts-text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ts-days-title i {
+    width: 15px;
+    height: 15px;
+}
+
+.ts-days-list {
+    display: flex;
+    gap: 8px;
+}
+
+.day-pill {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #94a3b8;
+    border: 1px solid var(--ts-border);
+}
+
+.day-pill.active {
+    background: #10b981;
+    color: #ffffff;
+    border-color: #10b981;
+}
+
+/* Coach Arrangement Preview */
+
+/* Table Card */
+.ts-table-card {
+    padding: 24px;
+}
+
+.ts-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.ts-table-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ts-text-main);
+}
+
+.ts-table-subtitle {
+    font-size: 13px;
+    color: var(--ts-text-muted);
+    margin-top: 2px;
+}
+
+.ts-filter-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.ts-filter-box i {
+    position: absolute;
+    left: 12px;
+    width: 16px;
+    height: 16px;
+    color: #94a3b8;
+}
+
+.ts-filter-box input {
+    height: 38px;
+    padding: 0 16px 0 36px;
+    border: 1px solid var(--ts-border);
+    border-radius: 8px;
+    font-size: 13px;
+    background: #f8fafc;
+    color: var(--ts-text-main);
+    width: 240px;
+    transition: all 0.2s;
+}
+
+.ts-filter-box input:focus {
+    outline: none;
+    border-color: var(--ts-blue);
+    background: #ffffff;
+    width: 280px;
+}
+
+/* Table Styling */
+.ts-table-responsive {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--ts-border);
+}
+
+.ts-timetable {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.ts-timetable thead tr {
+    background: #f8fafc;
+    border-bottom: 1px solid var(--ts-border);
+}
+
+.ts-timetable th {
+    padding: 14px 16px;
+    font-weight: 600;
+    color: var(--ts-text-muted);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.ts-timetable td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--ts-border-light);
+    color: var(--ts-text-main);
+    white-space: nowrap;
+}
+
+.ts-timetable tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.ts-timetable tbody tr:hover {
+    background: #f8fafc;
+}
+
+.ts-timetable tr.source-halt {
+    background: #f0fdf4 !important;
+}
+
+.ts-timetable tr.dest-halt {
+    background: #eff6ff !important;
+}
+
+.ts-station-code {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    margin-right: 6px;
+}
+
+.ts-pf-badge {
+    display: inline-block;
+    background: #fef3c7;
+    color: #92400e;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+}
+
+.ts-halt-badge {
+    color: var(--ts-blue-dark);
+    font-weight: 600;
+    font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .ts-search-hero {
+        padding: 24px 16px;
+    }
+
+    .ts-search-bar {
+        flex-direction: column;
+    }
+
+    .ts-search-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .ts-overview-header {
+        flex-direction: column;
+    }
+
+    .ts-action-buttons {
+        width: 100%;
+    }
+
+    .ts-btn-action {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
