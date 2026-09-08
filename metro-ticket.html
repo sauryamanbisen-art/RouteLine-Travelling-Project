@@ -1,24 +1,395 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Results | RouteLine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./src/css/style.css">
+    <title>Metro QR Ticket Booking | RouteLine</title>
+    <meta name="description" content="Book instant contactless Metro QR tickets for Delhi Metro (DMRC), Mumbai Metro, Bengaluru Namma Metro, Hyderabad, Chennai & Kolkata on RouteLine.">
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
+    <link rel="stylesheet" href="./src/css/metro/metro.css">
 </head>
-<body>
+
+<body class="metro-page-body">
+    <!-- Header -->
     <header class="header" style="background: var(--dark-blue);">
         <div class="header-container">
             <div class="logo">
+                <img src="./public/logo.svg" alt="RouteLine Logo">
                 <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+            </div>
+            <nav class="nav-links">
+                <a href="index.html">Trains</a>
+                <a href="flight-results.html">Flights</a>
+                <a href="bus-results.html">Buses</a>
+                <a href="hotel-results.html">Hotels</a>
+                <a href="#">Offers</a>
+            </nav>
+            <div class="header-actions">
+                <a href="javascript:void(0)" id="header-pnr-status-btn" class="help-link" onclick="openPNRModal()">
+                    <i data-lucide="activity" class="icon-small"></i> PNR Status
+                </a>
+                <div class="divider"></div>
+                <a href="ticket.html" class="login-link"><i data-lucide="ticket" class="icon-small"></i> My Account</a>
             </div>
         </div>
     </header>
-    <div style="max-width: 1200px; margin: 120px auto; padding: 20px; text-align: center;">
-        <h2>Page: metro-ticket.html</h2>
-        <p>This is a placeholder for the routed page.</p>
-        <button onclick="window.location.href='index.html'" style="padding: 10px 20px; margin-top: 20px; cursor: pointer;">Go Back</button>
+
+    <!-- Subbar Breadcrumb -->
+    <div class="metro-subbar">
+        <div class="metro-subbar-container">
+            <div class="metro-breadcrumb">
+                <a href="index.html">Home</a>
+                <i data-lucide="chevron-right"></i>
+                <a href="index.html">Quick Services</a>
+                <i data-lucide="chevron-right"></i>
+                <span>Metro QR Ticket Booking</span>
+            </div>
+            <div class="metro-header-badge">
+                <span class="live-dot"></span>
+                <span>Official Contactless Metro Gate QR</span>
+            </div>
+        </div>
     </div>
+
+    <!-- Main Content Container -->
+    <main class="metro-main-container">
+        <!-- Hero Header -->
+        <section class="metro-hero">
+            <div class="metro-hero-badge">
+                <i data-lucide="qr-code"></i> Skip the Queues • Tap & Ride
+            </div>
+            <h1>Instant Digital Metro QR Ticket</h1>
+            <p>Select your city metro, enter stations, and generate official gate-scanner QR passes in seconds.</p>
+
+            <!-- City Network Tabs -->
+            <div class="metro-cities-tabs">
+                <button type="button" class="metro-city-tab active" data-city="delhi">
+                    <span class="city-dot" style="background:#ef4444;"></span>
+                    <span class="city-name">Delhi (DMRC)</span>
+                </button>
+                <button type="button" class="metro-city-tab" data-city="mumbai">
+                    <span class="city-dot" style="background:#0284c7;"></span>
+                    <span class="city-name">Mumbai Metro</span>
+                </button>
+                <button type="button" class="metro-city-tab" data-city="bangalore">
+                    <span class="city-dot" style="background:#16a34a;"></span>
+                    <span class="city-name">Bengaluru (Namma)</span>
+                </button>
+                <button type="button" class="metro-city-tab" data-city="hyderabad">
+                    <span class="city-dot" style="background:#9333ea;"></span>
+                    <span class="city-name">Hyderabad Metro</span>
+                </button>
+                <button type="button" class="metro-city-tab" data-city="chennai">
+                    <span class="city-dot" style="background:#ea580c;"></span>
+                    <span class="city-name">Chennai (CMRL)</span>
+                </button>
+                <button type="button" class="metro-city-tab" data-city="kolkata">
+                    <span class="city-dot" style="background:#059669;"></span>
+                    <span class="city-name">Kolkata Metro</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Booking Layout (Two Columns) -->
+        <div class="metro-booking-grid">
+            <!-- Left Column: Booking Form -->
+            <div class="metro-card metro-form-card">
+                <div class="metro-card-header">
+                    <div class="metro-card-title">
+                        <i data-lucide="map-pin"></i>
+                        <h2 id="metro-selected-city-title">Delhi Metro (DMRC) Route</h2>
+                    </div>
+                    <span class="metro-system-tag" id="metro-system-tag">All 10 Lines Active</span>
+                </div>
+
+                <form id="metro-booking-form" onsubmit="return false;">
+                    <!-- Line Filter Strip -->
+                    <div class="metro-lines-filter" id="metro-lines-filter">
+                        <!-- Injected by JS -->
+                    </div>
+
+                    <!-- Station Inputs Group -->
+                    <div class="metro-stations-wrap">
+                        <!-- From Station -->
+                        <div class="metro-input-block">
+                            <label for="metro-from-select">
+                                <span class="point-indicator from-point"></span>
+                                <span>Origin Station (Boarding)</span>
+                            </label>
+                            <div class="metro-select-box">
+                                <i data-lucide="circle-dot" class="metro-input-icon"></i>
+                                <select id="metro-from-select" required>
+                                    <!-- Injected by JS -->
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Swap Button -->
+                        <div class="metro-swap-divider">
+                            <button type="button" id="metro-swap-btn" class="metro-swap-btn" title="Swap stations">
+                                <i data-lucide="arrow-up-down"></i>
+                            </button>
+                        </div>
+
+                        <!-- To Station -->
+                        <div class="metro-input-block">
+                            <label for="metro-to-select">
+                                <span class="point-indicator to-point"></span>
+                                <span>Destination Station (Exit)</span>
+                            </label>
+                            <div class="metro-select-box">
+                                <i data-lucide="map-pin" class="metro-input-icon"></i>
+                                <select id="metro-to-select" required>
+                                    <!-- Injected by JS -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Journey Details Options -->
+                    <div class="metro-options-grid">
+                        <!-- Journey Type -->
+                        <div class="metro-option-item">
+                            <label>Journey Type</label>
+                            <div class="metro-pill-group" id="metro-journey-type">
+                                <button type="button" class="pill-btn active" data-type="single">Single Journey</button>
+                                <button type="button" class="pill-btn" data-type="return">Return Journey</button>
+                                <button type="button" class="pill-btn" data-type="tourist">1-Day Pass</button>
+                            </div>
+                        </div>
+
+                        <!-- Passenger Count -->
+                        <div class="metro-option-item">
+                            <label>Passengers</label>
+                            <div class="metro-pax-counter">
+                                <button type="button" id="pax-minus" class="pax-btn"><i data-lucide="minus"></i></button>
+                                <span id="pax-count" class="pax-value">1</span>
+                                <button type="button" id="pax-plus" class="pax-btn"><i data-lucide="plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Popular Quick Routes for Selected City -->
+                    <div class="metro-popular-routes">
+                        <span class="metro-popular-label">Popular Routes:</span>
+                        <div class="metro-popular-chips" id="metro-popular-chips">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Submit / Pay Button -->
+                    <div class="metro-form-action">
+                        <button type="submit" id="metro-book-btn" class="metro-pay-btn">
+                            <span>Proceed to Pay & Get QR Pass</span>
+                            <span class="metro-btn-amount" id="metro-btn-total-fare">₹40</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right Column: Live Route Summary & Fare Card -->
+            <div class="metro-card metro-summary-card">
+                <div class="metro-card-header">
+                    <div class="metro-card-title">
+                        <i data-lucide="git-branch"></i>
+                        <h2>Route & Fare Summary</h2>
+                    </div>
+                    <span class="metro-status-pill">Calculated</span>
+                </div>
+
+                <!-- Visual Route Journey -->
+                <div class="metro-journey-visual">
+                    <div class="mj-station-point">
+                        <div class="mj-dot origin-dot"></div>
+                        <div class="mj-info">
+                            <span class="mj-label">FROM</span>
+                            <strong id="summary-from-name">Rajiv Chowk</strong>
+                            <span class="mj-line-badge" id="summary-from-line">Yellow Line</span>
+                        </div>
+                    </div>
+
+                    <div class="mj-connector">
+                        <div class="mj-connector-line"></div>
+                        <div class="mj-stats-badge">
+                            <span id="summary-stops-count"><i data-lucide="navigation" class="icon-tiny"></i> 12 Stations</span>
+                            <span id="summary-travel-time"><i data-lucide="clock" class="icon-tiny"></i> ~26 Mins</span>
+                        </div>
+                    </div>
+
+                    <div class="mj-station-point">
+                        <div class="mj-dot dest-dot"></div>
+                        <div class="mj-info">
+                            <span class="mj-label">TO</span>
+                            <strong id="summary-to-name">Huda City Centre</strong>
+                            <span class="mj-line-badge" id="summary-to-line">Yellow Line</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interchange Alert Box (if applicable) -->
+                <div id="metro-interchange-box" class="metro-interchange-box" style="display:none;">
+                    <i data-lucide="refresh-cw"></i>
+                    <div class="interchange-text">
+                        <strong>1 Interchange Required</strong>
+                        <p id="interchange-details">Change at Kashmere Gate from Yellow Line to Red Line.</p>
+                    </div>
+                </div>
+
+                <!-- Fare Calculation Breakdown -->
+                <div class="metro-fare-breakdown">
+                    <div class="fare-row">
+                        <span class="fare-label">Base Metro Fare (per rider):</span>
+                        <strong id="summary-single-fare">₹40</strong>
+                    </div>
+                    <div class="fare-row">
+                        <span class="fare-label">Passengers:</span>
+                        <strong id="summary-pax-count">1 Person</strong>
+                    </div>
+                    <div class="fare-row">
+                        <span class="fare-label">Journey Type:</span>
+                        <strong id="summary-journey-type">Single Journey Token</strong>
+                    </div>
+                    <div class="fare-row fare-total-row">
+                        <span>Total Payable Amount:</span>
+                        <span class="total-price" id="summary-total-price">₹40</span>
+                    </div>
+                </div>
+
+                <!-- Safety & Rules Info -->
+                <div class="metro-rules-box">
+                    <div class="rule-item">
+                        <i data-lucide="check-circle"></i>
+                        <span>Valid for entry at AFC automated gates for 120 minutes.</span>
+                    </div>
+                    <div class="rule-item">
+                        <i data-lucide="shield-check"></i>
+                        <span>100% contactless digital QR token with immediate barcode display.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generated QR Ticket Modal / Screen (Hidden by default, shown on booking) -->
+        <div id="metro-qr-modal" class="metro-modal-overlay" style="display:none;">
+            <div class="metro-ticket-modal-card">
+                <div class="metro-modal-header">
+                    <div class="mm-head-left">
+                        <div class="mm-logo-circle"><i data-lucide="train"></i></div>
+                        <div>
+                            <h3 id="ticket-modal-network-title">Delhi Metro (DMRC)</h3>
+                            <span class="mm-sub">Official Digital QR Boarding Pass</span>
+                        </div>
+                    </div>
+                    <button type="button" id="metro-modal-close" class="mm-close-btn" title="Close">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+
+                <!-- Ticket Body -->
+                <div class="metro-ticket-body" id="metro-printable-ticket">
+                    <!-- Top Status Badge -->
+                    <div class="ticket-valid-banner">
+                        <span class="pulse-green"></span>
+                        <span id="ticket-valid-status">ACTIVE & VALID FOR SCANNING</span>
+                    </div>
+
+                    <!-- Stations Trip Bar -->
+                    <div class="ticket-trip-row">
+                        <div class="trip-side">
+                            <span class="trip-code">ORIGIN</span>
+                            <h4 id="ticket-origin-stn">Rajiv Chowk</h4>
+                        </div>
+                        <div class="trip-arrow">
+                            <i data-lucide="arrow-right"></i>
+                        </div>
+                        <div class="trip-side text-right">
+                            <span class="trip-code">DESTINATION</span>
+                            <h4 id="ticket-dest-stn">Huda City Centre</h4>
+                        </div>
+                    </div>
+
+                    <!-- Visual QR Code Box -->
+                    <div class="ticket-qr-container">
+                        <div class="qr-scanner-frame">
+                            <!-- SVG QR Code generated dynamically -->
+                            <div id="ticket-dynamic-qr" class="dynamic-qr-box"></div>
+                        </div>
+                        <div class="ticket-token-id">
+                            <span>Token ID:</span>
+                            <strong id="ticket-token-id">DMRC-QR-839210</strong>
+                        </div>
+                        <div class="ticket-countdown-box">
+                            <i data-lucide="clock"></i>
+                            <span>Entry Gate Valid For:</span>
+                            <strong id="ticket-countdown-timer">119m 58s</strong>
+                        </div>
+                    </div>
+
+                    <!-- Key Details Grid -->
+                    <div class="ticket-meta-grid">
+                        <div class="meta-item">
+                            <span>Passengers:</span>
+                            <strong id="ticket-pax">1 Adult</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>Fare Paid:</span>
+                            <strong id="ticket-fare-paid">₹40</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>Type:</span>
+                            <strong id="ticket-pass-type">Single Journey</strong>
+                        </div>
+                        <div class="meta-item">
+                            <span>Booking Time:</span>
+                            <strong id="ticket-issued-time">Today, 03:30 PM</strong>
+                        </div>
+                    </div>
+
+                    <p class="ticket-gate-instructions">
+                        Hold this QR code against the automated gate optical scanner at entry and exit stations.
+                    </p>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="metro-modal-actions no-print">
+                    <button type="button" class="btn-secondary" id="btn-print-metro-qr">
+                        <i data-lucide="printer"></i> Print / Download
+                    </button>
+                    <a href="ticket.html" class="btn-primary" id="btn-view-my-bookings">
+                        <i data-lucide="ticket"></i> View in My Bookings
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <a href="index.html" class="footer-logo">
+                <img src="./public/logo.svg" alt="RouteLine">
+                RouteLine
+            </a>
+            <div class="footer-links">
+                <a href="#">About</a>
+                <a href="#">Blog</a>
+                <a href="#">Careers</a>
+                <a href="#">Contact</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+            </div>
+            <p class="footer-copy">© 2026 RouteLine. All rights reserved. Powered by RouteLine.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="./src/js/metro/metro.js"></script>
 </body>
+
 </html>

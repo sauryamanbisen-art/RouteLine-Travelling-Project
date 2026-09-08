@@ -1,0 +1,1041 @@
+/* ==========================================================================
+   RouteLine — Metro QR Ticket Booking Styles (Clean White Theme)
+   ========================================================================== */
+
+:root {
+    --metro-bg: #f8fafc;
+    --metro-card-bg: #ffffff;
+    --metro-border: #e2e8f0;
+    --metro-border-light: #f1f5f9;
+    --metro-text-main: #0f172a;
+    --metro-text-muted: #64748b;
+    --metro-blue: #0066ff;
+    --metro-blue-dark: #004de6;
+    --metro-blue-soft: #eff6ff;
+    --metro-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --metro-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
+}
+
+.metro-page-body {
+    background-color: var(--metro-bg);
+    color: var(--metro-text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Subbar */
+.metro-subbar {
+    background: #ffffff;
+    border-bottom: 1px solid var(--metro-border);
+    padding: 14px 40px;
+    margin-top: 72px;
+}
+
+.metro-subbar-container {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.metro-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--metro-text-muted);
+}
+
+.metro-breadcrumb a {
+    color: var(--metro-text-muted);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+
+.metro-breadcrumb a:hover {
+    color: var(--metro-blue);
+}
+
+.metro-breadcrumb i {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+.metro-breadcrumb span {
+    color: var(--metro-text-main);
+    font-weight: 600;
+}
+
+.metro-header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.metro-header-badge .live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+    animation: metro-pulse 2s infinite;
+}
+
+@keyframes metro-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.9); }
+}
+
+/* Main Container */
+.metro-main-container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+    flex: 1;
+}
+
+/* Hero Section */
+.metro-hero {
+    background: #ffffff;
+    border: 1px solid var(--metro-border);
+    border-radius: 20px;
+    padding: 36px 32px 28px;
+    text-align: center;
+    box-shadow: var(--metro-shadow-sm);
+    margin-bottom: 28px;
+}
+
+.metro-hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0fdf4;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 14px;
+}
+
+.metro-hero-badge i {
+    width: 16px;
+    height: 16px;
+}
+
+.metro-hero h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--metro-text-main);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+}
+
+.metro-hero p {
+    font-size: 15px;
+    color: var(--metro-text-muted);
+    max-width: 600px;
+    margin: 0 auto 24px;
+}
+
+/* City Tabs */
+.metro-cities-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.metro-city-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f8fafc;
+    border: 1.5px solid var(--metro-border);
+    border-radius: 999px;
+    padding: 8px 18px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--metro-text-main);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.metro-city-tab:hover {
+    background: var(--metro-blue-soft);
+    border-color: #bfdbfe;
+    color: var(--metro-blue-dark);
+}
+
+.metro-city-tab.active {
+    background: var(--metro-blue-soft);
+    border-color: var(--metro-blue);
+    color: var(--metro-blue-dark);
+    box-shadow: 0 2px 6px rgba(0, 102, 255, 0.15);
+}
+
+.city-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+/* Booking Layout Grid */
+.metro-booking-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 24px;
+}
+
+/* Cards Generic */
+.metro-card {
+    background: var(--metro-card-bg);
+    border: 1px solid var(--metro-border);
+    border-radius: 20px;
+    box-shadow: var(--metro-shadow-sm);
+    padding: 28px;
+}
+
+.metro-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--metro-border-light);
+    margin-bottom: 24px;
+}
+
+.metro-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.metro-card-title i {
+    width: 20px;
+    height: 20px;
+    color: var(--metro-blue);
+}
+
+.metro-card-title h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--metro-text-main);
+}
+
+.metro-system-tag {
+    font-size: 12px;
+    font-weight: 600;
+    background: #f1f5f9;
+    color: #475569;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+.metro-status-pill {
+    font-size: 12px;
+    font-weight: 600;
+    background: #ecfdf5;
+    color: #059669;
+    border: 1px solid #a7f3d0;
+    padding: 4px 10px;
+    border-radius: 6px;
+}
+
+/* Line Filter Strip */
+.metro-lines-filter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 16px;
+    margin-bottom: 20px;
+}
+
+.line-chip {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    border: 1px solid var(--metro-border);
+    background: #ffffff;
+    color: var(--metro-text-main);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.line-chip:hover {
+    border-color: var(--metro-blue);
+}
+
+.line-chip.active {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #0f172a;
+}
+
+.line-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+/* Stations Wrap */
+.metro-stations-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.metro-input-block label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--metro-text-muted);
+    margin-bottom: 8px;
+}
+
+.point-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.from-point {
+    background: #10b981;
+}
+
+.to-point {
+    background: #ef4444;
+}
+
+.metro-select-box {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.metro-input-icon {
+    position: absolute;
+    left: 14px;
+    width: 18px;
+    height: 18px;
+    color: #94a3b8;
+    pointer-events: none;
+}
+
+.metro-select-box select {
+    width: 100%;
+    height: 50px;
+    padding: 0 16px 0 44px;
+    border: 1.5px solid var(--metro-border);
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--metro-text-main);
+    background: #ffffff;
+    appearance: auto;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.metro-select-box select:focus {
+    outline: none;
+    border-color: var(--metro-blue);
+    box-shadow: 0 0 0 3px rgba(0, 102, 255, 0.12);
+}
+
+.metro-swap-divider {
+    display: flex;
+    justify-content: center;
+    margin: -4px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.metro-swap-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 1.5px solid var(--metro-border);
+    color: var(--metro-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: var(--metro-shadow-sm);
+    transition: all 0.2s;
+}
+
+.metro-swap-btn:hover {
+    background: var(--metro-blue-soft);
+    border-color: var(--metro-blue);
+    transform: rotate(180deg);
+}
+
+.metro-swap-btn i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Options Grid */
+.metro-options-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.metro-option-item label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--metro-text-muted);
+    margin-bottom: 8px;
+}
+
+.metro-pill-group {
+    display: flex;
+    gap: 6px;
+    background: #f8fafc;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--metro-border);
+}
+
+.pill-btn {
+    flex: 1;
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: none;
+    background: transparent;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--metro-text-muted);
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+}
+
+.pill-btn.active {
+    background: #ffffff;
+    color: var(--metro-text-main);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.metro-pax-counter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 44px;
+    background: #f8fafc;
+    border: 1px solid var(--metro-border);
+    border-radius: 10px;
+    padding: 4px 10px;
+}
+
+.pax-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    border: 1px solid var(--metro-border);
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--metro-text-main);
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.pax-btn:hover {
+    background: #f1f5f9;
+}
+
+.pax-btn i {
+    width: 14px;
+    height: 14px;
+}
+
+.pax-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--metro-text-main);
+}
+
+/* Popular Routes Chips */
+.metro-popular-routes {
+    margin-bottom: 28px;
+}
+
+.metro-popular-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--metro-text-muted);
+    margin-bottom: 8px;
+}
+
+.metro-popular-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.route-chip {
+    background: #f8fafc;
+    border: 1px solid var(--metro-border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--metro-text-main);
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.route-chip:hover {
+    background: var(--metro-blue-soft);
+    border-color: #bfdbfe;
+    color: var(--metro-blue-dark);
+}
+
+/* Submit Pay Button */
+.metro-pay-btn {
+    width: 100%;
+    height: 54px;
+    background: linear-gradient(135deg, var(--metro-blue), var(--metro-blue-dark));
+    color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    box-shadow: 0 4px 14px rgba(0, 102, 255, 0.3);
+    transition: all 0.15s;
+}
+
+.metro-pay-btn:hover {
+    opacity: 0.95;
+    transform: translateY(-1px);
+}
+
+.metro-pay-btn:active {
+    transform: translateY(0);
+}
+
+.metro-btn-amount {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Right Summary Card */
+.metro-journey-visual {
+    padding: 16px 0 24px;
+    border-bottom: 1px solid var(--metro-border-light);
+}
+
+.mj-station-point {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.mj-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.origin-dot {
+    background: #10b981;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.2);
+}
+
+.dest-dot {
+    background: #ef4444;
+    box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.2);
+}
+
+.mj-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.mj-label {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--metro-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.mj-info strong {
+    font-size: 16px;
+    color: var(--metro-text-main);
+}
+
+.mj-line-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-top: 4px;
+    background: #fef08a;
+    color: #854d0e;
+    width: fit-content;
+}
+
+.mj-connector {
+    margin: 8px 0 8px 7px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.mj-connector-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: repeating-linear-gradient(to bottom, #cbd5e1 0, #cbd5e1 4px, transparent 4px, transparent 8px);
+}
+
+.mj-stats-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: #f8fafc;
+    border: 1px solid var(--metro-border);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--metro-text-main);
+}
+
+.mj-stats-badge i {
+    width: 14px;
+    height: 14px;
+    color: var(--metro-blue);
+    vertical-align: middle;
+}
+
+/* Interchange Alert */
+.metro-interchange-box {
+    display: flex;
+    gap: 12px;
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin: 20px 0;
+    color: #92400e;
+}
+
+.metro-interchange-box i {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.interchange-text strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 2px;
+}
+
+.interchange-text p {
+    font-size: 12px;
+    margin: 0;
+    color: #b45309;
+}
+
+/* Fare Breakdown */
+.metro-fare-breakdown {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--metro-border-light);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fare-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+.fare-label {
+    color: var(--metro-text-muted);
+}
+
+.fare-total-row {
+    margin-top: 8px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--metro-border);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--metro-text-main);
+}
+
+.total-price {
+    font-size: 22px;
+    color: var(--metro-blue);
+    font-weight: 800;
+}
+
+/* Rules Box */
+.metro-rules-box {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.rule-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 12px;
+    color: var(--metro-text-muted);
+    line-height: 1.4;
+}
+
+.rule-item i {
+    width: 16px;
+    height: 16px;
+    color: #10b981;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* QR Pass Modal */
+.metro-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(4px);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.metro-ticket-modal-card {
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 480px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    animation: modal-pop 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes modal-pop {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.metro-modal-header {
+    background: var(--metro-blue-dark);
+    color: #ffffff;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mm-head-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.mm-logo-circle {
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mm-logo-circle i {
+    width: 20px;
+    height: 20px;
+}
+
+.mm-head-left h3 {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.mm-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.mm-close-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.15s;
+}
+
+.mm-close-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.metro-ticket-body {
+    padding: 24px;
+    text-align: center;
+}
+
+.ticket-valid-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ecfdf5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.pulse-green {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3);
+    animation: metro-pulse 1.5s infinite;
+}
+
+.ticket-trip-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8fafc;
+    padding: 14px 18px;
+    border-radius: 12px;
+    border: 1px solid var(--metro-border);
+    margin-bottom: 20px;
+}
+
+.trip-side {
+    text-align: left;
+}
+
+.trip-side.text-right {
+    text-align: right;
+}
+
+.trip-code {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--metro-text-muted);
+    letter-spacing: 0.5px;
+}
+
+.trip-side h4 {
+    font-size: 15px;
+    color: var(--metro-text-main);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.trip-arrow {
+    color: var(--metro-blue);
+}
+
+.trip-arrow i {
+    width: 20px;
+    height: 20px;
+}
+
+/* Dynamic QR Box */
+.ticket-qr-container {
+    background: #ffffff;
+    border: 2px dashed #cbd5e1;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.qr-scanner-frame {
+    width: 180px;
+    height: 180px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.dynamic-qr-box svg,
+.dynamic-qr-box canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.ticket-token-id {
+    font-size: 13px;
+    color: var(--metro-text-muted);
+    margin-bottom: 8px;
+}
+
+.ticket-token-id strong {
+    color: var(--metro-text-main);
+    font-family: monospace;
+    font-size: 14px;
+}
+
+.ticket-countdown-box {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #fef2f2;
+    color: #b91c1c;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ticket-countdown-box i {
+    width: 14px;
+    height: 14px;
+}
+
+/* Ticket Meta Grid */
+.ticket-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    background: #f8fafc;
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid var(--metro-border);
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.meta-item span {
+    font-size: 11px;
+    color: var(--metro-text-muted);
+    font-weight: 500;
+}
+
+.meta-item strong {
+    font-size: 13px;
+    color: var(--metro-text-main);
+}
+
+.ticket-gate-instructions {
+    font-size: 12px;
+    color: var(--metro-text-muted);
+    margin: 0;
+}
+
+/* Modal Actions */
+.metro-modal-actions {
+    padding: 0 24px 24px;
+    display: flex;
+    gap: 12px;
+}
+
+.metro-modal-actions .btn-secondary,
+.metro-modal-actions .btn-primary {
+    flex: 1;
+    height: 46px;
+    border-radius: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid var(--metro-border);
+}
+
+.btn-secondary:hover {
+    background: #e2e8f0;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .metro-booking-grid {
+        grid-template-columns: 1fr;
+    }
+}
