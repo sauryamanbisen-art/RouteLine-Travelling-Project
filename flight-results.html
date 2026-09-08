@@ -6,9 +6,9 @@
     <title>Flight Dashboard | RouteLine</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/style.css">
-    <link rel="stylesheet" href="./src/css/flight.css">
-    <link rel="stylesheet" href="./src/css/homepage.css">
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/flight/flight.css">
+    <link rel="stylesheet" href="./src/css/home/homepage.css">
 </head>
 <body>
     <header class="header">
@@ -53,17 +53,17 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <!-- Mode Selector -->
                     <div class="mode-selector" style="margin-bottom: 0;">
-                        <div class="active-pill" id="active-pill" style="left: 25%;"></div>
-                        <button class="mode-btn" onclick="window.location.href='index.html'">
+                        <div class="active-pill" id="active-pill" style="left: 129px; width: 128px;"></div>
+                        <button class="mode-btn" data-mode="Trains" data-href="index.html">
                             <i data-lucide="train"></i> Trains
                         </button>
-                        <button class="mode-btn active" data-mode="Flights">
+                        <button class="mode-btn active" data-mode="Flights" data-href="flight-results.html">
                             <i data-lucide="plane"></i> Flights
                         </button>
-                        <button class="mode-btn" onclick="window.location.href='bus-results.html'">
+                        <button class="mode-btn" data-mode="Buses" data-href="bus-results.html">
                             <i data-lucide="bus-front"></i> Buses
                         </button>
-                        <button class="mode-btn" onclick="window.location.href='hotel-results.html'">
+                        <button class="mode-btn" data-mode="Hotels" data-href="hotel-results.html">
                             <i data-lucide="building-2"></i> Hotels
                         </button>
                     </div>
@@ -399,7 +399,7 @@
     <!-- Footer -->
     <footer class="site-footer"><div class="footer-inner"><a href="index.html" class="footer-logo"><img src="./public/logo.svg" alt="RouteLine">RouteLine</a><div class="footer-links"><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div><p class="footer-copy">© 2026 RouteLine. All rights reserved.</p></div></footer>
 
-    <script type="module" src="./src/js/flight.js"></script>
+    <script type="module" src="./src/js/flight/flight.js"></script>
     <script>
         lucide.createIcons();
     </script>

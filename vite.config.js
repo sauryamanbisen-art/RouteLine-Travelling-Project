@@ -13,8 +13,11 @@ export default defineConfig({
         hotelResults: resolve(__dirname, 'hotel-results.html'),
         metroTicket: resolve(__dirname, 'metro-ticket.html'),
         orderFood: resolve(__dirname, 'order-food.html'),
+        cabs: resolve(__dirname, 'cabs.html'),
         trainStatus: resolve(__dirname, 'train-status.html'),
-        seatAvailability: resolve(__dirname, 'seat-availability.html')
+        trainSchedule: resolve(__dirname, 'train-schedule.html'),
+        seatAvailability: resolve(__dirname, 'seat-availability.html'),
+        ticket: resolve(__dirname, 'ticket.html')
       }
     }
   }

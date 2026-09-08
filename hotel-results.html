@@ -7,9 +7,9 @@
     <title>Hotel Booking | RouteLine</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/style.css">
-    <link rel="stylesheet" href="./src/css/hotel.css">
-    <link rel="stylesheet" href="./src/css/homepage.css">
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/hotel/hotel.css">
+    <link rel="stylesheet" href="./src/css/home/homepage.css">
 </head>
 
 <body>
@@ -51,17 +51,17 @@
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
                     <!-- Mode Selector -->
                     <div class="mode-selector" style="margin-bottom: 0;">
-                        <div class="active-pill" id="active-pill" style="left: 75%;"></div>
-                        <button class="mode-btn" onclick="window.location.href='index.html'">
+                        <div class="active-pill" id="active-pill" style="left: 381px; width: 127px;"></div>
+                        <button class="mode-btn" data-mode="Trains" data-href="index.html">
                             <i data-lucide="train"></i> Trains
                         </button>
-                        <button class="mode-btn" onclick="window.location.href='flight-results.html'">
+                        <button class="mode-btn" data-mode="Flights" data-href="flight-results.html">
                             <i data-lucide="plane"></i> Flights
                         </button>
-                        <button class="mode-btn" onclick="window.location.href='bus-results.html'">
+                        <button class="mode-btn" data-mode="Buses" data-href="bus-results.html">
                             <i data-lucide="bus-front"></i> Buses
                         </button>
-                        <button class="mode-btn active" data-mode="Hotels">
+                        <button class="mode-btn active" data-mode="Hotels" data-href="hotel-results.html">
                             <i data-lucide="building-2"></i> Hotels
                         </button>
                     </div>
@@ -571,7 +571,7 @@
         </div>
     </footer>
 
-    <script type="module" src="./src/js/hotel.js"></script>
+    <script type="module" src="./src/js/hotel/hotel.js"></script>
     <script>
         lucide.createIcons();
     </script>

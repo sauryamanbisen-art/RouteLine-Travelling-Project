@@ -10,8 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide icons via CDN for vanilla JS -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/style.css">
-    <link rel="stylesheet" href="./src/css/homepage.css">
+    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="./src/css/home/homepage.css">
+    <link rel="stylesheet" href="./src/css/train/train.css">
+    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
 </head>
 
 <body>
@@ -48,17 +51,17 @@
             <div class="booking-widget">
                 <!-- Mode Selector -->
                 <div class="mode-selector">
-                    <div class="active-pill" id="active-pill"></div>
-                    <button class="mode-btn active" data-mode="Trains">
+                    <div class="active-pill" id="active-pill" style="left: 5px; width: 124px;"></div>
+                    <button class="mode-btn active" data-mode="Trains" data-href="index.html">
                         <i data-lucide="train"></i> Trains
                     </button>
-                    <button class="mode-btn" onclick="window.location.href='flight-results.html'" data-mode="Flights">
+                    <button class="mode-btn" data-mode="Flights" data-href="flight-results.html">
                         <i data-lucide="plane"></i> Flights
                     </button>
-                    <button class="mode-btn" onclick="window.location.href='bus-results.html'" data-mode="Buses">
+                    <button class="mode-btn" data-mode="Buses" data-href="bus-results.html">
                         <i data-lucide="bus-front"></i> Buses
                     </button>
-                    <button class="mode-btn" onclick="window.location.href='hotel-results.html'" data-mode="Hotels">
+                    <button class="mode-btn" data-mode="Hotels" data-href="hotel-results.html">
                         <i data-lucide="building-2"></i> Hotels
                     </button>
                 </div>
@@ -73,7 +76,7 @@
                                 <i data-lucide="map-pin" class="input-icon"></i>
                                 <div class="input-text">
                                     <label>From</label>
-                                    <input type="text" name="origin" value="Jawai Bandh (JWB)">
+                                    <input type="text" name="origin" value="New Delhi (NDLS)" placeholder="e.g. New Delhi (NDLS)" autocomplete="off" spellcheck="false" required>
                                 </div>
                             </div>
 
@@ -86,17 +89,17 @@
                                 <i data-lucide="map-pin" class="input-icon"></i>
                                 <div class="input-text">
                                     <label>To</label>
-                                    <input type="text" name="destination" value="Bandra Terminus (BDTS)">
+                                    <input type="text" name="destination" value="Kanyakumari (CAPE)" placeholder="e.g. Kanyakumari (CAPE)" autocomplete="off" spellcheck="false" required>
                                 </div>
                             </div>
 
                             <div class="divider-vertical"></div>
 
-                            <div class="input-group">
+                            <div class="input-group date-picker-group">
                                 <i data-lucide="calendar" class="input-icon"></i>
                                 <div class="input-text">
                                     <label>Date</label>
-                                    <input type="text" name="date" value="Sat, 31 June">
+                                    <input type="date" name="date" id="home-train-date" required>
                                 </div>
                             </div>
 
@@ -149,29 +152,29 @@
 
     <!-- Quick Services -->
     <section class="quick-services">
-        <a href="#" class="service-item">
+        <a href="javascript:void(0)" class="service-item" id="quick-pnr-status-btn" data-action="open-pnr-modal">
             <div class="icon-circle"><i data-lucide="ticket-check"></i></div>
             <span>PNR<br>Status</span>
         </a>
-        <a href="#" class="service-item">
+        <a href="train-schedule.html" class="service-item">
             <div class="icon-circle"><i data-lucide="calendar-range"></i></div>
             <span>Train<br>Schedule</span>
-        </a>
-        <a href="#" class="service-item">
-            <div class="icon-circle"><i data-lucide="train-front"></i></div>
-            <span>Metro<br>Ticket</span>
-        </a>
-        <a href="order-food.html" class="service-item">
-            <div class="icon-circle"><i data-lucide="utensils"></i></div>
-            <span>Order Food<br>On Train</span>
-        </a>
-        <a href="#" class="service-item">
-            <div class="icon-circle"><i data-lucide="train"></i></div>
-            <span>Coach<br>Position</span>
         </a>
         <a href="seat-availability.html" class="service-item">
             <div class="icon-circle"><i data-lucide="armchair"></i></div>
             <span>Seat<br>Availability</span>
+        </a>
+        <a href="metro-ticket.html" class="service-item">
+            <div class="icon-circle"><i data-lucide="train-front"></i></div>
+            <span>Metro<br>Ticket</span>
+        </a>
+        <a href="https://www.zoopindia.com/" target="_blank" rel="noopener noreferrer" class="service-item">
+            <div class="icon-circle"><i data-lucide="utensils"></i></div>
+            <span>Order Food<br>On Train</span>
+        </a>
+        <a href="https://www.uber.com/in/en/" target="_blank" rel="noopener noreferrer" class="service-item">
+            <div class="icon-circle"><i data-lucide="car"></i></div>
+            <span>Cabs To<br>Station</span>
         </a>
         <a href="#" class="service-item">
             <div class="icon-circle"><i data-lucide="users"></i></div>
@@ -672,7 +675,7 @@
         </div>
     </footer>
 
-    <script type="module" src="./src/js/main.js"></script>
+    <script type="module" src="./src/js/global/main.js"></script>
     <script>
         // Initialize lucide icons
         lucide.createIcons();
