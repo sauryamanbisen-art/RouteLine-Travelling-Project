@@ -1,6 +1,6 @@
-import { initPNRModule } from '../train/pnr-status.js';
+import { initPNRModule } from '../../train/pnr-status.js';
 import { initAuth } from '../auth/auth.js';
-import { initModeSelectorPill } from './mode-selector.js';
+import { initModeSelectorPill, initUnifiedSearchDock } from './mode-selector.js';
 
 // Comprehensive Station Dataset for Interactive Autocomplete Suggestions
 const STATIONS_DATA = [
@@ -352,8 +352,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initDefaultDates();
 
-    // Initialize unified Mode Selector Pill with smooth switching animation
+    // Initialize unified Mode Selector Pill and Unified Search Dock
     initModeSelectorPill();
+    initUnifiedSearchDock();
 
     // Delegated click on any .input-group containing a date input to open the picker
     document.addEventListener('click', (e) => {

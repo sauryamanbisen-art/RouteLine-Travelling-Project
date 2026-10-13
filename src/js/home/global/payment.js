@@ -4,8 +4,8 @@
  * generates official-format 10-digit PNR, allocates coach/berth, and saves ticket.
  */
 
-import { saveBookedTicket } from '../ticket/ticket.js';
-import { openPNRModal } from '../train/pnr-status.js';
+import { saveBookedTicket } from '../../train/ticket/ticket.js';
+import { openPNRModal } from '../../train/pnr-status.js';
 import { isAuthenticated, openAuthModal, getCurrentUser } from '../auth/auth.js';
 
 /**
@@ -435,6 +435,8 @@ function executePaymentFlow(params) {
     // Save ticket to localStorage
     saveBookedTicket(ticket);
 
+    const ticketUrl = window.location.pathname.includes('/pages/train/') ? `ticket.html?pnr=${pnr}` : (window.location.pathname.includes('/pages/') ? `../train/ticket.html?pnr=${pnr}` : `pages/train/ticket.html?pnr=${pnr}`);
+
     // Render Success Screen
     content.innerHTML = `
       <div class="payment-success-view">
@@ -479,7 +481,7 @@ function executePaymentFlow(params) {
         </div>
 
         <div class="success-actions-row">
-          <a href="ticket.html?pnr=${pnr}" class="btn-primary" style="flex:1;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;">
+          <a href="${ticketUrl}" class="btn-primary" style="flex:1;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;">
             <i data-lucide="printer"></i> View & Print E-Ticket
           </a>
           <button type="button" class="btn-secondary" id="btn-quick-check-live-pnr" data-pnr="${pnr}" style="flex:1;">

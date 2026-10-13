@@ -3,14 +3,25 @@
    ========================================================================== */
 
 :root {
-    --primary-blue: #0066ff;
-    --dark-blue: #004de6;
+    /* RouteLine Brand Palette */
+    --primary-brand: #d89b53;
+    --primary-brand-hover: #ca8b41;
+    --primary-brand-light: #fff7ed;
+    --primary-brand-glow: rgba(216, 155, 83, 0.25);
+
+    /* Main theme aliases */
+    --primary-blue: #d89b53;
+    --dark-blue: #0b172a;
+    --nav-bg: #0b172a;
+    --nav-bg-translucent: rgba(11, 23, 42, 0.95);
+
     --text-dark: #1a1a1a;
     --text-grey: #666666;
     --bg-white: #ffffff;
     --bg-light: #f5f7fa;
     --feature-bg: #e6f9e6;
     --feature-text: #008000;
+    --accent-emerald: #10b981;
 
     /* Extended tokens */
     --border-color: #e2e8f0;

@@ -5,12 +5,21 @@
  * And provides smooth, seamless sliding animations when switching between pages.
  */
 
-const PAGE_MAP = {
-    'trains': 'index.html',
-    'flights': 'flight-results.html',
-    'buses': 'bus-results.html',
-    'hotels': 'hotel-results.html'
-};
+function getPageHref(modeKey) {
+    const isInsidePages = window.location.pathname.includes('/pages/');
+    switch (modeKey) {
+        case 'trains':
+            return isInsidePages ? '../../index.html' : 'index.html';
+        case 'flights':
+            return isInsidePages ? '../flight/flight-search.html' : 'pages/flight/flight-search.html';
+        case 'buses':
+            return isInsidePages ? '../bus/bus-results.html' : 'pages/bus/bus-results.html';
+        case 'hotels':
+            return isInsidePages ? '../hotel/hotel-results.html' : 'pages/hotel/hotel-results.html';
+        default:
+            return isInsidePages ? '../../index.html' : 'index.html';
+    }
+}
 
 export function initModeSelectorPill() {
     const selector = document.querySelector('.mode-selector');
@@ -68,7 +77,7 @@ export function initModeSelectorPill() {
 
             // Target page URL
             const modeKey = (btn.getAttribute('data-mode') || '').toLowerCase();
-            const targetHref = btn.getAttribute('data-href') || PAGE_MAP[modeKey];
+            const targetHref = btn.getAttribute('data-href') || getPageHref(modeKey);
 
             // 1. Immediately switch active styles so button text colors cross-fade
             btns.forEach(b => b.classList.remove('active'));
@@ -91,3 +100,51 @@ export function initModeSelectorPill() {
         alignPill(currentActive, false);
     });
 }
+
+export function initUnifiedSearchDock() {
+    // 1. One-way vs Round-trip toggling
+    const tripBtns = document.querySelectorAll('.dock-trip-btn');
+    tripBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            tripBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            const returnBox = document.getElementById('returnBox') || document.querySelector('.dock-return-box');
+            const returnInput = document.getElementById('returnDateInput') || document.querySelector('input[name="returnDate"]');
+            
+            if (btn.getAttribute('data-trip') === 'round-trip') {
+                if (returnBox) returnBox.classList.remove('is-disabled');
+                if (returnInput) {
+                    returnInput.disabled = false;
+                    returnInput.focus();
+                }
+            } else {
+                if (returnBox) returnBox.classList.add('is-disabled');
+                if (returnInput) {
+                    returnInput.disabled = true;
+                    returnInput.value = '';
+                }
+            }
+        });
+    });
+
+    // 2. City / Station Swap button with smooth rotation
+    document.querySelectorAll('.dock-swap-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const form = btn.closest('form');
+            if (!form) return;
+            const originInput = form.querySelector('input[name="origin"], input[name="from"]');
+            const destInput = form.querySelector('input[name="destination"], input[name="to"]');
+            if (originInput && destInput) {
+                const temp = originInput.value;
+                originInput.value = destInput.value;
+                destInput.value = temp;
+                btn.style.transform = 'rotate(180deg) scale(1.1)';
+                setTimeout(() => {
+                    btn.style.transform = '';
+                }, 280);
+            }
+        });
+    });
+}
+

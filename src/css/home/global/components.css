@@ -2,7 +2,7 @@
    RouteLine - Common UI Components (components.css)
    ========================================================================== */
 
-@import '../train/pnr-status.css';
+@import '../../train/pnr-status.css';
 @import '../auth/auth-modal.css';
 
 /* Header */
@@ -13,7 +13,16 @@
     width: 100%;
     z-index: 100;
     padding: 20px 40px;
-    background: linear-gradient(to bottom, rgba(0,77,230,0.8) 0%, rgba(0,77,230,0) 100%);
+    background: linear-gradient(to bottom, rgba(11, 23, 42, 0.92) 0%, rgba(11, 23, 42, 0) 100%);
+    transition: background 0.25s ease;
+}
+
+/* Subpage solid header styling */
+.header[style*="background"],
+.header.header-solid {
+    background: var(--nav-bg, #0b172a) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
 }
 
 .header-container {
@@ -190,19 +199,19 @@
 }
 
 .rl-station-code {
-    background: #eff6ff;
-    color: #2563eb;
+    background: #fff7ed;
+    color: #b45309;
     font-family: ui-monospace, monospace;
     font-weight: 800;
     font-size: 0.82rem;
     padding: 3px 8px;
     border-radius: 6px;
-    border: 1px solid #bfdbfe;
+    border: 1px solid #fed7aa;
 }
 
 .rl-station-item:hover .rl-station-code {
-    background: #2563eb;
-    border-color: #2563eb;
+    background: #d89b53;
+    border-color: #d89b53;
     color: #ffffff;
 }
 
@@ -686,7 +695,7 @@
 
 .btn-pay-now {
     width: 100%;
-    background: var(--primary-blue, #0066ff);
+    background: var(--primary-brand, #d89b53);
     color: #ffffff;
     border: none;
     border-radius: 12px;
@@ -698,14 +707,14 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 6px 18px rgba(0, 102, 255, 0.32);
+    box-shadow: 0 6px 18px rgba(216, 155, 83, 0.35);
     transition: all 0.2s ease;
 }
 
 .btn-pay-now:hover {
-    background: #0052cc;
+    background: var(--primary-brand-hover, #ca8b41);
     transform: translateY(-1px);
-    box-shadow: 0 8px 24px rgba(0, 102, 255, 0.4);
+    box-shadow: 0 8px 22px rgba(216, 155, 83, 0.45);
 }
 
 .pay-guarantee-note {

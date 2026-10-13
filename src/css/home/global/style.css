@@ -11,7 +11,7 @@
     position: relative;
     width: 100%;
     min-height: 85vh;
-    background-image: url('../../assets/vandhe-bharat.png');
+    background-image: url('../../../assets/vandhe-bharat.png');
     background-size: cover;
     background-position: center;
     display: flex;
