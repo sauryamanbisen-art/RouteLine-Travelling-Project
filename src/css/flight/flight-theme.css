@@ -1,0 +1,202 @@
+/* =====================================================================
+   RouteLine Horizon & Executive Gold Design System
+   Token Specifications & Components for Flight Experience
+   ===================================================================== */
+
+:root {
+  /* Obsidian Midnight Navy Palette */
+  --rl-navy-950: #060f1e;
+  --rl-navy-900: #0b1e36;
+  --rl-navy-850: #0f2644;
+  --rl-navy-800: #143156;
+  --rl-navy-700: #1d4477;
+  --rl-navy-600: #2a5c9e;
+
+  /* Executive Champagne Gold & Bronze Spectrum */
+  --rl-gold-50: #faf6ee;
+  --rl-gold-100: #f6efe5;
+  --rl-gold-200: #f0e5d5;
+  --rl-gold-300: #e5d6c1;
+  --rl-gold-400: #d6c0a0;
+  --rl-gold-500: #c5a880;
+  --rl-gold-600: #b8925b;
+  --rl-gold-700: #a37f4f;
+  --rl-gold-800: #8c6d37;
+  --rl-gold-900: #5c441d;
+
+  /* Stratosphere Modern Blue */
+  --rl-blue-primary: #000d2c;
+  --rl-blue-container: #0b224e;
+  --rl-blue-secondary: #0051d5;
+  --rl-blue-accent: #2563eb;
+  --rl-blue-tint: #eff4ff;
+
+  /* Functional Surfaces */
+  --rl-surface-root: #f5f7fc;
+  --rl-surface-card: #ffffff;
+  --rl-surface-border: #e2e8f0;
+  --rl-surface-border-subtle: #edf2f7;
+  --rl-surface-dim: #cbdbf5;
+
+  /* Trust & Verification */
+  --rl-verified-green: #10b981;
+  --rl-verified-bg: #ecfdf5;
+  --rl-verified-border: #a7f3d0;
+  --rl-verified-text: #065f46;
+
+  /* Typography */
+  --rl-font-headline: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --rl-font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --rl-font-luxury: 'Cinzel', serif;
+  --rl-font-mono: 'JetBrains Mono', monospace;
+
+  /* Shadows */
+  --rl-shadow-subtle: 0 1px 3px rgba(11, 34, 78, 0.04), 0 4px 12px rgba(11, 34, 78, 0.02);
+  --rl-shadow-dock: 0 4px 20px rgba(11, 34, 78, 0.08), 0 1px 4px rgba(11, 34, 78, 0.04);
+  --rl-shadow-popover: 0 12px 32px rgba(11, 34, 78, 0.12), 0 2px 8px rgba(11, 34, 78, 0.04);
+  --rl-shadow-gold: 0 8px 24px -4px rgba(197, 168, 128, 0.28);
+}
+
+/* Animations */
+@keyframes rlGoldShimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(120deg, rgba(223,192,148,0.1) 0%, rgba(223,192,148,0.3) 50%, rgba(223,192,148,0.1) 100%);
+  background-size: 200% 100%;
+  animation: rlGoldShimmer 4s ease-in-out infinite;
+}
+
+/* Common Flight Flow Styles */
+.flight-page-root {
+  background-color: var(--rl-surface-root);
+  font-family: var(--rl-font-body);
+  color: var(--rl-navy-900);
+  min-height: 100vh;
+}
+
+/* Executive Stepper Component */
+.rl-stepper-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rl-stepper-circle {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.rl-stepper-circle.completed {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.rl-stepper-circle.active {
+  background-color: var(--rl-navy-900);
+  color: var(--rl-gold-400);
+  border: 1px solid var(--rl-gold-500);
+  box-shadow: 0 2px 8px rgba(11, 34, 78, 0.2);
+}
+
+.rl-stepper-circle.inactive {
+  background-color: var(--rl-surface-border);
+  color: #64748b;
+}
+
+/* Flight Seat Selection Grid */
+.seat-button {
+  width: 36px;
+  height: 38px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--rl-surface-border);
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  background-color: #ffffff;
+  color: var(--rl-navy-900);
+}
+
+.seat-button:hover:not(:disabled) {
+  border-color: var(--rl-gold-500);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(197, 168, 128, 0.2);
+}
+
+.seat-button.occupied {
+  background-color: #e2e8f0;
+  color: #94a3b8;
+  border-color: #cbd5e1;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.seat-button.selected {
+  background-color: var(--rl-navy-900);
+  color: var(--rl-gold-300);
+  border-color: var(--rl-gold-500);
+  box-shadow: 0 0 0 2px var(--rl-gold-500);
+  font-weight: 800;
+}
+
+.seat-button.extra-legroom {
+  background-color: #fefce8;
+  border-color: #fef08a;
+  color: #854d0e;
+}
+
+.seat-button.extra-legroom.selected {
+  background-color: var(--rl-navy-900);
+  border-color: var(--rl-gold-500);
+  color: var(--rl-gold-300);
+}
+
+/* Interactive Add-on Cards */
+.addon-card {
+  border: 1.5px solid var(--rl-surface-border);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background-color: #ffffff;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.addon-card:hover {
+  border-color: var(--rl-gold-500);
+  box-shadow: var(--rl-shadow-subtle);
+}
+
+.addon-card.selected {
+  border-color: var(--rl-gold-600);
+  background-color: var(--rl-gold-50);
+  box-shadow: var(--rl-shadow-gold);
+}
+
+/* Print Ticket Styles */
+@media print {
+  header, footer, .no-print, button:not(.print-allow) {
+    display: none !important;
+  }
+  body, .flight-page-root {
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+  .e-ticket-card {
+    box-shadow: none !important;
+    border: 1px solid #000000 !important;
+    break-inside: avoid;
+  }
+}
