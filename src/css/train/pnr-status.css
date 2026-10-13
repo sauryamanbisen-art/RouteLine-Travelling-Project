@@ -94,13 +94,13 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #eff6ff;
-    border: 1px solid #bfdbfe;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
     padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.76rem;
     font-weight: 700;
-    color: #1d4ed8;
+    color: #047857;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: 12px;
@@ -190,12 +190,12 @@
 }
 
 .pnr-number-input:focus {
-    border-color: var(--primary-blue, #0066ff);
-    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
+    border-color: var(--primary-brand, #d89b53);
+    box-shadow: 0 0 0 4px rgba(216, 155, 83, 0.18);
 }
 
 .pnr-number-input:focus + .pnr-input-icon {
-    color: var(--primary-blue, #0066ff);
+    color: var(--primary-brand, #d89b53);
 }
 
 .pnr-digit-counter {
@@ -217,7 +217,7 @@
 }
 
 .pnr-submit-btn {
-    background: var(--primary-blue, #0066ff);
+    background: var(--primary-brand, #d89b53);
     color: #ffffff;
     border: none;
     border-radius: 14px;
@@ -229,16 +229,16 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 6px 16px rgba(0, 102, 255, 0.28);
+    box-shadow: 0 4px 14px rgba(216, 155, 83, 0.35);
     transition: all 0.2s ease;
     white-space: nowrap;
     min-width: 170px;
 }
 
 .pnr-submit-btn:hover:not(:disabled) {
-    background: #0052cc;
+    background: var(--primary-brand-hover, #ca8b41);
     transform: translateY(-1px);
-    box-shadow: 0 8px 20px rgba(0, 102, 255, 0.35);
+    box-shadow: 0 6px 18px rgba(216, 155, 83, 0.45);
 }
 
 .pnr-submit-btn:disabled {
@@ -294,11 +294,11 @@
 }
 
 .pnr-chip-btn:hover {
-    border-color: var(--primary-blue, #0066ff);
-    color: var(--primary-blue, #0066ff);
-    background: #eff6ff;
+    border-color: var(--primary-brand, #d89b53);
+    color: #b45309;
+    background: #fff7ed;
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0, 102, 255, 0.15);
+    box-shadow: 0 2px 6px rgba(216, 155, 83, 0.2);
 }
 
 .pnr-chip-btn.booked-chip {
@@ -556,8 +556,8 @@
 
 .btn-demo-pnr {
     background: #ffffff;
-    border: 1.5px solid #2563eb;
-    color: #2563eb;
+    border: 1.5px solid var(--primary-brand, #d89b53);
+    color: #b45309;
     padding: 9px 18px;
     border-radius: 10px;
     font-size: 0.88rem;
@@ -570,9 +570,9 @@
 }
 
 .btn-demo-pnr:hover {
-    background: #2563eb;
+    background: var(--primary-brand, #d89b53);
     color: #ffffff;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 4px 12px rgba(216, 155, 83, 0.3);
 }
 
 .btn-demo-pnr i,
@@ -1120,8 +1120,8 @@
     width: 40px;
     height: 40px;
     border-radius: 10px;
-    background: #eff6ff;
-    color: var(--primary-blue, #0066ff);
+    background: #fff7ed;
+    color: var(--primary-brand, #d89b53);
     display: flex;
     align-items: center;
     justify-content: center;

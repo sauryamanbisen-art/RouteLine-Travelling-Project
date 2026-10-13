@@ -15,9 +15,9 @@
     --ts-border-light: #f1f5f9;
     --ts-text-main: #0f172a;
     --ts-text-muted: #64748b;
-    --ts-blue: #0066ff;
-    --ts-blue-dark: #004de6;
-    --ts-blue-soft: #eff6ff;
+    --ts-blue: #d89b53;
+    --ts-blue-dark: #ca8b41;
+    --ts-blue-soft: #fff7ed;
     --ts-green: #10b981;
     --ts-amber: #f59e0b;
     --ts-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -131,7 +131,8 @@
     align-items: center;
     gap: 6px;
     background: var(--ts-blue-soft);
-    color: var(--ts-blue-dark);
+    color: #b45309;
+    border: 1px solid #fed7aa;
     padding: 6px 14px;
     border-radius: 999px;
     font-size: 13px;
@@ -199,7 +200,7 @@
 .ts-search-input-wrapper input:focus {
     outline: none;
     border-color: var(--ts-blue);
-    box-shadow: 0 0 0 4px rgba(0, 102, 255, 0.12);
+    box-shadow: 0 0 0 4px rgba(216, 155, 83, 0.18);
 }
 
 .ts-clear-btn {
@@ -242,7 +243,7 @@
     align-items: center;
     gap: 8px;
     transition: background 0.15s, transform 0.1s;
-    box-shadow: 0 2px 6px rgba(0, 102, 255, 0.25);
+    box-shadow: 0 4px 14px rgba(216, 155, 83, 0.35);
     white-space: nowrap;
 }
 
@@ -289,15 +290,16 @@
 
 .ts-chip:hover {
     background: var(--ts-blue-soft);
-    border-color: #bfdbfe;
-    color: var(--ts-blue-dark);
+    border-color: #fed7aa;
+    color: #b45309;
 }
 
 .ts-chip.active {
     background: var(--ts-blue-soft);
     border-color: var(--ts-blue);
-    color: var(--ts-blue-dark);
-    font-weight: 600;
+    color: #b45309;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(216, 155, 83, 0.18);
 }
 
 /* Loading & Error States */
@@ -391,14 +393,15 @@
 }
 
 .ts-train-number {
-    background: linear-gradient(135deg, var(--ts-blue), var(--ts-blue-dark));
+    background: linear-gradient(135deg, #0b172a, #1e293b);
     color: #ffffff;
     font-size: 22px;
     font-weight: 800;
     padding: 12px 18px;
     border-radius: 14px;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 10px rgba(0, 102, 255, 0.2);
+    border: 1px solid rgba(216, 155, 83, 0.35);
+    box-shadow: 0 4px 14px rgba(11, 23, 42, 0.25);
 }
 
 .ts-train-name-wrap h2 {
