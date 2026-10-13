@@ -1,5 +1,5 @@
-import { initAuth } from '../auth/auth.js';
-import { initModeSelectorPill } from '../global/mode-selector.js';
+import { initAuth } from '../home/auth/auth.js';
+import { initModeSelectorPill } from '../home/global/mode-selector.js';
 
 (function(){
   "use strict";
