@@ -6,24 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel Booking | RouteLine</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/global/style.css">
-    <link rel="stylesheet" href="./src/css/hotel/hotel.css">
-    <link rel="stylesheet" href="./src/css/home/homepage.css">
+    <link rel="stylesheet" href="../../src/css/home/global/style.css">
+    <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+    <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+    <link rel="stylesheet" href="../../src/css/hotel/hotel.css">
+    <link rel="stylesheet" href="../../src/css/home/homepage.css">
 </head>
 
 <body>
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <img src="./public/logo.svg" alt="RouteLine Logo">
-                <a href="index.html" style="color: white; text-decoration: none;">RouteLine</a>
+                <img src="../../public/logo.svg" alt="RouteLine Logo">
+                <a href="../../index.html" style="color: white; text-decoration: none;">RouteLine</a>
             </div>
 
             <nav class="nav-links">
-                <a href="index.html">Trains</a>
-                <a href="flight-results.html">Flights</a>
-                <a href="bus-results.html">Buses</a>
+                <a href="../../index.html">Trains</a>
+                <a href="../flight/flight-search.html">Flights</a>
+                <a href="../bus/bus-results.html">Buses</a>
                 <a href="hotel-results.html" class="active">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
@@ -36,152 +39,157 @@
         </div>
     </header>
 
-    <section class="hero">
+    <section class="hero-unified" style="background-image: url('../../src/assets/Hotel-front-view.png');">
+        <div class="hero-unified-overlay"></div>
+        
+        <!-- Strict standardized header height across all 4 pages -->
+        <div class="hero-unified-header">
+            <h1 class="hero-unified-title">Find your perfect<br>place to stay.</h1>
+            <p class="hero-unified-subtitle">Discover amazing deals on hotels, resorts, and vacation rentals. From cozy budget stays to 5-star luxury experiences.</p>
+        </div>
 
-
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Find your perfect<br>place to stay.</h1>
-            <p class="hero-subtitle">Discover amazing deals on hotels, resorts, and vacation rentals.<br>From cozy
-                budget stays to 5-star luxury experiences.</p>
-
-            <!-- Booking Widget -->
-            <div class="booking-widget">
-                <!-- Mode & Trip Toggle Header -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <!-- Mode Selector -->
-                    <div class="mode-selector" style="margin-bottom: 0;">
-                        <div class="active-pill" id="active-pill" style="left: 381px; width: 127px;"></div>
-                        <button class="mode-btn" data-mode="Trains" data-href="index.html">
-                            <i data-lucide="train"></i> Trains
-                        </button>
-                        <button class="mode-btn" data-mode="Flights" data-href="flight-results.html">
-                            <i data-lucide="plane"></i> Flights
-                        </button>
-                        <button class="mode-btn" data-mode="Buses" data-href="bus-results.html">
-                            <i data-lucide="bus-front"></i> Buses
-                        </button>
-                        <button class="mode-btn active" data-mode="Hotels" data-href="hotel-results.html">
-                            <i data-lucide="building-2"></i> Hotels
-                        </button>
-                    </div>
+        <!-- Pixel-perfect search dock (identical position, width & height across all pages) -->
+        <div class="search-dock-wrapper">
+            <!-- Mode & Stay Type Toggle Row -->
+            <div class="dock-mode-row">
+                <!-- Mode Capsule -->
+                <div class="dock-mode-capsule">
+                    <a href="../../index.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">train</span> Trains
+                    </a>
+                    <a href="../flight/flight-search.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">flight</span> Flights
+                    </a>
+                    <a href="../bus/bus-results.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">directions_bus</span> Buses
+                    </a>
+                    <a href="hotel-results.html" class="dock-mode-btn active">
+                        <span class="material-symbols-outlined dock-icon">hotel</span> Hotels
+                    </a>
                 </div>
 
-                <!-- Input Area -->
-                <div class="booking-form-container">
-                    <form id="search-form" action="hotel-results.html" method="GET">
-                        <div class="inputs-row" id="dynamic-inputs">
+                <!-- Stay Type Capsule (exact width/height matching trip capsules) -->
+                <div class="dock-trip-capsule">
+                    <button type="button" class="dock-trip-btn active" data-trip="one-way">Overnight stay</button>
+                    <button type="button" class="dock-trip-btn" data-trip="round-trip">Day use</button>
+                </div>
+            </div>
 
-                            <div class="input-group" id="location-group" style="flex: 1.5;">
-                                <i data-lucide="map-pin" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label id="location-label">City, Property name or Location</label>
-                                    <input type="text" id="location-input" name="location" value="Goa" list="city-list"
-                                        required style="width: 100%;">
-                                </div>
+            <!-- Main White Search Card Dock -->
+            <div class="search-dock-card">
+                <form id="search-form" action="hotel-results.html" method="GET">
+                    <div class="dock-inputs-row">
+                        <!-- Location Input -->
+                        <div class="dock-input-box city-box" style="flex: 1.4;">
+                            <span class="material-symbols-outlined dock-box-icon">location_on</span>
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">City or Destination</label>
+                                <input type="text" id="location-input" name="location" value="Goa" list="city-list" class="dock-box-input" autocomplete="off" required>
                             </div>
-
-                            <div class="divider-vertical"></div>
-
-                            <div class="input-group" id="checkin-group">
-                                <i data-lucide="calendar-check" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label id="checkin-label">Check-in</label>
-                                    <input type="date" id="checkin-input" name="checkin" required
-                                        style="font-size: 0.95rem; font-family: inherit;">
-                                </div>
-                            </div>
-
-                            <div class="divider-vertical"></div>
-
-                            <div class="input-group" id="checkout-group">
-                                <i data-lucide="calendar-off" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label id="checkout-label">Check-out</label>
-                                    <input type="date" id="checkout-input" name="checkout" required
-                                        style="font-size: 0.95rem; font-family: inherit;">
-                                </div>
-                            </div>
-
-                            <div class="divider-vertical"></div>
-
-                            <div class="input-group class-selector" id="guests-field"
-                                style="cursor: pointer; position: relative; min-width: 160px;">
-                                <i data-lucide="users" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label>Rooms & Guests</label>
-                                    <div class="value" id="guests-summary"
-                                        style="font-size: 0.95rem; font-weight: 600; margin-top: 4px;">1 Room, 2 Adults
-                                    </div>
-                                </div>
-                                <i data-lucide="chevron-down" class="icon-sm" style="margin-left:auto;"></i>
-
-                                <!-- Guests Dropdown -->
-                                <div class="guests-panel" id="guests-panel" onclick="event.stopPropagation()">
-                                    <div class="counter-row">
-                                        <div>
-                                            <div class="label">Rooms</div>
-                                        </div>
-                                        <div class="stepper">
-                                            <button type="button" id="rooms-dec">–</button>
-                                            <span id="rooms-count" style="font-weight: 600; margin: 0 8px;">1</span>
-                                            <button type="button" id="rooms-inc">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="counter-row">
-                                        <div>
-                                            <div class="label">Adults</div>
-                                            <div class="sub">12+ yrs</div>
-                                        </div>
-                                        <div class="stepper">
-                                            <button type="button" id="adults-dec">–</button>
-                                            <span id="adults-count" style="font-weight: 600; margin: 0 8px;">2</span>
-                                            <button type="button" id="adults-inc">+</button>
-                                        </div>
-                                    </div>
-                                    <div class="counter-row">
-                                        <div>
-                                            <div class="label">Children</div>
-                                            <div class="sub">1-11 yrs</div>
-                                        </div>
-                                        <div class="stepper">
-                                            <button type="button" id="children-dec" disabled="disabled">–</button>
-                                            <span id="children-count" style="font-weight: 600; margin: 0 8px;">0</span>
-                                            <button type="button" id="children-inc">+</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="search-btn" id="search-btn">
-                                <i data-lucide="search"></i> Search
-                            </button>
                         </div>
-                    </form>
 
-                    <div class="result-banner" id="result-banner" style="margin:10px 0; padding: 0 20px;">
-                        <span id="result-text"
-                            style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
+                        <div class="dock-divider"></div>
+
+                        <!-- Check-in Date -->
+                        <div class="dock-input-box date-box">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Check-in</label>
+                                <input type="date" id="checkin-input" name="checkin" class="dock-box-input" required>
+                            </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                        </div>
+
+                        <!-- Check-out Date -->
+                        <div class="dock-input-box date-box" id="checkout-group">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Check-out</label>
+                                <input type="date" id="checkout-input" name="checkout" class="dock-box-input" required>
+                            </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                        </div>
+
+                        <div class="dock-divider"></div>
+
+                        <!-- Rooms & Guests Selector -->
+                        <div class="dock-input-box dock-dropdown-trigger relative" id="guests-field" style="min-width: 170px; cursor: pointer;">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Rooms &amp; Guests</label>
+                                <span class="dock-dropdown-summary" id="guests-summary">1 Room, 2 Adults</span>
+                            </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af; margin-left: auto;">expand_more</span>
+
+                            <!-- Guests Dropdown Panel -->
+                            <div class="guests-panel" id="guests-panel" onclick="event.stopPropagation()">
+                                <div class="counter-row">
+                                    <div>
+                                        <div class="label">Rooms</div>
+                                    </div>
+                                    <div class="stepper">
+                                        <button type="button" id="rooms-dec">–</button>
+                                        <span id="rooms-count" style="font-weight: 600; margin: 0 8px;">1</span>
+                                        <button type="button" id="rooms-inc">+</button>
+                                    </div>
+                                </div>
+                                <div class="counter-row">
+                                    <div>
+                                        <div class="label">Adults</div>
+                                        <div class="sub">12+ yrs</div>
+                                    </div>
+                                    <div class="stepper">
+                                        <button type="button" id="adults-dec">–</button>
+                                        <span id="adults-count" style="font-weight: 600; margin: 0 8px;">2</span>
+                                        <button type="button" id="adults-inc">+</button>
+                                    </div>
+                                </div>
+                                <div class="counter-row">
+                                    <div>
+                                        <div class="label">Children</div>
+                                        <div class="sub">1-11 yrs</div>
+                                    </div>
+                                    <div class="stepper">
+                                        <button type="button" id="children-dec" disabled="disabled">–</button>
+                                        <span id="children-count" style="font-weight: 600; margin: 0 8px;">0</span>
+                                        <button type="button" id="children-inc">+</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search CTA Button -->
+                        <button type="submit" class="dock-search-btn" id="search-btn">
+                            <span class="material-symbols-outlined">search</span>
+                            <span>Search Hotels</span>
+                        </button>
                     </div>
+                </form>
 
-                    <!-- Features Banner -->
-                    <div class="features-banner">
-                        <div class="feature-item">
-                            <i data-lucide="check-square" class="feature-icon"></i>
-                            <span>Lowest Price Guarantee</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="calendar-clock" class="feature-icon"></i>
-                            <span>Free Cancellation</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="star" class="feature-icon"></i>
-                            <span>Verified Reviews</span>
-                        </div>
+                <!-- Mint Green Assurance Ribbon -->
+                <div class="dock-assurance-ribbon">
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">verified</span>
+                        <span>Best Price Guarantee</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">event_available</span>
+                        <span>Free Cancellation Options</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">support_agent</span>
+                        <span>24/7 Hotel Support</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">lock</span>
+                        <span>Zero Booking Fee</span>
                     </div>
                 </div>
+            </div>
+
+            <!-- Result Feedback Notification -->
+            <div class="result-banner" id="result-banner" style="display: none; margin-top: 14px; text-align: center; background: rgba(255, 255, 255, 0.92); border-radius: 9999px; padding: 6px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); width: fit-content; margin-left: auto; margin-right: auto;">
+                <span id="result-text" style="color: #059669; font-weight: 600; font-size: 0.9rem;"></span>
             </div>
         </div>
     </section>
@@ -563,7 +571,7 @@
 
     <!-- Footer -->
     <footer class="site-footer">
-        <div class="footer-inner"><a href="index.html" class="footer-logo"><img src="./public/logo.svg"
+        <div class="footer-inner"><a href="../../index.html" class="footer-logo"><img src="../../public/logo.svg"
                     alt="RouteLine">RouteLine</a>
             <div class="footer-links"><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a
                     href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div>
@@ -571,7 +579,7 @@
         </div>
     </footer>
 
-    <script type="module" src="./src/js/hotel/hotel.js"></script>
+    <script type="module" src="../../src/js/hotel/hotel.js"></script>
     <script>
         lucide.createIcons();
     </script>

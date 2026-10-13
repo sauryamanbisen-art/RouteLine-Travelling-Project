@@ -1,9 +1,10 @@
-import { initAuth } from '../auth/auth.js';
-import { initModeSelectorPill } from '../global/mode-selector.js';
+import { initAuth } from '../home/auth/auth.js';
+import { initModeSelectorPill, initUnifiedSearchDock } from '../home/global/mode-selector.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initAuth({ autoPrompt: false });
     initModeSelectorPill();
+    initUnifiedSearchDock();
     // 1. Initial Setup for Dates
     const checkinInput = document.getElementById('checkin-input');
     const checkoutInput = document.getElementById('checkout-input');
