@@ -10,6 +10,7 @@
     background: #ffffff;
     border-bottom: 1px solid #e2e8f0;
     padding: 12px 0;
+    margin-top: 72px; /* Clears fixed/absolute header */
 }
 
 .subbar-container {
@@ -36,7 +37,7 @@
 }
 
 .ticket-breadcrumb a:hover {
-    color: var(--primary-blue, #0066ff);
+    color: var(--primary-brand, #d89b53);
 }
 
 .ticket-breadcrumb i,
@@ -62,8 +63,8 @@
 }
 
 .subbar-btn:hover {
-    border-color: var(--primary-blue, #0066ff);
-    color: var(--primary-blue, #0066ff);
+    border-color: var(--primary-brand, #d89b53);
+    color: #b45309;
 }
 
 .ticket-page-main {
@@ -664,13 +665,13 @@
 }
 
 .ers-btn.btn-track-pnr {
-    background: #eff6ff;
-    border: 1.5px solid #93c5fd;
-    color: #1d4ed8;
+    background: #fff7ed;
+    border: 1.5px solid #fed7aa;
+    color: #b45309;
 }
 
 .ers-btn.btn-track-pnr:hover {
-    background: #1d4ed8;
+    background: var(--primary-brand, #d89b53);
     color: #ffffff;
 }
 

@@ -9,9 +9,9 @@
     --metro-border-light: #f1f5f9;
     --metro-text-main: #0f172a;
     --metro-text-muted: #64748b;
-    --metro-blue: #0066ff;
-    --metro-blue-dark: #004de6;
-    --metro-blue-soft: #eff6ff;
+    --metro-blue: #d89b53;
+    --metro-blue-dark: #ca8b41;
+    --metro-blue-soft: #fff7ed;
     --metro-shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
     --metro-shadow-md: 0 4px 12px -2px rgba(0, 0, 0, 0.08);
 }

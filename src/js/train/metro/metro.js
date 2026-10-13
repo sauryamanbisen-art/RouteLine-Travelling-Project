@@ -4,8 +4,8 @@
  */
 
 import { saveBookedTicket } from '../ticket/ticket.js';
-import { openPNRModal, initPNRModule } from '../train/pnr-status.js';
-import { requireAuthentication, isAuthenticated, initAuth, getCurrentUser } from '../auth/auth.js';
+import { openPNRModal, initPNRModule } from '../pnr-status.js';
+import { requireAuthentication, isAuthenticated, initAuth, getCurrentUser } from '../../home/auth/auth.js';
 
 // Comprehensive Multi-City Metro Database
 const METRO_DATABASE = {

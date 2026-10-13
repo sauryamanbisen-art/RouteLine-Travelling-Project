@@ -3,8 +3,8 @@
  * Manages Electronic Reservation Slip (ERS), payment verification, PNR retrieval and cancellation.
  */
 
-import { openPNRModal, initPNRModule } from '../train/pnr-status.js';
-import { initAuth } from '../auth/auth.js';
+import { openPNRModal, initPNRModule } from '../pnr-status.js';
+import { initAuth } from '../../home/auth/auth.js';
 
 export const STORAGE_KEY_TICKETS = 'routeline_booked_tickets';
 
