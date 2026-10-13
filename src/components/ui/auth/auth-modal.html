@@ -2,7 +2,7 @@
 <div id="rl-auth-modal-backdrop" class="rl-auth-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="rl-auth-modal-title">
     <div class="rl-auth-modal">
         <button type="button" class="rl-auth-close-btn" id="rl-auth-close-btn" aria-label="Close Authentication Modal">
-            <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+            <i data-lucide="x" style="width: 16px; height: 16px;"></i>
         </button>
 
         <div class="rl-auth-header">
@@ -10,18 +10,18 @@
                 <i data-lucide="shield-check" style="width: 15px; height: 15px;"></i>
                 <span>RouteLine Secure Pass</span>
             </div>
-            <h2 class="rl-auth-title" id="rl-auth-modal-title">Welcome to RouteLine</h2>
-            <p class="rl-auth-subtitle" id="rl-auth-modal-subtitle">Login or create an account to book your tickets and view bookings.</p>
+            <h2 class="rl-auth-title" id="rl-auth-modal-title">Welcome Back to RouteLine</h2>
+            <p class="rl-auth-subtitle" id="rl-auth-modal-subtitle">Login to manage your journeys and proceed with fast ticket booking.</p>
         </div>
 
-        <!-- Tab Switcher -->
+        <!-- Tab Switcher (Segmented Pill) -->
         <div class="rl-auth-tabs">
             <button type="button" class="rl-auth-tab-btn active" id="rl-tab-login" data-tab="login">Login</button>
             <button type="button" class="rl-auth-tab-btn" id="rl-tab-signup" data-tab="signup">Sign Up</button>
         </div>
 
         <!-- Alert Notification Box -->
-        <div id="rl-auth-alert" class="rl-auth-alert">
+        <div id="rl-auth-alert" class="rl-auth-alert" role="alert">
             <i data-lucide="alert-circle" id="rl-auth-alert-icon" style="width: 16px; height: 16px; flex-shrink: 0;"></i>
             <span id="rl-auth-alert-text"></span>
         </div>
@@ -32,7 +32,7 @@
                 <label for="rl-login-email" class="rl-form-label">Email or Username</label>
                 <div class="rl-input-wrapper">
                     <i data-lucide="mail" class="rl-input-icon"></i>
-                    <input type="email" id="rl-login-email" class="rl-auth-input" placeholder="e.g. demo@routeline.com" required autocomplete="username">
+                    <input type="email" id="rl-login-email" class="rl-auth-input" placeholder="e.g. demo@example.com" required autocomplete="username">
                 </div>
             </div>
 
@@ -42,7 +42,7 @@
                     <i data-lucide="lock" class="rl-input-icon"></i>
                     <input type="password" id="rl-login-password" class="rl-auth-input" placeholder="Enter your password" required autocomplete="current-password">
                     <button type="button" class="rl-toggle-pwd" data-target="rl-login-password" aria-label="Toggle Password Visibility">
-                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                        <i data-lucide="eye" style="width: 17px; height: 17px;"></i>
                     </button>
                 </div>
             </div>
@@ -61,16 +61,17 @@
             </button>
 
             <div class="rl-auth-divider">
-                <span>or</span>
+                <span>OR</span>
             </div>
 
             <button type="button" class="rl-guest-btn" id="rl-guest-btn-login">
-                <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                <i data-lucide="circle-user" style="width: 18px; height: 18px;"></i>
                 <span>Continue as Guest</span>
             </button>
 
-            <div class="rl-auth-demo-hint">
-                💡 <strong>Demo Login:</strong> <code>demo@routeline.com</code> / <code>password123</code>
+            <div class="rl-auth-demo-hint" id="rl-demo-hint-box" role="button" tabindex="0" title="Click to auto-fill demo credentials">
+                <span class="rl-demo-label">💡 Demo Login:</span>
+                <span class="rl-demo-creds">demo@routeline.com / password123</span>
             </div>
 
             <div class="rl-auth-footer-text">
@@ -92,7 +93,7 @@
                 <label for="rl-signup-email" class="rl-form-label">Email Address</label>
                 <div class="rl-input-wrapper">
                     <i data-lucide="mail" class="rl-input-icon"></i>
-                    <input type="email" id="rl-signup-email" class="rl-auth-input" placeholder="e.g. yourname@example.com" required autocomplete="email">
+                    <input type="email" id="rl-signup-email" class="rl-auth-input" placeholder="e.g. demo@example.com" required autocomplete="email">
                 </div>
             </div>
 
@@ -102,7 +103,7 @@
                     <i data-lucide="lock" class="rl-input-icon"></i>
                     <input type="password" id="rl-signup-password" class="rl-auth-input" placeholder="At least 6 characters" required autocomplete="new-password">
                     <button type="button" class="rl-toggle-pwd" data-target="rl-signup-password" aria-label="Toggle Password Visibility">
-                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                        <i data-lucide="eye" style="width: 17px; height: 17px;"></i>
                     </button>
                 </div>
             </div>
@@ -113,22 +114,22 @@
                     <i data-lucide="check-check" class="rl-input-icon"></i>
                     <input type="password" id="rl-signup-confirm-password" class="rl-auth-input" placeholder="Re-enter password" required autocomplete="new-password">
                     <button type="button" class="rl-toggle-pwd" data-target="rl-signup-confirm-password" aria-label="Toggle Password Visibility">
-                        <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                        <i data-lucide="eye" style="width: 17px; height: 17px;"></i>
                     </button>
                 </div>
             </div>
 
             <button type="submit" class="rl-auth-submit-btn" id="rl-signup-submit-btn">
                 <span>Create Account</span>
-                <i data-lucide="user-plus" style="width: 17px; height: 17px;"></i>
+                <i data-lucide="arrow-right" style="width: 17px; height: 17px;"></i>
             </button>
 
             <div class="rl-auth-divider">
-                <span>or</span>
+                <span>OR</span>
             </div>
 
             <button type="button" class="rl-guest-btn" id="rl-guest-btn-signup">
-                <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                <i data-lucide="circle-user" style="width: 18px; height: 18px;"></i>
                 <span>Continue as Guest</span>
             </button>
 

@@ -55,6 +55,13 @@ export function dismissAuthPrompt() {
 const SEED_USERS = [
   {
     id: 'usr_demo_1',
+    name: 'Demo Traveler',
+    email: 'demo@routeline.com',
+    password: 'password123',
+    createdAt: '2026-09-08'
+  },
+  {
+    id: 'usr_demo_2',
     name: 'Sauryaman Bisen',
     email: 'example@gmail.com',
     password: 'password123',
@@ -70,8 +77,18 @@ let pendingBookingAction = null;
  */
 function ensureUsersStore() {
   if (typeof window === 'undefined') return;
-  const existing = localStorage.getItem(STORAGE_REGISTERED_USERS);
-  if (!existing) {
+  try {
+    const existing = localStorage.getItem(STORAGE_REGISTERED_USERS);
+    if (!existing) {
+      localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(SEED_USERS));
+    } else {
+      const parsed = JSON.parse(existing);
+      if (Array.isArray(parsed) && !parsed.some(u => u.email === 'demo@routeline.com')) {
+        parsed.unshift(SEED_USERS[0]);
+        localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(parsed));
+      }
+    }
+  } catch (e) {
     localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(SEED_USERS));
   }
 }
@@ -124,7 +141,8 @@ export function loginUser({ identifier, password, remember = true }) {
 
   const user = users.find(u => 
     u.email.toLowerCase() === cleanId || 
-    (u.name && u.name.toLowerCase() === cleanId)
+    (u.name && u.name.toLowerCase() === cleanId) ||
+    (cleanId === 'demo' && u.email === 'demo@routeline.com')
   );
 
   if (!user || user.password !== password) {
@@ -383,10 +401,10 @@ function ensureAuthModalDOM() {
   if (document.getElementById('rl-auth-modal-backdrop')) return;
 
   const modalHTML = `
-    <div id="rl-auth-modal-backdrop" class="rl-auth-backdrop" style="display: none;" role="dialog" aria-modal="true">
+    <div id="rl-auth-modal-backdrop" class="rl-auth-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="rl-auth-modal-title">
         <div class="rl-auth-modal">
             <button type="button" class="rl-auth-close-btn" id="rl-auth-close-btn" aria-label="Close Authentication Modal">
-                <i data-lucide="x" style="width: 18px; height: 18px;"></i>
+                <i data-lucide="x" style="width: 16px; height: 16px;"></i>
             </button>
 
             <div class="rl-auth-header">
@@ -394,18 +412,18 @@ function ensureAuthModalDOM() {
                     <i data-lucide="shield-check" style="width: 15px; height: 15px;"></i>
                     <span>RouteLine Secure Pass</span>
                 </div>
-                <h2 class="rl-auth-title" id="rl-auth-modal-title">Welcome to RouteLine</h2>
-                <p class="rl-auth-subtitle" id="rl-auth-modal-subtitle">Login or create an account to book your tickets and view bookings.</p>
+                <h2 class="rl-auth-title" id="rl-auth-modal-title">Welcome Back to RouteLine</h2>
+                <p class="rl-auth-subtitle" id="rl-auth-modal-subtitle">Login to manage your journeys and proceed with fast ticket booking.</p>
             </div>
 
-            <!-- Tab Switcher -->
+            <!-- Tab Switcher (Segmented Pill) -->
             <div class="rl-auth-tabs">
                 <button type="button" class="rl-auth-tab-btn active" id="rl-tab-login" data-tab="login">Login</button>
                 <button type="button" class="rl-auth-tab-btn" id="rl-tab-signup" data-tab="signup">Sign Up</button>
             </div>
 
             <!-- Alert Notification Box -->
-            <div id="rl-auth-alert" class="rl-auth-alert">
+            <div id="rl-auth-alert" class="rl-auth-alert" role="alert">
                 <i data-lucide="alert-circle" id="rl-auth-alert-icon" style="width: 16px; height: 16px; flex-shrink: 0;"></i>
                 <span id="rl-auth-alert-text"></span>
             </div>
@@ -426,7 +444,7 @@ function ensureAuthModalDOM() {
                         <i data-lucide="lock" class="rl-input-icon"></i>
                         <input type="password" id="rl-login-password" class="rl-auth-input" placeholder="Enter your password" required autocomplete="current-password">
                         <button type="button" class="rl-toggle-pwd" data-target="rl-login-password" aria-label="Toggle Password Visibility">
-                            <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                            <i data-lucide="eye" style="width: 17px; height: 17px;"></i>
                         </button>
                     </div>
                 </div>
@@ -445,16 +463,17 @@ function ensureAuthModalDOM() {
                 </button>
 
                 <div class="rl-auth-divider">
-                    <span>or</span>
+                    <span>OR</span>
                 </div>
 
                 <button type="button" class="rl-guest-btn" id="rl-guest-btn-login">
-                    <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                    <i data-lucide="circle-user" style="width: 18px; height: 18px;"></i>
                     <span>Continue as Guest</span>
                 </button>
 
-                <div class="rl-auth-demo-hint">
-                    💡 <strong>Demo Login:</strong> <code>demo@routeline.com</code> / <code>password123</code>
+                <div class="rl-auth-demo-hint" id="rl-demo-hint-box" role="button" tabindex="0" title="Click to auto-fill demo credentials">
+                    <span class="rl-demo-label">💡 Demo Login:</span>
+                    <span class="rl-demo-creds">demo@routeline.com / password123</span>
                 </div>
 
                 <div class="rl-auth-footer-text">
@@ -468,7 +487,7 @@ function ensureAuthModalDOM() {
                     <label for="rl-signup-name" class="rl-form-label">Full Name</label>
                     <div class="rl-input-wrapper">
                         <i data-lucide="user" class="rl-input-icon"></i>
-                        <input type="text" id="rl-signup-name" class="rl-auth-input" placeholder="e.g. Sauryaman Bisen" required autocomplete="name">
+                        <input type="text" id="rl-signup-name" class="rl-auth-input" placeholder="e.g. Saurya Man Bisen" required autocomplete="name">
                     </div>
                 </div>
 
@@ -476,7 +495,7 @@ function ensureAuthModalDOM() {
                     <label for="rl-signup-email" class="rl-form-label">Email Address</label>
                     <div class="rl-input-wrapper">
                         <i data-lucide="mail" class="rl-input-icon"></i>
-                        <input type="email" id="rl-signup-email" class="rl-auth-input" placeholder="e.g. yourname@example.com" required autocomplete="email">
+                        <input type="email" id="rl-signup-email" class="rl-auth-input" placeholder="e.g. demo@example.com" required autocomplete="email">
                     </div>
                 </div>
 
@@ -486,7 +505,7 @@ function ensureAuthModalDOM() {
                         <i data-lucide="lock" class="rl-input-icon"></i>
                         <input type="password" id="rl-signup-password" class="rl-auth-input" placeholder="At least 6 characters" required autocomplete="new-password">
                         <button type="button" class="rl-toggle-pwd" data-target="rl-signup-password" aria-label="Toggle Password Visibility">
-                            <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                            <i data-lucide="eye" style="width: 17px; height: 17px;"></i>
                         </button>
                     </div>
                 </div>
@@ -497,22 +516,22 @@ function ensureAuthModalDOM() {
                         <i data-lucide="check-check" class="rl-input-icon"></i>
                         <input type="password" id="rl-signup-confirm-password" class="rl-auth-input" placeholder="Re-enter password" required autocomplete="new-password">
                         <button type="button" class="rl-toggle-pwd" data-target="rl-signup-confirm-password" aria-label="Toggle Password Visibility">
-                            <i data-lucide="eye" style="width: 16px; height: 16px;"></i>
+                            <i data-lucide="eye" style="width: 17px; height: 17px;"></i>
                         </button>
                     </div>
                 </div>
 
                 <button type="submit" class="rl-auth-submit-btn" id="rl-signup-submit-btn">
                     <span>Create Account</span>
-                    <i data-lucide="user-plus" style="width: 17px; height: 17px;"></i>
+                    <i data-lucide="arrow-right" style="width: 17px; height: 17px;"></i>
                 </button>
 
                 <div class="rl-auth-divider">
-                    <span>or</span>
+                    <span>OR</span>
                 </div>
 
                 <button type="button" class="rl-guest-btn" id="rl-guest-btn-signup">
-                    <i data-lucide="compass" style="width: 16px; height: 16px;"></i>
+                    <i data-lucide="circle-user" style="width: 18px; height: 18px;"></i>
                     <span>Continue as Guest</span>
                 </button>
 
@@ -569,6 +588,19 @@ function bindModalEvents() {
   // Continue as Guest buttons
   document.getElementById('rl-guest-btn-login')?.addEventListener('click', continueAsGuest);
   document.getElementById('rl-guest-btn-signup')?.addEventListener('click', continueAsGuest);
+
+  // Demo Credentials Auto-Fill Click
+  const demoBox = document.getElementById('rl-demo-hint-box');
+  demoBox?.addEventListener('click', () => {
+    const emailInput = document.getElementById('rl-login-email');
+    const pwdInput = document.getElementById('rl-login-password');
+    if (emailInput && pwdInput) {
+      emailInput.value = 'demo@routeline.com';
+      pwdInput.value = 'password123';
+      showAuthToast('Demo credentials autofilled! Click Sign In to continue.', 'info');
+      document.getElementById('rl-login-submit-btn')?.focus();
+    }
+  });
 
   // Password Toggles
   bindPasswordToggles(backdrop);
@@ -646,6 +678,11 @@ export function updateHeaderAuthState() {
 
       const initial = (user.name || user.email).charAt(0).toUpperCase();
       const displayName = user.name ? user.name.split(' ')[0] : 'My Account';
+      const myBookingsUrl = window.location.pathname.includes('/pages/train/')
+        ? 'ticket.html'
+        : (window.location.pathname.includes('/pages/')
+          ? '../train/ticket.html'
+          : 'pages/train/ticket.html');
 
       widget.innerHTML = `
         <div class="rl-user-chip" id="rl-user-chip" title="${user.name || user.email}">
@@ -658,7 +695,7 @@ export function updateHeaderAuthState() {
             <p class="rl-dropdown-name">${user.name || 'RouteLine Traveler'}</p>
             <p class="rl-dropdown-email">${user.email}</p>
           </div>
-          <a href="ticket.html" class="rl-dropdown-item">
+          <a href="${myBookingsUrl}" class="rl-dropdown-item">
             <i data-lucide="ticket" style="width:15px;height:15px;"></i>
             <span>My Bookings</span>
           </a>
