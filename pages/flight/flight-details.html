@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Details | RouteLine Executive Travel</title>
+  <meta name="description" content="View flight schedule, leg details, baggage allowances, and fare tier options on RouteLine.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000d2c",
+            "primary-container": "#0b224e",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "surface": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#44464f",
+            "outline": "#757780",
+            "outline-variant": "#c5c6d0",
+            "gold": {
+              "50": "#FAF6EE",
+              "100": "#F6EFE5",
+              "200": "#F0E5D5",
+              "300": "#E5D6C1",
+              "400": "#DFC094",
+              "500": "#C5A880",
+              "600": "#B8925B",
+              "700": "#A37F4F",
+              "800": "#8C6D37",
+              "900": "#5C441D"
+            },
+            "obsidian": "#061124"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            luxury: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+
+<body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
+  <!-- Executive Header -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_8px_rgba(11,34,78,0.06)]">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2">
+          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
+          <span class="font-sans text-xl font-bold tracking-tight text-primary">RouteLine</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-gray-200">
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../../index.html">Trains</a>
+        <a class="bg-primary-container text-white font-bold px-4 py-1.5 rounded-full text-xs shadow flex items-center gap-1.5" href="flight-search.html">
+          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
+        </a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../bus/bus-results.html">Buses</a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../hotel/hotel-results.html">Hotels</a>
+      </nav>
+
+      <div class="flex items-center gap-4 text-xs font-semibold text-gray-500">
+        <a href="tel:1800-ROUTELINE" class="hover:text-primary flex items-center gap-1">
+          <span class="material-symbols-outlined text-[18px]">support_agent</span>
+          <span class="hidden sm:inline">Priority Desk</span>
+        </a>
+        <span>•</span>
+        <div class="flex items-center gap-2 text-primary font-bold">
+          <span>Rahul Verma</span>
+          <div class="w-8 h-8 rounded-full bg-primary text-gold-300 flex items-center justify-center font-bold text-xs">RV</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-16 pb-16">
+    <!-- Stepper Context Ribbon -->
+    <section class="w-full bg-white border-b border-gray-100 py-3 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs">
+          <a href="flight-results.html" class="flex items-center gap-1 font-bold text-primary hover:text-secondary transition-colors">
+            <span class="material-symbols-outlined text-[17px]">arrow_back</span>
+            <span>Back to search results</span>
+          </a>
+          <span class="text-gray-300">•</span>
+          <span class="font-mono text-gray-500">Trip ID: <strong class="text-primary font-bold" id="tripRefId">RL-8842-PNQ</strong></span>
+        </div>
+
+        <!-- 5-Step Progress Indicator -->
+        <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto w-full md:w-auto text-xs py-1">
+          <!-- Step 1 Done -->
+          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
+            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
+            <span class="hidden sm:inline">Flight</span>
+          </div>
+          <span class="w-3 h-0.5 bg-emerald-300"></span>
+
+          <!-- Step 2 Active -->
+          <div class="flex items-center gap-1.5 shrink-0 px-2.5 py-1 rounded-full bg-primary text-white font-bold">
+            <div class="w-4 h-4 rounded-full bg-gold-400 text-obsidian flex items-center justify-center text-[10px]">2</div>
+            <span>Details</span>
+          </div>
+          <span class="w-3 h-0.5 bg-gray-200"></span>
+
+          <!-- Step 3 -->
+          <div class="flex items-center gap-1 shrink-0 text-gray-400">
+            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">3</div>
+            <span class="hidden sm:inline">Passengers</span>
+          </div>
+          <span class="w-3 h-0.5 bg-gray-200"></span>
+
+          <!-- Step 4 -->
+          <div class="flex items-center gap-1 shrink-0 text-gray-400">
+            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">4</div>
+            <span class="hidden sm:inline">Seats &amp; Add-ons</span>
+          </div>
+          <span class="w-3 h-0.5 bg-gray-200"></span>
+
+          <!-- Step 5 -->
+          <div class="flex items-center gap-1 shrink-0 text-gray-400">
+            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">5</div>
+            <span class="hidden sm:inline">Review &amp; Pay</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Booking Body: 2-Column Grid -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: Flight Breakdown & Fare Tiers (8 Cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- Primary Flight Segment Card -->
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 space-y-6">
+            <!-- Header -->
+            <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-gray-100">
+              <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl bg-primary text-white flex items-center justify-center font-bold text-base shadow-sm" id="airlineBadge">
+                  6E
+                </div>
+                <div>
+                  <h3 class="font-sans text-lg font-bold text-primary" id="airlineName">IndiGo Airlines</h3>
+                  <div class="text-xs text-gray-500 font-mono" id="flightEquip">6E-2415 • Airbus A321neo</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 rounded-full bg-blue-50 text-secondary text-xs font-bold border border-blue-100">
+                  Confirmed Schedule
+                </span>
+              </div>
+            </div>
+
+            <!-- Detailed Leg Breakdown Timeline -->
+            <div class="relative pl-6 space-y-8 before:absolute before:left-2.5 before:top-3 before:bottom-3 before:w-0.5 before:bg-gray-200">
+              
+              <!-- Origin Station -->
+              <div class="relative">
+                <div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-primary border-2 border-white shadow"></div>
+                <div class="flex items-baseline justify-between">
+                  <div class="font-sans text-xl font-extrabold text-primary" id="depTime">06:15</div>
+                  <div class="text-xs font-bold text-gray-500" id="depDate">Thu, 24 Oct 2026</div>
+                </div>
+                <div class="font-bold text-sm text-gray-800" id="depCityAirport">Pune (PNQ) - Pune International Airport</div>
+                <div class="text-xs text-gray-500">Terminal 1 • Gate details announced 2h prior</div>
+              </div>
+
+              <!-- Layover / Inflight duration note -->
+              <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 text-xs text-gray-600 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-secondary text-[18px]">flight</span>
+                  <span class="font-semibold" id="flightDurationInfo">Non-stop • 2h 20m Flight Duration</span>
+                </div>
+                <span class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded font-bold text-[11px]">94% On-time</span>
+              </div>
+
+              <!-- Destination Station -->
+              <div class="relative">
+                <div class="absolute -left-6 top-1 w-3.5 h-3.5 rounded-full bg-secondary border-2 border-white shadow"></div>
+                <div class="flex items-baseline justify-between">
+                  <div class="font-sans text-xl font-extrabold text-primary" id="arrTime">08:35</div>
+                  <div class="text-xs font-bold text-gray-500" id="arrDate">Thu, 24 Oct 2026</div>
+                </div>
+                <div class="font-bold text-sm text-gray-800" id="arrCityAirport">New Delhi (DEL) - Indira Gandhi International Airport</div>
+                <div class="text-xs text-gray-500">Terminal 3 • Direct Baggage Belt</div>
+              </div>
+            </div>
+
+            <!-- Inflight Amenities & Baggage Bar -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-gray-100 text-xs">
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-gray-50">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">luggage</span>
+                <div>
+                  <div class="font-bold text-gray-800">Cabin Baggage</div>
+                  <div class="text-[10px] text-gray-500">7 kg included</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-gray-50">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">backpack</span>
+                <div>
+                  <div class="font-bold text-gray-800">Check-in</div>
+                  <div class="text-[10px] text-gray-500">15 kg included</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-gray-50">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">power</span>
+                <div>
+                  <div class="font-bold text-gray-800">Seat Power</div>
+                  <div class="text-[10px] text-gray-500">USB Type-C</div>
+                </div>
+              </div>
+
+              <div class="flex items-center gap-2 p-2 rounded-xl bg-gray-50">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">restaurant</span>
+                <div>
+                  <div class="font-bold text-gray-800">Food &amp; Beverage</div>
+                  <div class="text-[10px] text-gray-500">Pre-bookable</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fare Tier Selection Cards -->
+          <div class="space-y-4">
+            <div>
+              <span class="text-xs font-bold text-gold-700 uppercase tracking-wider">Customise Your Journey</span>
+              <h3 class="font-sans text-xl font-extrabold text-primary mt-1">Select Fare Bundle Tier</h3>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4" id="fareTiersContainer">
+              <!-- Tier 1: Saver -->
+              <div class="tier-card group relative bg-white p-5 rounded-2xl border-2 border-primary shadow-sm cursor-pointer transition-all flex flex-col justify-between"
+                   data-tier="saver" data-offset="0">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gray-500">Saver Fare</span>
+                    <span class="w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-xs tier-check">✓</span>
+                  </div>
+                  <div class="font-sans text-2xl font-extrabold text-primary" id="saverPrice">₹4,199</div>
+                  <ul class="space-y-2 text-xs text-gray-600">
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> 15 kg Check-in baggage</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> 7 kg Cabin baggage</li>
+                    <li class="flex items-center gap-1.5 text-gray-400"><span>•</span> Standard Seat from ₹200</li>
+                    <li class="flex items-center gap-1.5 text-gray-400"><span>•</span> Date change fee ₹3,000</li>
+                  </ul>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 text-center">
+                  <span class="text-xs font-bold text-primary">Included with Base Fare</span>
+                </div>
+              </div>
+
+              <!-- Tier 2: Flexi Plus -->
+              <div class="tier-card group relative bg-white p-5 rounded-2xl border-2 border-gray-200 hover:border-gold-400 shadow-sm cursor-pointer transition-all flex flex-col justify-between"
+                   data-tier="flexi" data-offset="750">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-[#d67e3a]">Flexi Plus</span>
+                    <span class="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-xs tier-check"></span>
+                  </div>
+                  <div class="font-sans text-2xl font-extrabold text-primary" id="flexiPrice">₹4,949</div>
+                  <ul class="space-y-2 text-xs text-gray-600">
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Free Standard Seat choice</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Free Date change (up to 24h)</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Complimentary Snack box</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Priority baggage drop</li>
+                  </ul>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 text-center">
+                  <span class="text-xs font-bold text-[#d67e3a]">+ ₹750 per passenger</span>
+                </div>
+              </div>
+
+              <!-- Tier 3: Concierge Club -->
+              <div class="tier-card group relative bg-white p-5 rounded-2xl border-2 border-gray-200 hover:border-gold-400 shadow-sm cursor-pointer transition-all flex flex-col justify-between"
+                   data-tier="club" data-offset="2200">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold uppercase tracking-wider text-gold-700">Concierge Club</span>
+                    <span class="w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-xs tier-check"></span>
+                  </div>
+                  <div class="font-sans text-2xl font-extrabold text-primary" id="clubPrice">₹6,399</div>
+                  <ul class="space-y-2 text-xs text-gray-600">
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Free Extra Legroom Seat</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Zero cancellation fees</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Gourmet Hot Meal &amp; Beverage</li>
+                    <li class="flex items-center gap-1.5"><span class="text-emerald-600">✓</span> Airport Lounge &amp; Priority boarding</li>
+                  </ul>
+                </div>
+                <div class="mt-4 pt-3 border-t border-gray-100 text-center">
+                  <span class="text-xs font-bold text-gold-800">+ ₹2,200 VIP Upgrade</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cancellation & Reschedule Policies -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-3">
+            <h4 class="font-sans text-sm font-bold text-primary flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px] text-gray-400">policy</span>
+              <span>Cancellation &amp; Date Change Guidelines</span>
+            </h4>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-gray-600 pt-2">
+              <div class="p-3 bg-gray-50 rounded-xl space-y-1">
+                <div class="font-bold text-gray-800">Cancellations > 72 hours before departure</div>
+                <p>Standard airline fee applies (₹2,500). Balance auto-refunded to your source account within 2 hours.</p>
+              </div>
+              <div class="p-3 bg-gray-50 rounded-xl space-y-1">
+                <div class="font-bold text-gray-800">Date Rescheduling</div>
+                <p>Difference in airfare (if applicable) + airline reschedule fee. Unlimited free changes on Flexi &amp; Club.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Sticky Summary & Proceed CTA (4 Cols) -->
+        <aside class="lg:col-span-4 sticky top-24 space-y-6">
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+              <h3 class="font-sans text-base font-bold text-primary">Fare Summary</h3>
+              <span class="text-xs font-mono text-gray-400">1 Adult</span>
+            </div>
+
+            <!-- Breakdown line items -->
+            <div class="space-y-3 text-xs">
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Base Airfare</span>
+                <span class="font-bold text-gray-900" id="sumBaseFare">₹4,199</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Selected Fare Tier (<span id="sumTierName">Saver</span>)</span>
+                <span class="font-bold text-gray-900" id="sumTierPrice">₹0</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Airport Taxes &amp; Aviation Surcharges</span>
+                <span class="font-bold text-gray-900" id="sumTaxes">₹740</span>
+              </div>
+              <div class="flex items-center justify-between text-emerald-700 bg-emerald-50 p-2 rounded-lg font-semibold">
+                <span>Guaranteed Zero Convenience Fee</span>
+                <span>₹0</span>
+              </div>
+            </div>
+
+            <!-- Grand Total -->
+            <div class="pt-4 border-t border-gray-100 flex items-baseline justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block font-medium">Grand Total</span>
+                <span class="font-sans text-3xl font-extrabold text-primary" id="sumGrandTotal">₹4,939</span>
+              </div>
+              <span class="text-[11px] text-gray-400 font-medium">Includes all GST</span>
+            </div>
+
+            <!-- Action Button -->
+            <button type="button" id="proceedBtn" 
+                    class="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-obsidian font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+              <span>Continue to Passenger Details</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+
+            <!-- Trust Micro-Badges -->
+            <div class="pt-2 text-[11px] text-gray-500 text-center space-y-1">
+              <div class="flex items-center justify-center gap-1.5 text-emerald-600 font-bold">
+                <span class="material-symbols-outlined text-[15px]">lock</span>
+                <span>Protected by RouteLine Fare-Lock</span>
+              </div>
+              <p>Seats and fares held during your active 15-minute booking window.</p>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="w-full bg-primary text-white pt-8 pb-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+      <div class="flex items-center gap-2">
+        <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-6">
+        <span>© 2026 RouteLine Transit Technologies. Flight Experience.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="flight-results.html" class="hover:text-white">Change Flight</a>
+        <span>•</span>
+        <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { MOCK_FLIGHTS, FARE_TIERS, getFlightState, updateFlightState, calculatePricing } from '../../src/js/flight/flight-state.js';
+    import { initAuth } from '../../src/js/home/auth/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuth({ autoPrompt: false });
+
+      const state = getFlightState();
+
+      // Read flightId param if passed
+      const urlParams = new URLSearchParams(window.location.search);
+      const flightParam = urlParams.get('flightId');
+      if (flightParam) {
+        const found = MOCK_FLIGHTS.find(f => f.id === flightParam);
+        if (found) {
+          state.selectedFlightId = found.id;
+          state.selectedFlight = found;
+          updateFlightState({ selectedFlightId: found.id, selectedFlight: found });
+        }
+      }
+
+      const flight = state.selectedFlight || MOCK_FLIGHTS[0];
+      let selectedTier = state.selectedFareTier || 'saver';
+
+      // Populate Flight Details
+      document.getElementById('airlineBadge').textContent = flight.airlineCode;
+      document.getElementById('airlineName').textContent = flight.airline;
+      document.getElementById('flightEquip').textContent = `${flight.flightNumber} • ${flight.aircraft}`;
+      document.getElementById('depTime').textContent = flight.departureTime;
+      document.getElementById('depCityAirport').textContent = `${flight.originCity} (${flight.originCode}) - ${flight.originAirport}`;
+      document.getElementById('arrTime').textContent = flight.arrivalTime;
+      document.getElementById('arrCityAirport').textContent = `${flight.destinationCity} (${flight.destinationCode}) - ${flight.destinationAirport}`;
+      document.getElementById('flightDurationInfo').textContent = `${flight.stops} • ${flight.duration} Flight Duration`;
+
+      // Tier price calculations
+      document.getElementById('saverPrice').textContent = `₹${flight.basePrice.toLocaleString('en-IN')}`;
+      document.getElementById('flexiPrice').textContent = `₹${(flight.basePrice + 750).toLocaleString('en-IN')}`;
+      document.getElementById('clubPrice').textContent = `₹${(flight.basePrice + 2200).toLocaleString('en-IN')}`;
+
+      function updateSummary() {
+        state.selectedFareTier = selectedTier;
+        updateFlightState({ selectedFareTier: selectedTier });
+
+        const pricing = calculatePricing(state);
+        document.getElementById('sumBaseFare').textContent = `₹${(flight.basePrice * pricing.passengerCount).toLocaleString('en-IN')}`;
+        document.getElementById('sumTierName').textContent = pricing.tierName;
+        document.getElementById('sumTierPrice').textContent = `₹${pricing.tierCost.toLocaleString('en-IN')}`;
+        document.getElementById('sumTaxes').textContent = `₹${pricing.totalTaxes.toLocaleString('en-IN')}`;
+        document.getElementById('sumGrandTotal').textContent = `₹${pricing.grandTotal.toLocaleString('en-IN')}`;
+      }
+
+      // Tier Card Selection
+      const tierCards = document.querySelectorAll('.tier-card');
+      tierCards.forEach(card => {
+        card.addEventListener('click', () => {
+          selectedTier = card.dataset.tier;
+          tierCards.forEach(c => {
+            c.className = 'tier-card group relative bg-white p-5 rounded-2xl border-2 border-gray-200 hover:border-gold-400 shadow-sm cursor-pointer transition-all flex flex-col justify-between';
+            c.querySelector('.tier-check').textContent = '';
+            c.querySelector('.tier-check').className = 'w-5 h-5 rounded-full border border-gray-300 flex items-center justify-center text-xs tier-check';
+          });
+          card.className = 'tier-card group relative bg-white p-5 rounded-2xl border-2 border-primary shadow-sm cursor-pointer transition-all flex flex-col justify-between';
+          card.querySelector('.tier-check').textContent = '✓';
+          card.querySelector('.tier-check').className = 'w-5 h-5 rounded-full bg-primary text-white flex items-center justify-center text-xs tier-check';
+          updateSummary();
+        });
+      });
+
+      updateSummary();
+
+      // Proceed to Passenger Details
+      document.getElementById('proceedBtn').addEventListener('click', () => {
+        window.location.href = 'passenger-details.html';
+      });
+    });
+  </script>
+</body>
+</html>
