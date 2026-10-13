@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Flights | RouteLine Executive Travel</title>
+  <meta name="description" content="Compare domestic and international flights across 400+ airlines with RouteLine's low-fare matrix, instant booking, and guaranteed fare lock.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000d2c",
+            "primary-container": "#0b224e",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "tertiary": "#1a0b00",
+            "tertiary-container": "#361f03",
+            "tertiary-fixed": "#ffdcbc",
+            "on-tertiary-fixed": "#2c1700",
+            "surface": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#44464f",
+            "outline": "#757780",
+            "outline-variant": "#c5c6d0",
+            "gold": {
+              "50": "#FAF6EE",
+              "100": "#F6EFE5",
+              "200": "#F0E5D5",
+              "300": "#E5D6C1",
+              "400": "#DFC094",
+              "500": "#C5A880",
+              "600": "#B8925B",
+              "700": "#A37F4F",
+              "800": "#8C6D37",
+              "900": "#5C441D"
+            },
+            "obsidian": "#061124"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            luxury: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
+  <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+
+<body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
+  <!-- Header: RouteLine Executive Concierge Bar -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-[#0c1829]/80 backdrop-blur-md border-b border-white/10 transition-colors">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between text-white">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2">
+          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
+          <span class="font-sans text-xl font-bold tracking-tight text-white">RouteLine</span>
+        </a>
+        <span class="hidden sm:inline-block text-[10px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded-full bg-gold-500/20 text-gold-300 border border-gold-400/30">Aviation Suite</span>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 bg-white/10 p-1 rounded-full border border-white/10">
+        <a class="text-white/80 hover:text-white px-4 py-1.5 text-xs font-semibold transition-colors" href="../../index.html">Trains</a>
+        <a class="bg-white text-primary font-bold px-4 py-1.5 rounded-full text-xs shadow transition-all flex items-center gap-1.5" href="flight-search.html">
+          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
+        </a>
+        <a class="text-white/80 hover:text-white px-4 py-1.5 text-xs font-semibold transition-colors" href="../bus/bus-results.html">Buses</a>
+        <a class="text-white/80 hover:text-white px-4 py-1.5 text-xs font-semibold transition-colors" href="../hotel/hotel-results.html">Hotels</a>
+        <a class="text-white/80 hover:text-white px-4 py-1.5 text-xs font-semibold transition-colors" href="design-system.html">Design Tokens</a>
+      </nav>
+
+      <div class="flex items-center gap-4 text-white/90">
+        <a class="flex items-center gap-1.5 text-xs font-semibold hover:text-white transition-colors" href="tel:1800-ROUTELINE">
+          <span class="material-symbols-outlined text-[18px]">support_agent</span>
+          <span class="hidden sm:inline">Priority Desk</span>
+        </a>
+        <span class="text-white/30 hidden sm:inline">|</span>
+        <button id="loginBtn" class="flex items-center gap-1.5 text-xs font-semibold hover:text-gold-300 transition-colors">
+          <span class="material-symbols-outlined text-[18px]">person</span>
+          <span>Sign In</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full">
+    <!-- Unified Hero Banner with Live Sunset Cloud Shader & Animated Wing -->
+    <section class="hero-unified hero-flight-live">
+      <!-- Live WebGL Cloud Shader Canvas (Running Clouds) -->
+      <div class="cloud-stage">
+        <canvas id="cloud-canvas"></canvas>
+      </div>
+
+      <!-- Live Plane Wing (Window Seat View, floating behind Search Section) -->
+      <div class="plane-wing-wrapper">
+        <img src="https://assets.aceternity.com/components/plane-wing.png" alt="Airplane wing above the clouds" class="plane-wing-img" />
+      </div>
+
+      <div class="hero-unified-overlay"></div>
+      
+      <!-- Strict standardized header height across all 4 pages -->
+      <div class="hero-unified-header">
+        <h1 class="hero-unified-title">Book the whole sky<br>between here and there.</h1>
+        <p class="hero-unified-subtitle">Compare every route across 400+ operators, watch fares update live, and lock a seat in under a minute.</p>
+      </div>
+
+      <!-- Pixel-perfect search dock (identical position, width & height across all pages) -->
+      <div class="search-dock-wrapper">
+        <!-- Mode & Trip Toggle Row -->
+        <div class="dock-mode-row">
+          <!-- Mode Capsule -->
+          <div class="dock-mode-capsule">
+            <a href="../../index.html" class="dock-mode-btn">
+              <span class="material-symbols-outlined dock-icon">train</span> Trains
+            </a>
+            <a href="flight-search.html" class="dock-mode-btn active">
+              <span class="material-symbols-outlined dock-icon">flight</span> Flights
+            </a>
+            <a href="../bus/bus-results.html" class="dock-mode-btn">
+              <span class="material-symbols-outlined dock-icon">directions_bus</span> Buses
+            </a>
+            <a href="../hotel/hotel-results.html" class="dock-mode-btn">
+              <span class="material-symbols-outlined dock-icon">hotel</span> Hotels
+            </a>
+          </div>
+
+          <!-- Trip Type Capsule -->
+          <div class="dock-trip-capsule" id="tripTypeGroup">
+            <button type="button" id="btnOneWay" class="dock-trip-btn active" data-trip="one-way">One way</button>
+            <button type="button" id="btnRoundTrip" class="dock-trip-btn" data-trip="round-trip">Round trip</button>
+          </div>
+        </div>
+
+        <!-- Main White Search Card Dock -->
+        <div class="search-dock-card">
+          <form id="flightSearchForm" class="m-0 p-0">
+            <div class="dock-inputs-row">
+              <!-- From City -->
+              <div class="dock-input-box city-box">
+                <span class="material-symbols-outlined dock-box-icon">flight_takeoff</span>
+                <div class="dock-box-content">
+                  <label for="fromInput" class="dock-box-label">From</label>
+                  <input type="text" id="fromInput" name="from" value="Pune (PNQ)" required class="dock-box-input" autocomplete="off" />
+                </div>
+              </div>
+
+              <!-- Swap Button -->
+              <button type="button" id="swapBtn" class="dock-swap-btn" aria-label="Swap Origin and Destination">
+                <span class="material-symbols-outlined">sync_alt</span>
+              </button>
+
+              <!-- To City -->
+              <div class="dock-input-box city-box">
+                <span class="material-symbols-outlined dock-box-icon">flight_land</span>
+                <div class="dock-box-content">
+                  <label for="toInput" class="dock-box-label">To</label>
+                  <input type="text" id="toInput" name="to" value="Srinagar (SXR)" required class="dock-box-input" autocomplete="off" />
+                </div>
+              </div>
+
+              <div class="dock-divider"></div>
+
+              <!-- Departure Date -->
+              <div class="dock-input-box date-box">
+                <div class="dock-box-content">
+                  <label for="departDateInput" class="dock-box-label">Departure</label>
+                  <input type="date" id="departDateInput" name="departDate" value="2026-10-24" required class="dock-box-input" />
+                </div>
+                <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+              </div>
+
+              <!-- Return Date -->
+              <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
+                <div class="dock-box-content">
+                  <label for="returnDateInput" class="dock-box-label">Return</label>
+                  <input type="date" id="returnDateInput" name="returnDate" disabled class="dock-box-input" placeholder="dd/mm/yyyy" />
+                </div>
+                <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+              </div>
+
+              <div class="dock-divider"></div>
+
+              <!-- Travellers & Class Dropdown Trigger -->
+              <div class="dock-input-box dock-dropdown-trigger relative" style="min-width: 170px;">
+                <button type="button" id="travellersTrigger" class="w-full h-full flex items-center justify-between text-left p-0 border-0 bg-transparent cursor-pointer">
+                  <div class="dock-box-content">
+                    <span class="dock-box-label">Travellers &amp; Class</span>
+                    <span id="travellersSummary" class="dock-dropdown-summary">1 Adult · Economy</span>
+                  </div>
+                  <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af; margin-left: 4px;">expand_more</span>
+                </button>
+
+                <!-- Travellers Flyout Panel -->
+                <div id="travellersDropdown" class="hidden absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-40">
+                  <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-100">
+                    <span class="text-xs font-bold text-primary">Travelers</span>
+                    <button type="button" id="closeTravellersBtn" class="text-xs text-gray-400 hover:text-gray-700">Done</button>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex items-center justify-between">
+                      <div>
+                        <div class="text-xs font-bold text-gray-800">Adults</div>
+                        <div class="text-[10px] text-gray-400">12+ years</div>
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <button type="button" id="paxMinus" class="w-7 h-7 rounded-full bg-gray-100 text-gray-700 font-bold hover:bg-gray-200">-</button>
+                        <span id="paxCount" class="text-xs font-bold w-4 text-center">1</span>
+                        <button type="button" id="paxPlus" class="w-7 h-7 rounded-full bg-gray-100 text-gray-700 font-bold hover:bg-gray-200">+</button>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="text-xs font-bold text-gray-800 mb-2">Cabin Class</div>
+                      <div class="grid grid-cols-2 gap-1.5">
+                        <button type="button" data-cabin="Economy" class="cabin-btn active py-1 px-2 rounded-lg text-xs font-semibold border border-primary bg-primary text-white">Economy</button>
+                        <button type="button" data-cabin="Flexi Plus" class="cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50">Flexi Plus</button>
+                        <button type="button" data-cabin="Club Class" class="cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50">Club Class</button>
+                        <button type="button" data-cabin="First Class" class="cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50">First Class</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Search CTA Button -->
+              <button type="submit" class="dock-search-btn">
+                <span class="material-symbols-outlined">search</span>
+                <span>Search Flights</span>
+              </button>
+            </div>
+          </form>
+
+          <!-- Mint Green Assurance Ribbon -->
+          <div class="dock-assurance-ribbon">
+            <div class="dock-assurance-item">
+              <span class="material-symbols-outlined">check_box</span>
+              <span>Confirmed Airline Inventory</span>
+            </div>
+            <div class="dock-assurance-divider"></div>
+            <div class="dock-assurance-item">
+              <span class="material-symbols-outlined">verified</span>
+              <span>Instant Auto-Refunds</span>
+            </div>
+            <div class="dock-assurance-divider"></div>
+            <div class="dock-assurance-item">
+              <span class="material-symbols-outlined">headset_mic</span>
+              <span>24/7 Human Dispatch Desk</span>
+            </div>
+            <div class="dock-assurance-divider"></div>
+            <div class="dock-assurance-item">
+              <span class="material-symbols-outlined">lock</span>
+              <span>Zero Card Surcharges</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Wrapper -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+      
+      <!-- Recently Searched Routes Strip -->
+      <section>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-[#d67e3a] text-[22px]">history</span>
+            <h2 class="font-sans text-xl font-bold text-primary">Recently Searched Routes</h2>
+          </div>
+          <span class="text-xs uppercase tracking-wider text-gray-500 font-semibold">Tap to launch quick fare search</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <!-- Route 1 -->
+          <div class="quick-route-card group bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-between cursor-pointer border border-gray-100 hover:border-gold-400"
+               data-from="Pune (PNQ)" data-to="New Delhi (DEL)" data-price="4199">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[18px]">flight</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1 font-bold text-sm text-primary">
+                  <span>PNQ</span>
+                  <span class="material-symbols-outlined text-[14px] text-gray-400">arrow_forward</span>
+                  <span>DEL</span>
+                </div>
+                <div class="text-xs text-gray-500">Pune to New Delhi • 24 Oct</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-bold text-primary font-sans text-base">₹4,199</div>
+              <span class="text-[11px] text-[#d67e3a] font-bold group-hover:underline">Quick Search →</span>
+            </div>
+          </div>
+
+          <!-- Route 2 -->
+          <div class="quick-route-card group bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-between cursor-pointer border border-gray-100 hover:border-gold-400"
+               data-from="Mumbai (BOM)" data-to="Bengaluru (BLR)" data-price="3180">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[18px]">flight</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1 font-bold text-sm text-primary">
+                  <span>BOM</span>
+                  <span class="material-symbols-outlined text-[14px] text-gray-400">arrow_forward</span>
+                  <span>BLR</span>
+                </div>
+                <div class="text-xs text-gray-500">Mumbai to Bengaluru • 28 Oct</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-bold text-primary font-sans text-base">₹3,180</div>
+              <span class="text-[11px] text-[#d67e3a] font-bold group-hover:underline">Quick Search →</span>
+            </div>
+          </div>
+
+          <!-- Route 3 -->
+          <div class="quick-route-card group bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition-all flex items-center justify-between cursor-pointer border border-gray-100 hover:border-gold-400"
+               data-from="New Delhi (DEL)" data-to="Mumbai (BOM)" data-price="4890">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[18px]">flight</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1 font-bold text-sm text-primary">
+                  <span>DEL</span>
+                  <span class="material-symbols-outlined text-[14px] text-gray-400">arrow_forward</span>
+                  <span>BOM</span>
+                </div>
+                <div class="text-xs text-gray-500">New Delhi to Mumbai • 02 Nov</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <div class="font-bold text-primary font-sans text-base">₹4,890</div>
+              <span class="text-[11px] text-[#d67e3a] font-bold group-hover:underline">Quick Search →</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bento Mosaic: Trending Domestic Destinations -->
+      <section>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-2">
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[#d67e3a] font-bold">Trending Escapes</span>
+            <h2 class="font-sans text-2xl lg:text-3xl font-extrabold text-primary mt-1">Popular Domestic Destinations</h2>
+          </div>
+          <p class="text-xs sm:text-sm text-gray-500 max-w-md">Curated getaway hubs with high daily flight frequencies and subsidized weekend airfares.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+          <!-- Destination 1: Goa -->
+          <div class="md:col-span-7 group relative h-72 sm:h-80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-end p-6 cursor-pointer"
+               onclick="selectDestination('Goa (GOI)', 2999)">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                 style="background-image: url('https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
+            <div class="relative z-10 flex items-end justify-between">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-gold-400/20 text-gold-300 border border-gold-400/30 text-xs font-semibold mb-2">Coastal Leisure</span>
+                <h3 class="text-2xl font-bold text-white font-sans">Goa (GOI / GOX)</h3>
+                <p class="text-xs text-white/80">Sunsets, beachside shacks &amp; weekend serenity</p>
+              </div>
+              <div class="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-right shadow">
+                <span class="text-[10px] text-gray-500 block uppercase font-medium">Starting at</span>
+                <span class="font-bold text-primary font-sans text-base">₹2,999</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destination 2: Srinagar -->
+          <div class="md:col-span-5 group relative h-72 sm:h-80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-end p-6 cursor-pointer"
+               onclick="selectDestination('Srinagar (SXR)', 4500)">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                 style="background-image: url('https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=1200&q=80')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/95 via-primary/40 to-transparent"></div>
+            <div class="relative z-10 flex items-end justify-between">
+              <div>
+                <span class="inline-block px-2.5 py-0.5 rounded-full bg-[#fef5ec] text-[#d67e3a] text-xs font-semibold mb-2">Paradise on Earth</span>
+                <h3 class="text-2xl font-bold text-white font-sans">Srinagar (SXR)</h3>
+                <p class="text-xs text-white/80">Valley vistas &amp; alpine Dal lake</p>
+              </div>
+              <div class="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-right shadow">
+                <span class="text-[10px] text-gray-500 block uppercase font-medium">Starting at</span>
+                <span class="font-bold text-primary font-sans text-base">₹4,500</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destination 3: Bengaluru -->
+          <div class="md:col-span-4 group relative h-64 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-end p-5 cursor-pointer"
+               onclick="selectDestination('Bengaluru (BLR)', 2850)">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                 style="background-image: url('https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+            <div class="relative z-10 flex items-end justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-white font-sans">Bengaluru (BLR)</h3>
+                <p class="text-xs text-white/80">Silicon Valley &amp; Gardens</p>
+              </div>
+              <div class="bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-right">
+                <span class="font-bold text-primary text-sm font-sans">₹2,850</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destination 4: Jaipur -->
+          <div class="md:col-span-4 group relative h-64 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-end p-5 cursor-pointer"
+               onclick="selectDestination('Jaipur (JAI)', 2190)">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                 style="background-image: url('https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+            <div class="relative z-10 flex items-end justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-white font-sans">Jaipur (JAI)</h3>
+                <p class="text-xs text-white/80">Pink City Heritage Forts</p>
+              </div>
+              <div class="bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-right">
+                <span class="font-bold text-primary text-sm font-sans">₹2,190</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Destination 5: Kochi -->
+          <div class="md:col-span-4 group relative h-64 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-end p-5 cursor-pointer"
+               onclick="selectDestination('Kochi (COK)', 3490)">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                 style="background-image: url('https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=800&q=80')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/30 to-transparent"></div>
+            <div class="relative z-10 flex items-end justify-between">
+              <div>
+                <h3 class="text-lg font-bold text-white font-sans">Kochi (COK)</h3>
+                <p class="text-xs text-white/80">Backwaters &amp; Spice Coast</p>
+              </div>
+              <div class="bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-lg text-right">
+                <span class="font-bold text-primary text-sm font-sans">₹3,490</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Guarantee & Perks Banner -->
+      <section class="bg-gradient-to-br from-primary-container via-[#0d2757] to-primary p-8 sm:p-12 rounded-3xl relative overflow-hidden text-white shadow-xl">
+        <div class="relative z-10 max-w-3xl">
+          <div class="inline-flex items-center gap-1.5 bg-gold-400/20 text-gold-300 border border-gold-400/30 px-3 py-1 rounded-full text-xs uppercase tracking-wider font-bold mb-3">
+            <span class="material-symbols-outlined text-[15px]">shield</span>
+            <span>RouteLine Guaranteed Fare Lock</span>
+          </div>
+          <h2 class="font-sans text-2xl sm:text-3xl font-extrabold text-white">Transparent Booking. Zero Unwelcome Surcharges.</h2>
+          <p class="text-xs sm:text-sm text-gray-300 mt-2 leading-relaxed">
+            The fare you view on your search matrix is the exact deduction at payment. If your domestic flight encounters an airline schedule disruption, our auto-rebooking engine assists in securing immediate re-accommodation without stress.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8">
+            <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-300 flex items-center justify-center mb-2">
+                <span class="material-symbols-outlined text-[18px]">price_check</span>
+              </div>
+              <h4 class="font-bold text-sm text-white font-sans">0% Payment Gateway Fee</h4>
+              <p class="text-[11px] text-gray-300 mt-1">Pay with UPI, RuPay, or NetBanking with zero markup.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-300 flex items-center justify-center mb-2">
+                <span class="material-symbols-outlined text-[18px]">bolt</span>
+              </div>
+              <h4 class="font-bold text-sm text-white font-sans">Priority Web Check-in</h4>
+              <p class="text-[11px] text-gray-300 mt-1">Auto-allocates preferred seat choices as check-in opens.</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+              <div class="w-8 h-8 rounded-full bg-gold-400/20 text-gold-300 flex items-center justify-center mb-2">
+                <span class="material-symbols-outlined text-[18px]">support_agent</span>
+              </div>
+              <h4 class="font-bold text-sm text-white font-sans">Human Transit Desk</h4>
+              <p class="text-[11px] text-gray-300 mt-1">Direct sub-30 second live agent support for instant re-routing.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="w-full bg-primary text-white pt-12 pb-8 mt-16 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 mb-10">
+        <div class="md:col-span-5 space-y-3">
+          <div class="flex items-center gap-2">
+            <img src="../../public/logo.svg" alt="RouteLine" class="h-8">
+            <span class="font-sans text-xl font-bold tracking-tight">RouteLine</span>
+          </div>
+          <p class="text-xs text-gray-400 max-w-sm leading-relaxed">
+            High-velocity multi-modal travel platform combining Indian Railways, domestic flights, intercity buses, and metro connections into a single smart journey.
+          </p>
+          <div class="flex items-center gap-3 pt-2 text-xs text-gray-400">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-emerald-400">lock</span> 256-bit TLS Encrypted</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gold-400">military_tech</span> IATA Compliant Aggregation</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-7 grid grid-cols-2 sm:grid-cols-3 gap-6 text-xs">
+          <div>
+            <div class="font-bold text-white text-sm mb-3 font-sans">Mobility Pillars</div>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="../../index.html" class="hover:text-white transition-colors">Indian Railways</a></li>
+              <li><a href="flight-search.html" class="hover:text-white transition-colors">Domestic Flights</a></li>
+              <li><a href="../bus/bus-results.html" class="hover:text-white transition-colors">Intercity Buses</a></li>
+              <li><a href="../hotel/hotel-results.html" class="hover:text-white transition-colors">Verified Hotels</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-bold text-white text-sm mb-3 font-sans">Flight Services</div>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="flight-results.html" class="hover:text-white transition-colors">Low-Fare Matrix</a></li>
+              <li><a href="seat-selection.html" class="hover:text-white transition-colors">Interactive Seat Map</a></li>
+              <li><a href="baggage-addons.html" class="hover:text-white transition-colors">Prepaid Baggage &amp; Meals</a></li>
+              <li><a href="design-system.html" class="hover:text-white transition-colors">Design Tokens</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="font-bold text-white text-sm mb-3 font-sans">Support &amp; Trust</div>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#" class="hover:text-white transition-colors">24/7 Priority Desk</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Fare Lock Policy</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Instant Refund Policy</a></li>
+              <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-3">
+        <p>© 2026 RouteLine Transit Technologies Inc. All rights reserved.</p>
+        <p>Demo Simulation Engine • Not affiliated directly with DGCA or IRCTC</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { getFlightState, updateFlightState } from '../../src/js/flight/flight-state.js';
+    import { initAuth } from '../../src/js/home/auth/auth.js';
+    import { initCloudShader } from '../../src/js/flight/cloud-shader.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuth({ autoPrompt: false });
+
+      // Live WebGL running cloud shader background
+      const cloudCanvas = document.getElementById('cloud-canvas');
+      if (cloudCanvas) {
+        initCloudShader(cloudCanvas, {
+          speed: 1,
+          count: 6,
+          cloudColor: '#ffe9d6',
+          skyTopColor: '#152a52',
+          skyBottomColor: '#f4a373'
+        });
+      }
+
+      const state = getFlightState();
+
+      // Form Elements
+      const form = document.getElementById('flightSearchForm');
+      const fromInput = document.getElementById('fromInput');
+      const toInput = document.getElementById('toInput');
+      const departDateInput = document.getElementById('departDateInput');
+      const returnDateInput = document.getElementById('returnDateInput');
+      const swapBtn = document.getElementById('swapBtn');
+      const tripGroup = document.getElementById('tripTypeGroup');
+      const btnOneWay = document.getElementById('btnOneWay');
+      const btnRoundTrip = document.getElementById('btnRoundTrip');
+      const returnBox = document.getElementById('returnBox');
+
+      // Populate from current state
+      if (state.search) {
+        if (state.search.originCity) fromInput.value = `${state.search.originCity} (${state.search.originCode || 'PNQ'})`;
+        if (state.search.destinationCity) toInput.value = `${state.search.destinationCity} (${state.search.destinationCode || 'DEL'})`;
+        if (state.search.departureDate) departDateInput.value = state.search.departureDate;
+      }
+
+      // Min date today
+      const todayStr = new Date().toISOString().split('T')[0];
+      departDateInput.min = todayStr;
+      returnDateInput.min = todayStr;
+
+      // Swap button animation & swap
+      swapBtn.addEventListener('click', () => {
+        swapBtn.style.transform = 'rotate(180deg)';
+        const temp = fromInput.value;
+        fromInput.value = toInput.value;
+        toInput.value = temp;
+        setTimeout(() => {
+          swapBtn.style.transform = '';
+        }, 300);
+      });
+
+      // Trip type toggles
+      let currentTripType = 'oneway';
+      btnOneWay.addEventListener('click', () => {
+        currentTripType = 'oneway';
+        btnOneWay.className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-[#fef5ec] text-[#d67e3a] transition-all';
+        btnRoundTrip.className = 'px-4 py-1.5 rounded-full text-xs font-semibold text-gray-600 hover:text-primary transition-all';
+        returnDateInput.disabled = true;
+        returnDateInput.value = '';
+        returnBox.classList.add('opacity-60');
+      });
+
+      btnRoundTrip.addEventListener('click', () => {
+        currentTripType = 'round';
+        btnRoundTrip.className = 'px-4 py-1.5 rounded-full text-xs font-bold bg-[#fef5ec] text-[#d67e3a] transition-all';
+        btnOneWay.className = 'px-4 py-1.5 rounded-full text-xs font-semibold text-gray-600 hover:text-primary transition-all';
+        returnDateInput.disabled = false;
+        returnBox.classList.remove('opacity-60');
+        // set default return = depart + 3 days
+        const d = new Date(departDateInput.value || todayStr);
+        d.setDate(d.getDate() + 3);
+        returnDateInput.value = d.toISOString().split('T')[0];
+        returnDateInput.min = departDateInput.value;
+      });
+
+      departDateInput.addEventListener('change', () => {
+        returnDateInput.min = departDateInput.value;
+      });
+
+      // Travellers dropdown
+      const travellersTrigger = document.getElementById('travellersTrigger');
+      const travellersDropdown = document.getElementById('travellersDropdown');
+      const closeTravellersBtn = document.getElementById('closeTravellersBtn');
+      const paxMinus = document.getElementById('paxMinus');
+      const paxPlus = document.getElementById('paxPlus');
+      const paxCount = document.getElementById('paxCount');
+      const travellersSummary = document.getElementById('travellersSummary');
+      let count = state.search?.passengers || 1;
+      let cabin = state.search?.travelClass || 'Economy';
+
+      paxCount.textContent = count;
+      travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+
+      travellersTrigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        travellersDropdown.classList.toggle('hidden');
+      });
+
+      closeTravellersBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        travellersDropdown.classList.add('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!travellersDropdown.contains(e.target) && !travellersTrigger.contains(e.target)) {
+          travellersDropdown.classList.add('hidden');
+        }
+      });
+
+      paxMinus.addEventListener('click', () => {
+        if (count > 1) {
+          count--;
+          paxCount.textContent = count;
+          travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+        }
+      });
+
+      paxPlus.addEventListener('click', () => {
+        if (count < 9) {
+          count++;
+          paxCount.textContent = count;
+          travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+        }
+      });
+
+      document.querySelectorAll('.cabin-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.cabin-btn').forEach(b => {
+            b.className = 'cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50';
+          });
+          btn.className = 'cabin-btn active py-1 px-2 rounded-lg text-xs font-semibold border border-primary bg-primary text-white';
+          cabin = btn.dataset.cabin;
+          travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+        });
+      });
+
+      // Submit search form
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Parse city / code
+        const fromVal = fromInput.value.trim();
+        const toVal = toInput.value.trim();
+        
+        const fromCodeMatch = fromVal.match(/\(([^)]+)\)/);
+        const fromCity = fromVal.replace(/\s*\([^)]*\)/, '').trim();
+        const fromCode = fromCodeMatch ? fromCodeMatch[1].toUpperCase() : 'PNQ';
+
+        const toCodeMatch = toVal.match(/\(([^)]+)\)/);
+        const toCity = toVal.replace(/\s*\([^)]*\)/, '').trim();
+        const toCode = toCodeMatch ? toCodeMatch[1].toUpperCase() : 'DEL';
+
+        updateFlightState({
+          search: {
+            originCity: fromCity,
+            originCode: fromCode,
+            destinationCity: toCity,
+            destinationCode: toCode,
+            departureDate: departDateInput.value,
+            returnDate: returnDateInput.value,
+            tripType: currentTripType,
+            passengers: count,
+            travelClass: cabin
+          }
+        });
+
+        window.location.href = `flight-results.html?origin=${encodeURIComponent(fromCode)}&destination=${encodeURIComponent(toCode)}&date=${encodeURIComponent(departDateInput.value)}`;
+      });
+
+      // Quick Route Cards
+      document.querySelectorAll('.quick-route-card').forEach(card => {
+        card.addEventListener('click', () => {
+          fromInput.value = card.dataset.from;
+          toInput.value = card.dataset.to;
+          form.dispatchEvent(new Event('submit'));
+        });
+      });
+
+      window.selectDestination = function(dest, price) {
+        toInput.value = dest;
+        form.dispatchEvent(new Event('submit'));
+      };
+    });
+  </script>
+</body>
+</html>
