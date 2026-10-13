@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Results | RouteLine Executive Travel</title>
+  <meta name="description" content="Compare live domestic flight schedules, fares, and airline ratings across India on RouteLine.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000d2c",
+            "primary-container": "#0b224e",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "tertiary": "#1a0b00",
+            "tertiary-container": "#361f03",
+            "tertiary-fixed": "#ffdcbc",
+            "on-tertiary-fixed": "#2c1700",
+            "surface": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "surface-container-highest": "#d3e4fe",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#44464f",
+            "outline": "#757780",
+            "outline-variant": "#c5c6d0",
+            "gold": {
+              "50": "#FAF6EE",
+              "100": "#F6EFE5",
+              "200": "#F0E5D5",
+              "300": "#E5D6C1",
+              "400": "#DFC094",
+              "500": "#C5A880",
+              "600": "#B8925B",
+              "700": "#A37F4F",
+              "800": "#8C6D37",
+              "900": "#5C441D"
+            },
+            "obsidian": "#061124"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            luxury: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+
+<body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
+  <!-- Executive Navigation Header -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-surface-border shadow-[0_1px_8px_rgba(11,34,78,0.06)]">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2">
+          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
+          <span class="font-sans text-xl font-bold tracking-tight text-primary">RouteLine</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-surface-border">
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold transition-colors" href="../../index.html">Trains</a>
+        <a class="bg-primary-container text-white font-bold px-4 py-1.5 rounded-full text-xs shadow transition-all flex items-center gap-1.5" href="flight-search.html">
+          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
+        </a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold transition-colors" href="../bus/bus-results.html">Buses</a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold transition-colors" href="../hotel/hotel-results.html">Hotels</a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold transition-colors" href="design-system.html">Design Tokens</a>
+      </nav>
+
+      <div class="flex items-center gap-4 text-on-surface-variant">
+        <a class="flex items-center gap-1 text-xs font-semibold hover:text-primary transition-colors" href="tel:1800-ROUTELINE">
+          <span class="material-symbols-outlined text-[18px]">support_agent</span>
+          <span class="hidden sm:inline">Priority Desk</span>
+        </a>
+        <span class="text-gray-300 hidden sm:inline">|</span>
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-primary hidden sm:inline" id="userDisplayName">Rahul Verma</span>
+          <div class="w-8 h-8 rounded-full bg-primary text-gold-300 flex items-center justify-center font-bold text-xs shadow-sm">RV</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-16 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+      <!-- Top Search Summary Strip & Date Matrix Carousel -->
+      <section class="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 sm:p-6 space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-gray-100">
+          
+          <!-- Route and Pass Info -->
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-primary flex items-center justify-center shrink-0 shadow-sm border border-blue-100">
+              <span class="material-symbols-outlined text-[24px]">flight_takeoff</span>
+            </div>
+            <div>
+              <div class="flex items-center gap-2 font-sans text-xl font-extrabold text-primary flex-wrap">
+                <span id="routeOrigin">Pune</span>
+                <span class="text-secondary font-mono text-base px-1.5 py-0.5 rounded bg-blue-50 font-bold" id="routeOriginCode">PNQ</span>
+                <span class="material-symbols-outlined text-secondary text-[20px]">arrow_forward</span>
+                <span id="routeDest">New Delhi</span>
+                <span class="text-secondary font-mono text-base px-1.5 py-0.5 rounded bg-blue-50 font-bold" id="routeDestCode">DEL</span>
+              </div>
+              <div class="flex items-center gap-2 text-xs text-gray-500 mt-1 flex-wrap">
+                <span class="flex items-center gap-1 font-medium">
+                  <span class="material-symbols-outlined text-[15px]">calendar_today</span>
+                  <span id="routeDate">Thu, 24 Oct 2026</span>
+                </span>
+                <span>•</span>
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[15px]">person</span>
+                  <span id="routePax">1 Adult, Economy</span>
+                </span>
+                <span>•</span>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-semibold text-[11px] border border-emerald-200">
+                  Fare Locked &amp; Guaranteed
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Action Buttons -->
+          <div class="flex items-center gap-2">
+            <a href="flight-search.html" 
+               class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200 text-primary font-bold text-xs transition-colors">
+              <span class="material-symbols-outlined text-[17px]">tune</span>
+              <span>Modify Search</span>
+            </a>
+            <button type="button" id="fareAlertBtn" 
+                    class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gold-100 text-gray-600 hover:text-gold-700 flex items-center justify-center transition-colors"
+                    title="Track Low Fare Alerts">
+              <span class="material-symbols-outlined text-[18px]">notifications_none</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 7-Day Low-Fare Date Ribbon -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 scrollbar-none" id="dateRibbon">
+          <button class="date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all" data-date="2026-10-22" data-price="4980">
+            <span class="text-[11px] text-gray-500 font-semibold">Tue, 22 Oct</span>
+            <span class="text-xs font-bold text-gray-800 mt-0.5">₹4,980</span>
+          </button>
+
+          <button class="date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all" data-date="2026-10-23" data-price="4500">
+            <span class="text-[11px] text-gray-500 font-semibold">Wed, 23 Oct</span>
+            <span class="text-xs font-bold text-gray-800 mt-0.5">₹4,500</span>
+          </button>
+
+          <!-- Active lowest date -->
+          <button class="date-chip active flex flex-col items-center justify-center min-w-[135px] py-2 px-3 rounded-xl bg-primary text-white border border-primary shadow-sm relative transition-all" data-date="2026-10-24" data-price="4199">
+            <div class="absolute -top-2 px-2 py-0.2 bg-gold-400 text-obsidian rounded-full text-[9px] font-extrabold uppercase tracking-wider">Lowest</div>
+            <span class="text-[11px] text-gold-300 font-semibold">Thu, 24 Oct</span>
+            <span class="text-sm font-extrabold text-white mt-0.5 font-sans">₹4,199</span>
+          </button>
+
+          <button class="date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all" data-date="2026-10-25" data-price="4850">
+            <span class="text-[11px] text-gray-500 font-semibold">Fri, 25 Oct</span>
+            <span class="text-xs font-bold text-gray-800 mt-0.5">₹4,850</span>
+          </button>
+
+          <button class="date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all" data-date="2026-10-26" data-price="5100">
+            <span class="text-[11px] text-gray-500 font-semibold">Sat, 26 Oct</span>
+            <span class="text-xs font-bold text-gray-800 mt-0.5">₹5,100</span>
+          </button>
+
+          <button class="date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all" data-date="2026-10-27" data-price="5780">
+            <span class="text-[11px] text-gray-500 font-semibold">Sun, 27 Oct</span>
+            <span class="text-xs font-bold text-gray-800 mt-0.5">₹5,780</span>
+          </button>
+
+          <button class="date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all" data-date="2026-10-28" data-price="4300">
+            <span class="text-[11px] text-gray-500 font-semibold">Mon, 28 Oct</span>
+            <span class="text-xs font-bold text-gray-800 mt-0.5">₹4,300</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Main Layout Grid: Filters Sidebar + Results Comparison Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- Left Filter Sidebar (4 Cols) -->
+        <aside class="lg:col-span-4 bg-white rounded-2xl p-5 shadow-sm border border-gray-100 space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-[20px]">filter_list</span>
+              <h3 class="font-sans text-base font-bold text-primary">Filters</h3>
+            </div>
+            <button id="resetFiltersBtn" class="text-xs font-bold text-gold-700 hover:text-gold-900 underline transition-colors">
+              Reset all
+            </button>
+          </div>
+
+          <!-- Trust badge ribbon -->
+          <div class="bg-blue-50/70 p-2.5 rounded-xl flex items-center gap-2 border border-blue-100 text-xs text-blue-900">
+            <span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
+            <span>Real-time availability synced with DGCA feeds</span>
+          </div>
+
+          <!-- Stops Filter -->
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Flight Stops</h4>
+            <div class="space-y-1.5 text-xs">
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+                <span class="flex items-center gap-2 text-gray-800 font-medium">
+                  <input type="checkbox" id="stopNonStop" checked class="w-4 h-4 rounded text-primary focus:ring-0">
+                  <span>Non-stop only</span>
+                </span>
+                <span class="bg-gray-100 px-2 py-0.5 rounded-full font-bold text-gray-600 text-[11px]" id="nonStopCount">5</span>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+                <span class="flex items-center gap-2 text-gray-800 font-medium">
+                  <input type="checkbox" id="stopOneStop" class="w-4 h-4 rounded text-primary focus:ring-0">
+                  <span>1 Stop</span>
+                </span>
+                <span class="bg-gray-100 px-2 py-0.5 rounded-full font-bold text-gray-600 text-[11px]">8</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Departure Time Slots -->
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Departure Time</h4>
+            <div class="grid grid-cols-2 gap-2">
+              <button type="button" class="time-slot-btn p-2.5 rounded-xl border border-gray-100 bg-gray-50 hover:bg-gray-100 text-left transition-colors" data-slot="early">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">wb_twilight</span>
+                <div class="font-bold text-xs text-gray-800 mt-1">Before 6 AM</div>
+                <div class="text-[10px] text-gray-400">Early Morning</div>
+              </button>
+              <button type="button" class="time-slot-btn active p-2.5 rounded-xl border border-gold-400 bg-gold-50 text-left transition-colors" data-slot="morning">
+                <span class="material-symbols-outlined text-[18px] text-gold-700">sunny</span>
+                <div class="font-bold text-xs text-gray-900 mt-1">6 AM - 12 PM</div>
+                <div class="text-[10px] text-gold-700 font-semibold">Morning (2)</div>
+              </button>
+              <button type="button" class="time-slot-btn p-2.5 rounded-xl border border-gray-100 bg-gray-50 hover:bg-gray-100 text-left transition-colors" data-slot="afternoon">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">wb_sunny</span>
+                <div class="font-bold text-xs text-gray-800 mt-1">12 PM - 6 PM</div>
+                <div class="text-[10px] text-gray-400">Afternoon (1)</div>
+              </button>
+              <button type="button" class="time-slot-btn p-2.5 rounded-xl border border-gray-100 bg-gray-50 hover:bg-gray-100 text-left transition-colors" data-slot="night">
+                <span class="material-symbols-outlined text-[18px] text-gray-500">nights_stay</span>
+                <div class="font-bold text-xs text-gray-800 mt-1">After 6 PM</div>
+                <div class="text-[10px] text-gray-400">Night (2)</div>
+              </button>
+            </div>
+          </div>
+
+          <!-- Price Range Slider -->
+          <div class="space-y-2">
+            <div class="flex items-center justify-between text-xs font-bold">
+              <span class="text-gray-800 uppercase tracking-wider">Price Range</span>
+              <span class="text-gold-700 font-mono" id="priceDisplay">Up to ₹6,000</span>
+            </div>
+            <input type="range" id="priceSlider" min="3500" max="8000" step="100" value="6000" 
+                   class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-gold-600">
+            <div class="flex items-center justify-between text-[11px] text-gray-400 font-mono">
+              <span>₹3,500</span>
+              <span>₹8,000</span>
+            </div>
+          </div>
+
+          <!-- Airlines Filter -->
+          <div class="space-y-2">
+            <h4 class="text-xs font-bold text-gray-800 uppercase tracking-wider">Airlines</h4>
+            <div class="space-y-1.5 text-xs">
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" class="airline-check w-4 h-4 rounded text-primary focus:ring-0" value="IndiGo Airlines" checked>
+                  <span class="w-6 h-6 rounded bg-blue-100 text-blue-900 font-bold text-[10px] flex items-center justify-center">6E</span>
+                  <span class="font-semibold text-gray-800">IndiGo</span>
+                </div>
+                <span class="text-gray-400">from ₹4,199</span>
+              </label>
+
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" class="airline-check w-4 h-4 rounded text-primary focus:ring-0" value="Air India" checked>
+                  <span class="w-6 h-6 rounded bg-red-100 text-red-900 font-bold text-[10px] flex items-center justify-center">AI</span>
+                  <span class="font-semibold text-gray-800">Air India</span>
+                </div>
+                <span class="text-gray-400">from ₹4,850</span>
+              </label>
+
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" class="airline-check w-4 h-4 rounded text-primary focus:ring-0" value="Vistara" checked>
+                  <span class="w-6 h-6 rounded bg-purple-100 text-purple-900 font-bold text-[10px] flex items-center justify-center">UK</span>
+                  <span class="font-semibold text-gray-800">Vistara</span>
+                </div>
+                <span class="text-gray-400">from ₹5,400</span>
+              </label>
+
+              <label class="flex items-center justify-between p-2 rounded-xl hover:bg-gray-50 cursor-pointer">
+                <div class="flex items-center gap-2">
+                  <input type="checkbox" class="airline-check w-4 h-4 rounded text-primary focus:ring-0" value="Akasa Air" checked>
+                  <span class="w-6 h-6 rounded bg-orange-100 text-orange-900 font-bold text-[10px] flex items-center justify-center">QP</span>
+                  <span class="font-semibold text-gray-800">Akasa Air</span>
+                </div>
+                <span class="text-gray-400">from ₹3,950</span>
+              </label>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Content: Sorting Bar & Flights List (8 Cols) -->
+        <section class="lg:col-span-8 space-y-4">
+          
+          <!-- Sorting Bar -->
+          <div class="bg-white p-3 rounded-2xl shadow-sm border border-gray-100 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="flex items-center gap-1.5">
+              <span class="text-gray-400 font-medium">Sort by:</span>
+              <button class="sort-btn active px-3 py-1.5 rounded-full bg-primary text-white font-bold transition-all" data-sort="cheapest">
+                Cheapest First
+              </button>
+              <button class="sort-btn px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium transition-all" data-sort="fastest">
+                Fastest
+              </button>
+              <button class="sort-btn px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium transition-all" data-sort="earliest">
+                Earliest Departure
+              </button>
+            </div>
+            <div class="text-gray-500 font-semibold" id="flightMatchesCount">
+              Showing 5 verified flights
+            </div>
+          </div>
+
+          <!-- Dynamic Flights Container -->
+          <div id="flightsList" class="space-y-4">
+            <!-- Injected via JavaScript from MOCK_FLIGHTS -->
+          </div>
+
+          <!-- Empty State (Hidden by default) -->
+          <div id="emptyFlightsState" class="hidden bg-white p-12 rounded-2xl shadow-sm border border-gray-100 text-center space-y-4">
+            <div class="w-16 h-16 rounded-full bg-gray-100 text-gray-400 mx-auto flex items-center justify-center">
+              <span class="material-symbols-outlined text-[32px]">flight_takeoff</span>
+            </div>
+            <h4 class="text-lg font-bold text-primary font-sans">No Flights Matching Your Current Filter</h4>
+            <p class="text-xs text-gray-500 max-w-sm mx-auto">
+              Try adjusting your price slider, unchecking time slot constraints, or resetting all filters.
+            </p>
+            <button id="clearAllFiltersBtn" class="px-5 py-2 rounded-full bg-gold-500 hover:bg-gold-600 text-obsidian font-bold text-xs shadow-md transition-all">
+              Clear All Filters
+            </button>
+          </div>
+
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="w-full bg-primary text-white pt-10 pb-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+      <div class="flex items-center gap-2">
+        <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-6">
+        <span>© 2026 RouteLine Transit Technologies. Flight Aggregator Demo Engine.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="flight-search.html" class="hover:text-white">New Search</a>
+        <span>•</span>
+        <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+        <span>•</span>
+        <a href="../../index.html" class="hover:text-white">Train Hub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { MOCK_FLIGHTS, getFlightState, updateFlightState } from '../../src/js/flight/flight-state.js';
+    import { initAuth } from '../../src/js/home/auth/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuth({ autoPrompt: false });
+
+      const state = getFlightState();
+
+      // Read URL Query params if provided
+      const urlParams = new URLSearchParams(window.location.search);
+      const originParam = urlParams.get('origin');
+      const destParam = urlParams.get('destination');
+      const dateParam = urlParams.get('date');
+
+      if (originParam && destParam) {
+        state.search.originCode = originParam;
+        state.search.destinationCode = destParam;
+        if (dateParam) state.search.departureDate = dateParam;
+        updateFlightState({ search: state.search });
+      }
+
+      // Update Header Summary
+      const routeOrigin = document.getElementById('routeOrigin');
+      const routeOriginCode = document.getElementById('routeOriginCode');
+      const routeDest = document.getElementById('routeDest');
+      const routeDestCode = document.getElementById('routeDestCode');
+      const routeDate = document.getElementById('routeDate');
+      const routePax = document.getElementById('routePax');
+
+      if (state.search) {
+        routeOrigin.textContent = state.search.originCity || 'Pune';
+        routeOriginCode.textContent = state.search.originCode || 'PNQ';
+        routeDest.textContent = state.search.destinationCity || 'New Delhi';
+        routeDestCode.textContent = state.search.destinationCode || 'DEL';
+        routeDate.textContent = state.search.departureDate ? `Thu, ${state.search.departureDate}` : 'Thu, 24 Oct 2026';
+        routePax.textContent = `${state.search.passengers || 1} Adult, ${state.search.travelClass || 'Economy'}`;
+      }
+
+      // Filter State
+      let maxPrice = 6000;
+      let selectedAirlines = ['IndiGo Airlines', 'Air India', 'Vistara', 'Akasa Air'];
+      let selectedSlot = 'morning';
+      let sortMode = 'cheapest';
+
+      const priceSlider = document.getElementById('priceSlider');
+      const priceDisplay = document.getElementById('priceDisplay');
+      const flightsList = document.getElementById('flightsList');
+      const emptyState = document.getElementById('emptyFlightsState');
+      const flightMatchesCount = document.getElementById('flightMatchesCount');
+
+      priceSlider.addEventListener('input', (e) => {
+        maxPrice = parseInt(e.target.value, 10);
+        priceDisplay.textContent = `Up to ₹${maxPrice.toLocaleString('en-IN')}`;
+        renderFlights();
+      });
+
+      document.querySelectorAll('.airline-check').forEach(chk => {
+        chk.addEventListener('change', () => {
+          selectedAirlines = Array.from(document.querySelectorAll('.airline-check:checked')).map(c => c.value);
+          renderFlights();
+        });
+      });
+
+      document.querySelectorAll('.time-slot-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.time-slot-btn').forEach(b => {
+            b.className = 'time-slot-btn p-2.5 rounded-xl border border-gray-100 bg-gray-50 hover:bg-gray-100 text-left transition-colors';
+          });
+          btn.className = 'time-slot-btn active p-2.5 rounded-xl border border-gold-400 bg-gold-50 text-left transition-colors';
+          selectedSlot = btn.dataset.slot;
+          renderFlights();
+        });
+      });
+
+      document.querySelectorAll('.sort-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.sort-btn').forEach(b => {
+            b.className = 'sort-btn px-3 py-1.5 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium transition-all';
+          });
+          btn.className = 'sort-btn active px-3 py-1.5 rounded-full bg-primary text-white font-bold transition-all';
+          sortMode = btn.dataset.sort;
+          renderFlights();
+        });
+      });
+
+      // Date Chips
+      document.querySelectorAll('.date-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          document.querySelectorAll('.date-chip').forEach(c => {
+            c.className = 'date-chip flex flex-col items-center justify-center min-w-[125px] py-2 px-3 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-100 text-left transition-all';
+          });
+          chip.className = 'date-chip active flex flex-col items-center justify-center min-w-[135px] py-2 px-3 rounded-xl bg-primary text-white border border-primary shadow-sm relative transition-all';
+          routeDate.textContent = chip.querySelector('span').textContent;
+        });
+      });
+
+      document.getElementById('resetFiltersBtn').addEventListener('click', resetFilters);
+      document.getElementById('clearAllFiltersBtn').addEventListener('click', resetFilters);
+
+      function resetFilters() {
+        priceSlider.value = 8000;
+        maxPrice = 8000;
+        priceDisplay.textContent = 'Up to ₹8,000';
+        document.querySelectorAll('.airline-check').forEach(c => c.checked = true);
+        selectedAirlines = ['IndiGo Airlines', 'Air India', 'Vistara', 'Akasa Air'];
+        selectedSlot = null;
+        document.querySelectorAll('.time-slot-btn').forEach(b => {
+          b.className = 'time-slot-btn p-2.5 rounded-xl border border-gray-100 bg-gray-50 hover:bg-gray-100 text-left transition-colors';
+        });
+        renderFlights();
+      }
+
+      function renderFlights() {
+        let list = [...MOCK_FLIGHTS];
+
+        // Filter by price
+        list = list.filter(f => f.basePrice <= maxPrice);
+
+        // Filter by airline
+        list = list.filter(f => selectedAirlines.includes(f.airline));
+
+        // Filter by time slot if selected
+        if (selectedSlot === 'early') {
+          list = list.filter(f => parseInt(f.departureTime.split(':')[0], 10) < 6);
+        } else if (selectedSlot === 'morning') {
+          list = list.filter(f => {
+            const h = parseInt(f.departureTime.split(':')[0], 10);
+            return h >= 6 && h < 12;
+          });
+        } else if (selectedSlot === 'afternoon') {
+          list = list.filter(f => {
+            const h = parseInt(f.departureTime.split(':')[0], 10);
+            return h >= 12 && h < 18;
+          });
+        } else if (selectedSlot === 'night') {
+          list = list.filter(f => parseInt(f.departureTime.split(':')[0], 10) >= 18);
+        }
+
+        // Sorting
+        if (sortMode === 'cheapest') {
+          list.sort((a, b) => a.basePrice - b.basePrice);
+        } else if (sortMode === 'fastest') {
+          list.sort((a, b) => a.duration.localeCompare(b.duration));
+        } else if (sortMode === 'earliest') {
+          list.sort((a, b) => a.departureTime.localeCompare(b.departureTime));
+        }
+
+        flightMatchesCount.textContent = `Showing ${list.length} verified ${list.length === 1 ? 'flight' : 'flights'}`;
+
+        if (list.length === 0) {
+          flightsList.innerHTML = '';
+          emptyState.classList.remove('hidden');
+          return;
+        }
+
+        emptyState.classList.add('hidden');
+
+        flightsList.innerHTML = list.map(flight => `
+          <div class="flight-card group bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:border-gold-400 hover:shadow-md transition-all">
+            <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+              
+              <!-- Carrier Details -->
+              <div class="flex items-center gap-3.5 min-w-[200px]">
+                <div class="w-11 h-11 rounded-xl bg-primary text-white font-sans font-bold flex items-center justify-center text-sm shadow-sm">
+                  ${flight.airlineCode}
+                </div>
+                <div>
+                  <h4 class="font-sans font-bold text-sm text-primary flex items-center gap-1.5">
+                    ${flight.airline}
+                    ${flight.tags.includes('Cheapest') ? `<span class="bg-gold-50 text-gold-700 text-[10px] px-2 py-0.5 rounded-full font-bold border border-gold-200">Cheapest</span>` : ''}
+                  </h4>
+                  <div class="text-xs text-gray-500 font-mono mt-0.5">
+                    ${flight.flightNumber} • ${flight.aircraft}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Route Vector & Timing -->
+              <div class="flex items-center gap-6 sm:gap-10">
+                <div class="text-left">
+                  <div class="font-sans text-xl font-bold text-gray-900">${flight.departureTime}</div>
+                  <div class="text-xs text-gray-500 font-semibold">${flight.originCode}</div>
+                </div>
+
+                <div class="flex flex-col items-center min-w-[120px]">
+                  <span class="text-[11px] text-gray-500 font-medium">${flight.duration}</span>
+                  <div class="relative w-full flex items-center justify-center my-1">
+                    <div class="h-0.5 w-full bg-gray-200"></div>
+                    <span class="material-symbols-outlined absolute text-[14px] text-secondary">flight</span>
+                  </div>
+                  <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
+                    ${flight.stops}
+                  </span>
+                </div>
+
+                <div class="text-right">
+                  <div class="font-sans text-xl font-bold text-gray-900">${flight.arrivalTime}</div>
+                  <div class="text-xs text-gray-500 font-semibold">${flight.destinationCode}</div>
+                </div>
+              </div>
+
+              <!-- Amenities / Baggage -->
+              <div class="hidden xl:flex flex-col text-xs text-gray-500 space-y-1">
+                <div class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[15px] text-gray-400">luggage</span>
+                  <span>${flight.amenities[0]}</span>
+                </div>
+                <div class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[15px] text-emerald-600">verified</span>
+                  <span class="text-emerald-700 font-medium">${flight.tags[0] || 'On-Time'}</span>
+                </div>
+              </div>
+
+              <!-- Price & CTA Action -->
+              <div class="flex items-center justify-between lg:justify-end gap-5 pt-3 lg:pt-0 border-t lg:border-t-0 border-gray-100">
+                <div class="text-left lg:text-right">
+                  <div class="font-sans text-2xl font-extrabold text-primary">₹${flight.basePrice.toLocaleString('en-IN')}</div>
+                  <div class="text-[10px] text-gray-400">+ ₹${flight.taxPrice} taxes &amp; fees</div>
+                </div>
+
+                <button type="button" 
+                        class="select-flight-btn px-6 py-2.5 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-obsidian font-bold text-xs shadow transition-all active:scale-95 flex items-center gap-1"
+                        data-flight-id="${flight.id}">
+                  <span>View Fares</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        `).join('');
+
+        // Attach Click Listener to buttons
+        document.querySelectorAll('.select-flight-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const flightId = btn.dataset.flightId;
+            const chosen = MOCK_FLIGHTS.find(f => f.id === flightId) || MOCK_FLIGHTS[0];
+            updateFlightState({
+              selectedFlightId: chosen.id,
+              selectedFlight: chosen
+            });
+            window.location.href = `flight-details.html?flightId=${chosen.id}`;
+          });
+        });
+      }
+
+      renderFlights();
+    });
+  </script>
+</body>
+</html>
