@@ -1,0 +1,552 @@
+/* ==========================================================================
+   RouteLine - Unified Search Dock Component (unified-search-dock.css)
+   Exact match to the RouteLine executive search dock:
+   - Consistent pixel-perfect Y position, width (1180px), and height across
+     Trains, Flights, Buses, and Hotels.
+   - Dual-capsule header: Mode switcher on left, Trip-type switcher on right.
+   - Rounded 28px white dock card with soft pill input groups & swap icon.
+   - Executive champagne gold gradient CTA search button.
+   - Mint green (#eaf8ed) assurance ribbon with 4 verified inventory badges.
+   ========================================================================== */
+
+/* Universal Hero Container to ensure identical baseline positioning */
+.hero-unified {
+    position: relative;
+    width: 100%;
+    min-height: 660px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 135px;
+    padding-bottom: 65px;
+    box-sizing: border-box;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-unified-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(6, 15, 30, 0.72) 0%, rgba(6, 15, 30, 0.42) 60%, rgba(6, 15, 30, 0.65) 100%);
+    z-index: 3;
+    pointer-events: none;
+}
+
+/* Live Cloud Stage (WebGL Running Clouds) */
+.cloud-stage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+#cloud-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Live Plane Wing: Window Seat View floating live behind the search section */
+.plane-wing-wrapper {
+    pointer-events: none;
+    position: absolute;
+    bottom: -1.5rem;
+    left: 0;
+    z-index: 2; /* In front of clouds (1), behind search dock (5) */
+    width: 85%;
+    max-width: 1020px;
+    animation: flight-bob 8s ease-in-out infinite;
+    transform-origin: bottom left;
+}
+
+@media (min-width: 768px) {
+    .plane-wing-wrapper {
+        width: 72%;
+    }
+}
+
+.plane-wing-img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.25));
+}
+
+@keyframes flight-bob {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-14px); }
+    100% { transform: translateY(0); }
+}
+
+/* Flight Page Atmosphere Overrides */
+.hero-flight-live {
+    background: transparent !important;
+    overflow: hidden !important;
+}
+
+.hero-flight-live .hero-unified-overlay {
+    z-index: 3;
+    background: linear-gradient(to bottom, rgba(8, 16, 34, 0.20) 0%, transparent 45%, rgba(8, 16, 34, 0.35) 100%);
+}
+
+/* Strict fixed-height container for title & subtitle across all pages */
+.hero-unified-header {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    margin-bottom: 48px;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.hero-unified-title {
+    color: #eaa360;
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.12;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.02em;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.hero-unified-subtitle {
+    color: #f1f5f9;
+    font-size: 18px;
+    line-height: 1.45;
+    margin: 0;
+    opacity: 0.95;
+    font-weight: 400;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Search Dock Container - Expanded to 1280px for spacious layout */
+.search-dock-wrapper {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* Top Mode & Trip-type Switcher Row */
+.dock-mode-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+    height: 46px;
+    box-sizing: border-box;
+}
+
+/* Left Capsule: Travel Mode Switcher */
+.dock-mode-capsule {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-radius: 9999px;
+    padding: 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.dock-mode-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 18px;
+    border-radius: 9999px;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #4b5563;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    white-space: nowrap;
+}
+
+.dock-mode-btn:hover {
+    color: #0b1e36;
+}
+
+.dock-mode-btn.active {
+    background: #0b1e36;
+    color: #ffffff;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(11, 30, 54, 0.25);
+}
+
+.dock-mode-btn .dock-icon {
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Right Capsule: Trip Type Switcher (One way / Round trip) */
+.dock-trip-capsule {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(8px);
+    border-radius: 9999px;
+    padding: 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+.dock-trip-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 16px;
+    border-radius: 9999px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #4b5563;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.dock-trip-btn:hover {
+    color: #0b1e36;
+}
+
+.dock-trip-btn.active {
+    background: #fef5ec;
+    color: #d67e3a;
+    font-weight: 700;
+}
+
+/* Main White Search Card */
+.search-dock-card {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 28px;
+    box-shadow: 0 20px 45px -12px rgba(11, 30, 54, 0.18), 0 0 0 1px rgba(11, 30, 54, 0.04);
+    overflow: hidden;
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    box-sizing: border-box;
+}
+
+/* Inputs Row */
+.dock-inputs-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 20px;
+    min-height: 84px;
+    box-sizing: border-box;
+    background: #ffffff;
+    width: 100%;
+}
+
+/* Soft Pill Input Boxes */
+.dock-input-box {
+    flex: 1;
+    min-width: 140px;
+    height: 56px;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 6px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+/* Give Origin and Destination boxes wider flex basis so city names are never truncated */
+.dock-input-box.city-box,
+.dock-input-box:has(input[name="origin"]),
+.dock-input-box:has(input[name="from"]),
+.dock-input-box:has(input[name="destination"]),
+.dock-input-box:has(input[name="to"]),
+.dock-input-box:has(input[name="location"]) {
+    flex: 1.35;
+    min-width: 185px;
+}
+
+.dock-input-box:hover,
+.dock-input-box:focus-within {
+    border-color: #c5a880;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.12);
+}
+
+.dock-input-box.is-disabled {
+    opacity: 0.55;
+    background: #f3f4f6;
+    cursor: not-allowed;
+}
+
+.dock-input-box.is-disabled input {
+    cursor: not-allowed;
+}
+
+/* Left Icon */
+.dock-box-icon {
+    font-size: 20px;
+    color: #e09e6c;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Text Content within Input Box */
+.dock-box-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+}
+
+.dock-box-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 2px;
+    white-space: nowrap;
+}
+
+.dock-box-input {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    color: #111827 !important;
+    font-family: inherit !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    line-height: 1.3 !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.dock-box-input::placeholder {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+/* Date picker clickability */
+.dock-input-box.date-box {
+    cursor: pointer;
+}
+
+.dock-input-box.date-box input[type="date"] {
+    cursor: pointer;
+    font-size: 13px !important;
+}
+
+/* Custom styled swap button between Origin and Destination */
+.dock-swap-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #f4f6f8;
+    border: 1px solid #e5e7eb;
+    color: #4b5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.dock-swap-btn:hover {
+    background: #fef5ec;
+    color: #d67e3a;
+    border-color: #fbd38d;
+    transform: scale(1.06);
+}
+
+.dock-swap-btn:active {
+    transform: scale(0.95);
+}
+
+.dock-swap-btn .material-symbols-outlined {
+    font-size: 19px;
+}
+
+/* Vertical divider inside inputs row */
+.dock-divider {
+    width: 1px;
+    height: 36px;
+    background-color: #e5e7eb;
+    flex-shrink: 0;
+    margin: 0 4px;
+}
+
+/* Dropdown trigger box */
+.dock-dropdown-trigger {
+    cursor: pointer;
+}
+
+.dock-dropdown-summary {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Primary Executive Search Button */
+.dock-search-btn {
+    height: 56px;
+    padding: 0 32px;
+    border-radius: 9999px;
+    background: linear-gradient(135deg, #c5a880 0%, #b8925b 100%);
+    color: #0b1e36;
+    border: none;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    white-space: nowrap;
+    box-shadow: 0 4px 14px rgba(184, 146, 91, 0.28);
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+.dock-search-btn:hover {
+    background: linear-gradient(135deg, #d6c0a0 0%, #c5a880 100%);
+    box-shadow: 0 6px 18px rgba(184, 146, 91, 0.38);
+    transform: translateY(-1px);
+}
+
+.dock-search-btn:active {
+    transform: translateY(0);
+}
+
+.dock-search-btn .material-symbols-outlined {
+    font-size: 21px;
+    font-weight: 700;
+}
+
+/* Bottom Mint Assurance Ribbon */
+.dock-assurance-ribbon {
+    background: #eaf8ed;
+    border-top: 1px solid #d8f1dc;
+    padding: 11px 28px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+    color: #166534;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.dock-assurance-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+
+.dock-assurance-item .material-symbols-outlined {
+    font-size: 17px;
+    color: #166534;
+}
+
+.dock-assurance-divider {
+    width: 1px;
+    height: 14px;
+    background-color: #c2e7c9;
+    flex-shrink: 0;
+}
+
+/* Responsive adjustments for tablet and mobile */
+@media (max-width: 1024px) {
+    .dock-inputs-row {
+        flex-wrap: wrap;
+        height: auto;
+        min-height: auto;
+    }
+    
+    .dock-input-box {
+        min-width: calc(50% - 10px);
+    }
+    
+    .dock-divider {
+        display: none;
+    }
+    
+    .dock-search-btn {
+        width: 100%;
+        margin-top: 6px;
+    }
+
+    .hero-unified-header {
+        height: auto;
+        min-height: 120px;
+    }
+}
+
+@media (max-width: 640px) {
+    .dock-mode-row {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        gap: 10px;
+    }
+
+    .dock-input-box {
+        min-width: 100%;
+    }
+
+    .dock-assurance-ribbon {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 12px 16px;
+    }
+
+    .dock-assurance-divider {
+        display: none;
+    }
+
+    .hero-unified-title {
+        font-size: 32px;
+    }
+}

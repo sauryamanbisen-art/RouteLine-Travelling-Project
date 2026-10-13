@@ -10,11 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <!-- Lucide icons via CDN for vanilla JS -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/global/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="./src/css/home/global/style.css">
+    <link rel="stylesheet" href="./src/css/home/global/unified-search-dock.css">
     <link rel="stylesheet" href="./src/css/home/homepage.css">
     <link rel="stylesheet" href="./src/css/train/train.css">
     <link rel="stylesheet" href="./src/css/train/pnr-status.css">
-    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
+    <link rel="stylesheet" href="./src/css/home/auth/auth-modal.css">
 </head>
 
 <body>
@@ -27,9 +29,9 @@
 
             <nav class="nav-links">
                 <a href="index.html" class="active">Trains</a>
-                <a href="flight-results.html">Flights</a>
-                <a href="bus-results.html">Buses</a>
-                <a href="hotel-results.html">Hotels</a>
+                <a href="pages/flight/flight-search.html">Flights</a>
+                <a href="pages/bus/bus-results.html">Buses</a>
+                <a href="pages/hotel/hotel-results.html">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
 
@@ -41,109 +43,133 @@
         </div>
     </header>
 
-    <section class="hero">
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Your journey,<br>Just a Tap Away</h1>
-            <p class="hero-subtitle">Search great deals on train, flights, buses<br>and hotels in one place.</p>
+    <section class="hero-unified" style="background-image: url('./src/assets/vandhe-bharat.png');">
+        <div class="hero-unified-overlay"></div>
+        
+        <!-- Strict standardized header height across all 4 pages -->
+        <div class="hero-unified-header">
+            <h1 class="hero-unified-title">Your journey,<br>Just a Tap Away</h1>
+            <p class="hero-unified-subtitle">Search great deals on train, flights, buses and hotels in one place.</p>
+        </div>
 
-            <!-- Booking Widget -->
-            <div class="booking-widget">
-                <!-- Mode Selector -->
-                <div class="mode-selector">
-                    <div class="active-pill" id="active-pill" style="left: 5px; width: 124px;"></div>
-                    <button class="mode-btn active" data-mode="Trains" data-href="index.html">
-                        <i data-lucide="train"></i> Trains
-                    </button>
-                    <button class="mode-btn" data-mode="Flights" data-href="flight-results.html">
-                        <i data-lucide="plane"></i> Flights
-                    </button>
-                    <button class="mode-btn" data-mode="Buses" data-href="bus-results.html">
-                        <i data-lucide="bus-front"></i> Buses
-                    </button>
-                    <button class="mode-btn" data-mode="Hotels" data-href="hotel-results.html">
-                        <i data-lucide="building-2"></i> Hotels
-                    </button>
+        <!-- Pixel-perfect search dock (identical position, width & height across all pages) -->
+        <div class="search-dock-wrapper">
+            <!-- Mode & Trip Toggle Row -->
+            <div class="dock-mode-row">
+                <!-- Mode Capsule -->
+                <div class="dock-mode-capsule">
+                    <a href="index.html" class="dock-mode-btn active">
+                        <span class="material-symbols-outlined dock-icon">train</span> Trains
+                    </a>
+                    <a href="pages/flight/flight-search.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">flight</span> Flights
+                    </a>
+                    <a href="pages/bus/bus-results.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">directions_bus</span> Buses
+                    </a>
+                    <a href="pages/hotel/hotel-results.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">hotel</span> Hotels
+                    </a>
                 </div>
 
-                <!-- Input Area (Dynamic) -->
-                <div class="booking-form-container">
-                    <form id="search-form" action="train-results.html" method="GET">
-                        <!-- Dynamic inputs will be injected here by JS -->
-                        <div class="inputs-row" id="dynamic-inputs">
-                            <!-- Default Train Inputs -->
-                            <div class="input-group">
-                                <i data-lucide="map-pin" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label>From</label>
-                                    <input type="text" name="origin" value="New Delhi (NDLS)" placeholder="e.g. New Delhi (NDLS)" autocomplete="off" spellcheck="false" required>
-                                </div>
+                <!-- Trip Type Capsule -->
+                <div class="dock-trip-capsule">
+                    <button type="button" class="dock-trip-btn active" data-trip="one-way">One way</button>
+                    <button type="button" class="dock-trip-btn" data-trip="round-trip">Round trip</button>
+                </div>
+            </div>
+
+            <!-- Main White Search Card Dock -->
+            <div class="search-dock-card">
+                <form id="search-form" action="pages/train/train-results.html" method="GET">
+                    <div class="dock-inputs-row">
+                        <!-- From City / Station -->
+                        <div class="dock-input-box city-box">
+                            <span class="material-symbols-outlined dock-box-icon">train</span>
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">From</label>
+                                <input type="text" name="origin" value="New Delhi (NDLS)" placeholder="e.g. New Delhi (NDLS)" class="dock-box-input" autocomplete="off" spellcheck="false" required>
                             </div>
+                        </div>
 
-                            <div class="swap-icon-container">
-                                <button type="button" class="swap-btn"><i data-lucide="arrow-left-right"
-                                        class="icon-sm"></i></button>
+                        <!-- Swap Button -->
+                        <button type="button" class="dock-swap-btn" aria-label="Swap Origin and Destination">
+                            <span class="material-symbols-outlined">sync_alt</span>
+                        </button>
+
+                        <!-- To City / Station -->
+                        <div class="dock-input-box city-box">
+                            <span class="material-symbols-outlined dock-box-icon">train</span>
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">To</label>
+                                <input type="text" name="destination" value="Kanyakumari (CAPE)" placeholder="e.g. Kanyakumari (CAPE)" class="dock-box-input" autocomplete="off" spellcheck="false" required>
                             </div>
+                        </div>
 
-                            <div class="input-group">
-                                <i data-lucide="map-pin" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label>To</label>
-                                    <input type="text" name="destination" value="Kanyakumari (CAPE)" placeholder="e.g. Kanyakumari (CAPE)" autocomplete="off" spellcheck="false" required>
-                                </div>
+                        <div class="dock-divider"></div>
+
+                        <!-- Departure Date -->
+                        <div class="dock-input-box date-box">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Departure</label>
+                                <input type="date" name="date" id="home-train-date" class="dock-box-input" required>
                             </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                        </div>
 
-                            <div class="divider-vertical"></div>
-
-                            <div class="input-group date-picker-group">
-                                <i data-lucide="calendar" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label>Date</label>
-                                    <input type="date" name="date" id="home-train-date" required>
-                                </div>
+                        <!-- Return Date -->
+                        <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Return</label>
+                                <input type="date" name="returnDate" id="returnDateInput" disabled class="dock-box-input" placeholder="dd/mm/yyyy">
                             </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                        </div>
 
-                            <div class="divider-vertical"></div>
+                        <div class="dock-divider"></div>
 
-                            <div class="input-group class-selector">
-                                <div class="input-text">
-                                    <label>Class</label>
-                                    <select name="class">
-                                        <option value="Sleeper">Sleeper</option>
-                                        <option value="3A">3A</option>
-                                        <option value="2A">2A</option>
-                                        <option value="1A">1A</option>
-                                    </select>
-                                </div>
+                        <!-- Class & Quota -->
+                        <div class="dock-input-box dock-dropdown-trigger" style="min-width: 160px;">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Class &amp; Quota</label>
+                                <select name="class" class="dock-box-input" style="cursor: pointer; appearance: none; background: transparent;">
+                                    <option value="Sleeper">Sleeper (SL)</option>
+                                    <option value="3A" selected>3rd AC (3A)</option>
+                                    <option value="2A">2nd AC (2A)</option>
+                                    <option value="1A">1st AC (1A)</option>
+                                </select>
                             </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af; pointer-events: none;">expand_more</span>
+                        </div>
 
-                            <button type="submit" class="search-btn">
-                                <i data-lucide="search"></i> Search
-                            </button>
-                        </div>
-                    </form>
+                        <!-- Search CTA Button -->
+                        <button type="submit" class="dock-search-btn">
+                            <span class="material-symbols-outlined">search</span>
+                            <span>Search Trains</span>
+                        </button>
+                    </div>
+                </form>
 
-                    <!-- Features Banner -->
-                    <div class="features-banner">
-                        <div class="feature-item">
-                            <i data-lucide="check-square" class="feature-icon"></i>
-                            <span>Confirmed Tickets</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="shield-check" class="feature-icon"></i>
-                            <span>Instant Refunds</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="headphones" class="feature-icon"></i>
-                            <span>24/7 Customer Support</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="lock" class="feature-icon"></i>
-                            <span>Secure & Trusted Payments</span>
-                        </div>
+                <!-- Mint Green Assurance Ribbon -->
+                <div class="dock-assurance-ribbon">
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">check_box</span>
+                        <span>Confirmed Rail Inventory</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">verified</span>
+                        <span>Instant Auto-Refunds</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">headset_mic</span>
+                        <span>24/7 Human Dispatch Desk</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">lock</span>
+                        <span>Zero Card Surcharges</span>
                     </div>
                 </div>
             </div>
@@ -156,15 +182,15 @@
             <div class="icon-circle"><i data-lucide="ticket-check"></i></div>
             <span>PNR<br>Status</span>
         </a>
-        <a href="train-schedule.html" class="service-item">
+        <a href="pages/train/train-schedule.html" class="service-item">
             <div class="icon-circle"><i data-lucide="calendar-range"></i></div>
             <span>Train<br>Schedule</span>
         </a>
-        <a href="seat-availability.html" class="service-item">
+        <a href="pages/train/seat-availability.html" class="service-item">
             <div class="icon-circle"><i data-lucide="armchair"></i></div>
             <span>Seat<br>Availability</span>
         </a>
-        <a href="metro-ticket.html" class="service-item">
+        <a href="pages/train/metro-ticket.html" class="service-item">
             <div class="icon-circle"><i data-lucide="train-front"></i></div>
             <span>Metro<br>Ticket</span>
         </a>
@@ -501,7 +527,7 @@
                     </div>
                     <img src="./src/assets/hotel_img.png" alt="Hotel">
                 </a>
-                <a href="#" class="deal-card deal-flight">
+                <a href="pages/flight/flight-search.html" class="deal-card deal-flight">
                     <div class="deal-content">
                         <h4>Flight Deals</h4>
                         <p class="deal-offer dark-purple">Special<br><span>Fares</span></p>
@@ -675,7 +701,7 @@
         </div>
     </footer>
 
-    <script type="module" src="./src/js/global/main.js"></script>
+    <script type="module" src="./src/js/home/global/main.js"></script>
     <script>
         // Initialize lucide icons
         lucide.createIcons();
