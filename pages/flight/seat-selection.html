@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seat Selection | RouteLine Executive Travel</title>
+  <meta name="description" content="Select your preferred cabin seats on RouteLine's interactive 3-3 aircraft cabin map.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000d2c",
+            "primary-container": "#0b224e",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "surface": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#44464f",
+            "outline": "#757780",
+            "outline-variant": "#c5c6d0",
+            "gold": {
+              "50": "#FAF6EE",
+              "100": "#F6EFE5",
+              "200": "#F0E5D5",
+              "300": "#E5D6C1",
+              "400": "#DFC094",
+              "500": "#C5A880",
+              "600": "#B8925B",
+              "700": "#A37F4F",
+              "800": "#8C6D37",
+              "900": "#5C441D"
+            },
+            "obsidian": "#061124"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            luxury: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+
+<body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
+  <!-- Executive Header -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_8px_rgba(11,34,78,0.06)]">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2">
+          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
+          <span class="font-sans text-xl font-bold tracking-tight text-primary">RouteLine</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-gray-200">
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../../index.html">Trains</a>
+        <a class="bg-primary-container text-white font-bold px-4 py-1.5 rounded-full text-xs shadow flex items-center gap-1.5" href="flight-search.html">
+          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
+        </a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../bus/bus-results.html">Buses</a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../hotel/hotel-results.html">Hotels</a>
+      </nav>
+
+      <div class="flex items-center gap-3 text-xs font-semibold">
+        <span class="text-gray-500 hidden sm:inline">Guaranteed Fare Lock</span>
+        <div class="bg-obsidian text-gold-300 px-3 py-1 rounded-full font-mono font-bold text-xs flex items-center gap-1.5 border border-gold-400/30">
+          <span class="material-symbols-outlined text-[14px] text-gold-400 animate-pulse">lock</span>
+          <span id="fareLockTimer">11:20</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-16 pb-16">
+    <!-- Stepper Context Ribbon -->
+    <section class="w-full bg-white border-b border-gray-100 py-3 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs">
+          <a href="passenger-details.html" class="flex items-center gap-1 font-bold text-primary hover:text-secondary transition-colors">
+            <span class="material-symbols-outlined text-[17px]">arrow_back</span>
+            <span>Back to Passenger Details</span>
+          </a>
+          <span class="text-gray-300">•</span>
+          <span class="font-mono text-gray-500" id="headerRouteLeg">IndiGo 6E-2415 • PNQ → DEL</span>
+        </div>
+
+        <!-- 5-Step Process Tracker -->
+        <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto w-full md:w-auto text-xs py-1">
+          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
+            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
+            <span class="hidden sm:inline">Flight</span>
+          </div>
+          <span class="w-3 h-0.5 bg-emerald-300"></span>
+
+          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
+            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
+            <span class="hidden sm:inline">Details</span>
+          </div>
+          <span class="w-3 h-0.5 bg-emerald-300"></span>
+
+          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
+            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
+            <span class="hidden sm:inline">Passengers</span>
+          </div>
+          <span class="w-3 h-0.5 bg-emerald-300"></span>
+
+          <div class="flex items-center gap-1.5 shrink-0 px-2.5 py-1 rounded-full bg-primary text-white font-bold">
+            <div class="w-4 h-4 rounded-full bg-gold-400 text-obsidian flex items-center justify-center text-[10px]">4</div>
+            <span>Seat Map</span>
+          </div>
+          <span class="w-3 h-0.5 bg-gray-200"></span>
+
+          <div class="flex items-center gap-1 shrink-0 text-gray-400">
+            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">5</div>
+            <span class="hidden sm:inline">Review &amp; Pay</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Seat Selection Canvas -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Center/Left Column: Interactive Aircraft Cabin (7 or 8 Cols) -->
+        <div class="lg:col-span-8 bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-6">
+          
+          <!-- Legend Bar -->
+          <div class="flex flex-wrap items-center justify-between gap-3 p-3 bg-gray-50 rounded-2xl border border-gray-100 text-xs">
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-white border border-gray-300"></span>
+              <span class="text-gray-600">Standard (₹200)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-blue-50 border border-blue-200"></span>
+              <span class="text-gray-600">Preferred (₹400)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-amber-50 border border-amber-300"></span>
+              <span class="text-gray-600">Extra Legroom (₹800 - ₹950)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-gray-200 text-gray-400 flex items-center justify-center text-[10px]">✕</span>
+              <span class="text-gray-400">Occupied</span>
+            </div>
+            <div class="flex items-center gap-2 font-bold">
+              <span class="w-4 h-4 rounded bg-primary text-gold-300 flex items-center justify-center text-[10px]">✓</span>
+              <span class="text-primary">Selected</span>
+            </div>
+          </div>
+
+          <!-- Aircraft Cabin Container -->
+          <div class="relative max-w-md mx-auto border-4 border-gray-200 rounded-t-[140px] rounded-b-3xl bg-gray-50/50 p-4 sm:p-6 shadow-inner">
+            
+            <!-- Cockpit Nose & Flight Deck -->
+            <div class="text-center pb-6 pt-2">
+              <div class="w-12 h-6 mx-auto bg-gray-200 rounded-t-full mb-2"></div>
+              <span class="text-[11px] uppercase tracking-widest font-extrabold text-gray-400 block font-mono">Flight Deck / Cockpit</span>
+              <div class="flex justify-between px-6 pt-2 text-[10px] text-gray-400 font-bold uppercase">
+                <span>◀ Forward Door L1</span>
+                <span>Forward Door R1 ▶</span>
+              </div>
+            </div>
+
+            <!-- Seat Column Header Labels -->
+            <div class="grid grid-cols-7 gap-1.5 text-center font-bold text-xs text-gray-400 pb-3 border-b border-gray-200">
+              <span>A</span>
+              <span>B</span>
+              <span>C</span>
+              <span class="text-[10px] text-gray-300 flex items-center justify-center">AISLE</span>
+              <span>D</span>
+              <span>E</span>
+              <span>F</span>
+            </div>
+
+            <!-- Rows 1 to 24 Interactive Grid -->
+            <div class="space-y-2 pt-3" id="seatRowsContainer">
+              <!-- Dynamically generated rows -->
+            </div>
+
+            <!-- Aircraft Rear / Galley -->
+            <div class="text-center pt-8 pb-2 text-[10px] text-gray-400 font-mono uppercase tracking-wider">
+              <div class="w-20 h-2 bg-gray-200 mx-auto rounded-full mb-1"></div>
+              <span>Aft Galley &amp; Lavatories</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Sticky Selected Seats & Price Summary (4 Cols) -->
+        <aside class="lg:col-span-4 sticky top-24 space-y-6">
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 space-y-5">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+              <h3 class="font-sans text-base font-bold text-primary">Your Seat Selection</h3>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-50 text-secondary" id="activePaxCount">1 Passenger</span>
+            </div>
+
+            <!-- Selected Seat Display Pill -->
+            <div class="p-3.5 bg-gray-50 rounded-2xl border border-gray-200 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-gray-800" id="assignedPaxName">Rahul Verma</span>
+                <span class="text-xs font-mono font-extrabold px-2 py-0.5 rounded bg-primary text-gold-300" id="assignedSeatBadge">12A</span>
+              </div>
+              <div class="text-[11px] text-gray-500" id="assignedSeatDesc">
+                Row 12 • Emergency Exit Extra Legroom (+₹950)
+              </div>
+            </div>
+
+            <!-- Pricing Breakdown -->
+            <div class="space-y-2.5 text-xs">
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Flight Base &amp; Tier Fare</span>
+                <span class="font-bold text-gray-900" id="seatBaseFare">₹4,199</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Seat Selection Fees</span>
+                <span class="font-bold text-primary" id="seatExtraFee">₹950</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Taxes &amp; Surcharges</span>
+                <span class="font-bold text-gray-900" id="seatTaxes">₹740</span>
+              </div>
+            </div>
+
+            <!-- Total Price -->
+            <div class="pt-4 border-t border-gray-100 flex items-baseline justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block font-medium">Grand Total</span>
+                <span class="font-sans text-3xl font-extrabold text-primary" id="seatGrandTotal">₹5,889</span>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="space-y-2 pt-2">
+              <button type="button" id="confirmSeatBtn" 
+                      class="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-obsidian font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+                <span>Confirm Seat &amp; Add-ons</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+
+              <button type="button" id="skipSeatBtn" 
+                      class="w-full py-2.5 px-4 rounded-full bg-gray-50 hover:bg-gray-100 text-gray-600 font-bold text-xs transition-colors">
+                Skip Seat Selection (Free auto-assign)
+              </button>
+            </div>
+
+            <div class="text-[11px] text-gray-500 text-center flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-emerald-600">airline_seat_recline_extra</span>
+              <span>Seat guaranteed once booked</span>
+            </div>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="w-full bg-primary text-white pt-8 pb-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+      <div class="flex items-center gap-2">
+        <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-6">
+        <span>© 2026 RouteLine Transit Technologies. Aircraft Seat Selection.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="passenger-details.html" class="hover:text-white">Back to Passengers</a>
+        <span>•</span>
+        <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { OCCUPIED_SEATS, getFlightState, updateFlightState, calculatePricing } from '../../src/js/flight/flight-state.js';
+    import { initAuth } from '../../src/js/home/auth/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuth({ autoPrompt: false });
+
+      const state = getFlightState();
+      const flight = state.selectedFlight;
+      let selectedSeats = state.selectedSeats || ['12A'];
+      const maxSeatsNeeded = (state.passengersList && state.passengersList.length) || 1;
+
+      // Populate Route header
+      if (flight) {
+        document.getElementById('headerRouteLeg').textContent = `${flight.airline} ${flight.flightNumber} • ${flight.originCode} → ${flight.destinationCode}`;
+      }
+
+      // Populate Primary Traveler Name
+      const leadPaxName = state.passengersList?.[0] ? `${state.passengersList[0].firstName} ${state.passengersList[0].lastName}` : 'Rahul Verma';
+      document.getElementById('assignedPaxName').textContent = leadPaxName;
+      document.getElementById('activePaxCount').textContent = `${maxSeatsNeeded} ${maxSeatsNeeded === 1 ? 'Passenger' : 'Passengers'}`;
+
+      // Render Aircraft Cabin Rows
+      const rowsContainer = document.getElementById('seatRowsContainer');
+      const cols = ['A', 'B', 'C', null, 'D', 'E', 'F'];
+      const rowCount = 20;
+
+      let html = '';
+      for (let r = 1; r <= rowCount; r++) {
+        const isEmergencyExit = (r === 12);
+        const isExtraLegroom = (r <= 3 || r === 12);
+        const isPreferred = (r > 3 && r <= 8);
+
+        html += `
+          <div class="flex items-center justify-between ${isEmergencyExit ? 'bg-amber-100/60 p-1.5 rounded-xl border border-amber-200' : ''}">
+            <div class="grid grid-cols-7 gap-1.5 w-full items-center">
+        `;
+
+        cols.forEach(col => {
+          if (col === null) {
+            html += `<span class="text-[11px] font-mono text-gray-400 text-center font-bold">${r}</span>`;
+            return;
+          }
+
+          const seatId = `${r}${col}`;
+          const isOccupied = OCCUPIED_SEATS.includes(seatId);
+          const isSelected = selectedSeats.includes(seatId);
+
+          let price = 200;
+          let tierClass = 'bg-white border-gray-200 text-gray-800';
+          if (isExtraLegroom) {
+            price = isEmergencyExit ? 950 : 800;
+            tierClass = 'bg-amber-50 border-amber-200 text-amber-900 font-bold';
+          } else if (isPreferred) {
+            price = 400;
+            tierClass = 'bg-blue-50 border-blue-200 text-blue-900';
+          }
+
+          if (isOccupied) {
+            html += `
+              <button type="button" disabled class="seat-button occupied" title="Seat ${seatId} Occupied">
+                ✕
+              </button>
+            `;
+          } else {
+            html += `
+              <button type="button" 
+                      class="seat-button ${isSelected ? 'selected' : ''} ${tierClass}" 
+                      data-seat="${seatId}" data-price="${price}" title="Seat ${seatId} • ₹${price}">
+                ${seatId}
+              </button>
+            `;
+          }
+        });
+
+        html += `
+            </div>
+          </div>
+        `;
+
+        if (isEmergencyExit) {
+          html += `
+            <div class="text-center text-[10px] font-bold text-amber-800 uppercase tracking-widest py-0.5">
+              ⚠️ Overwing Emergency Exit Doors
+            </div>
+          `;
+        }
+      }
+
+      rowsContainer.innerHTML = html;
+
+      // Seat selection click handlers
+      function attachSeatListeners() {
+        document.querySelectorAll('.seat-button:not(.occupied)').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const seatId = btn.dataset.seat;
+            if (selectedSeats.includes(seatId)) {
+              // Deselect
+              selectedSeats = selectedSeats.filter(s => s !== seatId);
+              btn.classList.remove('selected');
+            } else {
+              // If already at maxSeatsNeeded, replace the oldest
+              if (selectedSeats.length >= maxSeatsNeeded) {
+                const removed = selectedSeats.shift();
+                const oldBtn = document.querySelector(`.seat-button[data-seat="${removed}"]`);
+                if (oldBtn) oldBtn.classList.remove('selected');
+              }
+              selectedSeats.push(seatId);
+              btn.classList.add('selected');
+            }
+            updateSeatCart();
+          });
+        });
+      }
+
+      function updateSeatCart() {
+        state.selectedSeats = selectedSeats;
+        updateFlightState({ selectedSeats: selectedSeats });
+
+        const pricing = calculatePricing(state);
+
+        if (selectedSeats.length > 0) {
+          document.getElementById('assignedSeatBadge').textContent = selectedSeats.join(', ');
+          const firstSeatRow = parseInt(selectedSeats[0], 10);
+          const isExit = firstSeatRow === 12;
+          const isFront = firstSeatRow <= 3;
+          let label = isExit ? 'Emergency Exit Extra Legroom' : (isFront ? 'Front Cabin Extra Legroom' : 'Standard Preferred');
+          document.getElementById('assignedSeatDesc').textContent = `${selectedSeats.join(', ')} • ${label}`;
+        } else {
+          document.getElementById('assignedSeatBadge').textContent = 'None';
+          document.getElementById('assignedSeatDesc').textContent = 'No seat chosen. Free seat allocated at check-in.';
+        }
+
+        document.getElementById('seatBaseFare').textContent = `₹${pricing.totalBaseFare.toLocaleString('en-IN')}`;
+        document.getElementById('seatExtraFee').textContent = `₹${pricing.seatsCost.toLocaleString('en-IN')}`;
+        document.getElementById('seatTaxes').textContent = `₹${pricing.totalTaxes.toLocaleString('en-IN')}`;
+        document.getElementById('seatGrandTotal').textContent = `₹${pricing.grandTotal.toLocaleString('en-IN')}`;
+      }
+
+      attachSeatListeners();
+      updateSeatCart();
+
+      // Fare lock timer
+      let timeLeft = 11 * 60 + 20;
+      const timerEl = document.getElementById('fareLockTimer');
+      setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          const m = Math.floor(timeLeft / 60);
+          const s = timeLeft % 60;
+          timerEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+      }, 1000);
+
+      // Confirm Button
+      document.getElementById('confirmSeatBtn').addEventListener('click', () => {
+        window.location.href = 'baggage-addons.html';
+      });
+
+      // Skip Button
+      document.getElementById('skipSeatBtn').addEventListener('click', () => {
+        state.selectedSeats = [];
+        updateFlightState({ selectedSeats: [] });
+        window.location.href = 'baggage-addons.html';
+      });
+    });
+  </script>
+</body>
+</html>
