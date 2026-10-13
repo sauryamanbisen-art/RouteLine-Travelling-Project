@@ -11,9 +11,9 @@ import {
   getTrainSchedule, 
   getLiveStatus
 } from './railradar.js';
-import { openPaymentModal } from '../global/payment.js';
+import { openPaymentModal } from '../home/global/payment.js';
 import { openPNRModal, initPNRModule } from './pnr-status.js';
-import { initAuth } from '../auth/auth.js';
+import { initAuth } from '../home/auth/auth.js';
 
 // Popular railway stations cache for autocomplete
 const POPULAR_STATIONS = [

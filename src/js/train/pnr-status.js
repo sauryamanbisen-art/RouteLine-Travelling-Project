@@ -5,7 +5,7 @@
  */
 
 import { getPNRStatus, getPNRPrediction, getPNRRefund, getLiveStatus } from './railradar.js';
-import { getBookedTickets, getTicketByPnr } from '../ticket/ticket.js';
+import { getBookedTickets, getTicketByPnr } from './ticket/ticket.js';
 
 // Sample verified demonstration dataset from official RailRadar schema for testing & flushed PNR preview
 export const SAMPLE_PNR_RECORD = {
@@ -883,6 +883,12 @@ export function renderPNRSuccessResults(pnrData, predictionData = null, refundDa
     `;
   });
 
+  const ersTicketUrl = window.location.pathname.includes('/pages/train/')
+    ? `ticket.html?pnr=${pnrData.pnrNumber}`
+    : (window.location.pathname.includes('/pages/')
+      ? `../train/ticket.html?pnr=${pnrData.pnrNumber}`
+      : `pages/train/ticket.html?pnr=${pnrData.pnrNumber}`);
+
   resultsArea.innerHTML = `
     <div class="pnr-results-wrapper">
       ${isBookedTicket || pnrData.isBookedTicket ? `
@@ -894,7 +900,7 @@ export function renderPNRSuccessResults(pnrData, predictionData = null, refundDa
               <span class="verified-sub">PRS Reservation Confirmed • PNR: <strong>${pnrData.pnrNumber}</strong></span>
             </div>
           </div>
-          <a href="ticket.html?pnr=${pnrData.pnrNumber}" class="btn-goto-ers">
+          <a href="${ersTicketUrl}" class="btn-goto-ers">
             <i data-lucide="ticket"></i> View Full E-Ticket (ERS)
           </a>
         </div>

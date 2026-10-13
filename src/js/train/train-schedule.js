@@ -6,7 +6,7 @@
 import { getTrainSchedule } from './railradar.js';
 import { getCoachSvg, renderCoachStrip } from './coach-position.js';
 import { openPNRModal, initPNRModule } from './pnr-status.js';
-import { initAuth } from '../auth/auth.js';
+import { initAuth } from '../home/auth/auth.js';
 
 // Fallback Train Schedule Database for robust, zero-fail experience
 const FALLBACK_SCHEDULES = {

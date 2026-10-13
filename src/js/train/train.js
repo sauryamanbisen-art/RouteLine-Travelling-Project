@@ -30,8 +30,8 @@ import {
   renderSamplePNRRecord 
 } from './pnr-status.js';
 
-import { openPaymentModal, closePaymentModal } from '../global/payment.js';
-import { requireAuthentication, isAuthenticated, initAuth } from '../auth/auth.js';
+import { openPaymentModal, closePaymentModal } from '../home/global/payment.js';
+import { requireAuthentication, isAuthenticated, initAuth } from '../home/auth/auth.js';
 
 // Station Name to IRCTC Station Code Resolution Map
 export const STATION_CODE_MAP = {
