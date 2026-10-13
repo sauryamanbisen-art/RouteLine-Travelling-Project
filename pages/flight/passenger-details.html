@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passenger Details | RouteLine Executive Travel</title>
+  <meta name="description" content="Enter passenger identification and contact details for RouteLine flight booking.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000d2c",
+            "primary-container": "#0b224e",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "surface": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#44464f",
+            "outline": "#757780",
+            "outline-variant": "#c5c6d0",
+            "gold": {
+              "50": "#FAF6EE",
+              "100": "#F6EFE5",
+              "200": "#F0E5D5",
+              "300": "#E5D6C1",
+              "400": "#DFC094",
+              "500": "#C5A880",
+              "600": "#B8925B",
+              "700": "#A37F4F",
+              "800": "#8C6D37",
+              "900": "#5C441D"
+            },
+            "obsidian": "#061124"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            luxury: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+
+<body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
+  <!-- Executive Header -->
+  <header class="fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_8px_rgba(11,34,78,0.06)]">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2">
+          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
+          <span class="font-sans text-xl font-bold tracking-tight text-primary">RouteLine</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-gray-200">
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../../index.html">Trains</a>
+        <a class="bg-primary-container text-white font-bold px-4 py-1.5 rounded-full text-xs shadow flex items-center gap-1.5" href="flight-search.html">
+          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
+        </a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../bus/bus-results.html">Buses</a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../hotel/hotel-results.html">Hotels</a>
+      </nav>
+
+      <div class="flex items-center gap-3 text-xs font-semibold">
+        <span class="text-gray-500 hidden sm:inline">Fare Locked</span>
+        <div class="bg-obsidian text-gold-300 px-3 py-1 rounded-full font-mono font-bold text-xs flex items-center gap-1.5 border border-gold-400/30">
+          <span class="material-symbols-outlined text-[14px] text-gold-400 animate-pulse">lock_clock</span>
+          <span id="fareLockTimer">12:45</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-16 pb-16">
+    <!-- Stepper Context Ribbon -->
+    <section class="w-full bg-white border-b border-gray-100 py-3 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+        <div class="flex items-center gap-2 text-xs">
+          <a href="flight-details.html" class="flex items-center gap-1 font-bold text-primary hover:text-secondary transition-colors">
+            <span class="material-symbols-outlined text-[17px]">arrow_back</span>
+            <span>Back to flight details</span>
+          </a>
+          <span class="text-gray-300">•</span>
+          <span class="font-mono text-gray-500">Trip Ref: <strong class="text-primary font-bold">RL-8842-PNQ</strong></span>
+        </div>
+
+        <!-- 5-Step Tracker -->
+        <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto w-full md:w-auto text-xs py-1">
+          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
+            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
+            <span class="hidden sm:inline">Flight</span>
+          </div>
+          <span class="w-3 h-0.5 bg-emerald-300"></span>
+
+          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
+            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
+            <span class="hidden sm:inline">Details</span>
+          </div>
+          <span class="w-3 h-0.5 bg-emerald-300"></span>
+
+          <div class="flex items-center gap-1.5 shrink-0 px-2.5 py-1 rounded-full bg-primary text-white font-bold">
+            <div class="w-4 h-4 rounded-full bg-gold-400 text-obsidian flex items-center justify-center text-[10px]">3</div>
+            <span>Passengers</span>
+          </div>
+          <span class="w-3 h-0.5 bg-gray-200"></span>
+
+          <div class="flex items-center gap-1 shrink-0 text-gray-400">
+            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">4</div>
+            <span class="hidden sm:inline">Seats &amp; Add-ons</span>
+          </div>
+          <span class="w-3 h-0.5 bg-gray-200"></span>
+
+          <div class="flex items-center gap-1 shrink-0 text-gray-400">
+            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">5</div>
+            <span class="hidden sm:inline">Review &amp; Pay</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Form Grid (8 Cols Left, 4 Cols Right) -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <form id="passengerForm" class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Left Column: Passenger Inputs (8 Cols) -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- Passenger 1 Details Card -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-5" id="paxCard1">
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-primary text-gold-300 flex items-center justify-center font-bold text-xs">
+                  P1
+                </div>
+                <h3 class="font-sans text-base font-bold text-primary">Primary Passenger (Adult 1)</h3>
+              </div>
+              <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-gold-50 text-gold-700 border border-gold-200">Lead Passenger</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+              <!-- Title -->
+              <div class="sm:col-span-3">
+                <label for="pax1Title" class="block text-xs font-bold text-gray-700 mb-1">Title *</label>
+                <select id="pax1Title" class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+                  <option value="Mr">Mr.</option>
+                  <option value="Mrs">Mrs.</option>
+                  <option value="Ms">Ms.</option>
+                  <option value="Dr">Dr.</option>
+                </select>
+              </div>
+
+              <!-- First & Middle Name -->
+              <div class="sm:col-span-5">
+                <label for="pax1FirstName" class="block text-xs font-bold text-gray-700 mb-1">First &amp; Middle Name *</label>
+                <input type="text" id="pax1FirstName" required value="Rahul" 
+                       placeholder="As on Govt ID" 
+                       class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+              </div>
+
+              <!-- Last Name -->
+              <div class="sm:col-span-4">
+                <label for="pax1LastName" class="block text-xs font-bold text-gray-700 mb-1">Last Name *</label>
+                <input type="text" id="pax1LastName" required value="Verma" 
+                       placeholder="As on Govt ID" 
+                       class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 pt-1">
+              <!-- Date of Birth -->
+              <div class="sm:col-span-6">
+                <label for="pax1Dob" class="block text-xs font-bold text-gray-700 mb-1">Date of Birth *</label>
+                <input type="date" id="pax1Dob" required value="1992-08-14" 
+                       class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+              </div>
+
+              <!-- Gender -->
+              <div class="sm:col-span-6">
+                <label class="block text-xs font-bold text-gray-700 mb-1">Gender *</label>
+                <div class="grid grid-cols-3 gap-2">
+                  <label class="flex items-center justify-center gap-1.5 p-2 rounded-xl border border-gray-200 hover:border-gold-400 cursor-pointer text-xs font-medium bg-gray-50/50">
+                    <input type="radio" name="pax1Gender" value="Male" checked class="text-primary focus:ring-0">
+                    <span>Male</span>
+                  </label>
+                  <label class="flex items-center justify-center gap-1.5 p-2 rounded-xl border border-gray-200 hover:border-gold-400 cursor-pointer text-xs font-medium bg-gray-50/50">
+                    <input type="radio" name="pax1Gender" value="Female" class="text-primary focus:ring-0">
+                    <span>Female</span>
+                  </label>
+                  <label class="flex items-center justify-center gap-1.5 p-2 rounded-xl border border-gray-200 hover:border-gold-400 cursor-pointer text-xs font-medium bg-gray-50/50">
+                    <input type="radio" name="pax1Gender" value="Other" class="text-primary focus:ring-0">
+                    <span>Other</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- Frequent Flyer Number -->
+            <div class="pt-2">
+              <label for="pax1FreqFlyer" class="block text-xs font-bold text-gray-700 mb-1">Frequent Flyer Number (Optional)</label>
+              <input type="text" id="pax1FreqFlyer" value="6E-994821" placeholder="e.g. 6E-123456 or AI-8829" 
+                     class="w-full sm:w-1/2 text-xs font-mono rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+            </div>
+          </div>
+
+          <!-- Dynamic Co-Travelers Container -->
+          <div id="additionalPaxContainer" class="space-y-4"></div>
+
+          <!-- Add Traveler Button -->
+          <button type="button" id="addPaxBtn" 
+                  class="flex items-center gap-2 px-5 py-2.5 rounded-full bg-white hover:bg-gold-50 border border-gray-200 hover:border-gold-400 text-primary font-bold text-xs shadow-sm transition-all">
+            <span class="material-symbols-outlined text-[18px] text-gold-600">person_add</span>
+            <span>+ Add Another Co-Traveler</span>
+          </button>
+
+          <!-- Contact Information Card -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4">
+            <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+              <span class="material-symbols-outlined text-primary text-[20px]">contact_mail</span>
+              <h3 class="font-sans text-base font-bold text-primary">Contact &amp; E-Ticket Delivery Details</h3>
+            </div>
+            <p class="text-xs text-gray-500">Your electronic boarding pass, booking reference, and real-time gate delay updates will be dispatched here.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contactEmail" class="block text-xs font-bold text-gray-700 mb-1">Email Address *</label>
+                <input type="email" id="contactEmail" required value="rahul.verma@example.com" 
+                       class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+              </div>
+
+              <div>
+                <label for="contactMobile" class="block text-xs font-bold text-gray-700 mb-1">Mobile Number (WhatsApp Enabled) *</label>
+                <div class="flex items-center">
+                  <span class="inline-flex items-center px-3 py-2.5 rounded-l-xl border border-r-0 border-gray-200 bg-gray-100 text-xs font-bold text-gray-600">+91</span>
+                  <input type="tel" id="contactMobile" required pattern="[0-9]{10}" value="9876543210" 
+                         placeholder="10-digit number" 
+                         class="w-full text-xs font-medium rounded-r-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+                </div>
+              </div>
+            </div>
+
+            <label class="flex items-start gap-2.5 pt-1 text-xs text-gray-700 cursor-pointer">
+              <input type="checkbox" id="whatsappOptIn" checked class="mt-0.5 rounded text-primary focus:ring-0">
+              <span>Send contactless boarding passes, web check-in links &amp; gate change alerts directly to WhatsApp.</span>
+            </label>
+          </div>
+
+          <!-- Emergency Contact Module -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4">
+            <div class="flex items-center gap-2 pb-3 border-b border-gray-100">
+              <span class="material-symbols-outlined text-primary text-[20px]">emergency</span>
+              <h3 class="font-sans text-base font-bold text-primary">Emergency Contact (Optional)</h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="emName" class="block text-xs font-bold text-gray-700 mb-1">Contact Name</label>
+                <input type="text" id="emName" value="Priya Verma" placeholder="Relative or Guardian" 
+                       class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+              </div>
+              <div>
+                <label for="emPhone" class="block text-xs font-bold text-gray-700 mb-1">Contact Phone</label>
+                <input type="tel" id="emPhone" value="9876543211" placeholder="10-digit number" 
+                       class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+              </div>
+            </div>
+          </div>
+
+          <!-- GST Details Accordion -->
+          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+            <details class="group">
+              <summary class="flex items-center justify-between cursor-pointer font-sans text-sm font-bold text-primary list-none">
+                <span class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[20px] text-gray-400">receipt_long</span>
+                  <span>Add Corporate GSTIN (For Business Tax Credit)</span>
+                </span>
+                <span class="material-symbols-outlined text-[18px] text-gray-400 group-open:rotate-180 transition-transform">expand_more</span>
+              </summary>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 mt-3 border-t border-gray-100">
+                <div>
+                  <label for="gstinInput" class="block text-xs font-bold text-gray-700 mb-1">15-Digit GSTIN Number</label>
+                  <input type="text" id="gstinInput" placeholder="27ABCDE1234F1Z5" 
+                         class="w-full text-xs font-mono uppercase rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+                </div>
+                <div>
+                  <label for="companyInput" class="block text-xs font-bold text-gray-700 mb-1">Company Registered Name</label>
+                  <input type="text" id="companyInput" placeholder="RouteLine Technologies Pvt Ltd" 
+                         class="w-full text-xs font-medium rounded-xl border-gray-200 focus:border-gold-500 focus:ring-0 p-2.5 bg-gray-50/50">
+                </div>
+              </div>
+            </details>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Itinerary Mini Card & Fare Breakdown (4 Cols) -->
+        <aside class="lg:col-span-4 sticky top-24 space-y-6">
+          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 space-y-5">
+            <!-- Flight Snapshot -->
+            <div class="pb-3 border-b border-gray-100 space-y-1">
+              <span class="text-xs uppercase tracking-wider text-gold-700 font-bold" id="sideAirline">IndiGo 6E-2415</span>
+              <div class="font-sans text-base font-bold text-primary" id="sideRoute">Pune (PNQ) → New Delhi (DEL)</div>
+              <div class="text-xs text-gray-500" id="sideTiming">06:15 - 08:35 • Thu, 24 Oct 2026</div>
+            </div>
+
+            <!-- Dynamic Price Summary -->
+            <div class="space-y-3 text-xs">
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Passengers</span>
+                <span class="font-bold text-gray-900" id="sidePaxCount">1 Traveler</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Base Airfare</span>
+                <span class="font-bold text-gray-900" id="sideBaseFare">₹4,199</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Bundle Tier (<span id="sideTierName">Saver</span>)</span>
+                <span class="font-bold text-gray-900" id="sideTierCost">₹0</span>
+              </div>
+              <div class="flex items-center justify-between text-gray-600">
+                <span>Taxes &amp; Aviation Surcharges</span>
+                <span class="font-bold text-gray-900" id="sideTaxes">₹740</span>
+              </div>
+            </div>
+
+            <!-- Total -->
+            <div class="pt-4 border-t border-gray-100 flex items-baseline justify-between">
+              <div>
+                <span class="text-xs text-gray-400 block font-medium">Grand Total</span>
+                <span class="font-sans text-3xl font-extrabold text-primary" id="sideGrandTotal">₹4,939</span>
+              </div>
+            </div>
+
+            <!-- Submit CTA -->
+            <button type="submit" 
+                    class="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-obsidian font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
+              <span>Continue to Seat Selection</span>
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+
+            <div class="text-[11px] text-gray-500 text-center flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-[14px] text-emerald-600">verified_user</span>
+              <span>Encrypted Government Travel ID Validation</span>
+            </div>
+          </div>
+        </aside>
+
+      </form>
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="w-full bg-primary text-white pt-8 pb-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+      <div class="flex items-center gap-2">
+        <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-6">
+        <span>© 2026 RouteLine Transit Technologies. Passenger Gateway.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="flight-details.html" class="hover:text-white">Back to Flight</a>
+        <span>•</span>
+        <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { getFlightState, updateFlightState, calculatePricing } from '../../src/js/flight/flight-state.js';
+    import { initAuth } from '../../src/js/home/auth/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuth({ autoPrompt: false });
+
+      const state = getFlightState();
+      const flight = state.selectedFlight;
+
+      // Populate snapshot
+      if (flight) {
+        document.getElementById('sideAirline').textContent = `${flight.airline} ${flight.flightNumber}`;
+        document.getElementById('sideRoute').textContent = `${flight.originCity} (${flight.originCode}) → ${flight.destinationCity} (${flight.destinationCode})`;
+        document.getElementById('sideTiming').textContent = `${flight.departureTime} - ${flight.arrivalTime} • ${flight.departureDate}`;
+      }
+
+      // Populate contact fields if present
+      if (state.contactInfo) {
+        if (state.contactInfo.email) document.getElementById('contactEmail').value = state.contactInfo.email;
+        if (state.contactInfo.mobile) document.getElementById('contactMobile').value = state.contactInfo.mobile;
+        if (state.contactInfo.emergencyName) document.getElementById('emName').value = state.contactInfo.emergencyName;
+        if (state.contactInfo.emergencyPhone) document.getElementById('emPhone').value = state.contactInfo.emergencyPhone;
+        if (state.contactInfo.gstin) document.getElementById('gstinInput').value = state.contactInfo.gstin;
+        if (state.contactInfo.companyName) document.getElementById('companyInput').value = state.contactInfo.companyName;
+      }
+
+      // Populate primary passenger
+      if (state.passengersList && state.passengersList[0]) {
+        const p1 = state.passengersList[0];
+        document.getElementById('pax1Title').value = p1.title || 'Mr';
+        document.getElementById('pax1FirstName').value = p1.firstName || 'Rahul';
+        document.getElementById('pax1LastName').value = p1.lastName || 'Verma';
+        document.getElementById('pax1Dob').value = p1.dob || '1992-08-14';
+        if (p1.frequentFlyer) document.getElementById('pax1FreqFlyer').value = p1.frequentFlyer;
+        const gRadio = document.querySelector(`input[name="pax1Gender"][value="${p1.gender}"]`);
+        if (gRadio) gRadio.checked = true;
+      }
+
+      // Co-traveler container logic
+      const addPaxBtn = document.getElementById('addPaxBtn');
+      const addContainer = document.getElementById('additionalPaxContainer');
+      let extraPaxCount = (state.passengersList && state.passengersList.length > 1) ? state.passengersList.length - 1 : 0;
+
+      function updatePricing() {
+        state.search.passengers = 1 + extraPaxCount;
+        const pricing = calculatePricing(state);
+        document.getElementById('sidePaxCount').textContent = `${pricing.passengerCount} ${pricing.passengerCount === 1 ? 'Traveler' : 'Travelers'}`;
+        document.getElementById('sideBaseFare').textContent = `₹${pricing.totalBaseFare.toLocaleString('en-IN')}`;
+        document.getElementById('sideTierName').textContent = pricing.tierName;
+        document.getElementById('sideTierCost').textContent = `₹${pricing.tierCost.toLocaleString('en-IN')}`;
+        document.getElementById('sideTaxes').textContent = `₹${pricing.totalTaxes.toLocaleString('en-IN')}`;
+        document.getElementById('sideGrandTotal').textContent = `₹${pricing.grandTotal.toLocaleString('en-IN')}`;
+      }
+
+      addPaxBtn.addEventListener('click', () => {
+        if (extraPaxCount < 8) {
+          extraPaxCount++;
+          const idx = extraPaxCount + 1;
+          const div = document.createElement('div');
+          div.className = 'bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-4';
+          div.id = `paxCard${idx}`;
+          div.innerHTML = `
+            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-gray-100 text-gray-700 flex items-center justify-center font-bold text-xs">P${idx}</div>
+                <h4 class="font-sans text-sm font-bold text-primary">Passenger ${idx} (Adult)</h4>
+              </div>
+              <button type="button" class="text-xs text-red-600 font-bold hover:underline remove-pax-btn" data-id="${idx}">Remove</button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-4">
+              <div class="sm:col-span-3">
+                <label class="block text-xs font-bold text-gray-700 mb-1">Title *</label>
+                <select class="w-full text-xs font-medium rounded-xl border-gray-200 p-2.5 bg-gray-50/50 pax-title">
+                  <option value="Mr">Mr.</option><option value="Mrs">Mrs.</option><option value="Ms">Ms.</option>
+                </select>
+              </div>
+              <div class="sm:col-span-5">
+                <label class="block text-xs font-bold text-gray-700 mb-1">First Name *</label>
+                <input type="text" required placeholder="First Name" class="w-full text-xs font-medium rounded-xl border-gray-200 p-2.5 bg-gray-50/50 pax-first">
+              </div>
+              <div class="sm:col-span-4">
+                <label class="block text-xs font-bold text-gray-700 mb-1">Last Name *</label>
+                <input type="text" required placeholder="Last Name" class="w-full text-xs font-medium rounded-xl border-gray-200 p-2.5 bg-gray-50/50 pax-last">
+              </div>
+            </div>
+          `;
+          addContainer.appendChild(div);
+
+          div.querySelector('.remove-pax-btn').addEventListener('click', () => {
+            div.remove();
+            extraPaxCount--;
+            updatePricing();
+          });
+
+          updatePricing();
+        }
+      });
+
+      updatePricing();
+
+      // Fare lock countdown timer
+      let timeLeft = 12 * 60 + 45;
+      const timerEl = document.getElementById('fareLockTimer');
+      setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          const m = Math.floor(timeLeft / 60);
+          const s = timeLeft % 60;
+          timerEl.textContent = `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+      }, 1000);
+
+      // Form Submission
+      const form = document.getElementById('passengerForm');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const p1 = {
+          id: 1,
+          title: document.getElementById('pax1Title').value,
+          firstName: document.getElementById('pax1FirstName').value.trim(),
+          lastName: document.getElementById('pax1LastName').value.trim(),
+          dob: document.getElementById('pax1Dob').value,
+          gender: document.querySelector('input[name="pax1Gender"]:checked')?.value || 'Male',
+          frequentFlyer: document.getElementById('pax1FreqFlyer').value.trim(),
+          isLead: true
+        };
+
+        const paxList = [p1];
+
+        // Collect extra passengers
+        const extraCards = document.querySelectorAll('#additionalPaxContainer > div');
+        extraCards.forEach((c, i) => {
+          paxList.push({
+            id: i + 2,
+            title: c.querySelector('.pax-title')?.value || 'Mr',
+            firstName: c.querySelector('.pax-first')?.value.trim() || `Traveler ${i + 2}`,
+            lastName: c.querySelector('.pax-last')?.value.trim() || 'Verma',
+            gender: 'Male',
+            isLead: false
+          });
+        });
+
+        const contactInfo = {
+          email: document.getElementById('contactEmail').value.trim(),
+          mobile: document.getElementById('contactMobile').value.trim(),
+          whatsappUpdates: document.getElementById('whatsappOptIn').checked,
+          emergencyName: document.getElementById('emName').value.trim(),
+          emergencyPhone: document.getElementById('emPhone').value.trim(),
+          gstin: document.getElementById('gstinInput').value.trim(),
+          companyName: document.getElementById('companyInput').value.trim()
+        };
+
+        updateFlightState({
+          passengersList: paxList,
+          contactInfo: contactInfo,
+          search: {
+            ...state.search,
+            passengers: paxList.length
+          }
+        });
+
+        window.location.href = 'seat-selection.html';
+      });
+    });
+  </script>
+</body>
+</html>
