@@ -6,23 +6,26 @@
     <title>Bus Booking | RouteLine</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/global/style.css">
-    <link rel="stylesheet" href="./src/css/bus/bus.css">
-    <link rel="stylesheet" href="./src/css/home/homepage.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="../../src/css/home/global/style.css">
+    <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+    <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+    <link rel="stylesheet" href="../../src/css/bus/bus.css">
+    <link rel="stylesheet" href="../../src/css/home/homepage.css">
 </head>
 <body>
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <img src="./public/logo.svg" alt="RouteLine Logo">
-                <a href="index.html" style="color: white; text-decoration: none;">RouteLine</a>
+                <img src="../../public/logo.svg" alt="RouteLine Logo">
+                <a href="../../index.html" style="color: white; text-decoration: none;">RouteLine</a>
             </div>
             
             <nav class="nav-links">
-                <a href="index.html">Trains</a>
-                <a href="flight-results.html">Flights</a>
+                <a href="../../index.html">Trains</a>
+                <a href="../flight/flight-results.html">Flights</a>
                 <a href="bus-results.html" class="active">Buses</a>
-                <a href="hotel-results.html">Hotels</a>
+                <a href="../hotel/hotel-results.html">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
             
@@ -34,120 +37,144 @@
         </div>
     </header>
 
-    <section class="hero">
+    <section class="hero-unified" style="background-image: url('../../src/assets/bus_background_img.png');">
+        <div class="hero-unified-overlay"></div>
+        
+        <!-- Strict standardized header height across all 4 pages -->
+        <div class="hero-unified-header">
+            <h1 class="hero-unified-title">Hit the road,<br>Discover new places.</h1>
+            <p class="hero-unified-subtitle">Compare thousands of bus routes and operators. Find the best seats at the lowest prices instantly.</p>
+        </div>
 
-
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="hero-title">Hit the road,<br>Discover new places.</h1>
-            <p class="hero-subtitle">Compare thousands of bus routes and operators.<br>Find the best seats at the lowest prices instantly.</p>
-            
-            <!-- Booking Widget -->
-            <div class="booking-widget">
-                <!-- Mode & Trip Toggle Header -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                    <!-- Mode Selector -->
-                    <div class="mode-selector" style="margin-bottom: 0;">
-                        <div class="active-pill" id="active-pill" style="left: 257px; width: 124px;"></div>
-                        <button class="mode-btn" data-mode="Trains" data-href="index.html">
-                            <i data-lucide="train"></i> Trains
-                        </button>
-                        <button class="mode-btn" data-mode="Flights" data-href="flight-results.html">
-                            <i data-lucide="plane"></i> Flights
-                        </button>
-                        <button class="mode-btn active" data-mode="Buses" data-href="bus-results.html">
-                            <i data-lucide="bus-front"></i> Buses
-                        </button>
-                        <button class="mode-btn" data-mode="Hotels" data-href="hotel-results.html">
-                            <i data-lucide="building-2"></i> Hotels
-                        </button>
-                    </div>
+        <!-- Pixel-perfect search dock (identical position, width & height across all pages) -->
+        <div class="search-dock-wrapper">
+            <!-- Mode & Trip Toggle Row -->
+            <div class="dock-mode-row">
+                <!-- Mode Capsule -->
+                <div class="dock-mode-capsule">
+                    <a href="../../index.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">train</span> Trains
+                    </a>
+                    <a href="../flight/flight-search.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">flight</span> Flights
+                    </a>
+                    <a href="bus-results.html" class="dock-mode-btn active">
+                        <span class="material-symbols-outlined dock-icon">directions_bus</span> Buses
+                    </a>
+                    <a href="../hotel/hotel-results.html" class="dock-mode-btn">
+                        <span class="material-symbols-outlined dock-icon">hotel</span> Hotels
+                    </a>
                 </div>
 
-                <!-- Input Area -->
-                <div class="booking-form-container">
-                    <form id="search-form" action="bus-results.html" method="GET">
-                        <div class="inputs-row" id="dynamic-inputs">
-                            
-                            <div class="input-group" id="from-group">
-                                <i data-lucide="map-pin" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label id="from-label">From</label>
-                                    <input type="text" id="from-input" name="origin" value="Delhi" list="city-list" required>
-                                </div>
+                <!-- Trip Type Capsule -->
+                <div class="dock-trip-capsule">
+                    <button type="button" class="dock-trip-btn active" data-trip="one-way">One way</button>
+                    <button type="button" class="dock-trip-btn" data-trip="round-trip">Round trip</button>
+                </div>
+            </div>
+
+            <!-- Main White Search Card Dock -->
+            <div class="search-dock-card">
+                <form id="search-form" action="bus-results.html" method="GET">
+                    <div class="dock-inputs-row">
+                        <!-- From City -->
+                        <div class="dock-input-box city-box">
+                            <span class="material-symbols-outlined dock-box-icon">directions_bus</span>
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">From</label>
+                                <input type="text" id="from-input" name="origin" value="Delhi" list="city-list" class="dock-box-input" autocomplete="off" required>
                             </div>
-                            
-                            <div class="swap-icon-container">
-                                <button type="button" class="swap-btn" id="swap-btn"><i data-lucide="arrow-left-right" class="icon-sm"></i></button>
+                        </div>
+
+                        <!-- Swap Button -->
+                        <button type="button" class="dock-swap-btn" id="swap-btn" aria-label="Swap Origin and Destination">
+                            <span class="material-symbols-outlined">sync_alt</span>
+                        </button>
+
+                        <!-- To City -->
+                        <div class="dock-input-box city-box">
+                            <span class="material-symbols-outlined dock-box-icon">directions_bus</span>
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">To</label>
+                                <input type="text" id="to-input" name="destination" value="Manali" list="city-list" class="dock-box-input" autocomplete="off" required>
                             </div>
-                            
-                            <div class="input-group" id="to-group">
-                                <i data-lucide="map-pin" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label id="to-label">To</label>
-                                    <input type="text" id="to-input" name="destination" value="Manali" list="city-list" required>
-                                </div>
+                        </div>
+
+                        <div class="dock-divider"></div>
+
+                        <!-- Departure Date -->
+                        <div class="dock-input-box date-box">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Travel Date</label>
+                                <input type="date" id="depart-input" name="date" class="dock-box-input" required>
                             </div>
-                            
-                            <div class="divider-vertical"></div>
-                            
-                            <div class="input-group" id="depart-group">
-                                <i data-lucide="calendar" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label id="depart-label">Travel Date</label>
-                                    <input type="date" id="depart-input" name="date" required style="font-size: 0.95rem; font-family: inherit;">
-                                </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                        </div>
+
+                        <!-- Return Date -->
+                        <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Return</label>
+                                <input type="date" name="returnDate" id="returnDateInput" disabled class="dock-box-input" placeholder="dd/mm/yyyy">
                             </div>
-                            
-                            <div class="divider-vertical"></div>
-                            
-                            <div class="input-group class-selector" id="travellers-field" style="cursor: pointer; position: relative; min-width: 140px;">
-                                <i data-lucide="users" class="input-icon"></i>
-                                <div class="input-text">
-                                    <label>Passengers</label>
-                                    <div class="value" id="travellers-summary" style="font-size: 0.95rem; font-weight: 600; margin-top: 4px;">1 Passenger</div>
-                                </div>
-                                <i data-lucide="chevron-down" class="icon-sm" style="margin-left:auto;"></i>
-                                
-                                <!-- Travellers Dropdown -->
-                                <div class="travellers-panel" id="travellers-panel" onclick="event.stopPropagation()">
-                                    <div class="counter-row" style="display: flex; justify-content: space-between; align-items: center;">
-                                        <div><div class="label" style="font-weight: 600; color: #333;">Passengers</div></div>
-                                        <div class="stepper" style="display: flex; align-items: center; gap: 10px;">
-                                            <button type="button" id="btn-dec">–</button>
-                                            <span id="passengers-count" style="font-weight: 600;">1</span>
-                                            <button type="button" id="btn-inc">+</button>
-                                        </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                        </div>
+
+                        <div class="dock-divider"></div>
+
+                        <!-- Passengers Selector -->
+                        <div class="dock-input-box dock-dropdown-trigger relative" id="travellers-field" style="min-width: 150px; cursor: pointer;">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Passengers</label>
+                                <span class="dock-dropdown-summary" id="travellers-summary">1 Passenger</span>
+                            </div>
+                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af; margin-left: auto;">expand_more</span>
+
+                            <!-- Travellers Dropdown -->
+                            <div class="travellers-panel" id="travellers-panel" onclick="event.stopPropagation()">
+                                <div class="counter-row" style="display: flex; justify-content: space-between; align-items: center;">
+                                    <div><div class="label" style="font-weight: 600; color: #333;">Passengers</div></div>
+                                    <div class="stepper" style="display: flex; align-items: center; gap: 10px;">
+                                        <button type="button" id="btn-dec">–</button>
+                                        <span id="passengers-count" style="font-weight: 600;">1</span>
+                                        <button type="button" id="btn-inc">+</button>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <button type="submit" class="search-btn" id="search-btn">
-                                <i data-lucide="search"></i> Search
-                            </button>
                         </div>
-                    </form>
 
-                    <div class="result-banner" id="result-banner" style="margin:10px 0; padding: 0 20px;">
-                        <span id="result-text" style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
+                        <!-- Search CTA Button -->
+                        <button type="submit" class="dock-search-btn" id="search-btn">
+                            <span class="material-symbols-outlined">search</span>
+                            <span>Search Buses</span>
+                        </button>
                     </div>
+                </form>
 
-                    <!-- Features Banner -->
-                    <div class="features-banner">
-                        <div class="feature-item">
-                            <i data-lucide="check-square" class="feature-icon"></i>
-                            <span>Verified Operators</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="shield-check" class="feature-icon"></i>
-                            <span>Secure Booking</span>
-                        </div>
-                        <div class="feature-divider"></div>
-                        <div class="feature-item">
-                            <i data-lucide="headphones" class="feature-icon"></i>
-                            <span>24/7 Support</span>
-                        </div>
+                <div class="result-banner" id="result-banner" style="margin: 0; padding: 0 20px;">
+                    <span id="result-text" style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
+                </div>
+
+                <!-- Mint Green Assurance Ribbon -->
+                <div class="dock-assurance-ribbon">
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">check_box</span>
+                        <span>Confirmed Bus Inventory</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">verified</span>
+                        <span>Instant Auto-Refunds</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">headset_mic</span>
+                        <span>24/7 Human Dispatch Desk</span>
+                    </div>
+                    <div class="dock-assurance-divider"></div>
+                    <div class="dock-assurance-item">
+                        <span class="material-symbols-outlined">lock</span>
+                        <span>Zero Card Surcharges</span>
                     </div>
                 </div>
             </div>
@@ -355,9 +382,9 @@
     <section class="app-section"><div class="app-inner"><div class="app-text"><h2>Your Entire Journey,<br>In Your Pocket.</h2><p>Book tickets, check PNR status, get live updates and manage your trips anywhere, anytime.</p></div><div class="app-download-area"><div><p class="app-download-label">Download the RouteLine App</p><div class="app-buttons"><a href="#"><i data-lucide="play"></i><div class="app-btn-text"><span class="small">GET IT ON</span><span class="big">Google Play</span></div></a><a href="#"><i data-lucide="apple"></i><div class="app-btn-text"><span class="small">Download on the</span><span class="big">App Store</span></div></a></div></div><div class="app-qr"><div class="app-qr-box"><i data-lucide="qr-code" style="width:64px;height:64px;color:#333;"></i></div><span>Scan to download</span></div></div></div></section>
 
     <!-- Footer -->
-    <footer class="site-footer"><div class="footer-inner"><a href="index.html" class="footer-logo"><img src="./public/logo.svg" alt="RouteLine">RouteLine</a><div class="footer-links"><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div><p class="footer-copy">© 2026 RouteLine. All rights reserved.</p></div></footer>
+    <footer class="site-footer"><div class="footer-inner"><a href="../../index.html" class="footer-logo"><img src="../../public/logo.svg" alt="RouteLine">RouteLine</a><div class="footer-links"><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div><p class="footer-copy">© 2026 RouteLine. All rights reserved.</p></div></footer>
 
-    <script type="module" src="./src/js/bus/bus.js"></script>
+    <script type="module" src="../../src/js/bus/bus.js"></script>
     <script>
         lucide.createIcons();
     </script>
