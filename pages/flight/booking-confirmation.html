@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed &amp; E-Ticket | RouteLine Executive Travel</title>
+  <meta name="description" content="Your RouteLine flight booking is confirmed. View and download your electronic ticket and boarding pass.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000d2c",
+            "primary-container": "#0b224e",
+            "secondary": "#0051d5",
+            "secondary-container": "#316bf3",
+            "surface": "#f8f9ff",
+            "surface-dim": "#cbdbf5",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#eff4ff",
+            "surface-container": "#e5eeff",
+            "surface-container-high": "#dce9ff",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#44464f",
+            "outline": "#757780",
+            "outline-variant": "#c5c6d0",
+            "gold": {
+              "50": "#FAF6EE",
+              "100": "#F6EFE5",
+              "200": "#F0E5D5",
+              "300": "#E5D6C1",
+              "400": "#DFC094",
+              "500": "#C5A880",
+              "600": "#B8925B",
+              "700": "#A37F4F",
+              "800": "#8C6D37",
+              "900": "#5C441D"
+            },
+            "obsidian": "#061124"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            luxury: ['"Cinzel"', 'serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+
+<body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
+  <!-- Executive Header -->
+  <header class="no-print fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_8px_rgba(11,34,78,0.06)]">
+    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="../../index.html" class="flex items-center gap-2">
+          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
+          <span class="font-sans text-xl font-bold tracking-tight text-primary">RouteLine</span>
+        </a>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-gray-200">
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../../index.html">Trains</a>
+        <a class="bg-primary-container text-white font-bold px-4 py-1.5 rounded-full text-xs shadow flex items-center gap-1.5" href="flight-search.html">
+          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
+        </a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../bus/bus-results.html">Buses</a>
+        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../hotel/hotel-results.html">Hotels</a>
+      </nav>
+
+      <div class="flex items-center gap-3 text-xs font-semibold">
+        <button onclick="window.print()" class="print-allow flex items-center gap-1 px-3 py-1.5 rounded-full bg-gold-50 hover:bg-gold-100 text-gold-900 border border-gold-300 transition-colors">
+          <span class="material-symbols-outlined text-[16px]">print</span>
+          <span>Print Ticket</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full pt-16 pb-16">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+      
+      <!-- Confirmation Banner -->
+      <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-emerald-100 text-center space-y-3 relative overflow-hidden">
+        <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center mb-2 shadow-sm">
+          <span class="material-symbols-outlined text-[36px] font-bold">check_circle</span>
+        </div>
+        
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 font-bold text-xs border border-emerald-200">
+          <span>Booking Reference:</span>
+          <span class="font-mono text-sm" id="confirmPnrCode">RL-DEMO-9824-PNQ</span>
+        </div>
+
+        <h1 class="font-sans text-2xl sm:text-3xl font-extrabold text-primary">
+          Your Flight Booking is Confirmed!
+        </h1>
+        <p class="text-xs sm:text-sm text-gray-500 max-w-lg mx-auto">
+          Electronic flight ticket and contactless QR boarding pass have been dispatched to <strong class="text-gray-800" id="confirmEmail">rahul.verma@example.com</strong> and WhatsApp.
+        </p>
+
+        <!-- Safety Demo Notice -->
+        <div class="mt-4 p-3 bg-amber-50 rounded-2xl border border-amber-200 max-w-xl mx-auto text-[11px] text-amber-900 leading-relaxed">
+          <strong>⚠️ DEMO FLIGHT RESERVATION:</strong> This e-ticket is a high-fidelity functional prototype generated by RouteLine. It is simulated for test journeys and is not a live airline ticket.
+        </div>
+      </section>
+
+      <!-- Printable Executive E-Ticket Card -->
+      <section class="e-ticket-card bg-white rounded-3xl shadow-xl border-2 border-gray-100 overflow-hidden">
+        
+        <!-- Ticket Header Strip -->
+        <div class="bg-primary text-white p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4 border-b border-gold-500/30">
+          <div class="flex items-center gap-3">
+            <img src="../../public/logo.svg" alt="RouteLine" class="h-8">
+            <div>
+              <span class="font-sans text-xl font-bold tracking-tight text-white block">RouteLine Executive E-Ticket</span>
+              <span class="text-[10px] text-gold-300 uppercase tracking-widest font-mono">Domestic Boarding Pass • Flight 6E-2415</span>
+            </div>
+          </div>
+
+          <div class="text-left sm:text-right">
+            <span class="text-[10px] uppercase tracking-wider text-gray-300 block font-mono">Booking Ref / PNR</span>
+            <span class="font-mono text-xl font-extrabold text-gold-300" id="ticketPnr">RL-DEMO-9824-PNQ</span>
+          </div>
+        </div>
+
+        <!-- Ticket Body Details -->
+        <div class="p-6 sm:p-8 space-y-8">
+          
+          <!-- Primary Itinerary Leg Details -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+            
+            <!-- Origin -->
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Departure</span>
+              <div class="font-sans text-3xl font-extrabold text-primary" id="ticketDepTime">06:15</div>
+              <div class="font-bold text-sm text-gray-800" id="ticketDepCity">Pune (PNQ)</div>
+              <div class="text-xs text-gray-500" id="ticketDepAirport">Pune International Airport, Terminal 1</div>
+            </div>
+
+            <!-- Duration Vector -->
+            <div class="text-center space-y-1">
+              <span class="text-xs text-gray-400 font-mono" id="ticketFlightDate">Thu, 24 Oct 2026</span>
+              <div class="flex items-center justify-center gap-2">
+                <div class="h-0.5 flex-1 bg-gray-200"></div>
+                <span class="material-symbols-outlined text-secondary text-[20px]">flight</span>
+                <div class="h-0.5 flex-1 bg-gray-200"></div>
+              </div>
+              <span class="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">
+                Non-stop (2h 20m)
+              </span>
+            </div>
+
+            <!-- Destination -->
+            <div class="md:text-right">
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Arrival</span>
+              <div class="font-sans text-3xl font-extrabold text-primary" id="ticketArrTime">08:35</div>
+              <div class="font-bold text-sm text-gray-800" id="ticketDestCity">New Delhi (DEL)</div>
+              <div class="text-xs text-gray-500" id="ticketDestAirport">Indira Gandhi International, Terminal 3</div>
+            </div>
+          </div>
+
+          <!-- Passenger, Seat, Gate, and Class Grid -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 text-xs">
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Passenger</span>
+              <div class="font-bold text-sm text-gray-900" id="ticketPaxName">Rahul Verma</div>
+              <div class="text-[10px] text-gray-400">Adult • Primary</div>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Seat Number</span>
+              <div class="font-mono text-base font-extrabold text-primary" id="ticketSeat">12A</div>
+              <div class="text-[10px] text-gold-700 font-bold">Extra Legroom</div>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Boarding Gate</span>
+              <div class="font-mono text-base font-extrabold text-primary">Gate 04</div>
+              <div class="text-[10px] text-gray-400">Boarding: 05:35 AM</div>
+            </div>
+
+            <div>
+              <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Cabin Class</span>
+              <div class="font-bold text-sm text-gray-900" id="ticketClass">Economy Saver</div>
+              <div class="text-[10px] text-emerald-600 font-bold">Confirmed</div>
+            </div>
+          </div>
+
+          <!-- Baggage & Add-ons Summary Strip -->
+          <div class="flex flex-wrap items-center justify-between text-xs text-gray-600 gap-3 pt-2">
+            <div class="flex items-center gap-3">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-gray-400">luggage</span> Check-in: <strong>15 kg</strong></span>
+              <span>•</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-gray-400">backpack</span> Cabin: <strong>7 kg</strong></span>
+              <span>•</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-gold-600">restaurant</span> Meal: <strong id="ticketMealLabel">Included</strong></span>
+            </div>
+            <div class="text-emerald-700 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-[16px]">verified</span>
+              <span>Web Check-in Status: Completed</span>
+            </div>
+          </div>
+
+          <!-- Barcode & QR Code Simulator Area -->
+          <div class="pt-6 border-t border-dashed border-gray-300 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="space-y-1 text-center sm:text-left">
+              <span class="text-xs font-bold text-gray-800">Contactless Airport Scanner Barcode</span>
+              <p class="text-[11px] text-gray-400 font-mono">Present this QR code at airport security e-gates and boarding turnstiles.</p>
+              <div class="h-10 w-64 bg-gray-900 text-white font-mono text-[9px] flex items-center justify-center tracking-[4px] rounded mt-2">
+                ||||| | |||| ||| ||||| || |||||| |
+              </div>
+            </div>
+
+            <div class="p-2 bg-white rounded-xl border border-gray-200 shadow-sm flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-[80px] text-primary">qr_code_2</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Multi-Modal Transit Next Steps ("My Paths" PRD Section 1.2) -->
+      <section class="no-print bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-gray-100 space-y-5">
+        <div>
+          <span class="text-xs font-bold text-gold-700 uppercase tracking-wider">Multi-Modal Continuity</span>
+          <h3 class="font-sans text-xl font-extrabold text-primary mt-1">Complete Your Journey</h3>
+          <p class="text-xs text-gray-500">RouteLine automatically synchronizes connecting legs to your arrival terminal.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Connect 1: Cabs -->
+          <a href="../home/cabs.html" class="p-4 rounded-2xl border border-gray-200 hover:border-gold-500 hover:shadow-md transition-all group flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-9 h-9 rounded-xl bg-blue-50 text-secondary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">local_taxi</span>
+              </div>
+              <h4 class="font-sans font-bold text-sm text-primary">Pre-book Airport EV Cab</h4>
+              <p class="text-[11px] text-gray-500">Synchronized with DEL flight arrival even in case of runway delays.</p>
+            </div>
+            <span class="text-xs font-bold text-gold-700 mt-3 block group-hover:underline">Schedule Taxi →</span>
+          </a>
+
+          <!-- Connect 2: Metro -->
+          <a href="../train/metro-ticket.html" class="p-4 rounded-2xl border border-gray-200 hover:border-gold-500 hover:shadow-md transition-all group flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">subway</span>
+              </div>
+              <h4 class="font-sans font-bold text-sm text-primary">Airport Express Metro QR</h4>
+              <p class="text-[11px] text-gray-500">Direct 19-minute transit from T3 to New Delhi Central Station.</p>
+            </div>
+            <span class="text-xs font-bold text-gold-700 mt-3 block group-hover:underline">Issue QR Ticket →</span>
+          </a>
+
+          <!-- Connect 3: Hotels -->
+          <a href="../hotel/hotel-results.html" class="p-4 rounded-2xl border border-gray-200 hover:border-gold-500 hover:shadow-md transition-all group flex flex-col justify-between">
+            <div class="space-y-2">
+              <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-[20px]">hotel</span>
+              </div>
+              <h4 class="font-sans font-bold text-sm text-primary">Aerocity Hotel Stay</h4>
+              <p class="text-[11px] text-gray-500">Verified accommodations with free airport shuttle and breakfast.</p>
+            </div>
+            <span class="text-xs font-bold text-gold-700 mt-3 block group-hover:underline">Browse Accommodations →</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Action Footer Links -->
+      <div class="no-print flex flex-wrap items-center justify-center gap-4 pt-4">
+        <a href="flight-search.html" 
+           class="px-6 py-3 rounded-full bg-primary hover:bg-primary-container text-white font-bold text-xs shadow-md transition-all">
+          Book Another Flight
+        </a>
+        <a href="../../index.html" 
+           class="px-6 py-3 rounded-full bg-white hover:bg-gray-100 border border-gray-200 text-gray-700 font-bold text-xs transition-all">
+          Return to RouteLine Home
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="no-print w-full bg-primary text-white pt-8 pb-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+      <div class="flex items-center gap-2">
+        <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-6">
+        <span>© 2026 RouteLine Transit Technologies. Confirmed E-Ticket.</span>
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="flight-search.html" class="hover:text-white">Flight Search</a>
+        <span>•</span>
+        <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module">
+    import { getFlightState } from '../../src/js/flight/flight-state.js';
+    import { initAuth } from '../../src/js/home/auth/auth.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initAuth({ autoPrompt: false });
+
+      const state = getFlightState();
+      const flight = state.selectedFlight;
+
+      // Extract ref from URL or state
+      const urlParams = new URLSearchParams(window.location.search);
+      const ref = urlParams.get('ref') || state.demoBookingRef || 'RL-DEMO-9824-PNQ';
+
+      document.getElementById('confirmPnrCode').textContent = ref;
+      document.getElementById('ticketPnr').textContent = ref;
+
+      if (state.contactInfo?.email) {
+        document.getElementById('confirmEmail').textContent = state.contactInfo.email;
+      }
+
+      if (flight) {
+        document.getElementById('ticketDepTime').textContent = flight.departureTime;
+        document.getElementById('ticketDepCity').textContent = `${flight.originCity} (${flight.originCode})`;
+        document.getElementById('ticketDepAirport').textContent = flight.originAirport;
+        document.getElementById('ticketArrTime').textContent = flight.arrivalTime;
+        document.getElementById('ticketDestCity').textContent = `${flight.destinationCity} (${flight.destinationCode})`;
+        document.getElementById('ticketDestAirport').textContent = flight.destinationAirport;
+        document.getElementById('ticketFlightDate').textContent = `Thu, ${flight.departureDate}`;
+      }
+
+      const leadPax = state.passengersList?.[0];
+      if (leadPax) {
+        document.getElementById('ticketPaxName').textContent = `${leadPax.title} ${leadPax.firstName} ${leadPax.lastName}`;
+      }
+
+      if (state.selectedSeats?.length) {
+        document.getElementById('ticketSeat').textContent = state.selectedSeats.join(', ');
+      }
+
+      if (state.selectedFareTier === 'club') {
+        document.getElementById('ticketClass').textContent = 'Executive Club';
+      } else if (state.selectedFareTier === 'flexi') {
+        document.getElementById('ticketClass').textContent = 'Flexi Plus';
+      } else {
+        document.getElementById('ticketClass').textContent = 'Economy Saver';
+      }
+    });
+  </script>
+</body>
+</html>
