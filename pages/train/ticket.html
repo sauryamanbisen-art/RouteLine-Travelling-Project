@@ -10,11 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/global/style.css">
-    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
-    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
-    <link rel="stylesheet" href="./src/css/ticket/ticket.css">
-    <link rel="stylesheet" href="./src/css/home/homepage.css">
+    <link rel="stylesheet" href="../../src/css/home/global/style.css">
+    <link rel="stylesheet" href="../../src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+    <link rel="stylesheet" href="../../src/css/train/ticket/ticket.css">
+    <link rel="stylesheet" href="../../src/css/home/homepage.css">
 </head>
 
 <body class="ticket-page-body">
@@ -22,14 +22,14 @@
     <header class="header" style="background: var(--dark-blue);">
         <div class="header-container">
             <div class="logo">
-                <img src="./public/logo.svg" alt="RouteLine Logo">
-                <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+                <img src="../../public/logo.svg" alt="RouteLine Logo">
+                <a href="../../index.html" style="color:white; text-decoration:none;">RouteLine</a>
             </div>
             <nav class="nav-links">
-                <a href="index.html">Trains</a>
-                <a href="flight-results.html">Flights</a>
-                <a href="bus-results.html">Buses</a>
-                <a href="hotel-results.html">Hotels</a>
+                <a href="../../index.html">Trains</a>
+                <a href="../flight/flight-results.html">Flights</a>
+                <a href="../bus/bus-results.html">Buses</a>
+                <a href="../hotel/hotel-results.html">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
             <div class="header-actions">
@@ -46,7 +46,7 @@
     <div class="ticket-subbar no-print">
         <div class="subbar-container">
             <div class="ticket-breadcrumb">
-                <a href="index.html">Home</a>
+                <a href="../../index.html">Home</a>
                 <i data-lucide="chevron-right"></i>
                 <a href="train-results.html">Train Results</a>
                 <i data-lucide="chevron-right"></i>
@@ -111,8 +111,8 @@
     <!-- Footer -->
     <footer class="site-footer no-print">
         <div class="footer-inner">
-            <a href="index.html" class="footer-logo">
-                <img src="./public/logo.svg" alt="RouteLine">RouteLine
+            <a href="../../index.html" class="footer-logo">
+                <img src="../../public/logo.svg" alt="RouteLine">RouteLine
             </a>
             <div class="footer-links">
                 <a href="#">About</a>
@@ -126,7 +126,7 @@
     </footer>
 
     <!-- Modules -->
-    <script type="module" src="./src/js/ticket/ticket.js"></script>
+    <script type="module" src="../../src/js/train/ticket/ticket.js"></script>
     <script>
         lucide.createIcons();
     </script>

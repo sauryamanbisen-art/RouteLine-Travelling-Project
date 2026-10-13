@@ -9,10 +9,10 @@
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="./src/css/global/style.css">
-    <link rel="stylesheet" href="./src/css/train/pnr-status.css">
-    <link rel="stylesheet" href="./src/css/auth/auth-modal.css">
-    <link rel="stylesheet" href="./src/css/metro/metro.css">
+    <link rel="stylesheet" href="../../src/css/home/global/style.css">
+    <link rel="stylesheet" href="../../src/css/train/pnr-status.css">
+    <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+    <link rel="stylesheet" href="../../src/css/train/metro/metro.css">
 </head>
 
 <body class="metro-page-body">
@@ -20,14 +20,14 @@
     <header class="header" style="background: var(--dark-blue);">
         <div class="header-container">
             <div class="logo">
-                <img src="./public/logo.svg" alt="RouteLine Logo">
-                <a href="index.html" style="color:white; text-decoration:none;">RouteLine</a>
+                <img src="../../public/logo.svg" alt="RouteLine Logo">
+                <a href="../../index.html" style="color:white; text-decoration:none;">RouteLine</a>
             </div>
             <nav class="nav-links">
-                <a href="index.html">Trains</a>
-                <a href="flight-results.html">Flights</a>
-                <a href="bus-results.html">Buses</a>
-                <a href="hotel-results.html">Hotels</a>
+                <a href="../../index.html">Trains</a>
+                <a href="../flight/flight-results.html">Flights</a>
+                <a href="../bus/bus-results.html">Buses</a>
+                <a href="../hotel/hotel-results.html">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
             <div class="header-actions">
@@ -44,9 +44,9 @@
     <div class="metro-subbar">
         <div class="metro-subbar-container">
             <div class="metro-breadcrumb">
-                <a href="index.html">Home</a>
+                <a href="../../index.html">Home</a>
                 <i data-lucide="chevron-right"></i>
-                <a href="index.html">Quick Services</a>
+                <a href="../../index.html">Quick Services</a>
                 <i data-lucide="chevron-right"></i>
                 <span>Metro QR Ticket Booking</span>
             </div>
@@ -372,8 +372,8 @@
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-inner">
-            <a href="index.html" class="footer-logo">
-                <img src="./public/logo.svg" alt="RouteLine">
+            <a href="../../index.html" class="footer-logo">
+                <img src="../../public/logo.svg" alt="RouteLine">
                 RouteLine
             </a>
             <div class="footer-links">
@@ -389,7 +389,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script type="module" src="./src/js/metro/metro.js"></script>
+    <script type="module" src="../../src/js/train/metro/metro.js"></script>
 </body>
 
 </html>
