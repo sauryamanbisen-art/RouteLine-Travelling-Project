@@ -40,19 +40,19 @@
 
 .hero-title {
     color: #eaa360;
-    font-size: 64px;
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 15px;
-    letter-spacing: -1px;
+    font-size: var(--hero-title-size, clamp(34px, 4.4vw + 12px, 68px));
+    font-weight: 800;
+    line-height: var(--hero-title-line-height, 1.12);
+    margin-bottom: 14px;
+    letter-spacing: -0.025em;
 }
 
 .hero-subtitle {
     color: white;
-    font-size: 18px;
-    line-height: 1.5;
-    margin-bottom: 40px;
-    opacity: 0.9;
+    font-size: var(--hero-subtitle-size, clamp(16px, 1.2vw + 6px, 21px));
+    line-height: var(--hero-subtitle-line-height, 1.55);
+    margin-bottom: var(--hero-dock-gap, 64px);
+    opacity: 0.95;
 }
 
 /* Booking Widget */

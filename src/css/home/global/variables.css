@@ -32,4 +32,12 @@
     --shadow-md: 0 4px 14px rgba(0,0,0,0.08);
     --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
     --transition: all 0.2s ease;
+
+    /* Hero Typography & Layout Spacing Tokens */
+    --hero-title-size: clamp(34px, 4.4vw + 12px, 68px);
+    --hero-title-line-height: 1.12;
+    --hero-subtitle-size: clamp(16px, 1.2vw + 6px, 21px);
+    --hero-subtitle-line-height: 1.55;
+    --hero-dock-gap: clamp(40px, 4.5vw, 64px);
+    --hero-min-height: clamp(680px, 80vh, 730px);
 }
