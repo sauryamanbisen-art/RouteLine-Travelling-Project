@@ -1,0 +1,122 @@
+[
+  {
+    "id": "airline-6e",
+    "code": "6E",
+    "name": "IndiGo Airlines",
+    "callsign": "IFLY",
+    "country": "India",
+    "countryCode": "IN",
+    "alliance": "None",
+    "fleetSize": 360,
+    "logo": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "15 kg Check-in, 7 kg Cabin"
+  },
+  {
+    "id": "airline-ai",
+    "code": "AI",
+    "name": "Air India",
+    "callsign": "AIRINDIA",
+    "country": "India",
+    "countryCode": "IN",
+    "alliance": "Star Alliance",
+    "fleetSize": 140,
+    "logo": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "25 kg Check-in, 7 kg Cabin (Complimentary hot meals)"
+  },
+  {
+    "id": "airline-uk",
+    "code": "UK",
+    "name": "Vistara",
+    "callsign": "VISTARA",
+    "country": "India",
+    "countryCode": "IN",
+    "alliance": "Star Alliance Affiliate",
+    "fleetSize": 70,
+    "logo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "15 kg Check-in (Eco) / 25 kg (Premium), 7 kg Cabin"
+  },
+  {
+    "id": "airline-qp",
+    "code": "QP",
+    "name": "Akasa Air",
+    "callsign": "AKASA AIR",
+    "country": "India",
+    "countryCode": "IN",
+    "alliance": "None",
+    "fleetSize": 26,
+    "logo": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "15 kg Check-in, 7 kg Cabin (Eco Jet fleet)"
+  },
+  {
+    "id": "airline-sg",
+    "code": "SG",
+    "name": "SpiceJet",
+    "callsign": "SPICEJET",
+    "country": "India",
+    "countryCode": "IN",
+    "alliance": "None",
+    "fleetSize": 55,
+    "logo": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "15 kg Check-in, 7 kg Cabin"
+  },
+  {
+    "id": "airline-ek",
+    "code": "EK",
+    "name": "Emirates",
+    "callsign": "EMIRATES",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "alliance": "None",
+    "fleetSize": 260,
+    "logo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "30 kg Check-in, 7 kg Cabin"
+  },
+  {
+    "id": "airline-sq",
+    "code": "SQ",
+    "name": "Singapore Airlines",
+    "callsign": "SINGAPORE",
+    "country": "Singapore",
+    "countryCode": "SG",
+    "alliance": "Star Alliance",
+    "fleetSize": 150,
+    "logo": "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "30 kg Check-in, 7 kg Cabin"
+  },
+  {
+    "id": "airline-ba",
+    "code": "BA",
+    "name": "British Airways",
+    "callsign": "SPEEDBIRD",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "alliance": "oneworld",
+    "fleetSize": 280,
+    "logo": "https://images.unsplash.com/photo-1506015391300-4802dc74de2e?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "23 kg Check-in, 8 kg Cabin"
+  },
+  {
+    "id": "airline-qr",
+    "code": "QR",
+    "name": "Qatar Airways",
+    "callsign": "QATARI",
+    "country": "Qatar",
+    "countryCode": "QA",
+    "alliance": "oneworld",
+    "fleetSize": 250,
+    "logo": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "30 kg Check-in, 7 kg Cabin"
+  },
+  {
+    "id": "airline-lh",
+    "code": "LH",
+    "name": "Lufthansa",
+    "callsign": "LUFTHANSA",
+    "country": "Germany",
+    "countryCode": "DE",
+    "alliance": "Star Alliance",
+    "fleetSize": 310,
+    "logo": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=80&q=80",
+    "baggagePolicy": "23 kg Check-in, 8 kg Cabin"
+  }
+]

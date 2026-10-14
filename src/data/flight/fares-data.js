@@ -1,0 +1,60 @@
+export const faresData = {
+  "saver": {
+    "id": "saver",
+    "name": "Saver Fare",
+    "badge": "Standard",
+    "priceOffset": 0,
+    "features": [
+      "Standard 15 kg Check-in",
+      "7 kg Hand Baggage",
+      "Seat Selection from ₹200",
+      "Standard Date Change Fee (₹3,000 + fare difference)",
+      "Standard Cancellation Fee (₹3,500)"
+    ],
+    "baggageAllowance": {
+      "checkIn": "15 kg",
+      "cabin": "7 kg"
+    },
+    "cancellationFee": 3500,
+    "rescheduleFee": 3000
+  },
+  "flexi": {
+    "id": "flexi",
+    "name": "Flexi Plus",
+    "badge": "Most Popular",
+    "priceOffset": 750,
+    "features": [
+      "Complimentary Standard Seat",
+      "Free Date Change up to 24h prior",
+      "Complimentary Snack & Beverage",
+      "Priority Baggage Handling",
+      "Reduced Cancellation Fee (₹1,500)"
+    ],
+    "baggageAllowance": {
+      "checkIn": "20 kg",
+      "cabin": "7 kg"
+    },
+    "cancellationFee": 1500,
+    "rescheduleFee": 0
+  },
+  "club": {
+    "id": "club",
+    "name": "RouteLine Concierge Club",
+    "badge": "Executive VIP",
+    "priceOffset": 2200,
+    "features": [
+      "Extra Legroom Seat Included",
+      "Zero Reschedule / Cancellation Fees",
+      "Complimentary Gourmet Hot Meal",
+      "Airport Lounge & Fast Track Priority",
+      "30 kg Extra Generous Baggage"
+    ],
+    "baggageAllowance": {
+      "checkIn": "30 kg",
+      "cabin": "10 kg"
+    },
+    "cancellationFee": 0,
+    "rescheduleFee": 0
+  }
+};
+export default faresData;

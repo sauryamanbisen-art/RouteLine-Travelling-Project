@@ -1,0 +1,3407 @@
+export const airportsData = [
+  {
+    "id": "airport-del",
+    "name": "Indira Gandhi International Airport",
+    "city": "New Delhi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "DEL",
+    "icaoCode": "VIDP",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "new delhi",
+      "delhi",
+      "del",
+      "vidp",
+      "igi",
+      "terminal 3",
+      "t3",
+      "ncr",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-bom",
+    "name": "Chhatrapati Shivaji Maharaj International Airport",
+    "city": "Mumbai",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "BOM",
+    "icaoCode": "VABB",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "mumbai",
+      "bombay",
+      "bom",
+      "vabb",
+      "sahar",
+      "santacruz",
+      "maharashtra",
+      "t2"
+    ]
+  },
+  {
+    "id": "airport-blr",
+    "name": "Kempegowda International Airport",
+    "city": "Bengaluru",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "BLR",
+    "icaoCode": "VOBL",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "bengaluru",
+      "bangalore",
+      "blr",
+      "vobl",
+      "devanahalli",
+      "karnataka",
+      "silicon valley"
+    ]
+  },
+  {
+    "id": "airport-hyd",
+    "name": "Rajiv Gandhi International Airport",
+    "city": "Hyderabad",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "HYD",
+    "icaoCode": "VOHS",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "hyderabad",
+      "hyd",
+      "vohs",
+      "shamshabad",
+      "telangana",
+      "cyberabad"
+    ]
+  },
+  {
+    "id": "airport-maa",
+    "name": "Chennai International Airport",
+    "city": "Chennai",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "MAA",
+    "icaoCode": "VOMM",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "chennai",
+      "madras",
+      "maa",
+      "vomm",
+      "meenambakkam",
+      "tamil nadu"
+    ]
+  },
+  {
+    "id": "airport-ccu",
+    "name": "Netaji Subhash Chandra Bose International Airport",
+    "city": "Kolkata",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "CCU",
+    "icaoCode": "VECC",
+    "region": "Eastern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "kolkata",
+      "calcutta",
+      "ccu",
+      "vecc",
+      "dum dum",
+      "west bengal"
+    ]
+  },
+  {
+    "id": "airport-pnq",
+    "name": "Pune International Airport",
+    "city": "Pune",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "PNQ",
+    "icaoCode": "VAPO",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "pune",
+      "pnq",
+      "vapo",
+      "lohegaon",
+      "maharashtra",
+      "oxford of the east"
+    ]
+  },
+  {
+    "id": "airport-amd",
+    "name": "Sardar Vallabhbhai Patel International Airport",
+    "city": "Ahmedabad",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "AMD",
+    "icaoCode": "VAAH",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "ahmedabad",
+      "amd",
+      "vaah",
+      "gujarat",
+      "gandhinagar",
+      "hansol"
+    ]
+  },
+  {
+    "id": "airport-goi",
+    "name": "Dabolim Airport",
+    "city": "Goa (Dabolim)",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "GOI",
+    "icaoCode": "VAGO",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "goa",
+      "dabolim",
+      "goi",
+      "vago",
+      "south goa",
+      "vasco da gama"
+    ]
+  },
+  {
+    "id": "airport-gox",
+    "name": "Manohar International Airport",
+    "city": "Goa (Mopa)",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "GOX",
+    "icaoCode": "VOGA",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "goa",
+      "mopa",
+      "gox",
+      "voga",
+      "north goa",
+      "pernem"
+    ]
+  },
+  {
+    "id": "airport-cok",
+    "name": "Cochin International Airport",
+    "city": "Kochi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "COK",
+    "icaoCode": "VOCI",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "kochi",
+      "cochin",
+      "cok",
+      "voci",
+      "nedumbassery",
+      "kerala",
+      "solar airport"
+    ]
+  },
+  {
+    "id": "airport-sxr",
+    "name": "Sheikh ul-Alam International Airport",
+    "city": "Srinagar",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "SXR",
+    "icaoCode": "VISR",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "srinagar",
+      "sxr",
+      "visr",
+      "kashmir",
+      "jammu and kashmir",
+      "dal lake"
+    ]
+  },
+  {
+    "id": "airport-jai",
+    "name": "Jaipur International Airport",
+    "city": "Jaipur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "JAI",
+    "icaoCode": "VIJP",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "jaipur",
+      "jai",
+      "vijp",
+      "pink city",
+      "sanganer",
+      "rajasthan"
+    ]
+  },
+  {
+    "id": "airport-lko",
+    "name": "Chaudhary Charan Singh International Airport",
+    "city": "Lucknow",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "LKO",
+    "icaoCode": "VILK",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "lucknow",
+      "lko",
+      "vilk",
+      "amausi",
+      "uttar pradesh",
+      "nawabs"
+    ]
+  },
+  {
+    "id": "airport-ixc",
+    "name": "Shaheed Bhagat Singh International Airport",
+    "city": "Chandigarh",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXC",
+    "icaoCode": "VICG",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "chandigarh",
+      "ixc",
+      "vicg",
+      "mohali",
+      "punjab",
+      "haryana"
+    ]
+  },
+  {
+    "id": "airport-vns",
+    "name": "Lal Bahadur Shastri International Airport",
+    "city": "Varanasi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "VNS",
+    "icaoCode": "VEBN",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "varanasi",
+      "banaras",
+      "kashi",
+      "vns",
+      "vebn",
+      "babatpur",
+      "uttar pradesh"
+    ]
+  },
+  {
+    "id": "airport-atq",
+    "name": "Sri Guru Ram Dass Jee International Airport",
+    "city": "Amritsar",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "ATQ",
+    "icaoCode": "VIAR",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "amritsar",
+      "atq",
+      "viar",
+      "rajasansi",
+      "golden temple",
+      "punjab"
+    ]
+  },
+  {
+    "id": "airport-gau",
+    "name": "Lokpriya Gopinath Bordoloi International Airport",
+    "city": "Guwahati",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "GAU",
+    "icaoCode": "VEGT",
+    "region": "North Eastern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "guwahati",
+      "gau",
+      "vegt",
+      "borjhar",
+      "assam",
+      "northeast gateway"
+    ]
+  },
+  {
+    "id": "airport-bbi",
+    "name": "Biju Patnaik International Airport",
+    "city": "Bhubaneswar",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "BBI",
+    "icaoCode": "VEBS",
+    "region": "Eastern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "bhubaneswar",
+      "bbi",
+      "vebs",
+      "odisha",
+      "puri",
+      "temple city"
+    ]
+  },
+  {
+    "id": "airport-idr",
+    "name": "Devi Ahilya Bai Holkar Airport",
+    "city": "Indore",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IDR",
+    "icaoCode": "VAID",
+    "region": "Central India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "indore",
+      "idr",
+      "vaid",
+      "madhya pradesh",
+      "malwa"
+    ]
+  },
+  {
+    "id": "airport-cjb",
+    "name": "Coimbatore International Airport",
+    "city": "Coimbatore",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "CJB",
+    "icaoCode": "VOCB",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "coimbatore",
+      "cjb",
+      "vocb",
+      "peelamedu",
+      "tamil nadu",
+      "kongu"
+    ]
+  },
+  {
+    "id": "airport-ixe",
+    "name": "Mangalore International Airport",
+    "city": "Mangaluru",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXE",
+    "icaoCode": "VOML",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "mangalore",
+      "mangaluru",
+      "ixe",
+      "voml",
+      "bajpe",
+      "karnataka"
+    ]
+  },
+  {
+    "id": "airport-trv",
+    "name": "Thiruvananthapuram International Airport",
+    "city": "Thiruvananthapuram",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "TRV",
+    "icaoCode": "VOTV",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "thiruvananthapuram",
+      "trivandrum",
+      "trv",
+      "votv",
+      "kerala",
+      "kovalam"
+    ]
+  },
+  {
+    "id": "airport-ccj",
+    "name": "Calicut International Airport",
+    "city": "Kozhikode",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "CCJ",
+    "icaoCode": "VOCL",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "kozhikode",
+      "calicut",
+      "ccj",
+      "vocl",
+      "karipur",
+      "malabar",
+      "kerala"
+    ]
+  },
+  {
+    "id": "airport-pat",
+    "name": "Jay Prakash Narayan Airport",
+    "city": "Patna",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "PAT",
+    "icaoCode": "VEPT",
+    "region": "Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "patna",
+      "pat",
+      "vept",
+      "bihar",
+      "patliputra"
+    ]
+  },
+  {
+    "id": "airport-ixr",
+    "name": "Birsa Munda Airport",
+    "city": "Ranchi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXR",
+    "icaoCode": "VERC",
+    "region": "Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "ranchi",
+      "ixr",
+      "verc",
+      "jharkhand",
+      "hincoo"
+    ]
+  },
+  {
+    "id": "airport-ixb",
+    "name": "Bagdogra International Airport",
+    "city": "Siliguri / Bagdogra",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXB",
+    "icaoCode": "VEBD",
+    "region": "Eastern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "bagdogra",
+      "siliguri",
+      "ixb",
+      "vebd",
+      "darjeeling",
+      "sikkim",
+      "west bengal"
+    ]
+  },
+  {
+    "id": "airport-stv",
+    "name": "Surat International Airport",
+    "city": "Surat",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "STV",
+    "icaoCode": "VASU",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "surat",
+      "stv",
+      "vasu",
+      "magdalla",
+      "gujarat",
+      "diamond city"
+    ]
+  },
+  {
+    "id": "airport-bdq",
+    "name": "Vadodara Airport",
+    "city": "Vadodara",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "BDQ",
+    "icaoCode": "VABO",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "vadodara",
+      "baroda",
+      "bdq",
+      "vabo",
+      "harni",
+      "gujarat"
+    ]
+  },
+  {
+    "id": "airport-bho",
+    "name": "Raja Bhoj Airport",
+    "city": "Bhopal",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "BHO",
+    "icaoCode": "VABP",
+    "region": "Central India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "bhopal",
+      "bho",
+      "vabp",
+      "gandhinagar",
+      "madhya pradesh"
+    ]
+  },
+  {
+    "id": "airport-rpr",
+    "name": "Swami Vivekananda Airport",
+    "city": "Raipur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "RPR",
+    "icaoCode": "VARP",
+    "region": "Central India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "raipur",
+      "rpr",
+      "varp",
+      "mana",
+      "chhattisgarh",
+      "naya raipur"
+    ]
+  },
+  {
+    "id": "airport-ded",
+    "name": "Jolly Grant Airport",
+    "city": "Dehradun",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "DED",
+    "icaoCode": "VIDN",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "dehradun",
+      "ded",
+      "vidn",
+      "jolly grant",
+      "rishikesh",
+      "haridwar",
+      "uttarakhand"
+    ]
+  },
+  {
+    "id": "airport-udr",
+    "name": "Maharana Pratap Airport",
+    "city": "Udaipur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "UDR",
+    "icaoCode": "VAUD",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "udaipur",
+      "udr",
+      "vaud",
+      "dabok",
+      "lake city",
+      "rajasthan"
+    ]
+  },
+  {
+    "id": "airport-jdh",
+    "name": "Jodhpur Airport",
+    "city": "Jodhpur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "JDH",
+    "icaoCode": "VIJO",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "jodhpur",
+      "jdh",
+      "vijo",
+      "blue city",
+      "sun city",
+      "rajasthan"
+    ]
+  },
+  {
+    "id": "airport-ixm",
+    "name": "Madurai Airport",
+    "city": "Madurai",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXM",
+    "icaoCode": "VOMD",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "madurai",
+      "ixm",
+      "vomd",
+      "tamil nadu",
+      "meenakshi temple"
+    ]
+  },
+  {
+    "id": "airport-trz",
+    "name": "Tiruchirappalli International Airport",
+    "city": "Tiruchirappalli",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "TRZ",
+    "icaoCode": "VOTR",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "tiruchirappalli",
+      "trichy",
+      "trz",
+      "votr",
+      "tamil nadu"
+    ]
+  },
+  {
+    "id": "airport-vga",
+    "name": "Vijayawada International Airport",
+    "city": "Vijayawada",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "VGA",
+    "icaoCode": "VOBZ",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "vijayawada",
+      "vga",
+      "vobz",
+      "gannavaram",
+      "amaravati",
+      "andhra pradesh"
+    ]
+  },
+  {
+    "id": "airport-vtz",
+    "name": "Visakhapatnam International Airport",
+    "city": "Visakhapatnam",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "VTZ",
+    "icaoCode": "VOVZ",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "visakhapatnam",
+      "vizag",
+      "vtz",
+      "vovz",
+      "andhra pradesh"
+    ]
+  },
+  {
+    "id": "airport-ixu",
+    "name": "Chhatrapati Sambhajinagar Airport",
+    "city": "Aurangabad",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXU",
+    "icaoCode": "VAAU",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "aurangabad",
+      "sambhajinagar",
+      "ixu",
+      "vaau",
+      "chikalthana",
+      "ellora",
+      "ajanta"
+    ]
+  },
+  {
+    "id": "airport-raj",
+    "name": "Rajkot International Airport",
+    "city": "Rajkot (Hirasar)",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "RAJ",
+    "icaoCode": "VASU",
+    "region": "Western India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "rajkot",
+      "raj",
+      "hirasar",
+      "saurashtra",
+      "gujarat"
+    ]
+  },
+  {
+    "id": "airport-jlr",
+    "name": "Dumna Airport",
+    "city": "Jabalpur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "JLR",
+    "icaoCode": "VAJB",
+    "region": "Central India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "jabalpur",
+      "jlr",
+      "vajb",
+      "dumna",
+      "bhedaghat",
+      "madhya pradesh"
+    ]
+  },
+  {
+    "id": "airport-gwl",
+    "name": "Rajmata Vijaya Raje Scindia Airport",
+    "city": "Gwalior",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "GWL",
+    "icaoCode": "VIGR",
+    "region": "Central India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "gwalior",
+      "gwl",
+      "vigr",
+      "maharajpur",
+      "madhya pradesh"
+    ]
+  },
+  {
+    "id": "airport-ixa",
+    "name": "Maharaja Bir Bikram Airport",
+    "city": "Agartala",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXA",
+    "icaoCode": "VEAT",
+    "region": "North Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "agartala",
+      "ixa",
+      "veat",
+      "singerbhil",
+      "tripura"
+    ]
+  },
+  {
+    "id": "airport-imf",
+    "name": "Bir Tikendrajit International Airport",
+    "city": "Imphal",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IMF",
+    "icaoCode": "VEIM",
+    "region": "North Eastern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "imphal",
+      "imf",
+      "veim",
+      "tulihal",
+      "manipur"
+    ]
+  },
+  {
+    "id": "airport-dmu",
+    "name": "Dimapur Airport",
+    "city": "Dimapur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "DMU",
+    "icaoCode": "VEMR",
+    "region": "North Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "dimapur",
+      "dmu",
+      "vemr",
+      "nagaland",
+      "kohima"
+    ]
+  },
+  {
+    "id": "airport-dib",
+    "name": "Dibrugarh Airport",
+    "city": "Dibrugarh",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "DIB",
+    "icaoCode": "VEMN",
+    "region": "North Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "dibrugarh",
+      "dib",
+      "vemn",
+      "mohanbari",
+      "assam",
+      "tea city"
+    ]
+  },
+  {
+    "id": "airport-ixs",
+    "name": "Silchar Airport",
+    "city": "Silchar",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXS",
+    "icaoCode": "VEKU",
+    "region": "North Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "silchar",
+      "ixs",
+      "veku",
+      "kumbhirgram",
+      "assam",
+      "barak valley"
+    ]
+  },
+  {
+    "id": "airport-ixl",
+    "name": "Kushok Bakula Rimpochee Airport",
+    "city": "Leh",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXL",
+    "icaoCode": "VILH",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "leh",
+      "ladakh",
+      "ixl",
+      "vilh",
+      "himalayas",
+      "high altitude"
+    ]
+  },
+  {
+    "id": "airport-ixj",
+    "name": "Jammu Airport",
+    "city": "Jammu",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXJ",
+    "icaoCode": "VIJU",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "jammu",
+      "ixj",
+      "viju",
+      "satwari",
+      "vaishno devi",
+      "jammu and kashmir"
+    ]
+  },
+  {
+    "id": "airport-ixz",
+    "name": "Veer Savarkar International Airport",
+    "city": "Port Blair",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXZ",
+    "icaoCode": "VOPB",
+    "region": "Islands",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "port blair",
+      "ixz",
+      "vopb",
+      "andaman",
+      "nicobar",
+      "havelock"
+    ]
+  },
+  {
+    "id": "airport-cnn",
+    "name": "Kannur International Airport",
+    "city": "Kannur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "CNN",
+    "icaoCode": "VOKN",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "kannur",
+      "cnn",
+      "vokn",
+      "mattannur",
+      "kerala",
+      "malabar"
+    ]
+  },
+  {
+    "id": "airport-sag",
+    "name": "Shirdi Airport",
+    "city": "Shirdi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "SAG",
+    "icaoCode": "VASD",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "shirdi",
+      "sag",
+      "vasd",
+      "sai baba",
+      "kakadi",
+      "maharashtra"
+    ]
+  },
+  {
+    "id": "airport-ixd",
+    "name": "Prayagraj Airport",
+    "city": "Prayagraj",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXD",
+    "icaoCode": "VEAB",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "prayagraj",
+      "allahabad",
+      "ixd",
+      "veab",
+      "bamrauli",
+      "kumbh mela",
+      "uttar pradesh"
+    ]
+  },
+  {
+    "id": "airport-gop",
+    "name": "Mahayogi Gorakhnath Airport",
+    "city": "Gorakhpur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "GOP",
+    "icaoCode": "VEGK",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "gorakhpur",
+      "gop",
+      "vegk",
+      "uttar pradesh",
+      "purvanchal"
+    ]
+  },
+  {
+    "id": "airport-ayj",
+    "name": "Maharishi Valmiki International Airport",
+    "city": "Ayodhya",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "AYJ",
+    "icaoCode": "VEAY",
+    "region": "Northern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "ayodhya",
+      "ayj",
+      "veay",
+      "ram mandir",
+      "faizabad",
+      "uttar pradesh"
+    ]
+  },
+  {
+    "id": "airport-dxb",
+    "name": "Dubai International Airport",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "iataCode": "DXB",
+    "icaoCode": "OMDB",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Dubai",
+    "searchTerms": [
+      "dubai",
+      "dxb",
+      "uae",
+      "emirates",
+      "t3"
+    ]
+  },
+  {
+    "id": "airport-dwc",
+    "name": "Al Maktoum International Airport",
+    "city": "Dubai",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "iataCode": "DWC",
+    "icaoCode": "OMDW",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Dubai",
+    "searchTerms": [
+      "dubai world central",
+      "dwc",
+      "dubai",
+      "uae",
+      "jebel ali"
+    ]
+  },
+  {
+    "id": "airport-auh",
+    "name": "Zayed International Airport",
+    "city": "Abu Dhabi",
+    "country": "United Arab Emirates",
+    "countryCode": "AE",
+    "iataCode": "AUH",
+    "icaoCode": "OMAA",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Dubai",
+    "searchTerms": [
+      "abu dhabi",
+      "auh",
+      "etihad",
+      "uae"
+    ]
+  },
+  {
+    "id": "airport-doh",
+    "name": "Hamad International Airport",
+    "city": "Doha",
+    "country": "Qatar",
+    "countryCode": "QA",
+    "iataCode": "DOH",
+    "icaoCode": "OTHH",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Qatar",
+    "searchTerms": [
+      "doha",
+      "doh",
+      "qatar",
+      "qatar airways"
+    ]
+  },
+  {
+    "id": "airport-mct",
+    "name": "Muscat International Airport",
+    "city": "Muscat",
+    "country": "Oman",
+    "countryCode": "OM",
+    "iataCode": "MCT",
+    "icaoCode": "OOMS",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Muscat",
+    "searchTerms": [
+      "muscat",
+      "mct",
+      "oman",
+      "seeb"
+    ]
+  },
+  {
+    "id": "airport-bah",
+    "name": "Bahrain International Airport",
+    "city": "Manama",
+    "country": "Bahrain",
+    "countryCode": "BH",
+    "iataCode": "BAH",
+    "icaoCode": "OBBI",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Bahrain",
+    "searchTerms": [
+      "bahrain",
+      "bah",
+      "manama",
+      "muharraq"
+    ]
+  },
+  {
+    "id": "airport-kwi",
+    "name": "Kuwait International Airport",
+    "city": "Kuwait City",
+    "country": "Kuwait",
+    "countryCode": "KW",
+    "iataCode": "KWI",
+    "icaoCode": "OKBK",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Kuwait",
+    "searchTerms": [
+      "kuwait",
+      "kwi",
+      "kuwait city"
+    ]
+  },
+  {
+    "id": "airport-ruh",
+    "name": "King Khalid International Airport",
+    "city": "Riyadh",
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
+    "iataCode": "RUH",
+    "icaoCode": "OERK",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Riyadh",
+    "searchTerms": [
+      "riyadh",
+      "ruh",
+      "saudi arabia",
+      "saudia"
+    ]
+  },
+  {
+    "id": "airport-jed",
+    "name": "King Abdulaziz International Airport",
+    "city": "Jeddah",
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
+    "iataCode": "JED",
+    "icaoCode": "OEJN",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Riyadh",
+    "searchTerms": [
+      "jeddah",
+      "jed",
+      "makkah",
+      "mecca",
+      "hajj",
+      "saudi arabia"
+    ]
+  },
+  {
+    "id": "airport-dmm",
+    "name": "King Fahd International Airport",
+    "city": "Dammam",
+    "country": "Saudi Arabia",
+    "countryCode": "SA",
+    "iataCode": "DMM",
+    "icaoCode": "OEDF",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Riyadh",
+    "searchTerms": [
+      "dammam",
+      "dmm",
+      "khobar",
+      "eastern province",
+      "saudi arabia"
+    ]
+  },
+  {
+    "id": "airport-tlv",
+    "name": "Ben Gurion Airport",
+    "city": "Tel Aviv",
+    "country": "Israel",
+    "countryCode": "IL",
+    "iataCode": "TLV",
+    "icaoCode": "LLBG",
+    "region": "Middle East",
+    "airportType": "international",
+    "timezone": "Asia/Jerusalem",
+    "searchTerms": [
+      "tel aviv",
+      "tlv",
+      "israel",
+      "jerusalem"
+    ]
+  },
+  {
+    "id": "airport-ist",
+    "name": "Istanbul Airport",
+    "city": "Istanbul",
+    "country": "Turkey",
+    "countryCode": "TR",
+    "iataCode": "IST",
+    "icaoCode": "LTFM",
+    "region": "Europe / Middle East",
+    "airportType": "international",
+    "timezone": "Europe/Istanbul",
+    "searchTerms": [
+      "istanbul",
+      "ist",
+      "turkey",
+      "turkish airlines"
+    ]
+  },
+  {
+    "id": "airport-saw",
+    "name": "Sabiha Gokcen International Airport",
+    "city": "Istanbul",
+    "country": "Turkey",
+    "countryCode": "TR",
+    "iataCode": "SAW",
+    "icaoCode": "LTFJ",
+    "region": "Europe / Middle East",
+    "airportType": "international",
+    "timezone": "Europe/Istanbul",
+    "searchTerms": [
+      "istanbul sabiha",
+      "saw",
+      "asian side",
+      "turkey",
+      "pegasus"
+    ]
+  },
+  {
+    "id": "airport-lhr",
+    "name": "Heathrow Airport",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "LHR",
+    "icaoCode": "EGLL",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "london",
+      "lhr",
+      "heathrow",
+      "uk",
+      "british airways"
+    ]
+  },
+  {
+    "id": "airport-lgw",
+    "name": "Gatwick Airport",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "LGW",
+    "icaoCode": "EGKK",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "london gatwick",
+      "lgw",
+      "london",
+      "uk"
+    ]
+  },
+  {
+    "id": "airport-stn",
+    "name": "London Stansted Airport",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "STN",
+    "icaoCode": "EGSS",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "london stansted",
+      "stn",
+      "london",
+      "uk",
+      "ryanair"
+    ]
+  },
+  {
+    "id": "airport-lcy",
+    "name": "London City Airport",
+    "city": "London",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "LCY",
+    "icaoCode": "EGLC",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "london city",
+      "lcy",
+      "canary wharf",
+      "docklands"
+    ]
+  },
+  {
+    "id": "airport-man",
+    "name": "Manchester Airport",
+    "city": "Manchester",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "MAN",
+    "icaoCode": "EGCC",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "manchester",
+      "man",
+      "england",
+      "uk"
+    ]
+  },
+  {
+    "id": "airport-bhx",
+    "name": "Birmingham Airport",
+    "city": "Birmingham",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "BHX",
+    "icaoCode": "EGBB",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "birmingham",
+      "bhx",
+      "midlands",
+      "uk"
+    ]
+  },
+  {
+    "id": "airport-edi",
+    "name": "Edinburgh Airport",
+    "city": "Edinburgh",
+    "country": "United Kingdom",
+    "countryCode": "GB",
+    "iataCode": "EDI",
+    "icaoCode": "EGPH",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/London",
+    "searchTerms": [
+      "edinburgh",
+      "edi",
+      "scotland",
+      "uk"
+    ]
+  },
+  {
+    "id": "airport-cdg",
+    "name": "Charles de Gaulle Airport",
+    "city": "Paris",
+    "country": "France",
+    "countryCode": "FR",
+    "iataCode": "CDG",
+    "icaoCode": "LFPG",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Paris",
+    "searchTerms": [
+      "paris",
+      "cdg",
+      "roissy",
+      "france",
+      "air france"
+    ]
+  },
+  {
+    "id": "airport-ory",
+    "name": "Paris Orly Airport",
+    "city": "Paris",
+    "country": "France",
+    "countryCode": "FR",
+    "iataCode": "ORY",
+    "icaoCode": "LFPO",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Paris",
+    "searchTerms": [
+      "paris orly",
+      "ory",
+      "paris",
+      "france"
+    ]
+  },
+  {
+    "id": "airport-fra",
+    "name": "Frankfurt Airport",
+    "city": "Frankfurt",
+    "country": "Germany",
+    "countryCode": "DE",
+    "iataCode": "FRA",
+    "icaoCode": "EDDF",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Berlin",
+    "searchTerms": [
+      "frankfurt",
+      "fra",
+      "germany",
+      "lufthansa"
+    ]
+  },
+  {
+    "id": "airport-muc",
+    "name": "Munich Airport",
+    "city": "Munich",
+    "country": "Germany",
+    "countryCode": "DE",
+    "iataCode": "MUC",
+    "icaoCode": "EDDM",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Berlin",
+    "searchTerms": [
+      "munich",
+      "muc",
+      "bavaria",
+      "germany"
+    ]
+  },
+  {
+    "id": "airport-ber",
+    "name": "Berlin Brandenburg Airport",
+    "city": "Berlin",
+    "country": "Germany",
+    "countryCode": "DE",
+    "iataCode": "BER",
+    "icaoCode": "EDDB",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Berlin",
+    "searchTerms": [
+      "berlin",
+      "ber",
+      "brandenburg",
+      "germany"
+    ]
+  },
+  {
+    "id": "airport-ams",
+    "name": "Amsterdam Airport Schiphol",
+    "city": "Amsterdam",
+    "country": "Netherlands",
+    "countryCode": "NL",
+    "iataCode": "AMS",
+    "icaoCode": "EHAM",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Amsterdam",
+    "searchTerms": [
+      "amsterdam",
+      "ams",
+      "schiphol",
+      "netherlands",
+      "klm"
+    ]
+  },
+  {
+    "id": "airport-zrh",
+    "name": "Zurich Airport",
+    "city": "Zurich",
+    "country": "Switzerland",
+    "countryCode": "CH",
+    "iataCode": "ZRH",
+    "icaoCode": "LSZH",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Zurich",
+    "searchTerms": [
+      "zurich",
+      "zrh",
+      "switzerland",
+      "swiss"
+    ]
+  },
+  {
+    "id": "airport-gva",
+    "name": "Geneva Airport",
+    "city": "Geneva",
+    "country": "Switzerland",
+    "countryCode": "CH",
+    "iataCode": "GVA",
+    "icaoCode": "LSGG",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Zurich",
+    "searchTerms": [
+      "geneva",
+      "gva",
+      "switzerland",
+      "cointrin"
+    ]
+  },
+  {
+    "id": "airport-vie",
+    "name": "Vienna International Airport",
+    "city": "Vienna",
+    "country": "Austria",
+    "countryCode": "AT",
+    "iataCode": "VIE",
+    "icaoCode": "LOWW",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Vienna",
+    "searchTerms": [
+      "vienna",
+      "vie",
+      "austria",
+      "schwechat"
+    ]
+  },
+  {
+    "id": "airport-fco",
+    "name": "Leonardo da Vinci–Fiumicino Airport",
+    "city": "Rome",
+    "country": "Italy",
+    "countryCode": "IT",
+    "iataCode": "FCO",
+    "icaoCode": "LIRF",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Rome",
+    "searchTerms": [
+      "rome",
+      "fco",
+      "fiumicino",
+      "italy"
+    ]
+  },
+  {
+    "id": "airport-mxp",
+    "name": "Milan Malpensa Airport",
+    "city": "Milan",
+    "country": "Italy",
+    "countryCode": "IT",
+    "iataCode": "MXP",
+    "icaoCode": "LIMC",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Rome",
+    "searchTerms": [
+      "milan",
+      "mxp",
+      "malpensa",
+      "italy"
+    ]
+  },
+  {
+    "id": "airport-lin",
+    "name": "Milan Linate Airport",
+    "city": "Milan",
+    "country": "Italy",
+    "countryCode": "IT",
+    "iataCode": "LIN",
+    "icaoCode": "LIML",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Rome",
+    "searchTerms": [
+      "milan linate",
+      "lin",
+      "milan",
+      "italy"
+    ]
+  },
+  {
+    "id": "airport-mad",
+    "name": "Adolfo Suárez Madrid–Barajas Airport",
+    "city": "Madrid",
+    "country": "Spain",
+    "countryCode": "ES",
+    "iataCode": "MAD",
+    "icaoCode": "LEMD",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Madrid",
+    "searchTerms": [
+      "madrid",
+      "mad",
+      "barajas",
+      "spain",
+      "iberia"
+    ]
+  },
+  {
+    "id": "airport-bcn",
+    "name": "Josep Tarradellas Barcelona-El Prat Airport",
+    "city": "Barcelona",
+    "country": "Spain",
+    "countryCode": "ES",
+    "iataCode": "BCN",
+    "icaoCode": "LEBL",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Madrid",
+    "searchTerms": [
+      "barcelona",
+      "bcn",
+      "el prat",
+      "catalonia",
+      "spain"
+    ]
+  },
+  {
+    "id": "airport-lis",
+    "name": "Humberto Delgado Airport",
+    "city": "Lisbon",
+    "country": "Portugal",
+    "countryCode": "PT",
+    "iataCode": "LIS",
+    "icaoCode": "LPPT",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Lisbon",
+    "searchTerms": [
+      "lisbon",
+      "lis",
+      "portugal",
+      "tap"
+    ]
+  },
+  {
+    "id": "airport-bru",
+    "name": "Brussels Airport",
+    "city": "Brussels",
+    "country": "Belgium",
+    "countryCode": "BE",
+    "iataCode": "BRU",
+    "icaoCode": "EBBR",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Brussels",
+    "searchTerms": [
+      "brussels",
+      "bru",
+      "belgium",
+      "zaventem"
+    ]
+  },
+  {
+    "id": "airport-dub",
+    "name": "Dublin Airport",
+    "city": "Dublin",
+    "country": "Ireland",
+    "countryCode": "IE",
+    "iataCode": "DUB",
+    "icaoCode": "EIDW",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Dublin",
+    "searchTerms": [
+      "dublin",
+      "dub",
+      "ireland",
+      "aer lingus"
+    ]
+  },
+  {
+    "id": "airport-cph",
+    "name": "Copenhagen Airport",
+    "city": "Copenhagen",
+    "country": "Denmark",
+    "countryCode": "DK",
+    "iataCode": "CPH",
+    "icaoCode": "EKCH",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Copenhagen",
+    "searchTerms": [
+      "copenhagen",
+      "cph",
+      "kastrup",
+      "denmark"
+    ]
+  },
+  {
+    "id": "airport-arn",
+    "name": "Stockholm Arlanda Airport",
+    "city": "Stockholm",
+    "country": "Sweden",
+    "countryCode": "SE",
+    "iataCode": "ARN",
+    "icaoCode": "ESSA",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Stockholm",
+    "searchTerms": [
+      "stockholm",
+      "arn",
+      "arlanda",
+      "sweden",
+      "scandinavia"
+    ]
+  },
+  {
+    "id": "airport-osl",
+    "name": "Oslo Gardermoen Airport",
+    "city": "Oslo",
+    "country": "Norway",
+    "countryCode": "NO",
+    "iataCode": "OSL",
+    "icaoCode": "ENGM",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Oslo",
+    "searchTerms": [
+      "oslo",
+      "osl",
+      "gardermoen",
+      "norway"
+    ]
+  },
+  {
+    "id": "airport-hel",
+    "name": "Helsinki-Vantaa Airport",
+    "city": "Helsinki",
+    "country": "Finland",
+    "countryCode": "FI",
+    "iataCode": "HEL",
+    "icaoCode": "EFHK",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Helsinki",
+    "searchTerms": [
+      "helsinki",
+      "hel",
+      "vantaa",
+      "finland",
+      "finnair"
+    ]
+  },
+  {
+    "id": "airport-ath",
+    "name": "Athens International Airport",
+    "city": "Athens",
+    "country": "Greece",
+    "countryCode": "GR",
+    "iataCode": "ATH",
+    "icaoCode": "LGAV",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Athens",
+    "searchTerms": [
+      "athens",
+      "ath",
+      "greece",
+      "eleftherios venizelos"
+    ]
+  },
+  {
+    "id": "airport-prg",
+    "name": "Václav Havel Airport Prague",
+    "city": "Prague",
+    "country": "Czech Republic",
+    "countryCode": "CZ",
+    "iataCode": "PRG",
+    "icaoCode": "LKPR",
+    "region": "Europe",
+    "airportType": "international",
+    "timezone": "Europe/Prague",
+    "searchTerms": [
+      "prague",
+      "prg",
+      "czech republic"
+    ]
+  },
+  {
+    "id": "airport-sin",
+    "name": "Singapore Changi Airport",
+    "city": "Singapore",
+    "country": "Singapore",
+    "countryCode": "SG",
+    "iataCode": "SIN",
+    "icaoCode": "WSSS",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Singapore",
+    "searchTerms": [
+      "singapore",
+      "sin",
+      "changi",
+      "singapore airlines",
+      "jewel"
+    ]
+  },
+  {
+    "id": "airport-bkk",
+    "name": "Suvarnabhumi Airport",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "countryCode": "TH",
+    "iataCode": "BKK",
+    "icaoCode": "VTBS",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Bangkok",
+    "searchTerms": [
+      "bangkok",
+      "bkk",
+      "suvarnabhumi",
+      "thailand",
+      "thai airways"
+    ]
+  },
+  {
+    "id": "airport-dmk",
+    "name": "Don Mueang International Airport",
+    "city": "Bangkok",
+    "country": "Thailand",
+    "countryCode": "TH",
+    "iataCode": "DMK",
+    "icaoCode": "VTBD",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Bangkok",
+    "searchTerms": [
+      "bangkok don mueang",
+      "dmk",
+      "bangkok",
+      "thailand",
+      "airasia"
+    ]
+  },
+  {
+    "id": "airport-hkt",
+    "name": "Phuket International Airport",
+    "city": "Phuket",
+    "country": "Thailand",
+    "countryCode": "TH",
+    "iataCode": "HKT",
+    "icaoCode": "VTSP",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Bangkok",
+    "searchTerms": [
+      "phuket",
+      "hkt",
+      "thailand",
+      "patong",
+      "beaches"
+    ]
+  },
+  {
+    "id": "airport-kul",
+    "name": "Kuala Lumpur International Airport",
+    "city": "Kuala Lumpur",
+    "country": "Malaysia",
+    "countryCode": "MY",
+    "iataCode": "KUL",
+    "icaoCode": "WMKK",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Kuala_Lumpur",
+    "searchTerms": [
+      "kuala lumpur",
+      "kul",
+      "klia",
+      "klia2",
+      "malaysia"
+    ]
+  },
+  {
+    "id": "airport-dps",
+    "name": "Ngurah Rai International Airport",
+    "city": "Denpasar (Bali)",
+    "country": "Indonesia",
+    "countryCode": "ID",
+    "iataCode": "DPS",
+    "icaoCode": "WADD",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Makassar",
+    "searchTerms": [
+      "bali",
+      "dps",
+      "denpasar",
+      "indonesia",
+      "kuta",
+      "ubud"
+    ]
+  },
+  {
+    "id": "airport-cgk",
+    "name": "Soekarno–Hatta International Airport",
+    "city": "Jakarta",
+    "country": "Indonesia",
+    "countryCode": "ID",
+    "iataCode": "CGK",
+    "icaoCode": "WIII",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Jakarta",
+    "searchTerms": [
+      "jakarta",
+      "cgk",
+      "cengkareng",
+      "indonesia"
+    ]
+  },
+  {
+    "id": "airport-mnl",
+    "name": "Ninoy Aquino International Airport",
+    "city": "Manila",
+    "country": "Philippines",
+    "countryCode": "PH",
+    "iataCode": "MNL",
+    "icaoCode": "RPLL",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Manila",
+    "searchTerms": [
+      "manila",
+      "mnl",
+      "philippines"
+    ]
+  },
+  {
+    "id": "airport-hnd",
+    "name": "Tokyo Haneda Airport",
+    "city": "Tokyo",
+    "country": "Japan",
+    "countryCode": "JP",
+    "iataCode": "HND",
+    "icaoCode": "RJTT",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Tokyo",
+    "searchTerms": [
+      "tokyo haneda",
+      "hnd",
+      "tokyo",
+      "japan",
+      "ana",
+      "jal"
+    ]
+  },
+  {
+    "id": "airport-nrt",
+    "name": "Narita International Airport",
+    "city": "Tokyo",
+    "country": "Japan",
+    "countryCode": "JP",
+    "iataCode": "NRT",
+    "icaoCode": "RJAA",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Tokyo",
+    "searchTerms": [
+      "tokyo narita",
+      "nrt",
+      "tokyo",
+      "japan"
+    ]
+  },
+  {
+    "id": "airport-kix",
+    "name": "Kansai International Airport",
+    "city": "Osaka",
+    "country": "Japan",
+    "countryCode": "JP",
+    "iataCode": "KIX",
+    "icaoCode": "RJBB",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Tokyo",
+    "searchTerms": [
+      "osaka",
+      "kix",
+      "kansai",
+      "kyoto",
+      "japan"
+    ]
+  },
+  {
+    "id": "airport-icn",
+    "name": "Incheon International Airport",
+    "city": "Seoul",
+    "country": "South Korea",
+    "countryCode": "KR",
+    "iataCode": "ICN",
+    "icaoCode": "RKSI",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Seoul",
+    "searchTerms": [
+      "seoul",
+      "icn",
+      "incheon",
+      "korea",
+      "korean air"
+    ]
+  },
+  {
+    "id": "airport-hkg",
+    "name": "Hong Kong International Airport",
+    "city": "Hong Kong",
+    "country": "Hong Kong",
+    "countryCode": "HK",
+    "iataCode": "HKG",
+    "icaoCode": "VHHH",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Hong_Kong",
+    "searchTerms": [
+      "hong kong",
+      "hkg",
+      "chek lap kok",
+      "cathay pacific"
+    ]
+  },
+  {
+    "id": "airport-tpe",
+    "name": "Taiwan Taoyuan International Airport",
+    "city": "Taipei",
+    "country": "Taiwan",
+    "countryCode": "TW",
+    "iataCode": "TPE",
+    "icaoCode": "RCTP",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Taipei",
+    "searchTerms": [
+      "taipei",
+      "tpe",
+      "taiwan",
+      "eva air"
+    ]
+  },
+  {
+    "id": "airport-pek",
+    "name": "Beijing Capital International Airport",
+    "city": "Beijing",
+    "country": "China",
+    "countryCode": "CN",
+    "iataCode": "PEK",
+    "icaoCode": "ZBAA",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Shanghai",
+    "searchTerms": [
+      "beijing capital",
+      "pek",
+      "beijing",
+      "china",
+      "air china"
+    ]
+  },
+  {
+    "id": "airport-pkx",
+    "name": "Beijing Daxing International Airport",
+    "city": "Beijing",
+    "country": "China",
+    "countryCode": "CN",
+    "iataCode": "PKX",
+    "icaoCode": "ZBAD",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Shanghai",
+    "searchTerms": [
+      "beijing daxing",
+      "pkx",
+      "beijing",
+      "china",
+      "starfish"
+    ]
+  },
+  {
+    "id": "airport-pvg",
+    "name": "Shanghai Pudong International Airport",
+    "city": "Shanghai",
+    "country": "China",
+    "countryCode": "CN",
+    "iataCode": "PVG",
+    "icaoCode": "ZSPD",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Shanghai",
+    "searchTerms": [
+      "shanghai",
+      "pvg",
+      "pudong",
+      "china"
+    ]
+  },
+  {
+    "id": "airport-can",
+    "name": "Guangzhou Baiyun International Airport",
+    "city": "Guangzhou",
+    "country": "China",
+    "countryCode": "CN",
+    "iataCode": "CAN",
+    "icaoCode": "ZGGG",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Shanghai",
+    "searchTerms": [
+      "guangzhou",
+      "can",
+      "baiyun",
+      "canton",
+      "china"
+    ]
+  },
+  {
+    "id": "airport-sgn",
+    "name": "Tan Son Nhat International Airport",
+    "city": "Ho Chi Minh City",
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "iataCode": "SGN",
+    "icaoCode": "VVTS",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "searchTerms": [
+      "ho chi minh",
+      "saigon",
+      "sgn",
+      "vietnam"
+    ]
+  },
+  {
+    "id": "airport-han",
+    "name": "Noi Bai International Airport",
+    "city": "Hanoi",
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "iataCode": "HAN",
+    "icaoCode": "VVNB",
+    "region": "Asia-Pacific",
+    "airportType": "international",
+    "timezone": "Asia/Ho_Chi_Minh",
+    "searchTerms": [
+      "hanoi",
+      "han",
+      "noi bai",
+      "vietnam"
+    ]
+  },
+  {
+    "id": "airport-cmb",
+    "name": "Bandaranaike International Airport",
+    "city": "Colombo",
+    "country": "Sri Lanka",
+    "countryCode": "LK",
+    "iataCode": "CMB",
+    "icaoCode": "VCBI",
+    "region": "South Asia",
+    "airportType": "international",
+    "timezone": "Asia/Colombo",
+    "searchTerms": [
+      "colombo",
+      "cmb",
+      "katunayake",
+      "sri lanka",
+      "srilankan airlines"
+    ]
+  },
+  {
+    "id": "airport-mle",
+    "name": "Velana International Airport",
+    "city": "Male",
+    "country": "Maldives",
+    "countryCode": "MV",
+    "iataCode": "MLE",
+    "icaoCode": "VRMM",
+    "region": "South Asia",
+    "airportType": "international",
+    "timezone": "Indian/Maldives",
+    "searchTerms": [
+      "male",
+      "mle",
+      "maldives",
+      "hulhule",
+      "resort islands"
+    ]
+  },
+  {
+    "id": "airport-ktm",
+    "name": "Tribhuvan International Airport",
+    "city": "Kathmandu",
+    "country": "Nepal",
+    "countryCode": "NP",
+    "iataCode": "KTM",
+    "icaoCode": "VNKT",
+    "region": "South Asia",
+    "airportType": "international",
+    "timezone": "Asia/Kathmandu",
+    "searchTerms": [
+      "kathmandu",
+      "ktm",
+      "nepal",
+      "everest gateway"
+    ]
+  },
+  {
+    "id": "airport-dac",
+    "name": "Hazrat Shahjalal International Airport",
+    "city": "Dhaka",
+    "country": "Bangladesh",
+    "countryCode": "BD",
+    "iataCode": "DAC",
+    "icaoCode": "VGHS",
+    "region": "South Asia",
+    "airportType": "international",
+    "timezone": "Asia/Dhaka",
+    "searchTerms": [
+      "dhaka",
+      "dac",
+      "bangladesh",
+      "kurmitola"
+    ]
+  },
+  {
+    "id": "airport-khi",
+    "name": "Jinnah International Airport",
+    "city": "Karachi",
+    "country": "Pakistan",
+    "countryCode": "PK",
+    "iataCode": "KHI",
+    "icaoCode": "OPKC",
+    "region": "South Asia",
+    "airportType": "international",
+    "timezone": "Asia/Karachi",
+    "searchTerms": [
+      "karachi",
+      "khi",
+      "pakistan"
+    ]
+  },
+  {
+    "id": "airport-jfk",
+    "name": "John F. Kennedy International Airport",
+    "city": "New York",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "JFK",
+    "icaoCode": "KJFK",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "new york",
+      "jfk",
+      "kennedy",
+      "nyc",
+      "queens"
+    ]
+  },
+  {
+    "id": "airport-ewr",
+    "name": "Newark Liberty International Airport",
+    "city": "New York / Newark",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "EWR",
+    "icaoCode": "KEWR",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "newark",
+      "ewr",
+      "new york",
+      "new jersey",
+      "united"
+    ]
+  },
+  {
+    "id": "airport-lga",
+    "name": "LaGuardia Airport",
+    "city": "New York",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "LGA",
+    "icaoCode": "KLGA",
+    "region": "North America",
+    "airportType": "domestic",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "laguardia",
+      "lga",
+      "new york",
+      "nyc",
+      "queens"
+    ]
+  },
+  {
+    "id": "airport-lax",
+    "name": "Los Angeles International Airport",
+    "city": "Los Angeles",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "LAX",
+    "icaoCode": "KLAX",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Los_Angeles",
+    "searchTerms": [
+      "los angeles",
+      "lax",
+      "california",
+      "hollywood"
+    ]
+  },
+  {
+    "id": "airport-sfo",
+    "name": "San Francisco International Airport",
+    "city": "San Francisco",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "SFO",
+    "icaoCode": "KSFO",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Los_Angeles",
+    "searchTerms": [
+      "san francisco",
+      "sfo",
+      "bay area",
+      "silicon valley",
+      "california"
+    ]
+  },
+  {
+    "id": "airport-ord",
+    "name": "O'Hare International Airport",
+    "city": "Chicago",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "ORD",
+    "icaoCode": "KORD",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Chicago",
+    "searchTerms": [
+      "chicago",
+      "ord",
+      "o'hare",
+      "illinois",
+      "windy city"
+    ]
+  },
+  {
+    "id": "airport-dfw",
+    "name": "Dallas/Fort Worth International Airport",
+    "city": "Dallas",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "DFW",
+    "icaoCode": "KDFW",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Chicago",
+    "searchTerms": [
+      "dallas",
+      "dfw",
+      "fort worth",
+      "texas",
+      "american airlines"
+    ]
+  },
+  {
+    "id": "airport-atl",
+    "name": "Hartsfield–Jackson Atlanta International Airport",
+    "city": "Atlanta",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "ATL",
+    "icaoCode": "KATL",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "atlanta",
+      "atl",
+      "georgia",
+      "delta"
+    ]
+  },
+  {
+    "id": "airport-mia",
+    "name": "Miami International Airport",
+    "city": "Miami",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "MIA",
+    "icaoCode": "KMIA",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "miami",
+      "mia",
+      "florida",
+      "south beach"
+    ]
+  },
+  {
+    "id": "airport-mco",
+    "name": "Orlando International Airport",
+    "city": "Orlando",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "MCO",
+    "icaoCode": "KMCO",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "orlando",
+      "mco",
+      "disney",
+      "florida"
+    ]
+  },
+  {
+    "id": "airport-sea",
+    "name": "Seattle–Tacoma International Airport",
+    "city": "Seattle",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "SEA",
+    "icaoCode": "KSEA",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Los_Angeles",
+    "searchTerms": [
+      "seattle",
+      "sea",
+      "seatac",
+      "washington"
+    ]
+  },
+  {
+    "id": "airport-bos",
+    "name": "Boston Logan International Airport",
+    "city": "Boston",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "BOS",
+    "icaoCode": "KBOS",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "boston",
+      "bos",
+      "logan",
+      "massachusetts",
+      "harvard"
+    ]
+  },
+  {
+    "id": "airport-iad",
+    "name": "Washington Dulles International Airport",
+    "city": "Washington, D.C.",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "IAD",
+    "icaoCode": "KIAD",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "washington",
+      "iad",
+      "dulles",
+      "virginia",
+      "dc"
+    ]
+  },
+  {
+    "id": "airport-dca",
+    "name": "Ronald Reagan Washington National Airport",
+    "city": "Washington, D.C.",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "DCA",
+    "icaoCode": "KDCA",
+    "region": "North America",
+    "airportType": "domestic",
+    "timezone": "America/New_York",
+    "searchTerms": [
+      "reagan",
+      "dca",
+      "washington national",
+      "dc"
+    ]
+  },
+  {
+    "id": "airport-las",
+    "name": "Harry Reid International Airport",
+    "city": "Las Vegas",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "LAS",
+    "icaoCode": "KLAS",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Los_Angeles",
+    "searchTerms": [
+      "las vegas",
+      "las",
+      "vegas",
+      "mccarran",
+      "nevada",
+      "strip"
+    ]
+  },
+  {
+    "id": "airport-den",
+    "name": "Denver International Airport",
+    "city": "Denver",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "DEN",
+    "icaoCode": "KDEN",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Denver",
+    "searchTerms": [
+      "denver",
+      "den",
+      "colorado",
+      "rockies"
+    ]
+  },
+  {
+    "id": "airport-iah",
+    "name": "George Bush Intercontinental Airport",
+    "city": "Houston",
+    "country": "United States",
+    "countryCode": "US",
+    "iataCode": "IAH",
+    "icaoCode": "KIAH",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Chicago",
+    "searchTerms": [
+      "houston",
+      "iah",
+      "texas",
+      "bush"
+    ]
+  },
+  {
+    "id": "airport-yyz",
+    "name": "Toronto Pearson International Airport",
+    "city": "Toronto",
+    "country": "Canada",
+    "countryCode": "CA",
+    "iataCode": "YYZ",
+    "icaoCode": "CYYZ",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Toronto",
+    "searchTerms": [
+      "toronto",
+      "yyz",
+      "pearson",
+      "ontario",
+      "canada",
+      "air canada"
+    ]
+  },
+  {
+    "id": "airport-yvr",
+    "name": "Vancouver International Airport",
+    "city": "Vancouver",
+    "country": "Canada",
+    "countryCode": "CA",
+    "iataCode": "YVR",
+    "icaoCode": "CYVR",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Vancouver",
+    "searchTerms": [
+      "vancouver",
+      "yvr",
+      "british columbia",
+      "canada"
+    ]
+  },
+  {
+    "id": "airport-yul",
+    "name": "Montréal–Trudeau International Airport",
+    "city": "Montreal",
+    "country": "Canada",
+    "countryCode": "CA",
+    "iataCode": "YUL",
+    "icaoCode": "CYUL",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Toronto",
+    "searchTerms": [
+      "montreal",
+      "yul",
+      "dorval",
+      "quebec",
+      "canada"
+    ]
+  },
+  {
+    "id": "airport-yyc",
+    "name": "Calgary International Airport",
+    "city": "Calgary",
+    "country": "Canada",
+    "countryCode": "CA",
+    "iataCode": "YYC",
+    "icaoCode": "CYYC",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Edmonton",
+    "searchTerms": [
+      "calgary",
+      "yyc",
+      "alberta",
+      "banff gateway",
+      "canada"
+    ]
+  },
+  {
+    "id": "airport-mex",
+    "name": "Mexico City International Airport",
+    "city": "Mexico City",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "iataCode": "MEX",
+    "icaoCode": "MMMX",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Mexico_City",
+    "searchTerms": [
+      "mexico city",
+      "mex",
+      "benito juarez",
+      "mexico",
+      "aeromexico"
+    ]
+  },
+  {
+    "id": "airport-cun",
+    "name": "Cancún International Airport",
+    "city": "Cancun",
+    "country": "Mexico",
+    "countryCode": "MX",
+    "iataCode": "CUN",
+    "icaoCode": "MMUN",
+    "region": "North America",
+    "airportType": "international",
+    "timezone": "America/Cancun",
+    "searchTerms": [
+      "cancun",
+      "cun",
+      "riviera maya",
+      "mexico"
+    ]
+  },
+  {
+    "id": "airport-syd",
+    "name": "Sydney Kingsford Smith Airport",
+    "city": "Sydney",
+    "country": "Australia",
+    "countryCode": "AU",
+    "iataCode": "SYD",
+    "icaoCode": "YSSY",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Australia/Sydney",
+    "searchTerms": [
+      "sydney",
+      "syd",
+      "kingsford smith",
+      "australia",
+      "qantas"
+    ]
+  },
+  {
+    "id": "airport-mel",
+    "name": "Melbourne Airport",
+    "city": "Melbourne",
+    "country": "Australia",
+    "countryCode": "AU",
+    "iataCode": "MEL",
+    "icaoCode": "YMML",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Australia/Melbourne",
+    "searchTerms": [
+      "melbourne",
+      "mel",
+      "tullamarine",
+      "victoria",
+      "australia"
+    ]
+  },
+  {
+    "id": "airport-bne",
+    "name": "Brisbane Airport",
+    "city": "Brisbane",
+    "country": "Australia",
+    "countryCode": "AU",
+    "iataCode": "BNE",
+    "icaoCode": "YBBN",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Australia/Brisbane",
+    "searchTerms": [
+      "brisbane",
+      "bne",
+      "queensland",
+      "gold coast",
+      "australia"
+    ]
+  },
+  {
+    "id": "airport-per",
+    "name": "Perth Airport",
+    "city": "Perth",
+    "country": "Australia",
+    "countryCode": "AU",
+    "iataCode": "PER",
+    "icaoCode": "YPPH",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Australia/Perth",
+    "searchTerms": [
+      "perth",
+      "per",
+      "western australia",
+      "australia"
+    ]
+  },
+  {
+    "id": "airport-adl",
+    "name": "Adelaide Airport",
+    "city": "Adelaide",
+    "country": "Australia",
+    "countryCode": "AU",
+    "iataCode": "ADL",
+    "icaoCode": "YPAD",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Australia/Adelaide",
+    "searchTerms": [
+      "adelaide",
+      "adl",
+      "south australia"
+    ]
+  },
+  {
+    "id": "airport-akl",
+    "name": "Auckland Airport",
+    "city": "Auckland",
+    "country": "New Zealand",
+    "countryCode": "NZ",
+    "iataCode": "AKL",
+    "icaoCode": "NZAA",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Pacific/Auckland",
+    "searchTerms": [
+      "auckland",
+      "akl",
+      "new zealand",
+      "air new zealand"
+    ]
+  },
+  {
+    "id": "airport-chc",
+    "name": "Christchurch Airport",
+    "city": "Christchurch",
+    "country": "New Zealand",
+    "countryCode": "NZ",
+    "iataCode": "CHC",
+    "icaoCode": "NZCH",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Pacific/Auckland",
+    "searchTerms": [
+      "christchurch",
+      "chc",
+      "south island",
+      "new zealand"
+    ]
+  },
+  {
+    "id": "airport-nan",
+    "name": "Nadi International Airport",
+    "city": "Nadi",
+    "country": "Fiji",
+    "countryCode": "FJ",
+    "iataCode": "NAN",
+    "icaoCode": "NFFN",
+    "region": "Oceania",
+    "airportType": "international",
+    "timezone": "Pacific/Fiji",
+    "searchTerms": [
+      "fiji",
+      "nan",
+      "nadi",
+      "south pacific"
+    ]
+  },
+  {
+    "id": "airport-jnb",
+    "name": "O. R. Tambo International Airport",
+    "city": "Johannesburg",
+    "country": "South Africa",
+    "countryCode": "ZA",
+    "iataCode": "JNB",
+    "icaoCode": "FAOR",
+    "region": "Africa",
+    "airportType": "international",
+    "timezone": "Africa/Johannesburg",
+    "searchTerms": [
+      "johannesburg",
+      "jnb",
+      "south africa",
+      "joburg"
+    ]
+  },
+  {
+    "id": "airport-cpt",
+    "name": "Cape Town International Airport",
+    "city": "Cape Town",
+    "country": "South Africa",
+    "countryCode": "ZA",
+    "iataCode": "CPT",
+    "icaoCode": "FACT",
+    "region": "Africa",
+    "airportType": "international",
+    "timezone": "Africa/Johannesburg",
+    "searchTerms": [
+      "cape town",
+      "cpt",
+      "table mountain",
+      "south africa"
+    ]
+  },
+  {
+    "id": "airport-cai",
+    "name": "Cairo International Airport",
+    "city": "Cairo",
+    "country": "Egypt",
+    "countryCode": "EG",
+    "iataCode": "CAI",
+    "icaoCode": "HECA",
+    "region": "Africa",
+    "airportType": "international",
+    "timezone": "Africa/Cairo",
+    "searchTerms": [
+      "cairo",
+      "cai",
+      "egypt",
+      "pyramids",
+      "egyptair"
+    ]
+  },
+  {
+    "id": "airport-nbo",
+    "name": "Jomo Kenyatta International Airport",
+    "city": "Nairobi",
+    "country": "Kenya",
+    "countryCode": "KE",
+    "iataCode": "NBO",
+    "icaoCode": "HKJK",
+    "region": "Africa",
+    "airportType": "international",
+    "timezone": "Africa/Nairobi",
+    "searchTerms": [
+      "nairobi",
+      "nbo",
+      "kenya",
+      "kenya airways",
+      "safari gateway"
+    ]
+  },
+  {
+    "id": "airport-add",
+    "name": "Addis Ababa Bole International Airport",
+    "city": "Addis Ababa",
+    "country": "Ethiopia",
+    "countryCode": "ET",
+    "iataCode": "ADD",
+    "icaoCode": "HAAB",
+    "region": "Africa",
+    "airportType": "international",
+    "timezone": "Africa/Addis_Ababa",
+    "searchTerms": [
+      "addis ababa",
+      "add",
+      "bole",
+      "ethiopia",
+      "ethiopian airlines"
+    ]
+  },
+  {
+    "id": "airport-cmn",
+    "name": "Mohammed V International Airport",
+    "city": "Casablanca",
+    "country": "Morocco",
+    "countryCode": "MA",
+    "iataCode": "CMN",
+    "icaoCode": "GMMN",
+    "region": "Africa",
+    "airportType": "international",
+    "timezone": "Africa/Casablanca",
+    "searchTerms": [
+      "casablanca",
+      "cmn",
+      "morocco",
+      "royal air maroc"
+    ]
+  },
+  {
+    "id": "airport-mru",
+    "name": "Sir Seewoosagur Ramgoolam International Airport",
+    "city": "Mauritius (Plaine Magnien)",
+    "country": "Mauritius",
+    "countryCode": "MU",
+    "iataCode": "MRU",
+    "icaoCode": "FIMP",
+    "region": "Africa / Indian Ocean",
+    "airportType": "international",
+    "timezone": "Indian/Mauritius",
+    "searchTerms": [
+      "mauritius",
+      "mru",
+      "air mauritius",
+      "indian ocean"
+    ]
+  },
+  {
+    "id": "airport-gru",
+    "name": "São Paulo/Guarulhos International Airport",
+    "city": "São Paulo",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "iataCode": "GRU",
+    "icaoCode": "SBGR",
+    "region": "South America",
+    "airportType": "international",
+    "timezone": "America/Sao_Paulo",
+    "searchTerms": [
+      "sao paulo",
+      "gru",
+      "guarulhos",
+      "brazil",
+      "latam"
+    ]
+  },
+  {
+    "id": "airport-gig",
+    "name": "Rio de Janeiro/Galeão International Airport",
+    "city": "Rio de Janeiro",
+    "country": "Brazil",
+    "countryCode": "BR",
+    "iataCode": "GIG",
+    "icaoCode": "SBGL",
+    "region": "South America",
+    "airportType": "international",
+    "timezone": "America/Sao_Paulo",
+    "searchTerms": [
+      "rio de janeiro",
+      "gig",
+      "galeao",
+      "copacabana",
+      "brazil"
+    ]
+  },
+  {
+    "id": "airport-eze",
+    "name": "Ministro Pistarini International Airport",
+    "city": "Buenos Aires",
+    "country": "Argentina",
+    "countryCode": "AR",
+    "iataCode": "EZE",
+    "icaoCode": "SAEZ",
+    "region": "South America",
+    "airportType": "international",
+    "timezone": "America/Argentina/Buenos_Aires",
+    "searchTerms": [
+      "buenos aires",
+      "eze",
+      "ezeiza",
+      "argentina"
+    ]
+  },
+  {
+    "id": "airport-bog",
+    "name": "El Dorado International Airport",
+    "city": "Bogotá",
+    "country": "Colombia",
+    "countryCode": "CO",
+    "iataCode": "BOG",
+    "icaoCode": "SKBO",
+    "region": "South America",
+    "airportType": "international",
+    "timezone": "America/Bogota",
+    "searchTerms": [
+      "bogota",
+      "bog",
+      "el dorado",
+      "colombia",
+      "avianca"
+    ]
+  },
+  {
+    "id": "airport-nag",
+    "name": "Dr. Babasaheb Ambedkar International Airport",
+    "city": "Nagpur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "NAG",
+    "icaoCode": "VANP",
+    "region": "Central India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "nagpur",
+      "nagpure",
+      "nag",
+      "vanp",
+      "ambedkar",
+      "babasaheb ambedkar",
+      "maharashtra",
+      "orange city",
+      "vidarbha",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-isk",
+    "name": "Nashik Airport (Ozar)",
+    "city": "Nashik",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "ISK",
+    "icaoCode": "VAOZ",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "nashik",
+      "nasik",
+      "isk",
+      "ozar",
+      "maharashtra",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-klh",
+    "name": "Chhatrapati Rajaram Maharaj Airport",
+    "city": "Kolhapur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "KLH",
+    "icaoCode": "VAKP",
+    "region": "Western India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "kolhapur",
+      "klh",
+      "maharashtra",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-tir",
+    "name": "Tirupati International Airport",
+    "city": "Tirupati",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "TIR",
+    "icaoCode": "VOTP",
+    "region": "Southern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "tirupati",
+      "tirupathi",
+      "tir",
+      "andhra pradesh",
+      "balaji",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-dbr",
+    "name": "Darbhanga Airport",
+    "city": "Darbhanga",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "DBR",
+    "icaoCode": "VEDH",
+    "region": "Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "darbhanga",
+      "dbr",
+      "bihar",
+      "mithila",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-gay",
+    "name": "Gaya International Airport (Bodhgaya)",
+    "city": "Gaya",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "GAY",
+    "icaoCode": "VEGY",
+    "region": "Eastern India",
+    "airportType": "international",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "gaya",
+      "bodhgaya",
+      "gay",
+      "bihar",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-jrg",
+    "name": "Veer Surendra Sai Airport",
+    "city": "Jharsuguda",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "JRG",
+    "icaoCode": "VEJH",
+    "region": "Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "jharsuguda",
+      "jrg",
+      "odisha",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-rdp",
+    "name": "Kazi Nazrul Islam Airport",
+    "city": "Durgapur",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "RDP",
+    "icaoCode": "VEDG",
+    "region": "Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "durgapur",
+      "rdp",
+      "asansol",
+      "west bengal",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-hbx",
+    "name": "Hubballi Airport",
+    "city": "Hubballi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "HBX",
+    "icaoCode": "VAHB",
+    "region": "Southern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "hubballi",
+      "hubli",
+      "hbx",
+      "dharwad",
+      "karnataka",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-ixg",
+    "name": "Belagavi Airport",
+    "city": "Belagavi",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "IXG",
+    "icaoCode": "VABM",
+    "region": "Southern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "belagavi",
+      "belgaum",
+      "ixg",
+      "karnataka",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-jsa",
+    "name": "Jaisalmer Airport",
+    "city": "Jaisalmer",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "JSA",
+    "icaoCode": "VIJR",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "jaisalmer",
+      "jsa",
+      "rajasthan",
+      "golden city",
+      "thar",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-bki",
+    "name": "Nal Airport (Bikaner)",
+    "city": "Bikaner",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "BKI",
+    "icaoCode": "VIBK",
+    "region": "Northern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "bikaner",
+      "bki",
+      "nal",
+      "rajasthan",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-shl",
+    "name": "Shillong Airport (Umroi)",
+    "city": "Shillong",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "SHL",
+    "icaoCode": "VEBI",
+    "region": "North-Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "shillong",
+      "shl",
+      "umroi",
+      "meghalaya",
+      "scotland of the east",
+      "india"
+    ]
+  },
+  {
+    "id": "airport-hgi",
+    "name": "Donyi Polo Airport (Hollongi)",
+    "city": "Itanagar",
+    "country": "India",
+    "countryCode": "IN",
+    "iataCode": "HGI",
+    "icaoCode": "VEHO",
+    "region": "North-Eastern India",
+    "airportType": "domestic",
+    "timezone": "Asia/Kolkata",
+    "searchTerms": [
+      "itanagar",
+      "hgi",
+      "hollongi",
+      "donyi polo",
+      "arunachal pradesh",
+      "india"
+    ]
+  }
+];
+export default airportsData;
