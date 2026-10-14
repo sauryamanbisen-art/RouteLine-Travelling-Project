@@ -1,58 +1,54 @@
-<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">RouteLine premium monogram</title>
+  <desc id="desc">A refined ivory and champagne-gold RL monogram with a route line on a deep forest-green rounded square.</desc>
   <defs>
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E1B4B"/>
-      <stop offset="100%" stop-color="#0F172A"/>
+    <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#182C27"/>
+      <stop offset="0.55" stop-color="#10211D"/>
+      <stop offset="1" stop-color="#091713"/>
     </linearGradient>
-    <linearGradient id="rlFill" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#818CF8"/>
-      <stop offset="55%" stop-color="#38BDF8"/>
-      <stop offset="100%" stop-color="#2DD4BF"/>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFF0C7"/>
+      <stop offset="0.42" stop-color="#D8B978"/>
+      <stop offset="0.72" stop-color="#B9924F"/>
+      <stop offset="1" stop-color="#F2DDA9"/>
     </linearGradient>
-    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
+    <linearGradient id="ivory" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#FFFDF5"/>
+      <stop offset="1" stop-color="#DAD7C9"/>
+    </linearGradient>
+    <linearGradient id="route" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#C6A566"/>
+      <stop offset="1" stop-color="#F4E2B5"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#000000" flood-opacity=".28"/>
     </filter>
   </defs>
 
-  <!-- Rounded badge background -->
-  <rect x="6" y="6" width="228" height="228" rx="52" fill="url(#bgGrad)"/>
-  <rect x="6" y="6" width="228" height="228" rx="52" fill="none" stroke="#334155" stroke-width="1.5"/>
+  <!-- Deep evergreen enamel tile -->
+  <rect x="20" y="20" width="472" height="472" rx="112" fill="url(#tile)"/>
+  <rect x="21.5" y="21.5" width="469" height="469" rx="110.5" fill="none" stroke="#C6A566" stroke-opacity=".55" stroke-width="3"/>
+  <path d="M132 30H380C435 30 482 77 482 132V170C391 100 278 63 132 30Z" fill="#FFFFFF" opacity=".035"/>
 
-  <!-- R: bold slanted geometric block letter, sharp-cut counter, aggressive spur -->
-  <path d="M 50 190
-           L 50 50
-           L 108 50
-           C 132 50, 138 90, 114 100
-           L 138 190
-           L 112 190
-           L 92 106
-           L 74 106
-           L 74 190
-           Z
-           M 74 74 L 74 88 L 104 88 C 116 88, 116 74, 104 74 Z"
-        fill="url(#rlFill)" filter="url(#glow)" transform="skewX(-6)"/>
+  <!-- Route line sits behind the monogram -->
+  <path d="M112 389L394 111" fill="none" stroke="#07130F" stroke-width="13" stroke-linecap="round" opacity=".7"/>
+  <path d="M112 389L394 111" fill="none" stroke="url(#route)" stroke-width="6" stroke-linecap="round"/>
 
-  <!-- L: bold slanted geometric block letter -->
-  <path d="M 150 50
-           L 176 50
-           L 176 166
-           L 200 166
-           L 200 190
-           L 150 190
-           Z"
-        fill="url(#rlFill)" filter="url(#glow)" transform="skewX(-6)"/>
+  <!-- Custom geometric monogram -->
+  <g filter="url(#shadow)">
+    <path d="M104 346L132 151H218C264 151 289 175 289 213C289 247 269 270 236 279L282 346H232L193 284H167L158 346H104ZM174 239H211C231 239 242 230 242 214C242 201 233 194 215 194H180L174 239Z" fill="url(#ivory)"/>
+    <path d="M274 346L302 151H348L326 307H407L401 346H274Z" fill="url(#gold)"/>
+  </g>
 
-  <!-- Sharp accent slash cutting through, echoing a route line -->
-  <path d="M 42 200 L 208 40" stroke="#2DD4BF" stroke-width="3" opacity="0.55" stroke-linecap="round"/>
+  <!-- Origin node -->
+  <circle cx="112" cy="389" r="18" fill="#10211D" stroke="url(#gold)" stroke-width="5"/>
+  <circle cx="112" cy="389" r="6" fill="#F3E1B4"/>
 
-  <!-- Start point -->
-  <circle cx="44" cy="196" r="6.5" fill="#2DD4BF"/>
+  <!-- Destination marker -->
+  <circle cx="394" cy="111" r="25" fill="#10211D" stroke="url(#gold)" stroke-width="7"/>
+  <circle cx="394" cy="111" r="8" fill="#F3E1B4"/>
 
-  <!-- Destination pin -->
-  <circle cx="206" cy="44" r="10" fill="#0F172A" stroke="#818CF8" stroke-width="4"/>
-  <circle cx="206" cy="44" r="3.5" fill="#818CF8"/>
+  <!-- Small understated inner highlight -->
+  <path d="M70 112C70 89 89 70 112 70" fill="none" stroke="#FFFFFF" stroke-opacity=".12" stroke-width="2" stroke-linecap="round"/>
 </svg>
