@@ -56,35 +56,54 @@
       }
     };
   </script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../../src/css/home/global/style.css">
   <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
   <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
 </head>
 
 <body class="bg-[#f5f7fc] font-body text-on-surface antialiased selection:bg-gold-400 selection:text-obsidian">
-  <!-- Executive Header -->
-  <header class="no-print fixed top-0 left-0 right-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-[0_1px_8px_rgba(11,34,78,0.06)]">
-    <div class="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <a href="../../index.html" class="flex items-center gap-2">
-          <img alt="RouteLine Logo" class="h-8 w-auto object-contain" src="../../public/logo.svg">
-          <span class="font-sans text-xl font-bold tracking-tight text-primary">RouteLine</span>
-        </a>
+  <!-- Standard RouteLine Navigation Header -->
+  <header class="header header-solid no-print">
+    <div class="header-container">
+      <div class="logo">
+        <img src="../../public/logo.svg" alt="RouteLine Logo">
+        <a href="../../index.html" style="color: white; text-decoration: none;">RouteLine</a>
       </div>
 
-      <nav class="hidden md:flex items-center gap-1 bg-surface-container-low p-1 rounded-full border border-gray-200">
-        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../../index.html">Trains</a>
-        <a class="bg-primary-container text-white font-bold px-4 py-1.5 rounded-full text-xs shadow flex items-center gap-1.5" href="flight-search.html">
-          <span class="material-symbols-outlined text-[15px]">flight</span> Flights
-        </a>
-        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../bus/bus-results.html">Buses</a>
-        <a class="text-on-surface-variant hover:text-primary px-4 py-1.5 text-xs font-semibold" href="../hotel/hotel-results.html">Hotels</a>
+      <nav class="nav-links">
+        <a href="../../index.html">Trains</a>
+        <a href="flight-search.html" class="active">Flights</a>
+        <a href="../bus/bus-results.html">Buses</a>
+        <a href="../hotel/hotel-results.html">Hotels</a>
+        <a href="#">Offers</a>
       </nav>
 
-      <div class="flex items-center gap-3 text-xs font-semibold">
-        <button onclick="window.print()" class="print-allow flex items-center gap-1 px-3 py-1.5 rounded-full bg-gold-50 hover:bg-gold-100 text-gold-900 border border-gold-300 transition-colors">
-          <span class="material-symbols-outlined text-[16px]">print</span>
-          <span>Print Ticket</span>
-        </button>
+      <div class="header-actions">
+        <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+        <div class="divider"></div>
+        <a href="#" class="login-link" style="display: none;"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget">
+          <div class="rl-user-chip" id="rl-user-chip" title="Sauryaman Bisen">
+            <div class="rl-user-avatar">S</div>
+            <span>Sauryaman</span>
+            <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+          </div>
+          <div class="rl-user-dropdown" id="rl-user-dropdown">
+            <div class="rl-dropdown-user-info">
+              <p class="rl-dropdown-name">Sauryaman Bisen</p>
+              <p class="rl-dropdown-email">sauryamanbisen@gmail.com</p>
+            </div>
+            <a href="../train/ticket.html" class="rl-dropdown-item">
+              <i data-lucide="ticket" style="width:15px;height:15px;"></i>
+              <span>My Bookings</span>
+            </a>
+            <button type="button" class="rl-dropdown-item logout" id="rl-btn-logout">
+              <i data-lucide="log-out" style="width:15px;height:15px;"></i>
+              <span>Logout</span>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -109,6 +128,13 @@
         <p class="text-xs sm:text-sm text-gray-500 max-w-lg mx-auto">
           Electronic flight ticket and contactless QR boarding pass have been dispatched to <strong class="text-gray-800" id="confirmEmail">rahul.verma@example.com</strong> and WhatsApp.
         </p>
+
+        <div class="pt-2 no-print">
+          <button onclick="window.print()" class="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-full bg-gold-100 hover:bg-gold-200 text-gold-900 border border-gold-300 font-bold text-xs shadow-sm transition-all">
+            <span class="material-symbols-outlined text-[16px]">print</span>
+            <span>Print / Save E-Ticket</span>
+          </button>
+        </div>
 
         <!-- Safety Demo Notice -->
         <div class="mt-4 p-3 bg-amber-50 rounded-2xl border border-amber-200 max-w-xl mx-auto text-[11px] text-amber-900 leading-relaxed">
@@ -312,8 +338,15 @@
   <script type="module">
     import { getFlightState } from '../../src/js/flight/flight-state.js';
     import { initAuth } from '../../src/js/home/auth/auth.js';
+    function onReady(fn) {
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', fn);
+      } else {
+        fn();
+      }
+    }
 
-    document.addEventListener('DOMContentLoaded', () => {
+    onReady(() => {
       initAuth({ autoPrompt: false });
 
       const state = getFlightState();
@@ -337,7 +370,12 @@
         document.getElementById('ticketArrTime').textContent = flight.arrivalTime;
         document.getElementById('ticketDestCity').textContent = `${flight.destinationCity} (${flight.destinationCode})`;
         document.getElementById('ticketDestAirport').textContent = flight.destinationAirport;
-        document.getElementById('ticketFlightDate').textContent = `Thu, ${flight.departureDate}`;
+        try {
+          const d = new Date(flight.departureDate);
+          document.getElementById('ticketFlightDate').textContent = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+        } catch (e) {
+          document.getElementById('ticketFlightDate').textContent = flight.departureDate;
+        }
       }
 
       const leadPax = state.passengersList?.[0];
