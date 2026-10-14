@@ -27,8 +27,8 @@
   /* Stratosphere Modern Blue */
   --rl-blue-primary: #000d2c;
   --rl-blue-container: #0b224e;
-  --rl-blue-secondary: #0051d5;
-  --rl-blue-accent: #2563eb;
+  --rl-blue-secondary: #00aad5;
+  --rl-blue-accent: #25aceb;
   --rl-blue-tint: #eff4ff;
 
   /* Functional Surfaces */
@@ -115,12 +115,13 @@
 
 /* Flight Seat Selection Grid */
 .seat-button {
-  width: 36px;
-  height: 38px;
-  border-radius: 6px;
+  width: 46px;
+  height: 50px;
+  border-radius: 8px;
   font-size: 11px;
   font-weight: 700;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 1px solid var(--rl-surface-border);
@@ -128,6 +129,20 @@
   transition: all 0.15s ease-in-out;
   background-color: #ffffff;
   color: var(--rl-navy-900);
+  line-height: 1.1;
+  padding: 3px 2px;
+}
+
+.seat-button .seat-code {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+.seat-button .seat-price {
+  font-size: 8.5px;
+  font-weight: 600;
+  opacity: 0.75;
+  margin-top: 1.5px;
 }
 
 .seat-button:hover:not(:disabled) {
@@ -137,19 +152,25 @@
 }
 
 .seat-button.occupied {
-  background-color: #e2e8f0;
+  background-color: #f1f5f9;
   color: #94a3b8;
-  border-color: #cbd5e1;
+  border-color: #e2e8f0;
   cursor: not-allowed;
-  text-decoration: line-through;
+  font-size: 13px;
+  text-decoration: none;
 }
 
 .seat-button.selected {
-  background-color: var(--rl-navy-900);
-  color: var(--rl-gold-300);
-  border-color: var(--rl-gold-500);
-  box-shadow: 0 0 0 2px var(--rl-gold-500);
+  background-color: #0c1938;
+  color: #f0e5d5;
+  border-color: #dfc094;
+  box-shadow: 0 0 0 2px #dfc094;
   font-weight: 800;
+}
+
+.seat-button.selected .seat-price {
+  color: #dfc094;
+  opacity: 1;
 }
 
 .seat-button.extra-legroom {
@@ -159,9 +180,9 @@
 }
 
 .seat-button.extra-legroom.selected {
-  background-color: var(--rl-navy-900);
-  border-color: var(--rl-gold-500);
-  color: var(--rl-gold-300);
+  background-color: #0c1938;
+  border-color: #dfc094;
+  color: #f0e5d5;
 }
 
 /* Interactive Add-on Cards */
@@ -200,3 +221,168 @@
     break-inside: avoid;
   }
 }
+
+/* =====================================================================
+   Airport Autocomplete Dropdown Component
+   ===================================================================== */
+.search-dock-card {
+  overflow: visible !important;
+}
+
+.search-dock-card form,
+.dock-inputs-row {
+  border-top-left-radius: 28px !important;
+  border-top-right-radius: 28px !important;
+}
+
+.dock-assurance-ribbon {
+  border-bottom-left-radius: 28px !important;
+  border-bottom-right-radius: 28px !important;
+}
+
+.airport-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  min-width: 340px;
+  max-width: 420px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 16px 40px -10px rgba(11, 30, 54, 0.22), 0 0 0 1px rgba(11, 30, 54, 0.06);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  max-height: 380px;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 8px;
+  animation: dropdownFadeIn 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.airport-dropdown-menu::-webkit-scrollbar {
+  width: 6px;
+}
+.airport-dropdown-menu::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 9999px;
+}
+
+.airport-dropdown-header {
+  padding: 6px 12px 8px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  border-bottom: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.airport-option-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.airport-option-item:hover,
+.airport-option-item.is-highlighted {
+  background-color: #f0f4ff;
+}
+
+.airport-option-item.is-highlighted .iata-pill {
+  background-color: #0051d5;
+  color: #ffffff;
+}
+
+.airport-option-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  flex: 1;
+}
+
+.airport-option-city {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.airport-option-name {
+  font-size: 11px;
+  color: #6b7280;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 1px;
+}
+
+.airport-option-badge {
+  font-size: 10px;
+  font-weight: 600;
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 9999px;
+  padding: 1px 7px;
+  margin-left: 4px;
+}
+
+.airport-option-badge.intl {
+  color: #1d4ed8;
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.airport-option-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.iata-pill {
+  font-family: var(--rl-font-mono), monospace;
+  font-size: 12px;
+  font-weight: 800;
+  background: #0b1e36;
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 8px;
+  letter-spacing: 0.05em;
+  transition: all 0.15s ease;
+}
+
+.airport-country-label {
+  font-size: 10px;
+  color: #9ca3af;
+  font-weight: 500;
+}
+
+.airport-empty-state {
+  padding: 24px 16px;
+  text-align: center;
+  color: #6b7280;
+  font-size: 13px;
+}
+
