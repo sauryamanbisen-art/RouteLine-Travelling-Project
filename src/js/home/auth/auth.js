@@ -83,10 +83,27 @@ function ensureUsersStore() {
       localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(SEED_USERS));
     } else {
       const parsed = JSON.parse(existing);
-      if (Array.isArray(parsed) && !parsed.some(u => u.email === 'demo@routeline.com')) {
-        parsed.unshift(SEED_USERS[0]);
+      if (Array.isArray(parsed)) {
+        if (!parsed.some(u => u.email === 'demo@routeline.com')) {
+          parsed.unshift(SEED_USERS[0]);
+        }
+        if (!parsed.some(u => u.name && u.name.toLowerCase().includes('sauryaman'))) {
+          parsed.push(SEED_USERS[1]);
+        }
         localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(parsed));
       }
+    }
+
+    // Default initial active user so Sauryaman Bisen seamlessly appears in the header across all pages
+    if (!localStorage.getItem(STORAGE_AUTH_USER)) {
+      const defaultUser = {
+        id: 'usr_demo_2',
+        name: 'Sauryaman Bisen',
+        email: 'sauryamanbisen@gmail.com',
+        token: `rl_token_default`,
+        loggedInAt: new Date().toISOString()
+      };
+      localStorage.setItem(STORAGE_AUTH_USER, JSON.stringify(defaultUser));
     }
   } catch (e) {
     localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(SEED_USERS));
@@ -671,18 +688,20 @@ export function updateHeaderAuthState() {
     // Authenticated state -> Show user avatar & dropdown
     if (existingLoginLink) existingLoginLink.style.display = 'none';
 
-    if (!existingWidget) {
-      const widget = document.createElement('div');
+    const initial = (user.name || user.email).charAt(0).toUpperCase();
+    const displayName = user.name ? user.name.split(' ')[0] : 'Sauryaman';
+    const myBookingsUrl = window.location.pathname.includes('/pages/train/')
+      ? 'ticket.html'
+      : (window.location.pathname.includes('/pages/')
+        ? '../train/ticket.html'
+        : 'pages/train/ticket.html');
+
+    let widget = existingWidget;
+
+    if (!widget) {
+      widget = document.createElement('div');
       widget.className = 'rl-user-profile-widget';
       widget.id = 'rl-user-profile-widget';
-
-      const initial = (user.name || user.email).charAt(0).toUpperCase();
-      const displayName = user.name ? user.name.split(' ')[0] : 'My Account';
-      const myBookingsUrl = window.location.pathname.includes('/pages/train/')
-        ? 'ticket.html'
-        : (window.location.pathname.includes('/pages/')
-          ? '../train/ticket.html'
-          : 'pages/train/ticket.html');
 
       widget.innerHTML = `
         <div class="rl-user-chip" id="rl-user-chip" title="${user.name || user.email}">
@@ -692,7 +711,7 @@ export function updateHeaderAuthState() {
         </div>
         <div class="rl-user-dropdown" id="rl-user-dropdown">
           <div class="rl-dropdown-user-info">
-            <p class="rl-dropdown-name">${user.name || 'RouteLine Traveler'}</p>
+            <p class="rl-dropdown-name">${user.name || 'Sauryaman Bisen'}</p>
             <p class="rl-dropdown-email">${user.email}</p>
           </div>
           <a href="${myBookingsUrl}" class="rl-dropdown-item">
@@ -707,7 +726,20 @@ export function updateHeaderAuthState() {
       `;
 
       headerActions.appendChild(widget);
+    } else {
+      widget.style.display = 'inline-flex';
+      const nameEl = widget.querySelector('.rl-user-chip > span');
+      const avatarEl = widget.querySelector('.rl-user-avatar');
+      if (nameEl) nameEl.textContent = displayName;
+      if (avatarEl) avatarEl.textContent = initial;
+      const dropdownName = widget.querySelector('.rl-dropdown-name');
+      const dropdownEmail = widget.querySelector('.rl-dropdown-email');
+      if (dropdownName) dropdownName.textContent = user.name || 'Sauryaman Bisen';
+      if (dropdownEmail) dropdownEmail.textContent = user.email;
+    }
 
+    if (widget && !widget.dataset.bound) {
+      widget.dataset.bound = 'true';
       const chip = widget.querySelector('#rl-user-chip');
       const dropdown = widget.querySelector('#rl-user-dropdown');
       chip?.addEventListener('click', (e) => {
@@ -726,8 +758,6 @@ export function updateHeaderAuthState() {
         dropdown?.classList.remove('show');
         logoutUser();
       });
-    } else {
-      existingWidget.style.display = 'inline-flex';
     }
   } else {
     // Guest state -> Show Login / Sign Up link

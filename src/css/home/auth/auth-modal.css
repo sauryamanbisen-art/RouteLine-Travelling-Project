@@ -514,38 +514,55 @@
 }
 
 .rl-user-chip {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 5px 12px 5px 6px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 999px;
-    color: #ffffff;
+    padding: 3px 12px 3px 5px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 9999px;
+    color: #ffffff !important;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 600;
+    font-size: 13.5px;
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     transition: all 0.2s ease;
     user-select: none;
+    line-height: 1;
+}
+
+.rl-user-chip span {
+    color: #ffffff !important;
+    font-weight: 500;
+}
+
+.rl-user-chip svg,
+.rl-user-chip [data-lucide] {
+    color: #ffffff !important;
+    stroke: #ffffff !important;
+    opacity: 0.85;
 }
 
 .rl-user-chip:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.45);
 }
 
 .rl-user-avatar {
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: #d89b53;
-    color: #ffffff;
+    background: #e08a3c !important;
+    color: #ffffff !important;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .rl-user-dropdown {
