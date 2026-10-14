@@ -18,26 +18,45 @@
 </head>
 
 <body class="ticket-page-body">
-    <!-- Header -->
-    <header class="header" style="background: var(--dark-blue);">
+    <!-- Standard RouteLine Navigation Header -->
+    <header class="header header-solid">
         <div class="header-container">
             <div class="logo">
                 <img src="../../public/logo.svg" alt="RouteLine Logo">
                 <a href="../../index.html" style="color:white; text-decoration:none;">RouteLine</a>
             </div>
             <nav class="nav-links">
-                <a href="../../index.html">Trains</a>
-                <a href="../flight/flight-results.html">Flights</a>
+                <a href="../../index.html" class="active">Trains</a>
+                <a href="../flight/flight-search.html">Flights</a>
                 <a href="../bus/bus-results.html">Buses</a>
                 <a href="../hotel/hotel-results.html">Hotels</a>
                 <a href="#">Offers</a>
             </nav>
             <div class="header-actions">
-                <a href="javascript:void(0)" id="header-pnr-status-btn" class="help-link" onclick="openPNRModal()">
-                    <i data-lucide="activity" class="icon-small"></i> PNR Status
-                </a>
+                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
                 <div class="divider"></div>
-                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> My Account</a>
+                <a href="#" class="login-link" style="display: none;"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+                <div class="rl-user-profile-widget" id="rl-user-profile-widget">
+                    <div class="rl-user-chip" id="rl-user-chip" title="Sauryaman Bisen">
+                        <div class="rl-user-avatar">S</div>
+                        <span>Sauryaman</span>
+                        <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
+                    </div>
+                    <div class="rl-user-dropdown" id="rl-user-dropdown">
+                        <div class="rl-dropdown-user-info">
+                            <p class="rl-dropdown-name">Sauryaman Bisen</p>
+                            <p class="rl-dropdown-email">sauryamanbisen@gmail.com</p>
+                        </div>
+                        <a href="ticket.html" class="rl-dropdown-item">
+                            <i data-lucide="ticket" style="width:15px;height:15px;"></i>
+                            <span>My Bookings</span>
+                        </a>
+                        <button type="button" class="rl-dropdown-item logout" id="rl-btn-logout">
+                            <i data-lucide="log-out" style="width:15px;height:15px;"></i>
+                            <span>Logout</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </header>
