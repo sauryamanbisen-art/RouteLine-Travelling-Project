@@ -28,7 +28,7 @@ import {
   calculateTotalFare
 } from './flight-data.js';
 
-const STORAGE_KEY = 'routeline_flight_session_v1';
+const STORAGE_KEY = 'routeline_flight_session_v2';
 
 // Backwards-compatible mock exports sourced from standardized JSON datasets
 export const MOCK_FLIGHTS = getAllFlights();
@@ -113,20 +113,20 @@ export function getDefaultFlightState() {
       {
         id: 1,
         title: 'Mr',
-        firstName: 'Rahul',
-        lastName: 'Verma',
-        dob: '1992-08-14',
+        firstName: '',
+        lastName: '',
+        dob: '',
         gender: 'Male',
-        frequentFlyer: '6E-994821',
+        frequentFlyer: '',
         isLead: true
       }
     ],
     contactInfo: {
-      email: 'rahul.verma@example.com',
-      mobile: '9876543210',
+      email: '',
+      mobile: '',
       whatsappUpdates: true,
-      emergencyName: 'Priya Verma',
-      emergencyPhone: '9876543211',
+      emergencyName: '',
+      emergencyPhone: '',
       gstin: '',
       companyName: ''
     },
@@ -158,6 +158,16 @@ export function getFlightState() {
     if (!parsed.selectedFlight || !parsed.search) {
       const def = getDefaultFlightState();
       return Object.assign(def, parsed);
+    }
+    // Sanitize any legacy mock contacts/passengers
+    if (parsed.passengersList && parsed.passengersList[0]) {
+      if (parsed.passengersList[0].firstName === 'Rahul') parsed.passengersList[0].firstName = '';
+      if (parsed.passengersList[0].lastName === 'Verma') parsed.passengersList[0].lastName = '';
+      if (parsed.passengersList[0].dob === '1992-08-14') parsed.passengersList[0].dob = '';
+    }
+    if (parsed.contactInfo) {
+      if (parsed.contactInfo.email && parsed.contactInfo.email.includes('rahul.verma')) parsed.contactInfo.email = '';
+      if (parsed.contactInfo.mobile === '9876543210') parsed.contactInfo.mobile = '';
     }
     return parsed;
   } catch (err) {
