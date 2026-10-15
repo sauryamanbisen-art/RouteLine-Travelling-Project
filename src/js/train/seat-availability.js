@@ -13,7 +13,7 @@ import {
 } from './railradar.js';
 import { openPaymentModal } from '../home/global/payment.js';
 import { openPNRModal, initPNRModule } from './pnr-status.js';
-import { initAuth } from '../home/auth/auth.js';
+import { initAuth, getCurrentUser, isAuthenticated, requireAuthentication } from '../home/auth/auth.js';
 
 // Popular railway stations cache for autocomplete
 const POPULAR_STATIONS = [
@@ -815,30 +815,34 @@ function renderSeatAvailabilityResults() {
  * Wires interactions on the results card (booking button, date switching, class switching)
  */
 function setupResultsListeners() {
-  // 1. Book Now Button -> Opens Payment Gateway directly!
+  // 1. Book Now Button -> Opens Payment Gateway (Protected by requireAuthentication)
   document.getElementById('sa-book-now-btn')?.addEventListener('click', () => {
-    const { trainNo, trainName, from, to, date, classCode, fareData, calendarData, selectedIndex } = currentQueryState;
-    const selectedDay = calendarData[selectedIndex] || calendarData[0] || {};
-    const totalFare = fareData?.totalFare || 865;
+    requireAuthentication(() => {
+      const { trainNo, trainName, from, to, date, classCode, fareData, calendarData, selectedIndex } = currentQueryState;
+      const selectedDay = calendarData[selectedIndex] || calendarData[0] || {};
+      const totalFare = fareData?.totalFare || 865;
+      const currentUser = getCurrentUser();
+      const paxName = currentUser?.name || 'Verified Traveler';
 
-    // Launch RouteLine Payment Gateway Modal
-    openPaymentModal({
-      train: {
-        train_number: trainNo,
-        train_name: trainName,
-        source_station_code: from,
-        destination_station_code: to
-      },
-      selectedClass: {
-        class_type: CLASS_MAP[classCode]?.name || classCode,
-        fare: totalFare
-      },
-      passenger: {
-        name: 'Saurya Man Bisen',
-        age: 26,
-        gender: 'M',
-        berthPreference: 'NO'
-      }
+      // Launch RouteLine Payment Gateway Modal
+      openPaymentModal({
+        train: {
+          train_number: trainNo,
+          train_name: trainName,
+          source_station_code: from,
+          destination_station_code: to
+        },
+        selectedClass: {
+          class_type: CLASS_MAP[classCode]?.name || classCode,
+          fare: totalFare
+        },
+        passenger: {
+          name: paxName,
+          age: 26,
+          gender: 'M',
+          berthPreference: 'NO'
+        }
+      });
     });
   });
 

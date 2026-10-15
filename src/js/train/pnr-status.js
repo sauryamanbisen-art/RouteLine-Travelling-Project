@@ -6,6 +6,7 @@
 
 import { getPNRStatus, getPNRPrediction, getPNRRefund, getLiveStatus } from './railradar.js';
 import { getBookedTickets, getTicketByPnr } from './ticket/ticket.js';
+import { getCurrentUser } from '../home/auth/auth.js';
 
 // Sample verified demonstration dataset from official RailRadar schema for testing & flushed PNR preview
 export const SAMPLE_PNR_RECORD = {
@@ -36,7 +37,7 @@ export const SAMPLE_PNR_RECORD = {
       passengers: [
         {
           passengerNumber: 1,
-          name: "Saurya Man Bisen",
+          name: "Rajesh Kumar",
           age: 26,
           gender: "Male",
           bookingStatus: "WL/14/GN",
@@ -132,7 +133,7 @@ export function convertBookedTicketToPNRData(ticket, liveStatus = null) {
 
         return {
           passengerNumber: idx + 1,
-          name: p.name || 'Saurya Man Bisen',
+          name: p.name || (getCurrentUser()?.name || 'Verified Traveler'),
           age: p.age || 26,
           gender: p.gender || 'Male',
           bookingStatus: p.status || 'CNF',
@@ -150,7 +151,7 @@ export function convertBookedTicketToPNRData(ticket, liveStatus = null) {
     : [
         {
           passengerNumber: 1,
-          name: 'Saurya Man Bisen',
+          name: getCurrentUser()?.name || 'Verified Traveler',
           age: 26,
           gender: 'Male',
           bookingStatus: 'CNF',
@@ -662,7 +663,7 @@ function renderPNRErrorState(pnr, errorResponse) {
                 <span class="pnr-lead font-mono font-bold">4114938453</span>
                 <span class="pnr-badge-cnf">CONFIRMED (CNF)</span>
               </div>
-              <span class="pnr-train-sub">11040 Maharashtra Express (A3 35 LB • Saurya Man Bisen)</span>
+              <span class="pnr-train-sub">11040 Maharashtra Express (A3 35 LB • Rajesh Kumar)</span>
             </button>
 
             <button type="button" class="btn-working-pnr-pick" data-pnr="6824915302">
@@ -670,7 +671,7 @@ function renderPNRErrorState(pnr, errorResponse) {
                 <span class="pnr-lead font-mono font-bold">6824915302</span>
                 <span class="pnr-badge-cnf">CONFIRMED (CNF)</span>
               </div>
-              <span class="pnr-train-sub">16032 Andaman Express (S4 42 MB • Saurya Man Bisen)</span>
+              <span class="pnr-train-sub">16032 Andaman Express (S4 42 MB • Amit Patel)</span>
             </button>
 
             <button type="button" class="btn-working-pnr-pick" data-pnr="1234567890">
@@ -760,7 +761,7 @@ async function simulateActivePRSForPNR(pnr) {
     chartStatus: 'Chart Not Prepared',
     passengers: [
       {
-        name: 'Saurya Man Bisen',
+        name: getCurrentUser()?.name || 'Verified Traveler',
         age: 26,
         gender: 'Male',
         coach: 'B4',

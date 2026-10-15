@@ -31,7 +31,7 @@ import {
 } from './pnr-status.js';
 
 import { openPaymentModal, closePaymentModal } from '../home/global/payment.js';
-import { requireAuthentication, isAuthenticated, initAuth } from '../home/auth/auth.js';
+import { requireAuthentication, isAuthenticated, initAuth, getCurrentUser } from '../home/auth/auth.js';
 
 // Station Name to IRCTC Station Code Resolution Map
 export const STATION_CODE_MAP = {
@@ -892,12 +892,12 @@ export function showBookingModal(train, selectedClass) {
           <div class="form-row-2">
             <div class="form-field">
               <label>Full Name</label>
-              <input type="text" id="pass-name" placeholder="As per Govt ID" value="Saurya Man Bisen" required>
+              <input type="text" id="pass-name" placeholder="e.g. Sauryaman Bisen" value="" required>
             </div>
             <div class="form-field">
               <label>Age & Gender</label>
               <div style="display: flex; gap: 8px;">
-                <input type="number" id="pass-age" value="26" style="width: 70px;" required>
+                <input type="number" id="pass-age" placeholder="Age" value="" style="width: 70px;" required>
                 <select id="pass-gender" style="flex: 1;">
                   <option value="M">Male</option>
                   <option value="F">Female</option>
@@ -955,18 +955,21 @@ export function showBookingModal(train, selectedClass) {
   modal.querySelector('#cancel-booking-btn')?.addEventListener('click', closeModal);
 
   modal.querySelector('#confirm-booking-btn')?.addEventListener('click', () => {
-    const name = modal.querySelector('#pass-name')?.value.trim() || 'Saurya Man Bisen';
-    const age = parseInt(modal.querySelector('#pass-age')?.value, 10) || 26;
-    const gender = modal.querySelector('#pass-gender')?.value || 'M';
-    const berthPreference = modal.querySelector('#pass-berth')?.value || 'NO';
+    requireAuthentication(() => {
+      const currentUser = getCurrentUser();
+      const name = modal.querySelector('#pass-name')?.value.trim() || currentUser?.name || 'Verified Traveler';
+      const age = parseInt(modal.querySelector('#pass-age')?.value, 10) || 26;
+      const gender = modal.querySelector('#pass-gender')?.value || 'M';
+      const berthPreference = modal.querySelector('#pass-berth')?.value || 'NO';
 
-    modal.classList.remove('open');
+      modal.classList.remove('open');
 
-    // Launch Interactive 256-bit Payment Gateway Modal
-    openPaymentModal({
-      train,
-      selectedClass,
-      passenger: { name, age, gender, berthPreference }
+      // Launch Interactive 256-bit Payment Gateway Modal
+      openPaymentModal({
+        train,
+        selectedClass,
+        passenger: { name, age, gender, berthPreference }
+      });
     });
   });
 }
