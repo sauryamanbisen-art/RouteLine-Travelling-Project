@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to RouteLine | Secure Pass</title>
+  <meta name="description" content="Sign in to access your RouteLine flight bookings, frequent flyer privileges, or continue exploring as a guest.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
+</head>
+<body class="rl-auth-standalone-body">
+
+  <!-- Ambient background cards giving subtle travel app depth -->
+  <div class="rl-auth-bg-ambient" aria-hidden="true">
+    <div class="rl-auth-bg-ambient-card rl-auth-bg-card-1"></div>
+    <div class="rl-auth-bg-ambient-card rl-auth-bg-card-2"></div>
+    <div class="rl-auth-bg-ambient-card rl-auth-bg-card-3"></div>
+  </div>
+
+  <div class="rl-auth-standalone-wrapper">
+    <div class="rl-auth-modal" style="animation: none;">
+      <!-- Close Button -->
+      <button type="button" class="rl-auth-close-btn" id="rl-standalone-close-btn" aria-label="Return to RouteLine">
+        <i data-lucide="x"></i>
+      </button>
+
+      <!-- Header Section -->
+      <div class="rl-auth-header">
+        <div class="rl-auth-badge" id="rl-auth-badge">
+          <i data-lucide="shield-check" id="rl-auth-badge-icon"></i>
+          <span id="rl-auth-badge-text">ROUTELINE SECURE PASS</span>
+          <span class="rl-auth-badge-dot"></span>
+        </div>
+        <h2 class="rl-auth-title" id="rl-auth-modal-title">WELCOME TO RouteLine</h2>
+        <p class="rl-auth-subtitle" id="rl-auth-modal-subtitle">Sign in to access your flight bookings, frequent flyer privileges, or continue exploring as a guest.</p>
+      </div>
+
+      <!-- Segmented Control Tabs -->
+      <div class="rl-auth-tabs" id="rl-auth-tabs">
+        <button type="button" class="rl-auth-tab-btn active" id="rl-tab-login" data-tab="login">Login</button>
+        <button type="button" class="rl-auth-tab-btn" id="rl-tab-signup" data-tab="signup">Sign Up</button>
+      </div>
+
+      <!-- Alert Notification Banner -->
+      <div id="rl-auth-alert" class="rl-auth-alert" role="alert" style="display:none;">
+        <i data-lucide="alert-circle" id="rl-auth-alert-icon" style="width: 16px; height: 16px; flex-shrink: 0;"></i>
+        <span id="rl-auth-alert-text"></span>
+      </div>
+
+      <!-- Login Form -->
+      <form id="rl-login-form" class="rl-auth-form active" novalidate>
+        <div class="rl-form-scrollable-fields">
+          <div class="rl-form-group">
+            <label for="rl-login-email" class="rl-form-label">EMAIL OR USERNAME</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="mail" class="rl-input-icon"></i>
+              <input type="email" id="rl-login-email" class="rl-auth-input" placeholder="demo@routeline.com" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="rl-form-group">
+            <label for="rl-login-password" class="rl-form-label">PASSWORD</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="lock" class="rl-input-icon"></i>
+              <input type="password" id="rl-login-password" class="rl-auth-input" placeholder="••••••••••••" required autocomplete="current-password">
+              <button type="button" class="rl-toggle-pwd" data-target="rl-login-password" aria-label="Toggle Password Visibility">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="rl-auth-meta-row">
+            <label class="rl-checkbox-label">
+              <input type="checkbox" id="rl-login-remember" checked>
+              <span>Remember me</span>
+            </label>
+            <a href="javascript:void(0)" class="rl-link-forgot" id="rl-btn-forgot-pwd">Forgot password?</a>
+          </div>
+        </div>
+
+        <div class="rl-form-actions-fixed">
+          <button type="submit" class="rl-auth-submit-btn" id="rl-login-submit-btn">
+            <span>Sign In</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+
+          <div class="rl-auth-divider">
+            <span>OR CONTINUE AS GUEST</span>
+          </div>
+
+          <button type="button" class="rl-guest-btn" id="rl-guest-btn-login">
+            <i data-lucide="compass"></i>
+            <span>Continue as Guest (Search &amp; Explore Freely)</span>
+          </button>
+
+          <div class="rl-auth-footer-text">
+            Don't have an account? <a href="javascript:void(0)" class="rl-auth-footer-link" id="rl-switch-to-signup">Sign up now</a>
+          </div>
+        </div>
+      </form>
+
+      <!-- Sign Up Form -->
+      <form id="rl-signup-form" class="rl-auth-form" novalidate>
+        <div class="rl-form-scrollable-fields">
+          <div class="rl-form-group">
+            <label for="rl-signup-name" class="rl-form-label">FULL NAME</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="user" class="rl-input-icon"></i>
+              <input type="text" id="rl-signup-name" class="rl-auth-input" placeholder="e.g. Sauryaman Bisen" required autocomplete="name">
+            </div>
+          </div>
+
+          <div class="rl-form-group">
+            <label for="rl-signup-email" class="rl-form-label">EMAIL ADDRESS</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="mail" class="rl-input-icon"></i>
+              <input type="email" id="rl-signup-email" class="rl-auth-input" placeholder="e.g. sauryaman@example.com" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="rl-form-group">
+            <label for="rl-signup-password" class="rl-form-label">PASSWORD</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="lock" class="rl-input-icon"></i>
+              <input type="password" id="rl-signup-password" class="rl-auth-input" placeholder="Create secure password (min. 6 chars)" required autocomplete="new-password">
+              <button type="button" class="rl-toggle-pwd" data-target="rl-signup-password" aria-label="Toggle Password Visibility">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="rl-form-group">
+            <label for="rl-signup-confirm-password" class="rl-form-label">CONFIRM PASSWORD</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="check-check" class="rl-input-icon"></i>
+              <input type="password" id="rl-signup-confirm-password" class="rl-auth-input" placeholder="Confirm your password" required autocomplete="new-password">
+              <button type="button" class="rl-toggle-pwd" data-target="rl-signup-confirm-password" aria-label="Toggle Password Visibility">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="rl-auth-meta-row" style="margin-bottom: 8px;">
+            <label class="rl-checkbox-label">
+              <input type="checkbox" id="rl-signup-terms" checked>
+              <span>I agree to Terms of Service &amp; Privacy Policy</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="rl-form-actions-fixed">
+          <button type="submit" class="rl-auth-submit-btn" id="rl-signup-submit-btn">
+            <span>Create Account</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+
+          <div class="rl-auth-divider">
+            <span>OR CONTINUE AS GUEST</span>
+          </div>
+
+          <button type="button" class="rl-guest-btn" id="rl-guest-btn-signup">
+            <i data-lucide="compass"></i>
+            <span>Continue as Guest (Search &amp; Explore Freely)</span>
+          </button>
+
+          <div class="rl-auth-footer-text">
+            Already have an account? <a href="javascript:void(0)" class="rl-auth-footer-link" id="rl-switch-to-login">Sign in now</a>
+          </div>
+        </div>
+      </form>
+
+      <!-- Dedicated Forgot Password Form -->
+      <form id="rl-forgot-form" class="rl-auth-form" novalidate>
+        <div class="rl-form-scrollable-fields">
+          <div class="rl-form-group">
+            <label for="rl-forgot-email" class="rl-form-label">EMAIL ADDRESS</label>
+            <div class="rl-input-wrapper">
+              <i data-lucide="mail" class="rl-input-icon"></i>
+              <input type="email" id="rl-forgot-email" class="rl-auth-input" placeholder="demo@routeline.com" required autocomplete="email">
+            </div>
+          </div>
+        </div>
+
+        <div class="rl-form-actions-fixed">
+          <button type="submit" class="rl-auth-submit-btn" id="rl-forgot-submit-btn">
+            <span>Send Reset Link</span>
+            <i data-lucide="arrow-right"></i>
+          </button>
+
+          <div class="rl-auth-divider">
+            <span>OR RETURN TO SIGN IN</span>
+          </div>
+
+          <div class="rl-auth-footer-text" style="margin-top: 6px;">
+            <a href="javascript:void(0)" class="rl-auth-footer-link" id="rl-back-to-login">← Back to Sign In</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module">
+    import { loginUser, signupUser, continueAsGuest, setAuthPromptDismissed, showAuthToast } from '../../src/js/home/auth/auth.js';
+    import { bindPasswordToggles } from '../../src/js/home/auth/login.js';
+
+    if (window.lucide && window.lucide.createIcons) {
+      window.lucide.createIcons();
+    }
+
+    const tabsContainer = document.getElementById('rl-auth-tabs');
+    const loginTabBtn = document.getElementById('rl-tab-login');
+    const signupTabBtn = document.getElementById('rl-tab-signup');
+    const loginForm = document.getElementById('rl-login-form');
+    const signupForm = document.getElementById('rl-signup-form');
+    const forgotForm = document.getElementById('rl-forgot-form');
+    const modalTitle = document.getElementById('rl-auth-modal-title');
+    const modalSub = document.getElementById('rl-auth-modal-subtitle');
+    const badgeText = document.getElementById('rl-auth-badge-text');
+    const badgeIcon = document.getElementById('rl-auth-badge-icon');
+    const alertBox = document.getElementById('rl-auth-alert');
+    const alertText = document.getElementById('rl-auth-alert-text');
+    const alertIcon = document.getElementById('rl-auth-alert-icon');
+
+    function showAlert(msg, type = 'error') {
+      if (!alertBox || !alertText) return;
+      alertBox.className = `rl-auth-alert ${type}`;
+      alertText.textContent = msg;
+      if (alertIcon) {
+        alertIcon.setAttribute('data-lucide', type === 'error' ? 'alert-circle' : 'info');
+      }
+      alertBox.style.display = 'flex';
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    }
+
+    function clearAlert() {
+      if (alertBox) alertBox.style.display = 'none';
+    }
+
+    function switchTab(tab = 'login') {
+      clearAlert();
+      if (tab === 'signup') {
+        tabsContainer.style.display = 'flex';
+        loginTabBtn.classList.remove('active');
+        signupTabBtn.classList.add('active');
+        loginForm.classList.remove('active');
+        forgotForm.classList.remove('active');
+        signupForm.classList.add('active');
+        badgeText.textContent = 'ROUTELINE SECURE PASS';
+        badgeIcon.setAttribute('data-lucide', 'shield-check');
+        modalTitle.textContent = 'WELCOME TO ROUTELINE';
+        modalSub.textContent = 'Create your RouteLine account to access flight bookings, privileges, and seamless travel.';
+      } else if (tab === 'forgot') {
+        tabsContainer.style.display = 'none';
+        loginForm.classList.remove('active');
+        signupForm.classList.remove('active');
+        forgotForm.classList.add('active');
+        badgeText.textContent = 'ROUTELINE RECOVERY';
+        badgeIcon.setAttribute('data-lucide', 'key');
+        modalTitle.textContent = 'RESET YOUR PASSWORD';
+        modalSub.textContent = 'Enter the email associated with your account and we\'ll assist with verifying access.';
+      } else {
+        tabsContainer.style.display = 'flex';
+        signupTabBtn.classList.remove('active');
+        loginTabBtn.classList.add('active');
+        signupForm.classList.remove('active');
+        forgotForm.classList.remove('active');
+        loginForm.classList.add('active');
+        badgeText.textContent = 'ROUTELINE SECURE PASS';
+        badgeIcon.setAttribute('data-lucide', 'shield-check');
+        modalTitle.textContent = 'WELCOME TO ROUTELINE';
+        modalSub.textContent = 'Sign in to access your flight bookings, frequent flyer privileges, or continue exploring as a guest.';
+      }
+
+      loginForm.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
+      signupForm.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
+      forgotForm.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
+
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    }
+
+    // Read initial tab from URL query (?tab=signup or ?tab=forgot)
+    const urlParams = new URLSearchParams(window.location.search);
+    const initialTab = urlParams.get('tab') || 'login';
+    switchTab(initialTab);
+
+    loginTabBtn?.addEventListener('click', () => switchTab('login'));
+    signupTabBtn?.addEventListener('click', () => switchTab('signup'));
+    document.getElementById('rl-switch-to-signup')?.addEventListener('click', () => switchTab('signup'));
+    document.getElementById('rl-switch-to-login')?.addEventListener('click', () => switchTab('login'));
+    document.getElementById('rl-btn-forgot-pwd')?.addEventListener('click', () => switchTab('forgot'));
+    document.getElementById('rl-back-to-login')?.addEventListener('click', () => switchTab('login'));
+
+    bindPasswordToggles(document.querySelector('.rl-auth-modal'));
+
+    // Close button returns to homepage or previous history
+    document.getElementById('rl-standalone-close-btn')?.addEventListener('click', () => {
+      setAuthPromptDismissed();
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = '../../index.html';
+      }
+    });
+
+    // Continue as guest
+    const handleGuest = () => {
+      continueAsGuest();
+      window.location.href = '../../index.html';
+    };
+    document.getElementById('rl-guest-btn-login')?.addEventListener('click', handleGuest);
+    document.getElementById('rl-guest-btn-signup')?.addEventListener('click', handleGuest);
+
+    // Login submit
+    loginForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      let identifier = document.getElementById('rl-login-email')?.value?.trim();
+      let password = document.getElementById('rl-login-password')?.value;
+      const remember = document.getElementById('rl-login-remember')?.checked;
+
+      if (!identifier && !password) {
+        identifier = 'demo@routeline.com';
+        password = 'password123';
+        document.getElementById('rl-login-email').value = identifier;
+        document.getElementById('rl-login-password').value = password;
+      }
+
+      const res = await loginUser({ identifier, password, remember });
+      if (!res.success) {
+        showAlert(res.error, 'error');
+        return;
+      }
+
+      setAuthPromptDismissed();
+      showAuthToast(`Welcome back, ${res.user.name || 'Traveler'}!`, 'success');
+      setTimeout(() => {
+        window.location.href = '../../index.html';
+      }, 400);
+    });
+
+    // Sign up submit
+    signupForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('rl-signup-name')?.value;
+      const email = document.getElementById('rl-signup-email')?.value;
+      const password = document.getElementById('rl-signup-password')?.value;
+      const confirmPassword = document.getElementById('rl-signup-confirm-password')?.value;
+      const termsChecked = document.getElementById('rl-signup-terms')?.checked;
+
+      if (!termsChecked) {
+        showAlert('Please agree to the Terms of Service & Privacy Policy.', 'error');
+        return;
+      }
+
+      const res = await signupUser({ name, email, password, confirmPassword });
+      if (!res.success) {
+        showAlert(res.error, 'error');
+        return;
+      }
+
+      setAuthPromptDismissed();
+      showAuthToast(`Account created successfully! Welcome, ${res.user.name}!`, 'success');
+      setTimeout(() => {
+        window.location.href = '../../index.html';
+      }, 400);
+    });
+
+    // Forgot password submit
+    forgotForm?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const email = document.getElementById('rl-forgot-email')?.value?.trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showAlert('Please enter a valid registered email address.', 'error');
+        return;
+      }
+
+      showAlert('Account verified in local secure registry. Direct email delivery requires an active SMTP backend. For this demo, you can sign in using demo@routeline.com or register a new traveler account.', 'info');
+    });
+  </script>
+</body>
+</html>
