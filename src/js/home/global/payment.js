@@ -124,7 +124,7 @@ export function openPaymentModal(params = {}) {
   const trainName = train?.train_name || 'Express Train';
   const trainNo = train?.train_number || '12952';
   const classType = selectedClass?.class_type || 'Sleeper (SL)';
-  const passName = passenger?.name || user?.name || 'Saurya Man Bisen';
+  const passName = passenger?.name || user?.name || (isAuthenticated() ? (user?.name || 'Traveler') : 'Passenger');
 
   content.innerHTML = `
     <div class="payment-view-container">
@@ -359,8 +359,8 @@ function executePaymentFlow(params) {
   const { train, selectedClass, passenger } = params;
   const fare = selectedClass?.fare || 865;
   const trainName = train?.train_name || 'Andaman Express';
-  const trainNo = train?.train_number || '16032';
-  const passName = passenger?.name || 'Saurya Man Bisen';
+  const currentUser = getCurrentUser();
+  const passName = passenger?.name || currentUser?.name || 'Verified Traveler';
   const pnr = generateRealisticPNR();
   const seat = allocateSeat(selectedClass?.class_type, passenger?.berthPreference);
   const txnId = `UPI-RL-${Date.now().toString().slice(-8)}`;
