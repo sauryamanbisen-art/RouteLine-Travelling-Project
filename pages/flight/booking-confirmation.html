@@ -82,35 +82,83 @@
       <div class="header-actions">
         <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
         <div class="divider"></div>
-        <a href="#" class="login-link" style="display: none;"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
-        <div class="rl-user-profile-widget" id="rl-user-profile-widget">
-          <div class="rl-user-chip" id="rl-user-chip" title="Sauryaman Bisen">
-            <div class="rl-user-avatar">S</div>
-            <span>Sauryaman</span>
-            <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-          </div>
-          <div class="rl-user-dropdown" id="rl-user-dropdown">
-            <div class="rl-dropdown-user-info">
-              <p class="rl-dropdown-name">Sauryaman Bisen</p>
-              <p class="rl-dropdown-email">sauryamanbisen@gmail.com</p>
-            </div>
-            <a href="../train/ticket.html" class="rl-dropdown-item">
-              <i data-lucide="ticket" style="width:15px;height:15px;"></i>
-              <span>My Bookings</span>
-            </a>
-            <button type="button" class="rl-dropdown-item logout" id="rl-btn-logout">
-              <i data-lucide="log-out" style="width:15px;height:15px;"></i>
-              <span>Logout</span>
-            </button>
-          </div>
-        </div>
+        <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
       </div>
     </div>
   </header>
 
-  <main class="w-full pt-16 pb-16">
+  <main class="w-full pb-16">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       
+      <!-- Top 5-Step Progress Stepper matching Image 4 -->
+      <nav aria-label="Booking Progress" class="w-full bg-white rounded-2xl border border-gray-100 shadow-xs px-4 sm:px-8 py-3.5 mb-6 overflow-x-auto no-scrollbar no-print">
+        <div class="flex items-center justify-between min-w-[760px] gap-2 text-xs">
+          <!-- Step 1: Select Flight -->
+          <a href="flight-results.html" class="flex items-center gap-2 group transition-all shrink-0 hover:opacity-80 cursor-pointer" title="Back to Step 1: Select Flight">
+            <div class="w-6 h-6 rounded-full bg-[#8c6d37] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">check</span>
+            </div>
+            <div>
+              <div class="font-sans font-bold text-gray-900 group-hover:text-blue-700 transition-colors">Step 1: Select Flight</div>
+              <div class="text-[10px] text-[#8c6d37] font-medium leading-none">Completed</div>
+            </div>
+          </a>
+
+          <div class="h-px bg-gray-200 flex-1 max-w-[28px]"></div>
+
+          <!-- Step 2: Flight Details -->
+          <a href="flight-details.html" class="flex items-center gap-2 group transition-all shrink-0 hover:opacity-80 cursor-pointer" title="Back to Step 2: Flight Details">
+            <div class="w-6 h-6 rounded-full bg-[#8c6d37] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">check</span>
+            </div>
+            <div>
+              <div class="font-sans font-bold text-gray-900 group-hover:text-blue-700 transition-colors">Step 2: Flight Details</div>
+              <div class="text-[10px] text-[#8c6d37] font-medium leading-none">Completed</div>
+            </div>
+          </a>
+
+          <div class="h-px bg-gray-200 flex-1 max-w-[28px]"></div>
+
+          <!-- Step 3: Passenger Info -->
+          <a href="passenger-details.html" class="flex items-center gap-2 group transition-all shrink-0 hover:opacity-80 cursor-pointer" title="Back to Step 3: Passenger Info">
+            <div class="w-6 h-6 rounded-full bg-[#8c6d37] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">check</span>
+            </div>
+            <div>
+              <div class="font-sans font-bold text-gray-900 group-hover:text-blue-700 transition-colors">Step 3: Passenger Info</div>
+              <div class="text-[10px] text-[#8c6d37] font-medium leading-none">Completed</div>
+            </div>
+          </a>
+
+          <div class="h-px bg-gray-200 flex-1 max-w-[28px]"></div>
+
+          <!-- Step 4: Seats & Add-ons -->
+          <a href="seat-selection.html" class="flex items-center gap-2 group transition-all shrink-0 hover:opacity-80 cursor-pointer" title="Back to Step 4: Seats & Add-ons">
+            <div class="w-6 h-6 rounded-full bg-[#8c6d37] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">check</span>
+            </div>
+            <div>
+              <div class="font-sans font-bold text-gray-900 group-hover:text-blue-700 transition-colors">Step 4: Seats &amp; Add-ons</div>
+              <div class="text-[10px] text-[#8c6d37] font-medium leading-none">Completed</div>
+            </div>
+          </a>
+
+          <div class="h-px bg-gray-200 flex-1 max-w-[28px]"></div>
+
+          <!-- Step 5: Review & Pay -->
+          <a href="review-payment.html" class="flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#eef4ff] border border-blue-200/70 shadow-2xs shrink-0 cursor-pointer" title="Step 5: Review & Pay">
+            <div class="w-6 h-6 rounded-full bg-[#8c6d37] text-white flex items-center justify-center font-bold text-xs shrink-0 shadow-xs">
+              <span class="material-symbols-outlined text-[15px]">check</span>
+            </div>
+            <div>
+              <div class="font-sans font-bold text-gray-900">Step 5: Review &amp; Pay</div>
+              <div class="text-[10px] text-emerald-600 font-semibold leading-none">Confirmed</div>
+            </div>
+          </a>
+        </div>
+      </nav>
+
       <!-- Confirmation Banner -->
       <section class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-emerald-100 text-center space-y-3 relative overflow-hidden">
         <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center mb-2 shadow-sm">
@@ -126,7 +174,7 @@
           Your Flight Booking is Confirmed!
         </h1>
         <p class="text-xs sm:text-sm text-gray-500 max-w-lg mx-auto">
-          Electronic flight ticket and contactless QR boarding pass have been dispatched to <strong class="text-gray-800" id="confirmEmail">rahul.verma@example.com</strong> and WhatsApp.
+          Electronic flight ticket and contactless QR boarding pass have been dispatched to <strong class="text-gray-800" id="confirmEmail">your registered email</strong> and WhatsApp.
         </p>
 
         <div class="pt-2 no-print">
@@ -201,7 +249,7 @@
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100 text-xs">
             <div>
               <span class="text-[10px] uppercase tracking-wider text-gray-400 font-bold block">Passenger</span>
-              <div class="font-bold text-sm text-gray-900" id="ticketPaxName">Rahul Verma</div>
+              <div class="font-bold text-sm text-gray-900" id="ticketPaxName">Lead Passenger</div>
               <div class="text-[10px] text-gray-400">Adult • Primary</div>
             </div>
 
@@ -337,7 +385,7 @@
   <!-- Scripts -->
   <script type="module">
     import { getFlightState } from '../../src/js/flight/flight-state.js';
-    import { initAuth } from '../../src/js/home/auth/auth.js';
+    import { initAuth, getCurrentUser, isAuthenticated } from '../../src/js/home/auth/auth.js';
     function onReady(fn) {
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', fn);
@@ -351,6 +399,7 @@
 
       const state = getFlightState();
       const flight = state.selectedFlight;
+      const currentUser = getCurrentUser();
 
       // Extract ref from URL or state
       const urlParams = new URLSearchParams(window.location.search);
@@ -361,6 +410,10 @@
 
       if (state.contactInfo?.email) {
         document.getElementById('confirmEmail').textContent = state.contactInfo.email;
+      } else if (currentUser?.email) {
+        document.getElementById('confirmEmail').textContent = currentUser.email;
+      } else {
+        document.getElementById('confirmEmail').textContent = 'your registered email';
       }
 
       if (flight) {
@@ -379,8 +432,10 @@
       }
 
       const leadPax = state.passengersList?.[0];
-      if (leadPax) {
-        document.getElementById('ticketPaxName').textContent = `${leadPax.title} ${leadPax.firstName} ${leadPax.lastName}`;
+      if (leadPax && (leadPax.firstName || leadPax.lastName)) {
+        document.getElementById('ticketPaxName').textContent = `${leadPax.title || 'Mr.'} ${leadPax.firstName || ''} ${leadPax.lastName || ''}`.trim();
+      } else {
+        document.getElementById('ticketPaxName').textContent = currentUser?.name || (isAuthenticated() ? 'Verified Traveler' : 'Lead Passenger');
       }
 
       if (state.selectedSeats?.length) {
