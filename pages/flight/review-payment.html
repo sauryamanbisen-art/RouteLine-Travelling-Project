@@ -139,28 +139,8 @@
       <div class="header-actions">
         <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
         <div class="divider"></div>
-        <a href="#" class="login-link" style="display: none;"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
-        <div class="rl-user-profile-widget" id="rl-user-profile-widget">
-          <div class="rl-user-chip" id="rl-user-chip" title="Sauryaman Bisen">
-            <div class="rl-user-avatar">S</div>
-            <span>Sauryaman</span>
-            <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-          </div>
-          <div class="rl-user-dropdown" id="rl-user-dropdown">
-            <div class="rl-dropdown-user-info">
-              <p class="rl-dropdown-name">Sauryaman Bisen</p>
-              <p class="rl-dropdown-email">sauryamanbisen@gmail.com</p>
-            </div>
-            <a href="../train/ticket.html" class="rl-dropdown-item">
-              <i data-lucide="ticket" style="width:15px;height:15px;"></i>
-              <span>My Bookings</span>
-            </a>
-            <button type="button" class="rl-dropdown-item logout" id="rl-btn-logout">
-              <i data-lucide="log-out" style="width:15px;height:15px;"></i>
-              <span>Logout</span>
-            </button>
-          </div>
-        </div>
+        <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
       </div>
     </div>
   </header>
@@ -191,49 +171,54 @@
       </div>
     </div>
 
-    <!-- 5-Step Process Stepper -->
-    <section class="w-full bg-white border-b border-gray-200/80 py-3.5 shadow-2xs">
+    <!-- Universal 5-Step Process Stepper matching Image 4 -->
+    <section class="w-full bg-white border-b border-gray-200/80 py-3 shadow-xs">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
-          <a href="flight-results.html" class="step-card hover:border-gray-300 transition-colors">
-            <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
-            <div>
-              <span class="block text-[9px] uppercase tracking-wider text-gray-400 font-bold">Step 01</span>
-              <span class="font-bold text-gray-800 text-[11px]">Select Flight</span>
+        <div class="flex items-center justify-between gap-2 overflow-x-auto text-xs py-1">
+          <!-- Step 1: Select Flight (Completed) -->
+          <a href="flight-results.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 1: Select Flight</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
             </div>
           </a>
 
-          <a href="flight-details.html" class="step-card hover:border-gray-300 transition-colors">
-            <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
-            <div>
-              <span class="block text-[9px] uppercase tracking-wider text-gray-400 font-bold">Step 02</span>
-              <span class="font-bold text-gray-800 text-[11px]">Flight Details</span>
+          <!-- Step 2: Flight Details (Completed) -->
+          <a href="flight-details.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 2: Flight Details</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
             </div>
           </a>
 
-          <a href="passenger-details.html" class="step-card hover:border-gray-300 transition-colors">
-            <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
-            <div>
-              <span class="block text-[9px] uppercase tracking-wider text-gray-400 font-bold">Step 03</span>
-              <span class="font-bold text-gray-800 text-[11px]">Passenger Info</span>
+          <!-- Step 3: Passenger Info (Completed) -->
+          <a href="passenger-details.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 3: Passenger Info</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
             </div>
           </a>
 
-          <a href="seat-selection.html" class="step-card hover:border-gray-300 transition-colors">
-            <div class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-[10px] font-bold">✓</div>
-            <div>
-              <span class="block text-[9px] uppercase tracking-wider text-gray-400 font-bold">Step 04</span>
-              <span class="font-bold text-gray-800 text-[11px]">Seats &amp; Add-ons</span>
+          <!-- Step 4: Seats & Add-ons (Completed) -->
+          <a href="seat-selection.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 4: Seats &amp; Add-ons</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
             </div>
           </a>
 
-          <div class="step-card active">
-            <div class="w-5 h-5 rounded-md bg-[#000d2c] border border-gold-400/50 text-gold-400 flex items-center justify-center text-xs font-black">5</div>
-            <div>
-              <span class="block text-[9px] uppercase tracking-wider text-gold-300 font-bold">Final Stage</span>
-              <span class="font-bold text-white text-[11px]">Review &amp; Pay</span>
+          <!-- Step 5: Review & Pay (Active Selection) -->
+          <a href="review-payment.html" class="flex items-center gap-2 shrink-0 px-3.5 py-1.5 rounded-xl bg-[#eef4ff] border border-blue-200/70 shadow-xs">
+            <div class="w-5 h-5 rounded-full bg-[#000d2c] text-white flex items-center justify-center text-[11px] font-black">5</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 5: Review &amp; Pay</span>
+              <span class="text-[10px] text-amber-600 block font-bold">Active Selection</span>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </section>
@@ -309,16 +294,16 @@
             <div class="bg-[#f1f6fa] rounded-xl p-3 border border-[#e2ebf3] flex flex-wrap items-center justify-between gap-3">
               <div class="flex items-center gap-2.5">
                 <div class="w-8 h-8 rounded-full bg-[#000d2c] text-white flex items-center justify-center font-bold text-xs shrink-0" id="reviewPaxAvatar">
-                  RV
+                  SB
                 </div>
                 <div>
                   <div class="flex items-center gap-1.5 flex-wrap">
-                    <span class="font-sans text-xs font-bold text-gray-900" id="reviewPaxNames">Rahul Verma</span>
+                    <span class="font-sans text-xs font-bold text-gray-900" id="reviewPaxNames">Lead Passenger</span>
                     <span class="px-1.5 py-0.5 rounded-full bg-white text-gray-600 border border-gray-200 text-[10px] font-semibold">Adult (18+)</span>
-                    <span class="px-2 py-0.5 rounded-full bg-[#000d2c] text-gold-400 text-[10px] font-bold">Elite Gold</span>
+                    <span class="px-2 py-0.5 rounded-full bg-[#000d2c] text-gold-400 text-[10px] font-bold">Standard</span>
                   </div>
                   <div class="text-[11px] text-gray-500 font-medium">
-                    Seat: <strong class="text-gray-900" id="reviewSeatNames">12A</strong> • Mobile: <span id="reviewPaxMobile">+91 98230 41890</span> • <span id="reviewPaxEmail">rahul.verma@example.com</span>
+                    Seat: <strong class="text-gray-900" id="reviewSeatNames">12A</strong> • Mobile: <span id="reviewPaxMobile">+91 98765 43210</span> • <span id="reviewPaxEmail">passenger@example.com</span>
                   </div>
                 </div>
               </div>
@@ -534,7 +519,7 @@
                     <label class="block text-xs font-bold text-gray-800 mb-1.5">Or enter UPI ID / VPA</label>
                     <div class="flex items-center gap-2">
                       <div class="relative flex-1">
-                        <input type="text" id="upiVpaInput" value="rahulverma@okhdfcbank" 
+                        <input type="text" id="upiVpaInput" placeholder="e.g. mobile@upi or username@bank" value="" 
                                class="w-full text-xs font-medium rounded-xl border-gray-300 bg-[#f8fafc] px-3 py-2.5 pr-8 focus:border-gold-500 focus:ring-0">
                         <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-emerald-600 text-[16px]">check_circle</span>
                       </div>
@@ -548,7 +533,7 @@
                   <!-- Verified Name Badge -->
                   <div class="flex items-center gap-1.5 text-[11px] text-gray-600">
                     <span class="material-symbols-outlined text-[14px] text-emerald-600">verified_user</span>
-                    <span>Verified name: <strong>Rahul Verma</strong> (HDFC Bank Account ending ••4901)</span>
+                    <span>Instant UPI collect request will be sent to your bank app</span>
                   </div>
 
                   <!-- Info alert box -->
@@ -568,15 +553,15 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
                 <div class="sm:col-span-2">
                   <label class="block font-bold text-gray-700 mb-1">Cardholder Name</label>
-                  <input type="text" value="RAHUL VERMA" class="w-full rounded-xl border-gray-300 p-2.5 text-xs bg-gray-50/50">
+                  <input type="text" placeholder="Name on card" class="w-full rounded-xl border-gray-300 p-2.5 text-xs bg-gray-50/50">
                 </div>
                 <div class="sm:col-span-2">
                   <label class="block font-bold text-gray-700 mb-1">Card Number</label>
-                  <input type="text" value="•••• •••• •••• 4242" class="w-full font-mono rounded-xl border-gray-300 p-2.5 text-xs bg-gray-50/50">
+                  <input type="text" placeholder="•••• •••• •••• ••••" class="w-full font-mono rounded-xl border-gray-300 p-2.5 text-xs bg-gray-50/50">
                 </div>
                 <div>
                   <label class="block font-bold text-gray-700 mb-1">Expiry Date</label>
-                  <input type="text" value="08/29" class="w-full font-mono rounded-xl border-gray-300 p-2.5 text-xs bg-gray-50/50">
+                  <input type="text" placeholder="MM/YY" class="w-full font-mono rounded-xl border-gray-300 p-2.5 text-xs bg-gray-50/50">
                 </div>
                 <div>
                   <label class="block font-bold text-gray-700 mb-1">CVV</label>
@@ -898,7 +883,8 @@
   <!-- Scripts -->
   <script type="module">
     import { AVAILABLE_COUPONS, getFlightState, updateFlightState, calculatePricing, generateDemoBookingRef } from '../../src/js/flight/flight-state.js';
-    import { initAuth } from '../../src/js/home/auth/auth.js';
+    import { initAuth, getCurrentUser, isAuthenticated, requireAuthentication } from '../../src/js/home/auth/auth.js';
+    import { saveBooking } from '../../src/js/services/booking-store.js';
 
     function onReady(fn) {
       if (document.readyState === 'loading') {
@@ -934,14 +920,15 @@
       // Populate Passenger Name & Seats
       const leadPax = state.passengersList?.[0];
       const paxTotal = state.passengersList?.length || state.search?.passengers || 1;
-      if (leadPax) {
-        const fullName = `${leadPax.title || 'Mr.'} ${leadPax.firstName || 'Rahul'} ${leadPax.lastName || 'Verma'}`.trim();
-        document.getElementById('reviewPaxNames').textContent = fullName;
-        const initials = `${(leadPax.firstName || 'R')[0]}${(leadPax.lastName || 'V')[0]}`.toUpperCase();
-        document.getElementById('reviewPaxAvatar').textContent = initials;
-        if (leadPax.mobile) document.getElementById('reviewPaxMobile').textContent = leadPax.mobile;
-        if (leadPax.email) document.getElementById('reviewPaxEmail').textContent = leadPax.email;
-      }
+      const currentUser = getCurrentUser();
+      const fullName = (leadPax && (leadPax.firstName || leadPax.lastName))
+        ? `${leadPax.title || 'Mr.'} ${leadPax.firstName || ''} ${leadPax.lastName || ''}`.trim()
+        : (currentUser?.name || (isAuthenticated() ? 'Verified Traveler' : 'Lead Passenger'));
+      document.getElementById('reviewPaxNames').textContent = fullName;
+      const initials = fullName.split(' ').map(p => p[0]).filter(Boolean).join('').substring(0, 2).toUpperCase() || 'LP';
+      document.getElementById('reviewPaxAvatar').textContent = initials;
+      if (leadPax?.mobile) document.getElementById('reviewPaxMobile').textContent = leadPax.mobile;
+      if (leadPax?.email) document.getElementById('reviewPaxEmail').textContent = leadPax.email;
       document.getElementById('sidePaxLabel').textContent = `${paxTotal} Adult Passenger${paxTotal > 1 ? 's' : ''}`;
 
       const assignedSeat = state.selectedSeats?.length ? state.selectedSeats[0] : '12A';
@@ -1041,14 +1028,59 @@
           status: 'CONFIRMED'
         });
 
+        const pricing = calculatePricing();
+        const fState = getFlightState();
+        const fFlight = fState.selectedFlight;
+        const assignedSeat = fState.selectedSeats?.length ? fState.selectedSeats[0] : '12A';
+
+        // Persist confirmed flight booking to unified store
+        saveBooking({
+          id: `BK-FLT-${ref}`,
+          bookingReference: ref,
+          type: 'flight',
+          status: 'UPCOMING',
+          title: fFlight ? `${fFlight.airline} ${fFlight.flightNumber}` : 'IndiGo 6E-2415 (Airbus A320neo)',
+          fromCode: fFlight ? fFlight.originCode : 'PNQ',
+          fromName: fFlight ? `${fFlight.originCity} (${fFlight.originAirport || ''})` : 'Pune Airport (PNQ)',
+          toCode: fFlight ? fFlight.destinationCode : 'DEL',
+          toName: fFlight ? `${fFlight.destinationCity} (${fFlight.destinationAirport || ''})` : 'Indira Gandhi Int’l (DEL)',
+          journeyDate: fFlight ? fFlight.departureDate : '24 Oct 2026',
+          departureTime: fFlight ? fFlight.departureTime : '06:15',
+          arrivalTime: fFlight ? fFlight.arrivalTime : '08:25',
+          duration: fFlight ? fFlight.duration : '2h 10m',
+          platform: 'Gate 4B',
+          classType: fState.selectedFareTier === 'club' ? 'Executive Club' : (fState.selectedFareTier === 'flexi' ? 'Flexi Plus' : 'Economy Saver'),
+          classCode: fState.selectedFareTier || 'saver',
+          quota: 'Standard',
+          passengers: [{
+            name: fullName,
+            seat: assignedSeat,
+            status: 'CONFIRMED'
+          }],
+          totalFare: pricing.grandTotal || 7898,
+          paymentMethod: 'UPI / Online',
+          details: {
+            airline: fFlight ? fFlight.airline : 'IndiGo',
+            flightNumber: fFlight ? fFlight.flightNumber : '6E-2415',
+            seat: assignedSeat,
+            baggage: fState.selectedBaggageAddon?.title || 'Standard Cabin Baggage'
+          }
+        });
+
         setTimeout(() => {
           modal.classList.add('hidden');
           window.location.href = `booking-confirmation.html?ref=${ref}`;
         }, 2200);
       }
 
-      document.getElementById('paySubmitBtn').addEventListener('click', triggerPaymentSimulation);
-      document.getElementById('verifyPayBtn').addEventListener('click', triggerPaymentSimulation);
+      function handlePaymentAction() {
+        requireAuthentication(() => {
+          triggerPaymentSimulation();
+        });
+      }
+
+      document.getElementById('paySubmitBtn').addEventListener('click', handlePaymentAction);
+      document.getElementById('verifyPayBtn').addEventListener('click', handlePaymentAction);
 
       // Fare countdown timer
       let timeLeft = 7 * 60 + 31;
