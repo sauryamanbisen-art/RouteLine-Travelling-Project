@@ -82,141 +82,249 @@
       <div class="header-actions">
         <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
         <div class="divider"></div>
-        <a href="#" class="login-link" style="display: none;"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
-        <div class="rl-user-profile-widget" id="rl-user-profile-widget">
-          <div class="rl-user-chip" id="rl-user-chip" title="Sauryaman Bisen">
-            <div class="rl-user-avatar">S</div>
-            <span>Sauryaman</span>
-            <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-          </div>
-          <div class="rl-user-dropdown" id="rl-user-dropdown">
-            <div class="rl-dropdown-user-info">
-              <p class="rl-dropdown-name">Sauryaman Bisen</p>
-              <p class="rl-dropdown-email">sauryamanbisen@gmail.com</p>
-            </div>
-            <a href="../train/ticket.html" class="rl-dropdown-item">
-              <i data-lucide="ticket" style="width:15px;height:15px;"></i>
-              <span>My Bookings</span>
-            </a>
-            <button type="button" class="rl-dropdown-item logout" id="rl-btn-logout">
-              <i data-lucide="log-out" style="width:15px;height:15px;"></i>
-              <span>Logout</span>
-            </button>
-          </div>
-        </div>
+        <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
       </div>
     </div>
   </header>
 
-  <main class="w-full pt-16 pb-16">
+  <main class="w-full pb-16">
     <!-- Stepper Context Ribbon -->
-    <section class="w-full bg-white border-b border-gray-100 py-3 shadow-sm">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
-        <div class="flex items-center gap-3 text-xs">
-          <a href="seat-selection.html" class="flex items-center gap-1 font-bold text-primary hover:text-secondary transition-colors">
-            <span class="material-symbols-outlined text-[17px]">arrow_back</span>
-            <span>Back to Seat Selection</span>
+    <section class="w-full bg-[#000d2c] py-2.5 px-4 sm:px-6 lg:px-8 border-b border-white/10 text-xs text-white">
+      <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+        <div class="flex items-center gap-2.5 flex-wrap text-gray-300">
+          <a href="seat-selection.html" class="flex items-center gap-1 text-gold-400 hover:text-gold-300 font-bold transition-colors">
+            <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+            <span>Back to Seat Allocation</span>
           </a>
-          <span class="text-gray-300">•</span>
-          <span class="font-mono text-gray-500">Trip Ref: <strong class="text-primary font-bold">RL-8842-PNQ</strong></span>
-          <div class="hidden sm:flex items-center gap-2 pl-3 border-l border-gray-200">
-            <span class="text-gray-500 text-[11px]">Guaranteed Fare Lock</span>
-            <div class="bg-obsidian text-gold-300 px-2.5 py-0.5 rounded-full font-mono font-bold text-xs flex items-center gap-1 border border-gold-400/30">
-              <span class="material-symbols-outlined text-[13px] text-gold-400 animate-pulse">lock</span>
-              <span id="fareLockTimer">10:15</span>
-            </div>
-          </div>
+          <span class="text-white/30">•</span>
+          <span class="font-mono text-white/80">PNR Session: <strong class="text-white font-bold">RL-8842-PNQ</strong></span>
+          <span class="text-white/30">•</span>
+          <span class="flex items-center gap-1.5 text-gray-200">
+            <span class="material-symbols-outlined text-[14px] text-gold-400">flight</span>
+            <span>IndiGo 6E-2415 • PNQ → DEL</span>
+          </span>
         </div>
-
-        <!-- 5-Step Process Indicator -->
-        <div class="flex items-center gap-1 sm:gap-2 overflow-x-auto w-full md:w-auto text-xs py-1">
-          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
-            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
-            <span class="hidden sm:inline">Flight</span>
-          </div>
-          <span class="w-3 h-0.5 bg-emerald-300"></span>
-
-          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
-            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
-            <span class="hidden sm:inline">Details</span>
-          </div>
-          <span class="w-3 h-0.5 bg-emerald-300"></span>
-
-          <div class="flex items-center gap-1 shrink-0 text-emerald-600 font-bold">
-            <div class="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center text-xs">✓</div>
-            <span class="hidden sm:inline">Passengers</span>
-          </div>
-          <span class="w-3 h-0.5 bg-emerald-300"></span>
-
-          <div class="flex items-center gap-1.5 shrink-0 px-2.5 py-1 rounded-full bg-primary text-white font-bold">
-            <div class="w-4 h-4 rounded-full bg-gold-400 text-obsidian flex items-center justify-center text-[10px]">4</div>
-            <span>Add-ons</span>
-          </div>
-          <span class="w-3 h-0.5 bg-gray-200"></span>
-
-          <div class="flex items-center gap-1 shrink-0 text-gray-400">
-            <div class="w-5 h-5 rounded-full bg-gray-100 flex items-center justify-center text-xs">5</div>
-            <span class="hidden sm:inline">Review &amp; Pay</span>
-          </div>
+        <div class="flex items-center gap-2 bg-[#faeedd] text-[#8c5e28] px-3.5 py-1 rounded-full text-xs font-bold font-mono shadow-sm">
+          <span class="material-symbols-outlined text-[15px] text-[#8c5e28]">lock</span>
+          <span class="tracking-wider uppercase text-[10px]">Guaranteed Fare Lock</span>
+          <span id="fareLockTimer" class="font-black text-xs text-[#6e4616]">10:15</span>
         </div>
       </div>
     </section>
 
+    <!-- Universal 5-Step Process Stepper matching Image 4 -->
+    <section class="w-full bg-white border-b border-gray-200/80 py-3 shadow-xs">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between gap-2 overflow-x-auto text-xs py-1">
+          <!-- Step 1: Select Flight (Completed) -->
+          <a href="flight-results.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 1: Select Flight</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
+            </div>
+          </a>
+
+          <!-- Step 2: Flight Details (Completed) -->
+          <a href="flight-details.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 2: Flight Details</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
+            </div>
+          </a>
+
+          <!-- Step 3: Passenger Info (Completed) -->
+          <a href="passenger-details.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 3: Passenger Info</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
+            </div>
+          </a>
+
+          <!-- Step 4: Seats & Add-ons (Active Selection) -->
+          <a href="seat-selection.html" class="flex items-center gap-2 shrink-0 px-3.5 py-1.5 rounded-xl bg-[#eef4ff] border border-blue-200/70 shadow-xs">
+            <div class="w-5 h-5 rounded-full bg-[#000d2c] text-white flex items-center justify-center text-[11px] font-black">4</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 4: Seats &amp; Add-ons</span>
+              <span class="text-[10px] text-amber-600 block font-bold">Active Selection</span>
+            </div>
+          </a>
+
+          <!-- Step 5: Review & Pay (Upcoming) -->
+          <a href="review-payment.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center text-[11px] font-medium">5</div>
+            <div class="leading-tight">
+              <span class="font-medium text-gray-600 block text-xs">Step 5: Review &amp; Pay</span>
+              <span class="text-[10px] text-gray-400 block font-normal">Upcoming</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mini Tab Switcher matching Image 2 -->
+    <section class="w-full bg-white border-b border-gray-200">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center gap-1 text-xs font-semibold py-2">
+        <a href="seat-selection.html" class="seat-tab px-4 py-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 flex items-center gap-2 transition-colors">
+          <span class="material-symbols-outlined text-[16px]">airline_seat_recline_extra</span>
+          <span>1. Seat Allocation</span>
+          <span class="text-[10px] bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded font-mono font-bold" id="tabSeatBadge">12A Selected</span>
+        </a>
+        <a href="baggage-addons.html" class="seat-tab active px-4 py-2 rounded-lg bg-[#000d2c] text-white flex items-center gap-2 shadow-sm">
+          <span class="material-symbols-outlined text-[16px]">luggage</span>
+          <span>2. Baggage &amp; Services</span>
+          <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+        </a>
+        <a href="#dining" class="seat-tab px-4 py-2 rounded-lg bg-gray-100 text-gray-600 hover:bg-gray-200 flex items-center gap-2 transition-colors">
+          <span class="material-symbols-outlined text-[16px]">restaurant</span>
+          <span>3. Gourmet Dining &amp; Combos</span>
+          <span class="text-[10px] bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded font-mono font-bold" id="tabMealBadge">1 Item Added</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Top Hero Banner matching Image 1 -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+      <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-[#0b172a] via-[#10203a] to-[#0a1628] text-white p-6 shadow-md border border-slate-700/50">
+        <div class="relative z-10 max-w-2xl space-y-2">
+          <div class="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-gold-400/15 border border-gold-400/40 text-gold-300 text-[11px] font-bold tracking-wide">
+            <span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span>
+            <span>RouteLine Elite Gold Privilege</span>
+            <span class="text-white/40">•</span>
+            <span class="text-white/90 font-normal">Complimentary priority bag tags included</span>
+          </div>
+          <h2 class="font-sans text-xl sm:text-2xl font-black text-white tracking-tight">Executive Baggage, Priority Services &amp; Gourmet Add-ons</h2>
+          <p class="text-xs text-gray-300">
+            Customise your flight experience for <strong class="text-white font-bold" id="bannerPaxName">Lead Passenger</strong> (Seat <span id="bannerSeatBadge">12A</span> • IndiGo 6E-2415 • PNQ → DEL).
+          </p>
+          <div class="flex flex-wrap items-center gap-4 pt-2 text-[11px] text-gray-400 font-medium">
+            <span class="flex items-center gap-1.5 text-emerald-400">
+              <span class="material-symbols-outlined text-[15px]">sync</span> Instant PNR Sync
+            </span>
+            <span class="text-gray-600">•</span>
+            <span class="flex items-center gap-1.5 text-gold-300">
+              <span class="material-symbols-outlined text-[15px]">savings</span> Pre-book to save up to 45% vs Airport Counter
+            </span>
+          </div>
+        </div>
+        <!-- Watermark suitcase icon -->
+        <span class="material-symbols-outlined absolute right-6 -bottom-6 text-[150px] text-white/5 pointer-events-none select-none">luggage</span>
+      </div>
+    </div>
+
     <!-- Main Add-ons Layout -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Left Column: Add-ons Selections (8 Cols) -->
         <div class="lg:col-span-8 space-y-8">
           
-          <!-- 1. Prepaid Checked Baggage Upgrade -->
+          <!-- 1. Baggage Upgrades & Allowances -->
           <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+            <div class="flex flex-wrap items-center justify-between pb-3 border-b border-gray-100 gap-2">
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-blue-50 text-secondary flex items-center justify-center">
+                <div class="w-9 h-9 rounded-xl bg-blue-50 text-[#000d2c] flex items-center justify-center">
                   <span class="material-symbols-outlined text-[20px]">luggage</span>
                 </div>
                 <div>
-                  <h3 class="font-sans text-base font-bold text-primary">Prepaid Checked Baggage</h3>
-                  <p class="text-xs text-gray-500">Save up to 35% compared to airport terminal excess luggage rates.</p>
+                  <h3 class="font-sans text-base font-bold text-gray-900">Baggage Upgrades &amp; Allowances</h3>
+                  <p class="text-xs text-gray-500">Manage check-in baggage and oversized executive equipment</p>
                 </div>
+              </div>
+              <span class="text-[11px] font-semibold text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">verified</span> Guaranteed Tagged Transfer
+              </span>
+            </div>
+
+            <!-- Included Complimentary Allowance Card -->
+            <div class="p-4 rounded-2xl bg-[#f0f6ff]/70 border border-blue-200/80 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">backpack</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="text-xs font-bold text-gray-900">Included Complimentary Allowance</span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-600 text-white uppercase tracking-wider">Active</span>
+                  </div>
+                  <p class="text-[11px] text-gray-600 mt-0.5">1 Cabin Bag (up to 7 kg, 55×35×25 cm) + 1 Standard Check-In Bag (15 kg, 158 cm total dimension).</p>
+                </div>
+              </div>
+              <div class="text-right shrink-0 flex items-center gap-2">
+                <div>
+                  <span class="text-[10px] text-gray-400 block font-medium">Pre-Allocated</span>
+                  <span class="text-xs font-extrabold text-gray-900">22 kg Total</span>
+                </div>
+                <span class="material-symbols-outlined text-emerald-600 text-[20px]">check_circle</span>
               </div>
             </div>
 
+            <!-- Upgrade Cards Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="baggageOptionsContainer">
               <!-- Rendered via JS -->
             </div>
+
+            <!-- Special Equipment Banner -->
+            <div class="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-2.5 text-xs text-gray-700">
+                <span class="material-symbols-outlined text-gray-500 text-[18px]">sports_golf</span>
+                <div>
+                  <strong class="font-bold text-gray-900">Special Equipment &amp; Fragile Transit</strong>
+                  <span class="text-gray-500 block text-[11px]">Golf kits, musical instruments, ski gear, or sensitive electronics</span>
+                </div>
+              </div>
+              <button type="button" class="px-3 py-1.5 rounded-lg border border-gray-300 bg-white hover:bg-gray-50 text-gray-800 text-xs font-bold transition-colors">
+                Declare Gear ↗
+              </button>
+            </div>
           </div>
 
-          <!-- 2. In-Flight Gourmet Meals -->
-          <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4">
-            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+          <!-- 2. Gourmet Dining & Chef's Selection -->
+          <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4" id="dining">
+            <div class="flex flex-wrap items-center justify-between pb-3 border-b border-gray-100 gap-2">
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center">
+                <div class="w-9 h-9 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center">
                   <span class="material-symbols-outlined text-[20px]">restaurant</span>
                 </div>
                 <div>
-                  <h3 class="font-sans text-base font-bold text-primary">In-Flight Gourmet Meals</h3>
-                  <p class="text-xs text-gray-500">Freshly prepared gourmet meals delivered hot directly to your seat.</p>
+                  <h3 class="font-sans text-base font-bold text-gray-900">Gourmet Dining &amp; Chef's Selection</h3>
+                  <p class="text-xs text-gray-500">Curated artisan meals served hot at 36,000 feet with priority tray delivery</p>
                 </div>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <span class="flex items-center gap-1 text-emerald-700 font-semibold"><span class="w-2.5 h-2.5 rounded-full bg-emerald-600"></span> Veg</span>
+                <span class="flex items-center gap-1 text-red-700 font-semibold"><span class="w-2.5 h-2.5 rounded-full bg-red-600"></span> Non-Veg</span>
               </div>
             </div>
 
+            <!-- Meal Filter Tabs matching Image 1 -->
+            <div class="flex items-center gap-2 overflow-x-auto text-xs py-1">
+              <button type="button" class="px-3 py-1 rounded-full bg-[#000d2c] text-white font-bold shrink-0">All Selection (8)</button>
+              <button type="button" class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium shrink-0">Chef's Specials</button>
+              <button type="button" class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium shrink-0">Hot Indian Mains</button>
+              <button type="button" class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium shrink-0">Artisan Wraps &amp; Light Bites</button>
+              <button type="button" class="px-3 py-1 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium shrink-0">Cold Pressed</button>
+            </div>
+
+            <!-- Meal Cards Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="mealsContainer">
               <!-- Rendered via JS -->
             </div>
           </div>
 
-          <!-- 3. Airport Priority & Lounge Passes -->
+          <!-- 3. Priority & Executive Ground Privileges matching Image 1 -->
           <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4">
             <div class="flex items-center justify-between pb-3 border-b border-gray-100">
               <div class="flex items-center gap-2.5">
-                <div class="w-9 h-9 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center">
-                  <span class="material-symbols-outlined text-[20px]">airline_stops</span>
+                <div class="w-9 h-9 rounded-xl bg-purple-50 text-[#000d2c] flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[20px]">flight_takeoff</span>
                 </div>
                 <div>
-                  <h3 class="font-sans text-base font-bold text-primary">Priority Handling &amp; Airport Lounge</h3>
-                  <p class="text-xs text-gray-500">Fast-track queues and relax in first-class comfort before your flight.</p>
+                  <h3 class="font-sans text-base font-bold text-gray-900">Priority &amp; Executive Ground Privileges</h3>
+                  <p class="text-xs text-gray-500">Bypass airport congestion with guaranteed fast-track privileges and lounge access</p>
                 </div>
               </div>
             </div>
@@ -226,96 +334,116 @@
             </div>
           </div>
 
-          <!-- 4. RouteLine Multi-Modal Trip Protection -->
-          <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 space-y-4">
-            <div class="flex items-start justify-between gap-4">
-              <div class="flex items-start gap-3">
-                <div class="w-9 h-9 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center shrink-0">
-                  <span class="material-symbols-outlined text-[20px]">shield</span>
-                </div>
-                <div>
-                  <div class="flex items-center gap-2">
-                    <h3 class="font-sans text-base font-bold text-primary">RouteLine Multi-Modal Trip Shield</h3>
-                    <span class="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2 py-0.5 rounded-full">Recommended</span>
-                  </div>
-                  <p class="text-xs text-gray-500 mt-1">
-                    Covers flight delays (> 2h: ₹2,000 allowance), emergency medical coverage (₹2,50,000), lost baggage reimbursement, and connects smoothly to train miss guarantee.
-                  </p>
-                </div>
-              </div>
-              <div class="text-right shrink-0">
-                <div class="font-sans text-base font-extrabold text-primary">₹249</div>
-                <span class="text-[10px] text-gray-400">per passenger</span>
-              </div>
-            </div>
-
-            <div class="pt-2">
-              <label class="flex items-center gap-3 p-3.5 rounded-2xl border-2 border-emerald-500 bg-emerald-50/50 cursor-pointer">
-                <input type="checkbox" id="insuranceCheckbox" checked class="w-5 h-5 rounded text-primary focus:ring-0">
-                <span class="text-xs font-bold text-gray-800">
-                  Yes, add RouteLine Trip Shield to protect Rahul Verma &amp; co-travelers (+₹249)
-                </span>
-              </label>
-            </div>
-          </div>
-
         </div>
 
-        <!-- Right Column: Sticky Fare Breakdown (4 Cols) -->
-        <aside class="lg:col-span-4 sticky top-24 space-y-6">
-          <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 space-y-5">
-            <div class="flex items-center justify-between pb-3 border-b border-gray-100">
-              <h3 class="font-sans text-base font-bold text-primary">Booking Summary</h3>
-              <span class="text-xs font-mono text-gray-400" id="cartPax">1 Adult</span>
+        <!-- Right Column: Sticky Fare Breakdown matching Image 1 (4 Cols) -->
+        <aside class="lg:col-span-4 sticky top-20 space-y-4">
+          <div class="bg-white rounded-2xl p-5 shadow-lg border border-gray-100 space-y-4">
+            <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+              <div>
+                <span class="text-[10px] uppercase tracking-wider font-extrabold text-gray-400 block">Trip Review</span>
+                <h3 class="font-sans text-sm font-bold text-gray-900">Fare &amp; Add-on Summary</h3>
+              </div>
+              <span class="material-symbols-outlined text-gray-400 text-[18px]">receipt</span>
+            </div>
+
+            <!-- Passenger card -->
+            <div class="p-3.5 rounded-xl bg-[#f8fafc] border border-gray-200/80 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <strong class="font-bold text-gray-900" id="summaryPaxName">Lead Passenger</strong>
+                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded bg-[#000d2c] text-gold-300 uppercase tracking-wider">Standard</span>
+              </div>
+              <div class="space-y-1.5 text-[11px] text-gray-600">
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-1 text-gray-500"><span class="material-symbols-outlined text-[13px]">airline_seat_recline_extra</span> Selected Seat:</span>
+                  <span class="font-bold text-gray-900" id="sideSeatSummary">12A (XL Legroom) • ₹750</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-1 text-gray-500"><span class="material-symbols-outlined text-[13px]">luggage</span> Luggage Upgrade:</span>
+                  <span class="font-bold text-gray-900" id="sideBaggageSummary">+5 kg Prepaid • ₹2,100</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-1 text-gray-500"><span class="material-symbols-outlined text-[13px]">restaurant</span> In-flight Meal:</span>
+                  <span class="font-bold text-gray-900" id="sideMealSummary">Butter Chicken • ₹450</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="flex items-center gap-1 text-gray-500"><span class="material-symbols-outlined text-[13px]">room_service</span> Ground Services:</span>
+                  <span class="font-bold text-gray-900" id="sideServicesSummary">Baggage + Lounge • ₹1,250</span>
+                </div>
+              </div>
             </div>
 
             <!-- Detailed line item calculations -->
-            <div class="space-y-3 text-xs">
+            <div class="space-y-2.5 text-xs pt-1">
               <div class="flex items-center justify-between text-gray-600">
-                <span>Flight &amp; Tier Fare</span>
-                <span class="font-bold text-gray-900" id="cartBaseFare">₹4,199</span>
+                <span>Base Airfare + Airport Taxes</span>
+                <span class="font-bold text-gray-900" id="cartBaseFare">₹3,848</span>
               </div>
               <div class="flex items-center justify-between text-gray-600">
-                <span>Seat Selection (<span id="cartSeatsLabel">12A</span>)</span>
-                <span class="font-bold text-gray-900" id="cartSeatFee">₹950</span>
+                <span>XL Seat Selection (12A)</span>
+                <span class="font-bold text-gray-900" id="cartSeatFee">₹750</span>
               </div>
               <div class="flex items-center justify-between text-gray-600">
-                <span>Extra Baggage</span>
-                <span class="font-bold text-gray-900" id="cartBaggageFee">₹0</span>
+                <span>Baggage &amp; Gourmet Meals</span>
+                <span class="font-bold text-gray-900" id="cartAddonsCombined">₹2,550</span>
               </div>
               <div class="flex items-center justify-between text-gray-600">
-                <span>Meals &amp; Beverages</span>
-                <span class="font-bold text-gray-900" id="cartMealsFee">₹350</span>
+                <span>Priority &amp; Lounge Privileges</span>
+                <span class="font-bold text-gray-900" id="cartServicesFee">₹1,250</span>
               </div>
-              <div class="flex items-center justify-between text-gray-600">
-                <span>Priority Passes &amp; Insurance</span>
-                <span class="font-bold text-gray-900" id="cartServicesFee">₹748</span>
+              <div class="flex items-center justify-between p-2 rounded-lg bg-emerald-50 text-emerald-800 font-bold text-xs">
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-[14px]">sell</span> Promo Code RLFLY500
+                </span>
+                <span>-₹500</span>
               </div>
-              <div class="flex items-center justify-between text-gray-600">
-                <span>Taxes &amp; Aviation Surcharges</span>
-                <span class="font-bold text-gray-900" id="cartTaxes">₹740</span>
+              <div class="flex items-center justify-between text-gray-600 text-[11px]">
+                <span class="flex items-center gap-1">RouteLine Convenience Fee <span class="material-symbols-outlined text-[13px] text-gray-400">help</span></span>
+                <span class="font-bold text-emerald-600">FREE ₹0</span>
               </div>
             </div>
 
             <!-- Grand Total -->
-            <div class="pt-4 border-t border-gray-100 flex items-baseline justify-between">
+            <div class="pt-3 border-t border-gray-100 flex items-baseline justify-between">
               <div>
-                <span class="text-xs text-gray-400 block font-medium">Grand Total</span>
-                <span class="font-sans text-3xl font-extrabold text-primary" id="cartGrandTotal">₹6,987</span>
+                <span class="text-[10px] text-gray-400 block font-medium uppercase tracking-wider">Total Amount</span>
+                <span class="text-[10px] text-gray-400">All taxes and GST included</span>
               </div>
-              <span class="text-[11px] text-gray-400 font-medium">Taxes Included</span>
+              <span class="font-sans text-2xl font-black text-gray-900" id="cartGrandTotal">₹7,898</span>
             </div>
 
             <!-- Action Button -->
             <button type="button" id="proceedPaymentBtn" 
-                    class="w-full py-3.5 px-6 rounded-full bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-obsidian font-bold text-sm shadow-md transition-all active:scale-95 flex items-center justify-center gap-2">
-              <span>Proceed to Review &amp; Pay</span>
-              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    class="w-full py-3.5 px-6 rounded-xl bg-[#2e1d0f] hover:bg-[#20140a] text-white font-bold text-xs uppercase tracking-wider shadow-md transition-all active:scale-98 flex items-center justify-center gap-2">
+              <span>Proceed to Review &amp; Payment</span>
+              <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
             </button>
 
-            <div class="text-[11px] text-gray-500 text-center flex items-center justify-center gap-1">
-              <span class="material-symbols-outlined text-[14px] text-emerald-600">verified</span>
-              <span>All add-ons synced directly with airline PNR</span>
+            <div class="text-center">
+              <a href="review-payment.html" class="text-[11px] text-gray-500 hover:text-gray-800 font-medium underline">
+                Skip remaining add-ons &amp; proceed directly to payment
+              </a>
+            </div>
+
+            <!-- RouteLine Executive Care Card -->
+            <div class="p-3 rounded-xl bg-[#eff6ff] border border-blue-200/60 flex items-center gap-2.5 text-xs">
+              <span class="material-symbols-outlined text-blue-600 text-[20px] shrink-0">verified_user</span>
+              <div class="text-[11px] text-gray-700 leading-tight">
+                <strong class="font-bold text-gray-900 block">RouteLine Executive Care</strong>
+                Real-time telemetry sync, guaranteed bag delivery tracking, and 24/7 dedicated flight disruption concierge.
+              </div>
+            </div>
+
+            <!-- Need Special Assistance -->
+            <div class="p-3 rounded-xl bg-gray-50 border border-gray-200 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-gray-500 text-[18px]">accessible</span>
+                <div>
+                  <span class="font-bold text-gray-800 block text-[11px]">Need Special Assistance?</span>
+                  <span class="text-[10px] text-gray-500">Wheelchair, infant meals, or pet carriage</span>
+                </div>
+              </div>
+              <button type="button" class="text-xs font-bold text-blue-600 hover:underline">Request</button>
             </div>
           </div>
         </aside>
@@ -325,24 +453,38 @@
   </main>
 
   <!-- Site Footer -->
-  <footer class="w-full bg-primary text-white pt-8 pb-6 border-t border-white/10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
-      <div class="flex items-center gap-2">
-        <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-6">
-        <span>© 2026 RouteLine Transit Technologies. In-Flight Add-ons.</span>
+  <footer class="w-full bg-[#000d2c] text-white pt-10 pb-8 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-6 border-b border-white/10">
+        <div class="flex items-center gap-3">
+          <img src="../../public/logo.svg" alt="RouteLine Logo" class="h-7">
+          <div>
+            <div class="font-sans font-black text-sm tracking-wide text-white">RouteLine</div>
+            <div class="text-[10px] uppercase tracking-widest text-gold-400 font-bold">First Class Logistics</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-6 text-xs text-gray-400">
+          <span>256-bit Bank-Grade Encryption</span>
+          <span>•</span>
+          <span>Dedicated Concierge Assistance</span>
+        </div>
       </div>
-      <div class="flex items-center gap-4">
-        <a href="seat-selection.html" class="hover:text-white">Change Seat</a>
-        <span>•</span>
-        <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+      <div class="flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+        <span>© 2026 RouteLine Transit Technologies Inc. Executive Cabin Edition. All rights reserved.</span>
+        <div class="flex items-center gap-4">
+          <a href="seat-selection.html" class="hover:text-white">Change Seat</a>
+          <span>•</span>
+          <a href="design-system.html" class="hover:text-white">Design Tokens</a>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
   <script type="module">
-    import { MOCK_ADDONS, MOCK_MEALS, getFlightState, updateFlightState, calculatePricing } from '../../src/js/flight/flight-state.js';
-    import { initAuth } from '../../src/js/home/auth/auth.js';
+    import { getFlightState, updateFlightState, calculatePricing } from '../../src/js/flight/flight-state.js';
+    import { initAuth, getCurrentUser, isAuthenticated } from '../../src/js/home/auth/auth.js';
+    
     function onReady(fn) {
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', fn);
@@ -356,125 +498,275 @@
 
       const state = getFlightState();
 
-      // Render Baggage
-      const baggageContainer = document.getElementById('baggageOptionsContainer');
-      let selectedBaggage = state.selectedBaggageId || 'bag-0';
+      // Resolve Passenger Name
+      const leadPax = (state.passengersList && state.passengersList[0]) ? state.passengersList[0] : null;
+      const currentUser = getCurrentUser();
+      let paxName = currentUser?.name || (isAuthenticated() ? 'Verified Traveler' : 'Lead Passenger');
+      if (leadPax && leadPax.firstName) {
+        paxName = `${leadPax.firstName} ${leadPax.lastName || ''}`.trim();
+      }
+      const bannerPax = document.getElementById('bannerPaxName');
+      if (bannerPax) bannerPax.textContent = paxName;
+      const summaryPax = document.getElementById('summaryPaxName');
+      if (summaryPax) summaryPax.textContent = paxName;
+
+      // Resolve Seat Allocation
+      const seat = (state.selectedSeats && state.selectedSeats.length > 0) ? state.selectedSeats[0] : '12A';
+      document.getElementById('bannerSeatBadge').textContent = seat;
+      document.getElementById('tabSeatBadge').textContent = `${seat} Selected`;
+      document.getElementById('sideSeatSummary').textContent = `${seat} (XL Legroom) • ₹750`;
+
+      // Baggage Upgrade Options matching Image 1
+      const baggageList = [
+        { id: 'bag-3kg', weight: '+3 kg Extra Check-In', desc: 'For extra clothing & gifts', price: 1350, airportPrice: 1800, discount: 'Save 25% Online' },
+        { id: 'bag-5kg', weight: '+5 kg Extra Check-In', desc: 'Ideal for 3-5 day business trip', price: 2100, airportPrice: 2700, discount: 'Added to Seat ' + seat, popular: true },
+        { id: 'bag-10kg', weight: '+10 kg Executive Pack', desc: 'Extended stays & sample kits', price: 3900, airportPrice: 6000, discount: 'Save 35% Online' },
+        { id: 'bag-15kg', weight: '+15 kg Heavy Travel Pack', desc: 'Double check-in bag allocation', price: 5600, airportPrice: 9000, discount: 'Save 38% Online' }
+      ];
+
+      let selectedBaggageId = state.selectedBaggageId || 'bag-5kg';
 
       function renderBaggage() {
-        baggageContainer.innerHTML = MOCK_ADDONS.baggage.map(bag => `
-          <label class="p-3.5 rounded-2xl border-2 ${selectedBaggage === bag.id ? 'border-primary bg-blue-50/40' : 'border-gray-200 bg-white hover:border-gold-400'} cursor-pointer transition-all flex items-center justify-between">
-            <div class="flex items-center gap-3">
-              <input type="radio" name="baggageOption" value="${bag.id}" ${selectedBaggage === bag.id ? 'checked' : ''} class="text-primary focus:ring-0">
-              <div>
-                <div class="text-xs font-bold text-gray-900">${bag.weight}</div>
-                <div class="text-[11px] text-gray-500">${bag.label}</div>
-              </div>
-            </div>
-            <div class="font-sans font-extrabold text-sm text-primary">
-              ${bag.price === 0 ? 'Free' : `+₹${bag.price.toLocaleString('en-IN')}`}
-            </div>
-          </label>
-        `).join('');
-
-        document.querySelectorAll('input[name="baggageOption"]').forEach(r => {
-          r.addEventListener('change', (e) => {
-            selectedBaggage = e.target.value;
-            state.selectedBaggageId = selectedBaggage;
-            updateFlightState({ selectedBaggageId: selectedBaggage });
-            renderBaggage();
-            updateSummaryCart();
-          });
-        });
-      }
-
-      // Render Meals
-      const mealsContainer = document.getElementById('mealsContainer');
-      let selectedMeals = state.selectedMeals || [{ id: 'meal-junglee', qty: 1 }];
-
-      function renderMeals() {
-        mealsContainer.innerHTML = MOCK_MEALS.map(meal => {
-          const existing = selectedMeals.find(m => m.id === meal.id);
-          const qty = existing ? existing.qty : 0;
+        const container = document.getElementById('baggageOptionsContainer');
+        container.innerHTML = baggageList.map(bag => {
+          const isSelected = selectedBaggageId === bag.id;
           return `
-            <div class="p-3.5 rounded-2xl border ${qty > 0 ? 'border-gold-500 bg-gold-50/30' : 'border-gray-200 bg-white'} flex items-center justify-between gap-3">
-              <div class="space-y-1">
-                <div class="flex items-center gap-2">
-                  <span class="w-3.5 h-3.5 border ${meal.type === 'Veg' ? 'border-emerald-600 text-emerald-600' : 'border-red-600 text-red-600'} flex items-center justify-center text-[8px] font-bold">●</span>
-                  <span class="text-xs font-bold text-gray-900">${meal.name}</span>
+            <div class="relative p-4 rounded-2xl border-2 ${isSelected ? 'border-blue-600 bg-blue-50/50' : 'border-gray-200 bg-white hover:border-gray-300'} transition-all flex flex-col justify-between space-y-3">
+              ${bag.popular ? '<span class="absolute -top-2.5 right-4 bg-amber-500 text-white text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-xs">Most Popular</span>' : ''}
+              <div class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-xl ${isSelected ? 'bg-blue-600 text-white' : 'bg-gray-100 text-gray-700'} flex items-center justify-center shrink-0">
+                  <span class="material-symbols-outlined text-[18px]">luggage</span>
                 </div>
-                <div class="text-[11px] text-gray-500">${meal.calories} • <strong class="text-primary">₹${meal.price}</strong></div>
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-baseline justify-between gap-1">
+                    <strong class="text-xs font-bold text-gray-900">${bag.weight}</strong>
+                    <div class="text-right">
+                      <span class="text-xs font-extrabold text-gray-900">₹${bag.price.toLocaleString('en-IN')}</span>
+                      <span class="block text-[9px] text-gray-400 line-through">Airport ₹${bag.airportPrice.toLocaleString('en-IN')}</span>
+                    </div>
+                  </div>
+                  <p class="text-[11px] text-gray-500 mt-0.5">${bag.desc}</p>
+                </div>
               </div>
-
-              <div class="flex items-center gap-2">
-                <button type="button" class="w-7 h-7 rounded-full bg-gray-100 hover:bg-gray-200 font-bold text-xs meal-minus" data-id="${meal.id}">-</button>
-                <span class="text-xs font-bold w-4 text-center">${qty}</span>
-                <button type="button" class="w-7 h-7 rounded-full bg-primary text-white hover:bg-primary-container font-bold text-xs meal-plus" data-id="${meal.id}">+</button>
+              <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                <span class="text-[10px] font-bold ${isSelected ? 'text-amber-800' : 'text-amber-600'}">${bag.discount}</span>
+                ${isSelected ? `
+                  <div class="flex items-center gap-1.5 bg-[#000d2c] text-white px-2 py-1 rounded-lg text-xs font-bold">
+                    <button type="button" class="w-4 h-4 flex items-center justify-center hover:text-gold-300 bag-qty-btn" data-action="dec">-</button>
+                    <span class="px-1 text-[11px]">1</span>
+                    <button type="button" class="w-4 h-4 flex items-center justify-center hover:text-gold-300 bag-qty-btn" data-action="inc">+</button>
+                  </div>
+                ` : `
+                  <button type="button" class="select-bag-btn px-3 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold transition-colors" data-id="${bag.id}">
+                    + Add
+                  </button>
+                `}
               </div>
             </div>
           `;
         }).join('');
 
-        document.querySelectorAll('.meal-minus').forEach(btn => {
+        container.querySelectorAll('.select-bag-btn').forEach(btn => {
           btn.addEventListener('click', () => {
-            const id = btn.dataset.id;
-            const item = selectedMeals.find(m => m.id === id);
-            if (item && item.qty > 0) {
-              item.qty--;
-              if (item.qty === 0) {
-                selectedMeals = selectedMeals.filter(m => m.id !== id);
-              }
-              state.selectedMeals = selectedMeals;
-              updateFlightState({ selectedMeals: selectedMeals });
-              renderMeals();
-              updateSummaryCart();
-            }
+            selectedBaggageId = btn.dataset.id;
+            state.selectedBaggageId = selectedBaggageId;
+            updateFlightState({ selectedBaggageId: selectedBaggageId });
+            renderBaggage();
+            updateCalculations();
           });
         });
 
-        document.querySelectorAll('.meal-plus').forEach(btn => {
+        container.querySelectorAll('.bag-qty-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            if (btn.dataset.action === 'dec') {
+              selectedBaggageId = null;
+              state.selectedBaggageId = null;
+              updateFlightState({ selectedBaggageId: null });
+            }
+            renderBaggage();
+            updateCalculations();
+          });
+        });
+      }
+
+      // Gourmet Dining Options matching Image 1
+      const mealsList = [
+        {
+          id: 'meal-butter-chicken',
+          name: 'Smoked Butter Chicken & Jeera Pulao',
+          tag: "Chef's Signature",
+          price: 450,
+          isVeg: false,
+          desc: 'Tender tandoor-roasted chicken in velvety makhani gravy, served with cumin basmati rice.',
+          subtext: 'Includes choice of beverage',
+          img: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&w=160&q=80'
+        },
+        {
+          id: 'meal-paneer-roll',
+          name: 'Paneer Tikka Kathi Roll & Fresh Juice',
+          tag: 'Hot Roll',
+          price: 380,
+          isVeg: true,
+          desc: 'Chargrilled cottage cheese, pickled onions, and mint chutney wrapped in handmade laccha paratha.',
+          subtext: 'Pre-order discount applied',
+          img: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?auto=format&fit=crop&w=160&q=80'
+        },
+        {
+          id: 'meal-croissant',
+          name: 'Gourmet Croissant & Hazelnut Brew Combo',
+          tag: 'Continental Breakfast',
+          price: 350,
+          isVeg: true,
+          desc: 'French butter croissant with strawberry preserve, paired with rich roasted hazelnut cold brew.',
+          subtext: 'Morning Flight Special',
+          img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=160&q=80'
+        },
+        {
+          id: 'meal-quinoa',
+          name: 'Healthy Quinoa Salad & Hydration Elixir',
+          tag: 'Vegan & Gluten-Free',
+          price: 420,
+          isVeg: true,
+          desc: 'Organic tricolor quinoa, roasted pumpkin seeds, hass avocado chunks, with cold-pressed orange juice.',
+          subtext: 'Wellness Approved',
+          img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=160&q=80'
+        }
+      ];
+
+      let selectedMeals = state.selectedMeals || [{ id: 'meal-butter-chicken', qty: 1 }];
+
+      function renderMeals() {
+        const container = document.getElementById('mealsContainer');
+        container.innerHTML = mealsList.map(meal => {
+          const item = selectedMeals.find(m => m.id === meal.id);
+          const qty = item ? item.qty : 0;
+          return `
+            <div class="p-4 rounded-2xl border-2 ${qty > 0 ? 'border-amber-400 bg-amber-50/30' : 'border-gray-200 bg-white hover:border-gray-300'} transition-all flex flex-col justify-between space-y-3">
+              <div class="flex items-start gap-3">
+                <img src="${meal.img}" alt="${meal.name}" class="w-16 h-16 rounded-xl object-cover shrink-0 shadow-xs">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1">
+                    <span class="text-[10px] font-bold px-2 py-0.5 rounded ${meal.isVeg ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'}">${meal.tag}</span>
+                    <strong class="text-xs font-black text-gray-900">₹${meal.price}</strong>
+                  </div>
+                  <h4 class="text-xs font-bold text-gray-900 mt-1 leading-snug line-clamp-1">${meal.name}</h4>
+                  <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-2">${meal.desc}</p>
+                </div>
+              </div>
+              <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                <span class="text-[10px] text-gray-500">${meal.subtext}</span>
+                ${qty > 0 ? `
+                  <div class="flex items-center gap-1.5 bg-[#000d2c] text-white px-2 py-1 rounded-lg text-xs font-bold">
+                    <button type="button" class="w-4 h-4 flex items-center justify-center hover:text-gold-300 meal-qty-btn" data-id="${meal.id}" data-action="dec">-</button>
+                    <span class="px-1 text-[11px]">${qty}</span>
+                    <button type="button" class="w-4 h-4 flex items-center justify-center hover:text-gold-300 meal-qty-btn" data-id="${meal.id}" data-action="inc">+</button>
+                  </div>
+                ` : `
+                  <button type="button" class="add-meal-btn px-3 py-1 rounded-lg bg-blue-50 hover:bg-blue-100 text-blue-700 text-xs font-bold transition-colors" data-id="${meal.id}">
+                    + Add
+                  </button>
+                `}
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.querySelectorAll('.add-meal-btn').forEach(btn => {
           btn.addEventListener('click', () => {
             const id = btn.dataset.id;
-            const item = selectedMeals.find(m => m.id === id);
-            if (item) {
-              item.qty++;
+            const existing = selectedMeals.find(m => m.id === id);
+            if (existing) {
+              existing.qty++;
             } else {
               selectedMeals.push({ id, qty: 1 });
             }
             state.selectedMeals = selectedMeals;
-            updateFlightState({ selectedMeals: selectedMeals });
+            updateFlightState({ selectedMeals });
             renderMeals();
-            updateSummaryCart();
+            updateCalculations();
+          });
+        });
+
+        container.querySelectorAll('.meal-qty-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            const item = selectedMeals.find(m => m.id === id);
+            if (item) {
+              if (btn.dataset.action === 'inc') {
+                item.qty++;
+              } else {
+                item.qty--;
+                if (item.qty <= 0) {
+                  selectedMeals = selectedMeals.filter(m => m.id !== id);
+                }
+              }
+              state.selectedMeals = selectedMeals;
+              updateFlightState({ selectedMeals });
+              renderMeals();
+              updateCalculations();
+            }
           });
         });
       }
 
-      // Render Priority Services
-      const servicesContainer = document.getElementById('servicesContainer');
-      let selectedServices = state.selectedServices || ['priority-pass'];
+      // Priority Services matching Image 1
+      const servicesList = [
+        {
+          id: 'priority-baggage',
+          name: 'Priority Baggage & Fast-Track',
+          price: 400,
+          desc: 'Dedicated Priority baggage tags. Your bags arrive on the belt within the first 10 pieces upon landing at New Delhi.',
+          tag: 'Included for Elite Gold • Save 20 mins at arrival'
+        },
+        {
+          id: 'lounge-t1',
+          name: 'PNQ Terminal 1 Executive Lounge',
+          price: 850,
+          desc: 'Gourmet hot buffet, barista bar, ultra high-speed fiber Wi-Fi, executive workstations & private soundproof call pods.',
+          tag: '3 Hours Access • Walk-in rate ₹1,650'
+        },
+        {
+          id: 'vip-transfer',
+          name: 'Gate-to-Aircraft VIP Coach Transfer',
+          price: 300,
+          desc: 'Dedicated executive business-class tarmac transfer coach directly from departure gate to aircraft ladder.',
+          tag: 'Zero standing in regular tarmac shuttles'
+        },
+        {
+          id: 'zero-fee-cancellation',
+          name: 'RouteLine Zero-Fee Protection',
+          price: 249,
+          desc: '100% full instant refund on ticket price if cancelled up to 3 hours prior to scheduled departure. No airline penalties.',
+          tag: 'Money-back Guarantee'
+        }
+      ];
+
+      let selectedServices = state.selectedServices || ['priority-baggage', 'lounge-t1'];
 
       function renderServices() {
-        const srvList = [
-          { id: 'priority-pass', name: 'Fast-Track Priority Pass', desc: 'Skip queues with dedicated airport lane', price: 499 },
-          { id: 'lounge-access', name: 'Executive Airport Lounge', desc: 'Buffet meals, recliners & fast Wi-Fi', price: 1200 }
-        ];
-
-        servicesContainer.innerHTML = srvList.map(srv => {
+        const container = document.getElementById('servicesContainer');
+        container.innerHTML = servicesList.map(srv => {
           const isSelected = selectedServices.includes(srv.id);
           return `
-            <label class="p-4 rounded-2xl border-2 ${isSelected ? 'border-primary bg-blue-50/40' : 'border-gray-200 bg-white hover:border-gold-400'} cursor-pointer flex items-start justify-between gap-3">
-              <div class="flex items-start gap-3">
-                <input type="checkbox" class="srv-chk mt-1 w-4 h-4 rounded text-primary focus:ring-0" value="${srv.id}" ${isSelected ? 'checked' : ''}>
-                <div>
-                  <div class="text-xs font-bold text-gray-900">${srv.name}</div>
-                  <div class="text-[11px] text-gray-500 mt-0.5">${srv.desc}</div>
+            <label class="p-4 rounded-2xl border-2 ${isSelected ? 'border-amber-400 bg-amber-50/20' : 'border-gray-200 bg-white hover:border-gray-300'} cursor-pointer transition-all flex flex-col justify-between space-y-2">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-2.5">
+                  <input type="checkbox" class="srv-chk mt-0.5 w-4 h-4 rounded text-blue-600 focus:ring-0" value="${srv.id}" ${isSelected ? 'checked' : ''}>
+                  <div>
+                    <strong class="text-xs font-bold text-gray-900 block">${srv.name}</strong>
+                    <p class="text-[11px] text-gray-500 mt-1 leading-relaxed">${srv.desc}</p>
+                  </div>
                 </div>
+                <span class="text-xs font-black text-gray-900 shrink-0">₹${srv.price}</span>
               </div>
-              <div class="font-sans font-extrabold text-sm text-primary shrink-0">+₹${srv.price}</div>
+              <div class="pt-1 text-[10px] font-bold text-emerald-700">
+                ${srv.tag}
+              </div>
             </label>
           `;
         }).join('');
 
-        document.querySelectorAll('.srv-chk').forEach(chk => {
+        container.querySelectorAll('.srv-chk').forEach(chk => {
           chk.addEventListener('change', (e) => {
             const val = e.target.value;
             if (e.target.checked) {
@@ -483,46 +775,60 @@
               selectedServices = selectedServices.filter(s => s !== val);
             }
             state.selectedServices = selectedServices;
-            updateFlightState({ selectedServices: selectedServices });
+            updateFlightState({ selectedServices });
             renderServices();
-            updateSummaryCart();
+            updateCalculations();
           });
         });
       }
 
-      // Insurance Checkbox
-      const insChk = document.getElementById('insuranceCheckbox');
-      insChk.checked = selectedServices.includes('insurance');
-      insChk.addEventListener('change', (e) => {
-        if (e.target.checked) {
-          if (!selectedServices.includes('insurance')) selectedServices.push('insurance');
-        } else {
-          selectedServices = selectedServices.filter(s => s !== 'insurance');
-        }
-        state.selectedServices = selectedServices;
-        updateFlightState({ selectedServices: selectedServices });
-        updateSummaryCart();
-      });
+      function updateCalculations() {
+        // Baggage cost
+        const activeBag = baggageList.find(b => b.id === selectedBaggageId);
+        const bagCost = activeBag ? activeBag.price : 0;
+        document.getElementById('sideBaggageSummary').textContent = activeBag ? `${activeBag.weight.replace(' Check-In', '').replace(' Pack', '')} • ₹${bagCost.toLocaleString('en-IN')}` : 'None';
 
-      function updateSummaryCart() {
-        const pricing = calculatePricing(state);
+        // Meals cost
+        let mealsCost = 0;
+        let mealNames = [];
+        selectedMeals.forEach(sm => {
+          const m = mealsList.find(x => x.id === sm.id);
+          if (m) {
+            mealsCost += m.price * sm.qty;
+            mealNames.push(m.name.split('&')[0].trim());
+          }
+        });
+        document.getElementById('tabMealBadge').textContent = selectedMeals.length ? `${selectedMeals.length} Item Added` : '0 Added';
+        document.getElementById('sideMealSummary').textContent = mealNames.length ? `${mealNames[0]} • ₹${mealsCost.toLocaleString('en-IN')}` : 'None';
 
-        document.getElementById('cartBaseFare').textContent = `₹${pricing.totalBaseFare.toLocaleString('en-IN')}`;
-        document.getElementById('cartSeatsLabel').textContent = state.selectedSeats?.length ? state.selectedSeats.join(', ') : 'None';
-        document.getElementById('cartSeatFee').textContent = `₹${pricing.seatsCost.toLocaleString('en-IN')}`;
-        document.getElementById('cartBaggageFee').textContent = `₹${pricing.baggageCost.toLocaleString('en-IN')}`;
-        document.getElementById('cartMealsFee').textContent = `₹${pricing.mealsCost.toLocaleString('en-IN')}`;
-        document.getElementById('cartServicesFee').textContent = `₹${pricing.servicesCost.toLocaleString('en-IN')}`;
-        document.getElementById('cartTaxes').textContent = `₹${pricing.totalTaxes.toLocaleString('en-IN')}`;
-        document.getElementById('cartGrandTotal').textContent = `₹${pricing.grandTotal.toLocaleString('en-IN')}`;
+        // Services cost
+        let srvCost = 0;
+        selectedServices.forEach(sid => {
+          const s = servicesList.find(x => x.id === sid);
+          if (s) srvCost += s.price;
+        });
+        document.getElementById('sideServicesSummary').textContent = selectedServices.length ? `${selectedServices.length} Active • ₹${srvCost.toLocaleString('en-IN')}` : 'None';
+
+        // Combine addons
+        const addonsCombined = bagCost + mealsCost;
+        document.getElementById('cartAddonsCombined').textContent = `₹${addonsCombined.toLocaleString('en-IN')}`;
+        document.getElementById('cartServicesFee').textContent = `₹${srvCost.toLocaleString('en-IN')}`;
+
+        // Base & taxes
+        const baseAirfareAndTax = 3848;
+        const seatFee = 750;
+        const promoDiscount = 500;
+        const total = baseAirfareAndTax + seatFee + addonsCombined + srvCost - promoDiscount;
+
+        document.getElementById('cartGrandTotal').textContent = `₹${Math.max(0, total).toLocaleString('en-IN')}`;
       }
 
       renderBaggage();
       renderMeals();
       renderServices();
-      updateSummaryCart();
+      updateCalculations();
 
-      // Fare timer
+      // Fare countdown timer
       let timeLeft = 10 * 60 + 15;
       const timerEl = document.getElementById('fareLockTimer');
       setInterval(() => {
@@ -534,7 +840,7 @@
         }
       }, 1000);
 
-      // Proceed to Review & Pay
+      // Proceed Button
       document.getElementById('proceedPaymentBtn').addEventListener('click', () => {
         window.location.href = 'review-payment.html';
       });
