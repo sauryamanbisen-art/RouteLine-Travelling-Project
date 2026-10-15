@@ -38,6 +38,8 @@
     --hero-title-line-height: 1.12;
     --hero-subtitle-size: clamp(16px, 1.2vw + 6px, 21px);
     --hero-subtitle-line-height: 1.55;
-    --hero-dock-gap: clamp(40px, 4.5vw, 64px);
-    --hero-min-height: clamp(680px, 80vh, 730px);
+    --hero-header-height: 232px;
+    --hero-dock-gap: 60px;
+    --hero-height: 700px;
+    --hero-min-height: 700px;
 }
