@@ -82,33 +82,13 @@
       <div class="header-actions">
         <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
         <div class="divider"></div>
-        <a href="#" class="login-link" style="display: none;"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
-        <div class="rl-user-profile-widget" id="rl-user-profile-widget">
-          <div class="rl-user-chip" id="rl-user-chip" title="Sauryaman Bisen">
-            <div class="rl-user-avatar">S</div>
-            <span>Sauryaman</span>
-            <i data-lucide="chevron-down" style="width:14px;height:14px;"></i>
-          </div>
-          <div class="rl-user-dropdown" id="rl-user-dropdown">
-            <div class="rl-dropdown-user-info">
-              <p class="rl-dropdown-name">Sauryaman Bisen</p>
-              <p class="rl-dropdown-email">sauryamanbisen@gmail.com</p>
-            </div>
-            <a href="../train/ticket.html" class="rl-dropdown-item">
-              <i data-lucide="ticket" style="width:15px;height:15px;"></i>
-              <span>My Bookings</span>
-            </a>
-            <button type="button" class="rl-dropdown-item logout" id="rl-btn-logout">
-              <i data-lucide="log-out" style="width:15px;height:15px;"></i>
-              <span>Logout</span>
-            </button>
-          </div>
-        </div>
+        <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
       </div>
     </div>
   </header>
 
-  <main class="w-full pt-16 pb-16">
+  <main class="w-full pb-16">
     <!-- Stepper Context Ribbon -->
     <section class="w-full bg-white border-b border-gray-200 py-3 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
@@ -121,41 +101,52 @@
           <span class="font-mono text-gray-500 font-medium">TRIP ID: <strong class="text-gray-900 font-bold" id="tripRefId">RL-8842-PNQ</strong></span>
         </div>
 
-        <!-- 5-Step Progress Indicator -->
-        <div class="flex items-center gap-2 sm:gap-3 overflow-x-auto w-full md:w-auto text-xs py-1">
-          <!-- Step 1: Done -->
-          <div class="flex items-center gap-1.5 shrink-0 text-gray-800 font-bold">
-            <div class="w-5 h-5 rounded-full bg-[#000d2c] text-white flex items-center justify-center text-[10px]">✓</div>
-            <span>Select Flight</span>
-          </div>
-          <span class="w-4 h-0.5 bg-gray-300"></span>
+        <!-- Universal 5-Step Process Stepper matching Image 4 -->
+        <div class="flex items-center justify-between gap-2 overflow-x-auto w-full md:w-auto text-xs py-1">
+          <!-- Step 1: Select Flight (Completed) -->
+          <a href="flight-results.html" class="flex items-center gap-2 shrink-0 opacity-90 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-[#8c6d37] text-white flex items-center justify-center text-[10px] font-bold">✓</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 1: Select Flight</span>
+              <span class="text-[10px] text-[#8c6d37] block font-medium">Completed</span>
+            </div>
+          </a>
 
-          <!-- Step 2: Active -->
-          <div class="flex items-center gap-1.5 shrink-0 text-blue-600 font-extrabold">
-            <div class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center text-[11px] font-bold">2</div>
-            <span>Flight Details</span>
-          </div>
-          <span class="w-4 h-0.5 bg-gray-200"></span>
+          <!-- Step 2: Flight Details (Active Selection) -->
+          <a href="flight-details.html" class="flex items-center gap-2 shrink-0 px-3.5 py-1.5 rounded-xl bg-[#eef4ff] border border-blue-200/70 shadow-xs">
+            <div class="w-5 h-5 rounded-full bg-[#000d2c] text-white flex items-center justify-center text-[11px] font-black">2</div>
+            <div class="leading-tight">
+              <span class="font-bold text-gray-900 block text-xs">Step 2: Flight Details</span>
+              <span class="text-[10px] text-amber-600 block font-bold">Active Selection</span>
+            </div>
+          </a>
 
-          <!-- Step 3 -->
-          <div class="flex items-center gap-1.5 shrink-0 text-gray-400">
-            <div class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-[11px] font-medium">3</div>
-            <span class="hidden sm:inline">Passenger Info</span>
-          </div>
-          <span class="w-4 h-0.5 bg-gray-200"></span>
+          <!-- Step 3: Passenger Info (Upcoming) -->
+          <a href="passenger-details.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center text-[11px] font-medium">3</div>
+            <div class="leading-tight">
+              <span class="font-medium text-gray-600 block text-xs">Step 3: Passenger Info</span>
+              <span class="text-[10px] text-gray-400 block font-normal">Upcoming</span>
+            </div>
+          </a>
 
-          <!-- Step 4 -->
-          <div class="flex items-center gap-1.5 shrink-0 text-gray-400">
-            <div class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-[11px] font-medium">4</div>
-            <span class="hidden sm:inline">Seats &amp; Add-ons</span>
-          </div>
-          <span class="w-4 h-0.5 bg-gray-200"></span>
+          <!-- Step 4: Seats & Add-ons (Upcoming) -->
+          <a href="seat-selection.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center text-[11px] font-medium">4</div>
+            <div class="leading-tight">
+              <span class="font-medium text-gray-600 block text-xs">Step 4: Seats &amp; Add-ons</span>
+              <span class="text-[10px] text-gray-400 block font-normal">Upcoming</span>
+            </div>
+          </a>
 
-          <!-- Step 5 -->
-          <div class="flex items-center gap-1.5 shrink-0 text-gray-400">
-            <div class="w-5 h-5 rounded-full bg-gray-100 text-gray-500 flex items-center justify-center text-[11px] font-medium">5</div>
-            <span class="hidden sm:inline">Review &amp; Pay</span>
-          </div>
+          <!-- Step 5: Review & Pay (Upcoming) -->
+          <a href="review-payment.html" class="flex items-center gap-2 shrink-0 opacity-60 hover:opacity-100 transition-opacity">
+            <div class="w-5 h-5 rounded-full bg-gray-100 border border-gray-300 text-gray-500 flex items-center justify-center text-[11px] font-medium">5</div>
+            <div class="leading-tight">
+              <span class="font-medium text-gray-600 block text-xs">Step 5: Review &amp; Pay</span>
+              <span class="text-[10px] text-gray-400 block font-normal">Upcoming</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>
