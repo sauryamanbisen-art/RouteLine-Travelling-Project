@@ -1,10 +1,13 @@
 /* =========================================================
-   RouteLine — Authentication Modal & User Session UI
-   Figma Design Match: RouteLine Secure Pass, Pill Tabs,
-   Warm Amber Button (#d89b53), Guest Button, Demo Login
+   RouteLine — Authentication UI & Modal Design System
+   Exact Reference Match: RouteLine Secure Pass, Pill Badge,
+   Playfair Display Heading, Deep Navy Active Tabs,
+   Warm Off-White Card (#FFFEFA), Gold Gradient Action Button (#DEB853 to #B08436)
    ========================================================= */
 
-/* Modal Backdrop with Hero Image Blur */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+/* Modal Backdrop with Deep Midnight Navy & Soft Background Blur */
 .rl-auth-backdrop {
     position: fixed;
     top: 0;
@@ -13,15 +16,16 @@
     bottom: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(15, 23, 42, 0.72);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(5, 11, 27, 0.86);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
     z-index: 100000;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px 16px;
+    padding: 24px 16px;
     box-sizing: border-box;
+    overflow-y: auto;
     animation: rlAuthFadeIn 0.22s ease-out forwards;
 }
 
@@ -41,34 +45,29 @@
     }
 }
 
-/* Modal Card */
+/* Authentication Card: Compact ~450px with Exact Fixed Dimensions across Tabs */
 .rl-auth-modal {
-    background: #ffffff;
-    border-radius: 28px;
-    width: 100%;
-    max-width: 480px;
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
+    background: radial-gradient(130% 90% at 20% 0%, #FFFDF7 0%, #FFFEFA 35%, #FBF9F4 100%);
+    background-color: #FFFEFA;
+    border: 1px solid #E9E2D8;
+    border-radius: 24px;
+    width: min(450px, calc(100vw - 32px));
+    max-width: 450px;
+    height: 540px;
+    max-height: calc(100vh - 36px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
     position: relative;
-    box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.35), 0 0 0 1px rgba(226, 232, 240, 0.7);
+    box-shadow: 0 30px 80px -15px rgba(0, 0, 0, 0.65), 0 10px 30px -10px rgba(5, 11, 27, 0.45), 0 0 0 1px rgba(255, 255, 255, 0.05);
     animation: rlAuthSlideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    padding: 32px 34px 26px;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color: #1e293b;
+    padding: 24px 28px 20px;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+    color: #1A202C;
     box-sizing: border-box;
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 transparent;
 }
 
-.rl-auth-modal::-webkit-scrollbar {
-    width: 5px;
-}
-.rl-auth-modal::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 4px;
-}
-
-/* Modal Close Button */
+/* Circular Close Button at Top-Right */
 .rl-auth-close-btn {
     position: absolute;
     top: 18px;
@@ -76,75 +75,108 @@
     width: 32px;
     height: 32px;
     border-radius: 50%;
-    border: 1px solid #e2e8f0;
-    background: #f8fafc;
-    color: #64748b;
+    border: 1px solid #E8E2D8;
+    background: #F3EFEA;
+    color: #4A5568;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 10;
 }
 
 .rl-auth-close-btn:hover {
-    background: #f1f5f9;
-    color: #0f172a;
-    border-color: #cbd5e1;
+    background: #EAE4DC;
+    color: #0B224E;
+    border-color: #D8CFBF;
     transform: scale(1.05);
 }
 
-/* Modal Header & Brand Badge */
-.rl-auth-header {
-    text-align: center;
-    margin-bottom: 18px;
+.rl-auth-close-btn i,
+.rl-auth-close-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.2;
 }
 
+/* Header Section (Stationary at Top) */
+.rl-auth-header {
+    flex: 0 0 auto;
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+/* Pill-Shaped Badge: ROUTELINE SECURE PASS */
 .rl-auth-badge {
     display: inline-flex;
     align-items: center;
-    gap: 7px;
-    background: #eaf7ee;
-    padding: 5px 14px;
+    justify-content: center;
+    gap: 6px;
+    background: #EBF8F2;
+    border: 1px solid #C4ECD4;
+    padding: 4px 12px;
     border-radius: 9999px;
-    color: #2e7d32;
-    font-size: 12.5px;
-    font-weight: 600;
-    line-height: 1;
-    margin-bottom: 10px;
-}
-
-.rl-auth-badge i {
-    width: 15px;
-    height: 15px;
-    stroke: #2e7d32;
-}
-
-.rl-auth-title {
-    font-size: 24px;
+    color: #0F7647;
+    font-size: 10.5px;
     font-weight: 700;
-    color: #1e293b;
-    margin: 0 0 5px;
-    letter-spacing: -0.025em;
-    line-height: 1.25;
+    letter-spacing: 0.08em;
+    line-height: 1;
+    text-transform: uppercase;
+    margin-bottom: 8px;
 }
 
+.rl-auth-badge i,
+.rl-auth-badge svg {
+    width: 12px;
+    height: 12px;
+    stroke: #0F7647;
+    stroke-width: 2.2;
+    flex-shrink: 0;
+}
+
+.rl-auth-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: #10B981;
+    flex-shrink: 0;
+    margin-left: 2px;
+}
+
+/* Prominent Serif Heading */
+.rl-auth-title {
+    font-family: 'Playfair Display', 'Cinzel', Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0B224E;
+    margin: 0 0 5px;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+}
+
+/* Muted Blue-Grey Subtitle */
 .rl-auth-subtitle {
-    font-size: 13.5px;
-    color: #64748b;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 12.5px;
+    color: #718096;
     margin: 0 auto;
     max-width: 370px;
     line-height: 1.45;
+    text-align: center;
+    font-weight: 400;
 }
 
-/* Tab Switcher (Segmented Pill) */
+/* Login and Sign Up Tabs: Stationary Segmented Control */
 .rl-auth-tabs {
+    flex: 0 0 auto;
     display: flex;
-    background: #ffffff;
-    border: 1.5px solid #e5e7eb;
-    border-radius: 9999px;
+    background: #F3EFEA;
+    border-radius: 12px;
     padding: 3px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     position: relative;
     gap: 4px;
     box-sizing: border-box;
@@ -155,10 +187,11 @@
     height: 36px;
     border: none;
     background: transparent;
-    border-radius: 9999px;
-    font-size: 14px;
+    border-radius: 9px;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 13.5px;
     font-weight: 600;
-    color: #4b5563;
+    color: #5A6578;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
@@ -167,70 +200,114 @@
 }
 
 .rl-auth-tab-btn.active {
-    background: #222627;
-    color: #ffffff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    background: #0B224E;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(11, 34, 78, 0.25);
 }
 
 .rl-auth-tab-btn:hover:not(.active) {
-    color: #111827;
+    color: #0B224E;
 }
 
-/* Alert / Error Box */
+/* Alert Notification Banner */
 .rl-auth-alert {
+    flex: 0 0 auto;
     display: none;
     align-items: center;
-    gap: 10px;
-    padding: 9px 14px;
-    border-radius: 12px;
-    font-size: 13px;
+    gap: 8px;
+    padding: 7px 12px;
+    border-radius: 10px;
+    font-size: 12px;
     line-height: 1.4;
-    margin-bottom: 12px;
+    margin-bottom: 8px;
     animation: rlAuthFadeIn 0.2s ease;
 }
 
 .rl-auth-alert.error {
     display: flex;
-    background: #fef2f2;
-    border: 1px solid #fee2e2;
-    color: #b91c1c;
+    background: #FEF2F2;
+    border: 1px solid #FEE2E2;
+    color: #B91C1C;
 }
 
 .rl-auth-alert.info {
     display: flex;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
-    color: #1d4ed8;
+    background: #EFF6FF;
+    border: 1px solid #DBEAFE;
+    color: #1D4ED8;
 }
 
 .rl-auth-alert.success {
     display: flex;
-    background: #f0fdf4;
-    border: 1px solid #dcfce7;
-    color: #15803d;
+    background: #F0FDF4;
+    border: 1px solid #DCFCE7;
+    color: #15803D;
 }
 
-/* Form Styles */
+/* Form Styles: Flex Column with Dedicated Internal Scrolling */
 .rl-auth-form {
     display: none;
     flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .rl-auth-form.active {
     display: flex;
 }
 
+/* Internal Scrollable Container for Inputs & Checkboxes */
+.rl-form-scrollable-fields {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 2px 4px 2px 2px;
+    margin-right: -4px;
+    scrollbar-width: thin;
+    scrollbar-color: #E2D9CC transparent;
+}
+
+.rl-form-scrollable-fields::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rl-form-scrollable-fields::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rl-form-scrollable-fields::-webkit-scrollbar-thumb {
+    background: #E2D9CC;
+    border-radius: 4px;
+}
+
+.rl-form-scrollable-fields::-webkit-scrollbar-thumb:hover {
+    background: #C49A45;
+}
+
+/* Fixed Actions Footer: Always Accessible at Bottom of Modal */
+.rl-form-actions-fixed {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+    background: transparent;
+}
+
 .rl-form-group {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    margin-bottom: 11px;
+    margin-bottom: 9px;
 }
 
 .rl-form-label {
-    font-size: 13px;
-    font-weight: 600;
-    color: #1e293b;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #4A5568;
+    margin-bottom: 4px;
     text-align: left;
 }
 
@@ -243,49 +320,50 @@
 
 .rl-input-icon {
     position: absolute;
-    left: 14px;
-    width: 17px;
-    height: 17px;
-    color: #94a3b8;
+    left: 13px;
+    width: 15px;
+    height: 15px;
+    color: #A0AEC0;
     pointer-events: none;
     transition: color 0.2s ease;
 }
 
 .rl-auth-input {
     width: 100%;
-    height: 44px;
-    padding: 0 42px 0 40px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
-    font-size: 14px;
-    color: #1e293b;
-    background: #ffffff;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    height: 40px;
+    padding: 0 38px 0 38px;
+    border: 1px solid #E9E2D8;
+    border-radius: 10px;
+    font-size: 13px;
+    color: #1A202C;
+    background: #FCFBF8;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     box-sizing: border-box;
-    font-family: inherit;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .rl-auth-input::placeholder {
-    color: #94a3b8;
+    color: #94A3B8;
     font-weight: 400;
 }
 
 .rl-auth-input:focus {
     outline: none;
-    border-color: #d89b53;
-    box-shadow: 0 0 0 3px rgba(216, 155, 83, 0.16);
+    border-color: #D7B344;
+    box-shadow: 0 0 0 3px rgba(215, 179, 68, 0.18);
+    background: #FFFFFF;
 }
 
 .rl-auth-input:focus ~ .rl-input-icon {
-    color: #d89b53;
+    color: #C49A45;
 }
 
 .rl-toggle-pwd {
     position: absolute;
-    right: 12px;
+    right: 10px;
     background: none;
     border: none;
-    color: #94a3b8;
+    color: #A0AEC0;
     cursor: pointer;
     padding: 4px;
     display: flex;
@@ -296,40 +374,40 @@
 }
 
 .rl-toggle-pwd:hover {
-    color: #475569;
+    color: #4A5568;
 }
 
-/* Secondary Meta Row (Remember & Forgot) */
+/* Secondary Meta Row (Remember & Forgot password) */
 .rl-auth-meta-row {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 13px;
-    margin: 2px 0 16px;
+    font-size: 12px;
+    margin: 2px 0 6px 0;
 }
 
 .rl-checkbox-label {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 7px;
     cursor: pointer;
     user-select: none;
-    font-size: 13.5px;
-    color: #475569;
+    font-size: 12.5px;
+    color: #4A5568;
     font-weight: 500;
 }
 
-/* Custom Styled Amber Checkbox with White Checkmark matching Figma */
+/* Custom Styled Amber/Gold Checkbox */
 .rl-checkbox-label input[type="checkbox"] {
     appearance: none;
     -webkit-appearance: none;
-    width: 17px;
-    height: 17px;
-    border: 1.5px solid #cbd5e1;
+    width: 15px;
+    height: 15px;
+    border: 1.5px solid #CBD5E1;
     border-radius: 4px;
     outline: none;
     cursor: pointer;
-    background: #ffffff;
+    background: #FFFFFF;
     margin: 0;
     display: inline-grid;
     place-content: center;
@@ -338,18 +416,18 @@
 
 .rl-checkbox-label input[type="checkbox"]::before {
     content: "";
-    width: 9px;
-    height: 5px;
-    border-left: 2px solid #ffffff;
-    border-bottom: 2px solid #ffffff;
+    width: 8px;
+    height: 4px;
+    border-left: 2px solid #FFFFFF;
+    border-bottom: 2px solid #FFFFFF;
     transform: rotate(-45deg) translate(1px, -1px);
     opacity: 0;
     transition: opacity 0.15s ease;
 }
 
 .rl-checkbox-label input[type="checkbox"]:checked {
-    background: #d89b53;
-    border-color: #d89b53;
+    background: #C49A45;
+    border-color: #C49A45;
 }
 
 .rl-checkbox-label input[type="checkbox"]:checked::before {
@@ -357,41 +435,43 @@
 }
 
 .rl-link-forgot {
-    color: #d89b53;
+    color: #0B224E;
     text-decoration: none;
-    font-weight: 500;
-    font-size: 13.5px;
+    font-weight: 600;
+    font-size: 12px;
     transition: color 0.15s ease;
 }
 
 .rl-link-forgot:hover {
     text-decoration: underline;
-    color: #c68943;
+    color: #C49A45;
 }
 
-/* Primary Submit Button (Warm Amber #d89b53 with Arrow Right) */
+/* Primary Submit Button: Full-Width with Warm Gold Gradient */
 .rl-auth-submit-btn {
     width: 100%;
-    height: 48px;
-    background: #d89b53;
+    height: 42px;
+    background: linear-gradient(135deg, #DEB853 0%, #C99E44 50%, #B08436 100%);
     border: none;
-    border-radius: 12px;
-    color: #ffffff;
-    font-size: 15px;
-    font-weight: 600;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
-    box-shadow: 0 4px 14px rgba(216, 155, 83, 0.32);
-    margin-top: 2px;
+    box-shadow: 0 4px 16px rgba(176, 132, 54, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    margin-top: 1px;
+    letter-spacing: 0.01em;
 }
 
 .rl-auth-submit-btn:hover {
-    background: #ca8b41;
-    box-shadow: 0 6px 18px rgba(216, 155, 83, 0.42);
+    background: linear-gradient(135deg, #E5C25F 0%, #D1A64C 50%, #B88C3E 100%);
+    box-shadow: 0 6px 20px rgba(176, 132, 54, 0.42);
     transform: translateY(-1px);
 }
 
@@ -399,39 +479,47 @@
     transform: translateY(0);
 }
 
-/* Divider (OR) */
+.rl-auth-submit-btn i,
+.rl-auth-submit-btn svg {
+    width: 15px;
+    height: 15px;
+    stroke-width: 2.3;
+}
+
+/* Divider: OR CONTINUE AS GUEST */
 .rl-auth-divider {
     display: flex;
     align-items: center;
     text-align: center;
-    color: #94a3b8;
-    font-size: 11.5px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    margin: 16px 0 14px;
+    color: #8A95A5;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    margin: 8px 0 6px 0;
 }
 
 .rl-auth-divider::before,
 .rl-auth-divider::after {
     content: '';
     flex: 1;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #E9E2D8;
 }
 
 .rl-auth-divider span {
-    padding: 0 14px;
+    padding: 0 12px;
     text-transform: uppercase;
 }
 
-/* Continue as Guest Button */
+/* Outlined Continue as Guest Button */
 .rl-guest-btn {
     width: 100%;
-    height: 46px;
-    background: #f8fafc;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 12px;
-    color: #243647;
-    font-size: 14px;
+    height: 38px;
+    background: #FCFBF8;
+    border: 1px solid #E8DFD3;
+    border-radius: 10px;
+    color: #1A202C;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 12.5px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
@@ -442,66 +530,102 @@
 }
 
 .rl-guest-btn:hover {
-    background: #eef2f6;
-    border-color: #cbd5e1;
-    color: #0f172a;
+    background: #F4EFEA;
+    border-color: #D8CFBF;
+    color: #0B224E;
 }
 
-/* Quick Demo Hint Box */
-.rl-auth-demo-hint {
-    background: #f0f5fd;
-    border: 1px solid #e2eaf8;
-    border-radius: 10px;
-    padding: 10px 14px;
-    margin: 14px 0 14px;
-    text-align: center;
-    font-size: 12.5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    flex-wrap: wrap;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
+.rl-guest-btn i,
+.rl-guest-btn svg {
+    color: #C49A45;
+    stroke: #C49A45;
+    width: 16px;
+    height: 16px;
 }
 
-.rl-auth-demo-hint:hover {
-    background: #e6f0fc;
-    border-color: #d1e2f6;
-    transform: translateY(-1px);
-}
-
-.rl-demo-label {
-    color: #d89b53;
-    font-weight: 600;
-}
-
-.rl-demo-creds {
-    color: #64748b;
-    font-weight: 400;
-}
-
-/* Bottom Switch State Prompt */
+/* Footer Link */
 .rl-auth-footer-text {
     text-align: center;
-    font-size: 13px;
-    color: #64748b;
-    margin: 2px 0 0;
-    line-height: 1.5;
+    font-size: 12px;
+    color: #718096;
+    margin: 6px 0 0 0;
+    line-height: 1.4;
 }
 
 .rl-auth-footer-link {
-    color: #d89b53;
+    color: #A67C33;
     font-weight: 600;
-    text-decoration: none;
+    text-decoration: underline;
     cursor: pointer;
     transition: color 0.15s ease;
 }
 
 .rl-auth-footer-link:hover {
-    text-decoration: underline;
-    color: #c68943;
+    color: #8C6626;
+}
+
+/* =========================================================
+   Standalone Authentication Page Container (#050B1B)
+   ========================================================= */
+.rl-auth-standalone-body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background-color: #050B1B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow-x: hidden;
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Ambient Background Cards reproducing blurred travel app context */
+.rl-auth-bg-ambient {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.rl-auth-bg-ambient-card {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    filter: blur(24px);
+}
+
+.rl-auth-bg-card-1 {
+    top: 8%;
+    left: 6%;
+    width: 440px;
+    height: 190px;
+}
+
+.rl-auth-bg-card-2 {
+    top: 32%;
+    left: 6%;
+    width: 440px;
+    height: 220px;
+}
+
+.rl-auth-bg-card-3 {
+    top: 15%;
+    right: 8%;
+    width: 380px;
+    height: 260px;
+}
+
+.rl-auth-standalone-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: 16px;
+    width: 100%;
+    max-width: 450px;
+    display: flex;
+    justify-content: center;
 }
 
 /* =========================================================
@@ -553,7 +677,7 @@
     width: 26px;
     height: 26px;
     border-radius: 50%;
-    background: #e08a3c !important;
+    background: #E08A3C !important;
     color: #ffffff !important;
     display: flex;
     align-items: center;
@@ -633,8 +757,8 @@
 .rl-user-dropdown .rl-dropdown-item i {
     width: 16px;
     height: 16px;
-    color: #d89b53;
-    stroke: #d89b53;
+    color: #C49A45;
+    stroke: #C49A45;
     flex-shrink: 0;
     transition: transform 0.15s ease;
 }
@@ -642,7 +766,7 @@
 .header-actions .rl-user-dropdown a.rl-dropdown-item:hover,
 .rl-user-dropdown .rl-dropdown-item:hover {
     background: #f8fafc;
-    color: #d89b53 !important;
+    color: #0B224E !important;
 }
 
 .header-actions .rl-user-dropdown a.rl-dropdown-item:hover i,
@@ -682,11 +806,11 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: #0f172a;
+    background: #050B1B;
     color: #ffffff;
     padding: 12px 20px;
     border-radius: 12px;
-    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.4);
+    box-shadow: 0 10px 25px -5px rgba(5, 11, 27, 0.5);
     font-size: 14px;
     font-weight: 500;
     display: flex;
@@ -697,9 +821,36 @@
 }
 
 .rl-auth-toast.success {
-    border-left: 4px solid #22c55e;
+    border-left: 4px solid #10B981;
 }
 
 .rl-auth-toast.info {
-    border-left: 4px solid #d89b53;
+    border-left: 4px solid #DEB853;
+}
+
+/* Mobile & Tablet Responsiveness: Identical Dimensions & Smooth Internal Scroll */
+@media (max-width: 560px) {
+    .rl-auth-modal {
+        width: min(450px, calc(100vw - 24px));
+        height: 540px;
+        max-height: calc(100vh - 24px);
+        padding: 20px 20px 16px;
+        border-radius: 20px;
+    }
+
+    .rl-auth-title {
+        font-size: 20px;
+    }
+
+    .rl-auth-subtitle {
+        font-size: 11.5px;
+        margin-bottom: 10px;
+    }
+
+    .rl-auth-close-btn {
+        top: 14px;
+        right: 14px;
+        width: 30px;
+        height: 30px;
+    }
 }
