@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./src/css/home/global/style.css">
     <link rel="stylesheet" href="./src/css/home/global/unified-search-dock.css">
+    <link rel="stylesheet" href="./src/css/home/global/custom-search-controls.css">
     <link rel="stylesheet" href="./src/css/home/homepage.css">
     <link rel="stylesheet" href="./src/css/train/train.css">
     <link rel="stylesheet" href="./src/css/train/pnr-status.css">
@@ -110,37 +111,46 @@
                         <div class="dock-divider"></div>
 
                         <!-- Departure Date -->
-                        <div class="dock-input-box date-box">
+                        <div class="dock-input-box date-box" id="departureDateBox">
                             <div class="dock-box-content">
                                 <label class="dock-box-label">Departure</label>
-                                <input type="date" name="date" id="home-train-date" class="dock-box-input" required>
+                                <input type="date" name="date" id="home-train-date" class="dock-box-input rl-native-date-hidden" required>
+                                <div class="dock-date-display-wrapper">
+                                    <span class="dock-date-display" id="departureDateDisplay">Select Date</span>
+                                </div>
                             </div>
-                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                            <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
                         </div>
 
                         <!-- Return Date -->
                         <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
                             <div class="dock-box-content">
                                 <label class="dock-box-label">Return</label>
-                                <input type="date" name="returnDate" id="returnDateInput" disabled class="dock-box-input" placeholder="dd/mm/yyyy">
+                                <input type="date" name="returnDate" id="returnDateInput" disabled class="dock-box-input rl-native-date-hidden" placeholder="Select Date">
+                                <div class="dock-date-display-wrapper">
+                                    <span class="dock-date-display is-placeholder" id="returnDateDisplay">Select Date</span>
+                                </div>
                             </div>
-                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                            <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
                         </div>
 
                         <div class="dock-divider"></div>
 
                         <!-- Class & Quota -->
-                        <div class="dock-input-box dock-dropdown-trigger" style="min-width: 160px;">
+                        <div class="dock-input-box dock-dropdown-trigger class-selector-box" id="classSelectorBox" data-mode="train">
                             <div class="dock-box-content">
                                 <label class="dock-box-label">Class &amp; Quota</label>
-                                <select name="class" class="dock-box-input" style="cursor: pointer; appearance: none; background: transparent;">
+                                <select name="class" id="home-train-class" style="display: none;">
                                     <option value="Sleeper">Sleeper (SL)</option>
                                     <option value="3A" selected>3rd AC (3A)</option>
                                     <option value="2A">2nd AC (2A)</option>
                                     <option value="1A">1st AC (1A)</option>
                                 </select>
+                                <div class="dock-class-display-wrapper">
+                                    <span class="dock-class-display" id="classDisplay">3rd AC (3A)</span>
+                                </div>
                             </div>
-                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af; pointer-events: none;">expand_more</span>
+                            <span class="material-symbols-outlined rl-dropdown-chevron" style="font-size: 19px; color: #9ca3af;">expand_more</span>
                         </div>
 
                         <!-- Search CTA Button -->
