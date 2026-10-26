@@ -438,3 +438,178 @@
     min-width: 250px;
     width: 100%;
     background: #ffffff;
+    border-radius: 20px;
+    border: 1px solid rgba(229, 231, 235, 0.95);
+    box-shadow: 0 20px 45px -12px rgba(11, 30, 54, 0.22), 0 0 0 1px rgba(11, 30, 54, 0.05);
+    padding: 8px;
+    z-index: 1050 !important;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    transform-origin: top left;
+    animation: rlPopoverEntrance 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.rl-class-menu.align-right {
+    left: auto;
+    right: 0;
+    transform-origin: top right;
+}
+
+.rl-class-menu-header {
+    padding: 6px 10px 8px 10px;
+    font-size: 10.5px;
+    font-weight: 700;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid #f1f5f9;
+    margin-bottom: 4px;
+}
+
+.rl-class-options-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.rl-class-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 12px;
+    border-radius: 14px;
+    border: 1px solid transparent;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.rl-class-option:hover {
+    background: #f8fafc;
+    border-color: #f1f5f9;
+}
+
+.rl-class-option-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.rl-class-option-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+    transition: all 0.18s ease;
+}
+
+.rl-class-option-text {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.rl-class-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #1f2937;
+    line-height: 1.25;
+    white-space: nowrap;
+}
+
+.rl-class-subtitle {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.rl-class-check {
+    font-size: 19px;
+    color: #d89b53;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.18s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+}
+
+/* Active / Selected Class Option */
+.rl-class-option.is-selected {
+    background: #fdf8f2;
+    border-color: #f4e4ce;
+}
+
+.rl-class-option.is-selected .rl-class-option-icon {
+    background: #fcf1e2;
+    color: #d89b53;
+}
+
+.rl-class-option.is-selected .rl-class-title {
+    color: #b8823b;
+    font-weight: 700;
+}
+
+.rl-class-option.is-selected .rl-class-subtitle {
+    color: #bfa076;
+}
+
+.rl-class-option.is-selected .rl-class-check {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Support for compact train-results search bar */
+.train-input-group.date-box,
+.train-input-group.class-selector-box {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+}
+
+.train-input-group.date-box input[type="date"].rl-native-date-hidden {
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.train-input-group.date-box .dock-date-display,
+.train-input-group.class-selector-box .dock-class-display {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #111827;
+}
+
+.train-input-group.is-active {
+    border-color: #c5a880 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.18) !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .rl-calendar-popover {
+        width: calc(100vw - 32px);
+        max-width: 340px;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        right: auto !important;
+    }
+
+    .rl-class-menu {
+        width: 100%;
+        min-width: 100%;
+    }
+}
