@@ -1,5 +1,6 @@
 import { initAuth } from '../home/auth/auth.js';
-import { initModeSelectorPill } from '../home/global/mode-selector.js';
+import { initModeSelectorPill, initUnifiedSearchDock } from '../home/global/mode-selector.js';
+import { initCustomSearchControls } from '../home/global/custom-search-controls.js';
 
 (function(){
   "use strict";
@@ -129,6 +130,8 @@ import { initModeSelectorPill } from '../home/global/mode-selector.js';
   document.addEventListener("DOMContentLoaded", function(){
     initAuth({ autoPrompt: false });
     initModeSelectorPill();
+    initUnifiedSearchDock();
+    initCustomSearchControls();
 
     const canvas = document.getElementById("cloud-canvas");
     if(canvas) {
