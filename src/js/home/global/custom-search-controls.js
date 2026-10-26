@@ -248,3 +248,288 @@ class CustomDatePicker {
                 configurable: true
             });
         }
+
+        input.addEventListener('change', () => self.syncFromInput());
+    }
+
+    syncFromInput() {
+        const val = this.input.value;
+        if (val) {
+            const parsed = parseISODate(val);
+            if (parsed) {
+                this.selectedDate = parsed;
+                this.viewDate = new Date(parsed);
+                this.updateDisplayText();
+                if (this.isOpen) this.renderCalendar();
+                return;
+            }
+        }
+        this.selectedDate = null;
+        this.updateDisplayText();
+        if (this.isOpen) this.renderCalendar();
+    }
+
+    updateDisplayText() {
+        if (!this.displayEl) return;
+        if (this.selectedDate) {
+            this.displayEl.textContent = formatDateToDisplay(this.selectedDate);
+            this.displayEl.classList.remove('is-placeholder');
+        } else {
+            const placeholder = this.input.getAttribute('placeholder') || 'Select Date';
+            this.displayEl.textContent = placeholder;
+            this.displayEl.classList.add('is-placeholder');
+        }
+    }
+
+    getMinDate() {
+        if (this.options.getMinDate) {
+            const dynamicMin = this.options.getMinDate();
+            if (dynamicMin) return dynamicMin;
+        }
+        if (this.input.min) {
+            const parsed = parseISODate(this.input.min);
+            if (parsed) return parsed;
+        }
+        return this.today;
+    }
+
+    toggle() {
+        if (this.isOpen) {
+            this.close();
+        } else {
+            closeAllPopovers(this);
+            this.open();
+        }
+    }
+
+    open() {
+        if (this.isOpen) return;
+        closeAllPopovers(this);
+        this.isOpen = true;
+        this.boxEl.classList.add('is-active');
+
+        // Reset view date to selected date or today
+        if (this.selectedDate) {
+            this.viewDate = new Date(this.selectedDate);
+        } else {
+            this.viewDate = new Date(this.getMinDate());
+        }
+
+        this.renderCalendar();
+    }
+
+    close() {
+        if (!this.isOpen) return;
+        this.isOpen = false;
+        this.boxEl.classList.remove('is-active');
+        if (this.popoverEl) {
+            this.popoverEl.remove();
+            this.popoverEl = null;
+        }
+    }
+
+    updatePosition() {
+        if (!this.popoverEl) return;
+        const rect = this.boxEl.getBoundingClientRect();
+        const popoverWidth = 336;
+        const spaceOnRight = window.innerWidth - rect.left;
+
+        if (spaceOnRight < popoverWidth + 16 && rect.right > popoverWidth) {
+            this.popoverEl.classList.add('align-right');
+        } else {
+            this.popoverEl.classList.remove('align-right');
+        }
+    }
+
+    renderCalendar() {
+        if (!this.popoverEl) {
+            this.popoverEl = document.createElement('div');
+            this.popoverEl.className = 'rl-calendar-popover';
+            this.popoverEl.setAttribute('role', 'dialog');
+            this.popoverEl.setAttribute('aria-modal', 'true');
+            this.popoverEl.setAttribute('aria-label', 'Calendar Date Picker');
+            this.popoverEl.addEventListener('click', (e) => e.stopPropagation());
+            this.boxEl.appendChild(this.popoverEl);
+        }
+
+        this.updatePosition();
+
+        const currentYear = this.viewDate.getFullYear();
+        const currentMonth = this.viewDate.getMonth();
+        const minDate = this.getMinDate();
+
+        // Check if previous month navigation should be disabled
+        const firstDayOfThisMonth = new Date(currentYear, currentMonth, 1);
+        const lastDayOfPrevMonth = new Date(currentYear, currentMonth, 0);
+        const isPrevDisabled = lastDayOfPrevMonth < minDate;
+
+        // Build HTML
+        let html = `
+            <div class="rl-cal-header">
+                <button type="button" class="rl-cal-nav-btn rl-cal-prev-btn" ${isPrevDisabled ? 'disabled' : ''} aria-label="Previous Month">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <div class="rl-cal-title">${MONTH_NAMES[currentMonth]} ${currentYear}</div>
+                <button type="button" class="rl-cal-nav-btn rl-cal-next-btn" aria-label="Next Month">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+
+            <div class="rl-cal-quick-row">
+                <button type="button" class="rl-cal-quick-chip" data-quick="today">Today</button>
+                <button type="button" class="rl-cal-quick-chip" data-quick="tomorrow">Tomorrow</button>
+                <button type="button" class="rl-cal-quick-chip" data-quick="+3">+3 Days</button>
+            </div>
+
+            <div class="rl-cal-weekdays">
+                ${WEEKDAY_NAMES.map(w => `<div class="rl-cal-weekday">${w}</div>`).join('')}
+            </div>
+
+            <div class="rl-cal-grid">
+        `;
+
+        // Days calculation
+        const startDayIndex = firstDayOfThisMonth.getDay(); // 0 is Sunday
+        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+        const daysInPrevMonth = lastDayOfPrevMonth.getDate();
+
+        // 1. Trailing days from previous month
+        for (let i = startDayIndex - 1; i >= 0; i--) {
+            const dayNum = daysInPrevMonth - i;
+            const dateObj = new Date(currentYear, currentMonth - 1, dayNum);
+            const isDisabled = compareDays(dateObj, minDate) < 0;
+            html += `
+                <button type="button" class="rl-cal-day is-outside ${isDisabled ? 'is-disabled' : ''}" 
+                    data-date="${formatDateToISO(dateObj)}" ${isDisabled ? 'disabled' : ''}>
+                    ${dayNum}
+                </button>
+            `;
+        }
+
+        // 2. Days in current month
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dateObj = new Date(currentYear, currentMonth, d);
+            const isToday = compareDays(dateObj, this.today) === 0;
+            const isSelected = this.selectedDate && compareDays(dateObj, this.selectedDate) === 0;
+            const isDisabled = compareDays(dateObj, minDate) < 0;
+
+            let classes = ['rl-cal-day'];
+            if (isToday) classes.push('is-today');
+            if (isSelected) classes.push('is-selected');
+            if (isDisabled) classes.push('is-disabled');
+
+            html += `
+                <button type="button" class="${classes.join(' ')}" 
+                    data-date="${formatDateToISO(dateObj)}" 
+                    ${isDisabled ? 'disabled' : ''} 
+                    aria-label="${formatDateToDisplay(dateObj)}">
+                    <span>${d}</span>
+                    ${isToday ? '<span class="rl-cal-today-dot"></span>' : ''}
+                </button>
+            `;
+        }
+
+        // 3. Leading days for next month to complete standard grid (up to 42 cells)
+        const totalRendered = startDayIndex + daysInMonth;
+        const remainingCells = (totalRendered <= 35 ? 35 : 42) - totalRendered;
+        for (let n = 1; n <= remainingCells; n++) {
+            const dateObj = new Date(currentYear, currentMonth + 1, n);
+            const isDisabled = compareDays(dateObj, minDate) < 0;
+            html += `
+                <button type="button" class="rl-cal-day is-outside ${isDisabled ? 'is-disabled' : ''}" 
+                    data-date="${formatDateToISO(dateObj)}" ${isDisabled ? 'disabled' : ''}>
+                    ${n}
+                </button>
+            `;
+        }
+
+        html += `
+            </div>
+
+            <div class="rl-cal-footer">
+                <span class="rl-cal-selected-preview">
+                    ${this.selectedDate ? `Selected: <strong>${formatDateToDisplay(this.selectedDate)}</strong>` : 'No date selected'}
+                </span>
+                <button type="button" class="rl-cal-close-btn">Done</button>
+            </div>
+        `;
+
+        this.popoverEl.innerHTML = html;
+        this.attachCalendarEvents();
+    }
+
+    attachCalendarEvents() {
+        if (!this.popoverEl) return;
+
+        // Prev month
+        const prevBtn = this.popoverEl.querySelector('.rl-cal-prev-btn');
+        if (prevBtn) {
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.viewDate.setMonth(this.viewDate.getMonth() - 1);
+                this.renderCalendar();
+            });
+        }
+
+        // Next month
+        const nextBtn = this.popoverEl.querySelector('.rl-cal-next-btn');
+        if (nextBtn) {
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.viewDate.setMonth(this.viewDate.getMonth() + 1);
+                this.renderCalendar();
+            });
+        }
+
+        // Quick pills
+        this.popoverEl.querySelectorAll('.rl-cal-quick-chip').forEach(chip => {
+            chip.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const type = chip.getAttribute('data-quick');
+                const target = new Date(this.today);
+                if (type === 'tomorrow') {
+                    target.setDate(target.getDate() + 1);
+                } else if (type === '+3') {
+                    target.setDate(target.getDate() + 3);
+                }
+                this.selectDate(target);
+            });
+        });
+
+        // Day click
+        this.popoverEl.querySelectorAll('.rl-cal-day:not(.is-disabled)').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const iso = btn.getAttribute('data-date');
+                const parsed = parseISODate(iso);
+                if (parsed) {
+                    this.selectDate(parsed);
+                }
+            });
+        });
+
+        // Done button
+        const closeBtn = this.popoverEl.querySelector('.rl-cal-close-btn');
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.close();
+            });
+        }
+    }
+
+    selectDate(dateObj) {
+        this.selectedDate = new Date(dateObj);
+        const iso = formatDateToISO(this.selectedDate);
+
+        // Update underlying input
+        this.input.value = iso;
+        this.updateDisplayText();
+
+        // Dispatch events
+        this.input.dispatchEvent(new Event('input', { bubbles: true }));
+        this.input.dispatchEvent(new Event('change', { bubbles: true }));
+
+        if (this.options.onSelect) {
+            this.options.onSelect(this.selectedDate, iso);
+        }
