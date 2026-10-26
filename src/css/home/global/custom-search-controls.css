@@ -1,0 +1,115 @@
+/* ==========================================================================
+   RouteLine - Custom Search Controls (Datepicker & Class Dropdown)
+   Matches the RouteLine luxury travel theme:
+   - Warm champagne gold / amber accents (#d89b53, #c5a880)
+   - Deep navy text (#0b172a, #0b1e36)
+   - Pure white floating cards with 22-24px rounded corners & executive drop shadow
+   - High accessibility, smooth micro-interactions, responsive positioning
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   0. Search Card & Stacking Context (Never Clip Popovers)
+   -------------------------------------------------------------------------- */
+.hero-unified {
+    position: relative;
+    z-index: 10;
+    overflow: visible !important;
+}
+
+.search-dock-wrapper {
+    position: relative;
+    z-index: 20;
+    overflow: visible !important;
+}
+
+.search-dock-card {
+    overflow: visible !important;
+    position: relative;
+    z-index: 25;
+}
+
+.search-dock-card form,
+#search-form {
+    position: relative;
+    z-index: 30;
+    overflow: visible !important;
+}
+
+.dock-inputs-row {
+    position: relative;
+    z-index: 35;
+    overflow: visible !important;
+}
+
+.dock-assurance-ribbon {
+    position: relative;
+    z-index: 1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   1. Date Display inside Dock Input Box
+   -------------------------------------------------------------------------- */
+.dock-input-box.date-box {
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    min-width: 176px;
+    flex: 1.2;
+    padding: 6px 13px !important;
+}
+
+/* Hide default browser date picker chrome & text while preserving input */
+.dock-input-box.date-box input[type="date"].rl-native-date-hidden {
+    position: absolute !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+.dock-date-display-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+}
+
+.dock-date-display {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #111827;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: inherit;
+    transition: color 0.18s ease;
+}
+
+.dock-date-display.is-placeholder {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.dock-input-box.date-box:hover .dock-date-display:not(.is-placeholder) {
+    color: #0b1e36;
+}
+
+.dock-input-box.date-box:hover .dock-box-icon-end,
+.dock-input-box.date-box.is-active .dock-box-icon-end {
+    color: #c5a880 !important;
+}
+
+.dock-input-box.date-box.is-active {
+    border-color: #c5a880 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.18) !important;
+    z-index: 100 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. Calendar Popover Card
