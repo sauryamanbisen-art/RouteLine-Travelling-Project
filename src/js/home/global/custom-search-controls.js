@@ -848,3 +848,154 @@ export class CustomClassSelector {
     close() {
         if (!this.isOpen) return;
         this.isOpen = false;
+        this.boxEl.classList.remove('is-active');
+        if (this.menuEl) {
+            this.menuEl.remove();
+            this.menuEl = null;
+        }
+    }
+
+    renderMenu() {
+        if (!this.menuEl) {
+            this.menuEl = document.createElement('div');
+            this.menuEl.className = 'rl-class-menu';
+            this.menuEl.setAttribute('role', 'listbox');
+            this.menuEl.addEventListener('click', (e) => e.stopPropagation());
+            this.boxEl.appendChild(this.menuEl);
+        }
+
+        const rect = this.boxEl.getBoundingClientRect();
+        if (window.innerWidth - rect.left < 260 && rect.right > 260) {
+            this.menuEl.classList.add('align-right');
+        } else {
+            this.menuEl.classList.remove('align-right');
+        }
+
+        const currentVal = this.selectEl.value;
+
+        // Use mode config options
+        let optionsToRender = this.modeConfig.options;
+
+        // If select element has different explicit options, use those while matching icons
+        const selectOptions = Array.from(this.selectEl.options);
+        if (selectOptions.length > 0 && !optionsToRender.some(o => o.value === selectOptions[0].value)) {
+            const allModeOptions = Object.values(MODE_CLASS_CONFIGS).flatMap(c => c.options);
+            optionsToRender = selectOptions.map(opt => {
+                const conf = allModeOptions.find(c => c.value === opt.value) || {};
+                return {
+                    value: opt.value,
+                    title: conf.title || opt.textContent,
+                    subtitle: conf.subtitle || 'Selected Travel Option',
+                    icon: conf.icon || 'airline_seat_recline_extra'
+                };
+            });
+        }
+
+        let html = `
+            <div class="rl-class-menu-header">${this.modeConfig.headerTitle}</div>
+            <div class="rl-class-options-list">
+        `;
+
+        optionsToRender.forEach(item => {
+            const isSelected = item.value === currentVal;
+            html += `
+                <div class="rl-class-option ${isSelected ? 'is-selected' : ''}" 
+                    data-value="${item.value}" role="option" aria-selected="${isSelected}">
+                    <div class="rl-class-option-left">
+                        <div class="rl-class-option-icon">
+                            <span class="material-symbols-outlined">${item.icon}</span>
+                        </div>
+                        <div class="rl-class-option-text">
+                            <div class="rl-class-title">${item.title}</div>
+                            <div class="rl-class-subtitle">${item.subtitle}</div>
+                        </div>
+                    </div>
+                    <span class="material-symbols-outlined rl-class-check">check</span>
+                </div>
+            `;
+        });
+
+        html += `</div>`;
+        this.menuEl.innerHTML = html;
+
+        // Attach option click listeners
+        this.menuEl.querySelectorAll('.rl-class-option').forEach(optEl => {
+            optEl.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const val = optEl.getAttribute('data-value');
+                this.selectOption(val);
+            });
+        });
+    }
+
+    selectOption(val) {
+        this.selectEl.value = val;
+        this.syncFromSelect();
+
+        this.selectEl.dispatchEvent(new Event('change', { bubbles: true }));
+        this.selectEl.dispatchEvent(new Event('input', { bubbles: true }));
+        this.close();
+    }
+}
+
+/* ==========================================================================
+   INITIALIZATION FUNCTION
+   ========================================================================== */
+
+export function initCustomSearchControls() {
+    // 1. Initialize Datepickers
+    const departureBox = document.querySelector('.dock-input-box.date-box:not(.dock-return-box)');
+    const returnBox = document.getElementById('returnBox') || document.querySelector('.dock-return-box');
+
+    let departurePicker = null;
+    let returnPicker = null;
+
+    if (departureBox) {
+        departurePicker = new CustomDatePicker(departureBox, {
+            onSelect: (selectedDate, _iso) => {
+                // If return date is earlier than departure date, update return date
+                if (returnPicker && returnPicker.selectedDate && compareDays(returnPicker.selectedDate, selectedDate) < 0) {
+                    returnPicker.selectDate(selectedDate);
+                }
+            }
+        });
+    }
+
+    if (returnBox) {
+        returnPicker = new CustomDatePicker(returnBox, {
+            getMinDate: () => {
+                if (departurePicker && departurePicker.selectedDate) {
+                    return departurePicker.selectedDate;
+                }
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                return today;
+            }
+        });
+    }
+
+    // Also scan for any other .dock-input-box.date-box or .train-input-group with date input
+    document.querySelectorAll('.dock-input-box.date-box, .train-input-group:has(input[type="date"]), .dock-input-box:has(input[type="date"])').forEach(box => {
+        if (box !== departureBox && box !== returnBox) {
+            box.classList.add('date-box');
+            new CustomDatePicker(box);
+        }
+    });
+
+    // 2. Initialize Class Selectors
+    document.querySelectorAll('.dock-input-box.class-selector-box, .dock-input-box[data-mode], .class-selector-box, .dock-dropdown-trigger:has(select[name*="class" i]), .dock-input-box:has(select[name*="class" i]), .train-input-group:has(select[name*="class" i])').forEach(box => {
+        box.classList.add('class-selector-box');
+        new CustomClassSelector(box);
+    });
+
+    // 3. Link legacy panels so mutual exclusion is 100% enforced
+    ['travellersTrigger', 'travellers-field', 'guests-field'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el && !el.__rl_mutex_bound) {
+            el.__rl_mutex_bound = true;
+            el.addEventListener('click', () => {
+                closeAllPopovers();
+            });
+        }
+    });
+}
