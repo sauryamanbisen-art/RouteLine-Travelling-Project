@@ -273,3 +273,168 @@
     justify-content: center;
     position: relative;
     padding: 0;
+    font-family: inherit;
+    transition: all 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+
+/* Outside current month */
+.rl-cal-day.is-outside {
+    color: #94a3b8;
+    opacity: 0.45;
+}
+
+/* Disabled (past dates, or return before departure) */
+.rl-cal-day.is-disabled {
+    color: #cbd5e1 !important;
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+    background: transparent !important;
+    opacity: 0.4 !important;
+}
+
+/* Hover on selectable dates */
+.rl-cal-day:not(.is-disabled):not(.is-selected):hover {
+    background: #fdf6ed;
+    color: #b8823b;
+    font-weight: 700;
+    border-radius: 12px;
+    transform: scale(1.06);
+}
+
+/* Today's date */
+.rl-cal-day.is-today:not(.is-selected) {
+    border: 1.5px solid #d89b53;
+    color: #b8823b;
+    font-weight: 700;
+    background: #fffcf8;
+}
+
+.rl-cal-today-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #d89b53;
+    position: absolute;
+    bottom: 3px;
+}
+
+.rl-cal-day.is-selected .rl-cal-today-dot {
+    background: #ffffff;
+}
+
+/* Selected date: Radiant RouteLine luxury gradient */
+.rl-cal-day.is-selected {
+    background: linear-gradient(135deg, #d89b53 0%, #c5a880 100%) !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(216, 155, 83, 0.38) !important;
+    border: none !important;
+    transform: scale(1.04);
+}
+
+/* Footer summary bar */
+.rl-cal-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 12px;
+    padding-top: 10px;
+    border-top: 1px solid #f1f5f9;
+}
+
+.rl-cal-selected-preview {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #64748b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 220px;
+}
+
+.rl-cal-selected-preview strong {
+    color: #0b172a;
+}
+
+.rl-cal-close-btn {
+    font-size: 12px;
+    font-weight: 700;
+    color: #d89b53;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 6px;
+    transition: all 0.16s ease;
+}
+
+.rl-cal-close-btn:hover {
+    background: #fef5ec;
+    color: #b8823b;
+}
+
+/* --------------------------------------------------------------------------
+   3. Custom Travel Class Dropdown
+   -------------------------------------------------------------------------- */
+.dock-input-box.class-selector-box {
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    min-width: 172px;
+    flex: 1.15;
+    padding: 6px 13px !important;
+}
+
+.dock-class-display-wrapper {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+}
+
+.dock-class-display {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111827;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-family: inherit;
+    transition: color 0.18s ease;
+}
+
+.dock-input-box.class-selector-box .rl-dropdown-chevron {
+    font-size: 19px;
+    color: #9ca3af;
+    transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.18s ease;
+    flex-shrink: 0;
+    pointer-events: none;
+}
+
+.dock-input-box.class-selector-box:hover .rl-dropdown-chevron,
+.dock-input-box.class-selector-box.is-active .rl-dropdown-chevron {
+    color: #c5a880;
+}
+
+.dock-input-box.class-selector-box.is-active .rl-dropdown-chevron {
+    transform: rotate(180deg);
+}
+
+.dock-input-box.class-selector-box.is-active {
+    border-color: #c5a880 !important;
+    background: #ffffff !important;
+    box-shadow: 0 0 0 3px rgba(197, 168, 128, 0.18) !important;
+    z-index: 100 !important;
+}
+
+/* Dropdown Menu Popover */
+.rl-class-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    min-width: 250px;
+    width: 100%;
+    background: #ffffff;
