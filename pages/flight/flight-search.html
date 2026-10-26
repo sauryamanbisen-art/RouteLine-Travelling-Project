@@ -65,6 +65,7 @@
   <link rel="stylesheet" href="../../src/css/home/global/style.css">
   <link rel="stylesheet" href="../../src/css/flight/flight-theme.css">
   <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+  <link rel="stylesheet" href="../../src/css/home/global/custom-search-controls.css">
   <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
 </head>
 
@@ -172,64 +173,46 @@
               <div class="dock-divider"></div>
 
               <!-- Departure Date -->
-              <div class="dock-input-box date-box">
+              <div class="dock-input-box date-box" id="departureDateBox">
                 <div class="dock-box-content">
                   <label for="departDateInput" class="dock-box-label">Departure</label>
-                  <input type="date" id="departDateInput" name="departDate" value="2026-10-24" required class="dock-box-input" />
+                  <input type="date" id="departDateInput" name="departDate" value="2026-10-24" required class="dock-box-input rl-native-date-hidden" />
+                  <div class="dock-date-display-wrapper">
+                    <span class="dock-date-display" id="flightDepartDateDisplay">Sat, 24 Oct 2026</span>
+                  </div>
                 </div>
-                <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
               </div>
 
               <!-- Return Date -->
               <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
                 <div class="dock-box-content">
                   <label for="returnDateInput" class="dock-box-label">Return</label>
-                  <input type="date" id="returnDateInput" name="returnDate" disabled class="dock-box-input" placeholder="dd/mm/yyyy" />
+                  <input type="date" id="returnDateInput" name="returnDate" disabled class="dock-box-input rl-native-date-hidden" placeholder="Select Date" />
+                  <div class="dock-date-display-wrapper">
+                    <span class="dock-date-display is-placeholder" id="flightReturnDateDisplay">Select Date</span>
+                  </div>
                 </div>
-                <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
               </div>
 
               <div class="dock-divider"></div>
 
-              <!-- Travellers & Class Dropdown Trigger -->
-              <div class="dock-input-box dock-dropdown-trigger relative" style="min-width: 170px;">
-                <button type="button" id="travellersTrigger" class="w-full h-full flex items-center justify-between text-left p-0 border-0 bg-transparent cursor-pointer">
-                  <div class="dock-box-content">
-                    <span class="dock-box-label">Travellers &amp; Class</span>
-                    <span id="travellersSummary" class="dock-dropdown-summary">1 Adult · Economy</span>
-                  </div>
-                  <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af; margin-left: 4px;">expand_more</span>
-                </button>
-
-                <!-- Travellers Flyout Panel -->
-                <div id="travellersDropdown" class="hidden absolute top-full left-0 mt-2 w-72 bg-white rounded-2xl shadow-xl border border-gray-100 p-4 z-40">
-                  <div class="flex items-center justify-between mb-3 pb-2 border-b border-gray-100">
-                    <span class="text-xs font-bold text-primary">Travelers</span>
-                    <button type="button" id="closeTravellersBtn" class="text-xs text-gray-400 hover:text-gray-700">Done</button>
-                  </div>
-                  <div class="space-y-3">
-                    <div class="flex items-center justify-between">
-                      <div>
-                        <div class="text-xs font-bold text-gray-800">Adults</div>
-                        <div class="text-[10px] text-gray-400">12+ years</div>
-                      </div>
-                      <div class="flex items-center gap-2">
-                        <button type="button" id="paxMinus" class="w-7 h-7 rounded-full bg-gray-100 text-gray-700 font-bold hover:bg-gray-200">-</button>
-                        <span id="paxCount" class="text-xs font-bold w-4 text-center">1</span>
-                        <button type="button" id="paxPlus" class="w-7 h-7 rounded-full bg-gray-100 text-gray-700 font-bold hover:bg-gray-200">+</button>
-                      </div>
-                    </div>
-                    <div>
-                      <div class="text-xs font-bold text-gray-800 mb-2">Cabin Class</div>
-                      <div class="grid grid-cols-2 gap-1.5">
-                        <button type="button" data-cabin="Economy" class="cabin-btn active py-1 px-2 rounded-lg text-xs font-semibold border border-primary bg-primary text-white">Economy</button>
-                        <button type="button" data-cabin="Flexi Plus" class="cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50">Flexi Plus</button>
-                        <button type="button" data-cabin="Club Class" class="cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50">Club Class</button>
-                        <button type="button" data-cabin="First Class" class="cabin-btn py-1 px-2 rounded-lg text-xs font-semibold border border-gray-200 text-gray-700 hover:bg-gray-50">First Class</button>
-                      </div>
-                    </div>
+              <!-- Cabin Class Selector -->
+              <div class="dock-input-box dock-dropdown-trigger class-selector-box" id="classSelectorBox" data-mode="flight">
+                <div class="dock-box-content">
+                  <label class="dock-box-label">Cabin Class</label>
+                  <select name="class" id="flight-cabin-class" style="display: none;">
+                    <option value="Economy" selected>Economy Class</option>
+                    <option value="Premium Economy">Premium Economy</option>
+                    <option value="Business">Business Class</option>
+                    <option value="First Class">First Class</option>
+                  </select>
+                  <div class="dock-class-display-wrapper">
+                    <span class="dock-class-display" id="flightClassDisplay">Economy Class</span>
                   </div>
                 </div>
+                <span class="material-symbols-outlined rl-dropdown-chevron" style="font-size: 19px; color: #9ca3af;">expand_more</span>
               </div>
 
               <!-- Search CTA Button -->
@@ -556,6 +539,7 @@
     import { setupAirportAutocomplete } from '../../src/js/flight/airport-autocomplete.js';
     import { initAuth } from '../../src/js/home/auth/auth.js';
     import { initCloudShader } from '../../src/js/flight/cloud-shader.js';
+    import { initCustomSearchControls } from '../../src/js/home/global/custom-search-controls.js';
 
     function onReady(fn) {
       if (document.readyState === 'loading') {
@@ -567,6 +551,7 @@
 
     onReady(() => {
       initAuth({ autoPrompt: false });
+      initCustomSearchControls();
 
       // Live WebGL running cloud shader background
       const cloudCanvas = document.getElementById('cloud-canvas');
@@ -734,7 +719,7 @@
         returnDateInput.min = departDateInput.value;
       });
 
-      // Travellers dropdown
+      // Cabin class & travellers state
       const travellersTrigger = document.getElementById('travellersTrigger');
       const travellersDropdown = document.getElementById('travellersDropdown');
       const closeTravellersBtn = document.getElementById('closeTravellersBtn');
@@ -742,43 +727,61 @@
       const paxPlus = document.getElementById('paxPlus');
       const paxCount = document.getElementById('paxCount');
       const travellersSummary = document.getElementById('travellersSummary');
+      const cabinSelect = document.getElementById('flight-cabin-class');
       let count = state.search?.passengers || 1;
-      let cabin = state.search?.travelClass || 'Economy';
+      let cabin = (cabinSelect ? cabinSelect.value : null) || state.search?.travelClass || 'Economy';
 
-      paxCount.textContent = count;
-      travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+      if (cabinSelect) {
+        cabinSelect.addEventListener('change', (e) => {
+          cabin = e.target.value;
+          if (travellersSummary) {
+            travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+          }
+        });
+      }
 
-      travellersTrigger.addEventListener('click', (e) => {
-        e.stopPropagation();
-        travellersDropdown.classList.toggle('hidden');
-      });
+      if (paxCount) paxCount.textContent = count;
+      if (travellersSummary) travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
 
-      closeTravellersBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        travellersDropdown.classList.add('hidden');
-      });
+      if (travellersTrigger && travellersDropdown) {
+        travellersTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          travellersDropdown.classList.toggle('hidden');
+        });
 
-      document.addEventListener('click', (e) => {
-        if (!travellersDropdown.contains(e.target) && !travellersTrigger.contains(e.target)) {
-          travellersDropdown.classList.add('hidden');
+        if (closeTravellersBtn) {
+          closeTravellersBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            travellersDropdown.classList.add('hidden');
+          });
         }
-      });
 
-      paxMinus.addEventListener('click', () => {
-        if (count > 1) {
-          count--;
-          paxCount.textContent = count;
-          travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
-        }
-      });
+        document.addEventListener('click', (e) => {
+          if (!travellersDropdown.contains(e.target) && !travellersTrigger.contains(e.target)) {
+            travellersDropdown.classList.add('hidden');
+          }
+        });
+      }
 
-      paxPlus.addEventListener('click', () => {
-        if (count < 9) {
-          count++;
-          paxCount.textContent = count;
-          travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
-        }
-      });
+      if (paxMinus) {
+        paxMinus.addEventListener('click', () => {
+          if (count > 1) {
+            count--;
+            if (paxCount) paxCount.textContent = count;
+            if (travellersSummary) travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+          }
+        });
+      }
+
+      if (paxPlus) {
+        paxPlus.addEventListener('click', () => {
+          if (count < 9) {
+            count++;
+            if (paxCount) paxCount.textContent = count;
+            if (travellersSummary) travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+          }
+        });
+      }
 
       document.querySelectorAll('.cabin-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -787,7 +790,11 @@
           });
           btn.className = 'cabin-btn active py-1 px-2 rounded-lg text-xs font-semibold border border-primary bg-primary text-white';
           cabin = btn.dataset.cabin;
-          travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
+          if (cabinSelect) {
+            cabinSelect.value = cabin;
+            cabinSelect.dispatchEvent(new Event('change', { bubbles: true }));
+          }
+          if (travellersSummary) travellersSummary.textContent = `${count} ${count === 1 ? 'Adult' : 'Adults'} · ${cabin}`;
         });
       });
 
