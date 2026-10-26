@@ -1,6 +1,7 @@
 import { initPNRModule } from '../../train/pnr-status.js';
 import { initAuth } from '../auth/auth.js';
 import { initModeSelectorPill, initUnifiedSearchDock } from './mode-selector.js';
+import { initCustomSearchControls } from './custom-search-controls.js';
 
 // Comprehensive Station Dataset for Interactive Autocomplete Suggestions
 const STATIONS_DATA = [
@@ -356,12 +357,15 @@ document.addEventListener('DOMContentLoaded', () => {
     initModeSelectorPill();
     initUnifiedSearchDock();
 
+    // Initialize luxury custom calendar and class selection controls
+    initCustomSearchControls();
+
     // Delegated click on any .input-group containing a date input to open the picker
     document.addEventListener('click', (e) => {
         const group = e.target.closest('.input-group');
         if (group) {
             const dateInput = group.querySelector('input[type="date"]');
-            if (dateInput && e.target !== dateInput && typeof dateInput.showPicker === 'function') {
+            if (dateInput && !dateInput.classList.contains('rl-native-date-hidden') && e.target !== dateInput && typeof dateInput.showPicker === 'function') {
                 try {
                     dateInput.showPicker();
                 } catch (err) {

@@ -32,6 +32,7 @@ import {
 
 import { openPaymentModal, closePaymentModal } from '../home/global/payment.js';
 import { requireAuthentication, isAuthenticated, initAuth, getCurrentUser } from '../home/auth/auth.js';
+import { initCustomSearchControls } from '../home/global/custom-search-controls.js';
 
 // Station Name to IRCTC Station Code Resolution Map
 export const STATION_CODE_MAP = {
@@ -1023,13 +1024,8 @@ export function initTrainPage() {
       d.setDate(d.getDate() + 3);
       dateInput.value = d.toISOString().split('T')[0];
     }
-    dateInput.min = new Date().toISOString().split('T')[0];
-
-    dateInput.addEventListener('click', () => {
-      if (typeof dateInput.showPicker === 'function') {
-        try { dateInput.showPicker(); } catch (e) {}
-      }
-    });
+    // Initialize custom date and class controls
+    initCustomSearchControls();
   }
 
   // Swap button
