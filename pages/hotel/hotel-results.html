@@ -10,6 +10,7 @@
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="../../src/css/home/global/style.css">
     <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+    <link rel="stylesheet" href="../../src/css/home/global/custom-search-controls.css">
     <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
     <link rel="stylesheet" href="../../src/css/hotel/hotel.css">
     <link rel="stylesheet" href="../../src/css/home/homepage.css">
@@ -92,24 +93,48 @@
                         <div class="dock-divider"></div>
 
                         <!-- Check-in Date -->
-                        <div class="dock-input-box date-box">
+                        <div class="dock-input-box date-box" id="departureDateBox">
                             <div class="dock-box-content">
                                 <label class="dock-box-label">Check-in</label>
-                                <input type="date" id="checkin-input" name="checkin" class="dock-box-input" required>
+                                <input type="date" id="checkin-input" name="checkin" class="dock-box-input rl-native-date-hidden" required>
+                                <div class="dock-date-display-wrapper">
+                                    <span class="dock-date-display" id="hotelCheckinDateDisplay">Select Date</span>
+                                </div>
                             </div>
-                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                            <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
                         </div>
 
                         <!-- Check-out Date -->
-                        <div class="dock-input-box date-box" id="checkout-group">
+                        <div class="dock-input-box date-box dock-return-box" id="returnBox">
                             <div class="dock-box-content">
                                 <label class="dock-box-label">Check-out</label>
-                                <input type="date" id="checkout-input" name="checkout" class="dock-box-input" required>
+                                <input type="date" id="checkout-input" name="checkout" class="dock-box-input rl-native-date-hidden" required>
+                                <div class="dock-date-display-wrapper">
+                                    <span class="dock-date-display" id="hotelCheckoutDateDisplay">Select Date</span>
+                                </div>
                             </div>
-                            <span class="material-symbols-outlined" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+                            <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
                         </div>
 
                         <div class="dock-divider"></div>
+
+                        <!-- Room Category Selector -->
+                        <div class="dock-input-box dock-dropdown-trigger class-selector-box" id="classSelectorBox" data-mode="hotel">
+                            <div class="dock-box-content">
+                                <label class="dock-box-label">Room Category</label>
+                                <select name="class" id="hotel-class-select" style="display: none;">
+                                    <option value="Deluxe" selected>Deluxe Room</option>
+                                    <option value="Suite">Executive Suite</option>
+                                    <option value="Villa">Luxury Villa / Penthouse</option>
+                                    <option value="Resort">5-Star Resort Stay</option>
+                                    <option value="Budget">Comfort Budget Stay</option>
+                                </select>
+                                <div class="dock-class-display-wrapper">
+                                    <span class="dock-class-display" id="hotelClassDisplay">Deluxe Room</span>
+                                </div>
+                            </div>
+                            <span class="material-symbols-outlined rl-dropdown-chevron" style="font-size: 19px; color: #9ca3af;">expand_more</span>
+                        </div>
 
                         <!-- Rooms & Guests Selector -->
                         <div class="dock-input-box dock-dropdown-trigger relative" id="guests-field" style="min-width: 170px; cursor: pointer;">
