@@ -533,3 +533,318 @@ class CustomDatePicker {
         if (this.options.onSelect) {
             this.options.onSelect(this.selectedDate, iso);
         }
+
+        this.close();
+    }
+}
+
+/* ==========================================================================
+   CLASS SELECTOR CONTROLLER & MODE CONFIGURATIONS
+   ========================================================================== */
+
+export const MODE_CLASS_CONFIGS = {
+    train: {
+        label: 'Class & Quota',
+        headerTitle: 'Select Travel Class',
+        defaultVal: '3A',
+        options: [
+            {
+                value: '3A',
+                title: '3rd AC (3A)',
+                subtitle: 'AC 3 Tier · Popular Choice',
+                icon: 'airline_seat_recline_extra'
+            },
+            {
+                value: '2A',
+                title: '2nd AC (2A)',
+                subtitle: 'AC 2 Tier · High Comfort',
+                icon: 'airline_seat_recline_extra'
+            },
+            {
+                value: '1A',
+                title: '1st AC (1A)',
+                subtitle: 'Executive AC · Maximum Luxury',
+                icon: 'hotel_class'
+            },
+            {
+                value: 'Sleeper',
+                title: 'Sleeper (SL)',
+                subtitle: 'Non-AC Sleeper · Budget Friendly',
+                icon: 'bed'
+            },
+            {
+                value: 'All',
+                title: 'All Classes',
+                subtitle: 'View all train classes',
+                icon: 'layers'
+            }
+        ]
+    },
+    flight: {
+        label: 'Cabin Class',
+        headerTitle: 'Select Cabin Class',
+        defaultVal: 'Economy',
+        options: [
+            {
+                value: 'Economy',
+                title: 'Economy Class',
+                subtitle: 'Standard Seating · Best Value',
+                icon: 'airline_seat_recline_normal'
+            },
+            {
+                value: 'Premium Economy',
+                title: 'Premium Economy',
+                subtitle: 'Extra Legroom · Priority Boarding',
+                icon: 'airline_seat_recline_extra'
+            },
+            {
+                value: 'Business',
+                title: 'Business Class',
+                subtitle: 'Priority Service & Flatbed Seats',
+                icon: 'airline_seat_individual_suite'
+            },
+            {
+                value: 'First Class',
+                title: 'First Class',
+                subtitle: 'Private Suite · Ultimate Luxury',
+                icon: 'hotel_class'
+            }
+        ]
+    },
+    bus: {
+        label: 'Bus Type & Class',
+        headerTitle: 'Select Bus Type',
+        defaultVal: 'All',
+        options: [
+            {
+                value: 'All',
+                title: 'All Bus Types',
+                subtitle: 'AC & Non-AC Luxury Coaches',
+                icon: 'directions_bus'
+            },
+            {
+                value: 'AC Sleeper',
+                title: 'AC Sleeper (2+1)',
+                subtitle: 'Lie-Flat Berths · Maximum Comfort',
+                icon: 'bed'
+            },
+            {
+                value: 'AC Seater',
+                title: 'AC Seater (2+2)',
+                subtitle: 'Pushback Recliner Seats',
+                icon: 'airline_seat_recline_extra'
+            },
+            {
+                value: 'Volvo',
+                title: 'Volvo Multi-Axle',
+                subtitle: 'Ultra-Smooth Air Suspension',
+                icon: 'airport_shuttle'
+            },
+            {
+                value: 'Non-AC Sleeper',
+                title: 'Non-AC Sleeper',
+                subtitle: 'Budget-Friendly Lie-Flat Berths',
+                icon: 'bed'
+            }
+        ]
+    },
+    hotel: {
+        label: 'Room Category',
+        headerTitle: 'Select Room Category',
+        defaultVal: 'Deluxe',
+        options: [
+            {
+                value: 'Deluxe',
+                title: 'Deluxe Room',
+                subtitle: 'Standard King / Twin · Best Value',
+                icon: 'hotel'
+            },
+            {
+                value: 'Suite',
+                title: 'Executive Suite',
+                subtitle: 'Spacious Suite with City View',
+                icon: 'apartment'
+            },
+            {
+                value: 'Villa',
+                title: 'Luxury Villa / Penthouse',
+                subtitle: 'Private Balcony & Premium Amenities',
+                icon: 'villa'
+            },
+            {
+                value: 'Resort',
+                title: '5-Star Resort Stay',
+                subtitle: 'All-Inclusive Breakfast & Pool',
+                icon: 'pool'
+            },
+            {
+                value: 'Budget',
+                title: 'Comfort Budget Stay',
+                subtitle: 'Essential, Clean & Pocket-Friendly',
+                icon: 'bed'
+            }
+        ]
+    }
+};
+
+export function detectMode(boxEl) {
+    if (boxEl) {
+        const explicit = boxEl.getAttribute('data-mode') || boxEl.closest('[data-mode]')?.getAttribute('data-mode');
+        if (explicit && MODE_CLASS_CONFIGS[explicit]) return explicit;
+    }
+    const path = window.location.pathname.toLowerCase();
+    if (path.includes('flight')) return 'flight';
+    if (path.includes('bus')) return 'bus';
+    if (path.includes('hotel')) return 'hotel';
+    if (path.includes('train')) return 'train';
+    
+    // Check active button in mode switcher
+    const activeBtn = document.querySelector('.dock-mode-btn.active');
+    if (activeBtn) {
+        const text = activeBtn.textContent.toLowerCase();
+        if (text.includes('flight')) return 'flight';
+        if (text.includes('bus')) return 'bus';
+        if (text.includes('hotel')) return 'hotel';
+        if (text.includes('train')) return 'train';
+    }
+    return 'train';
+}
+
+export class CustomClassSelector {
+    constructor(triggerBox) {
+        if (triggerBox.__rl_class_ctrl) return triggerBox.__rl_class_ctrl;
+        triggerBox.__rl_class_ctrl = this;
+
+        this.boxEl = triggerBox;
+        this.mode = detectMode(triggerBox);
+        this.modeConfig = MODE_CLASS_CONFIGS[this.mode] || MODE_CLASS_CONFIGS.train;
+
+        this.selectEl = triggerBox.querySelector('select[name="class"], select[name="cabin"], select[name="busType"], select[name="roomType"]');
+        
+        // If no select element exists, build one automatically
+        if (!this.selectEl) {
+            this.selectEl = document.createElement('select');
+            this.selectEl.name = 'class';
+            this.selectEl.style.display = 'none';
+            this.modeConfig.options.forEach((opt, idx) => {
+                const o = document.createElement('option');
+                o.value = opt.value;
+                o.textContent = opt.title;
+                if (opt.value === this.modeConfig.defaultVal || idx === 0) o.selected = true;
+                this.selectEl.appendChild(o);
+            });
+            this.boxEl.appendChild(this.selectEl);
+        }
+
+        this.isOpen = false;
+        this.menuEl = null;
+
+        registerController(this);
+        this.init();
+    }
+
+    init() {
+        this.boxEl.classList.add('class-selector-box');
+
+        // Hide raw select
+        this.selectEl.style.display = 'none';
+
+        // Update label text if present
+        const labelEl = this.boxEl.querySelector('.dock-box-label');
+        if (labelEl && (!labelEl.textContent.trim() || labelEl.textContent.includes('Class') || labelEl.textContent.includes('Category') || labelEl.textContent.includes('Type') || labelEl.textContent.includes('Rooms') || labelEl.textContent.includes('Passengers'))) {
+            labelEl.textContent = this.modeConfig.label;
+        }
+
+        // Add or ensure display element
+        let contentEl = this.boxEl.querySelector('.dock-box-content') || this.boxEl.querySelector('.train-input-text');
+        if (!contentEl) {
+            contentEl = document.createElement('div');
+            contentEl.className = 'dock-box-content';
+            this.boxEl.prepend(contentEl);
+        }
+
+        let displayWrapper = contentEl.querySelector('.dock-class-display-wrapper');
+        if (!displayWrapper) {
+            displayWrapper = document.createElement('div');
+            displayWrapper.className = 'dock-class-display-wrapper';
+            contentEl.appendChild(displayWrapper);
+        }
+
+        this.displayEl = displayWrapper.querySelector('.dock-class-display');
+        if (!this.displayEl) {
+            this.displayEl = document.createElement('div');
+            this.displayEl.className = 'dock-class-display';
+            displayWrapper.appendChild(this.displayEl);
+        }
+
+        // Chevron icon
+        let chevron = this.boxEl.querySelector('.rl-dropdown-chevron');
+        if (!chevron) {
+            chevron = this.boxEl.querySelector('.material-symbols-outlined');
+            if (chevron) {
+                chevron.classList.add('rl-dropdown-chevron');
+            } else {
+                chevron = document.createElement('span');
+                chevron.className = 'material-symbols-outlined rl-dropdown-chevron';
+                chevron.textContent = 'expand_more';
+                this.boxEl.appendChild(chevron);
+            }
+        }
+
+        // Sync initial text from current select value
+        this.syncFromSelect();
+
+        // Listen for external changes to select
+        this.selectEl.addEventListener('change', () => this.syncFromSelect());
+
+        // Toggle on box click
+        this.boxEl.addEventListener('click', (e) => {
+            if (this.menuEl && this.menuEl.contains(e.target)) return;
+            e.stopPropagation();
+            this.toggle();
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            if (this.isOpen && e.key === 'Escape') {
+                this.close();
+            }
+        });
+    }
+
+    syncFromSelect() {
+        const val = this.selectEl.value;
+        const allOptions = [
+            ...(this.modeConfig.options || []),
+            ...Object.values(MODE_CLASS_CONFIGS).flatMap(c => c.options)
+        ];
+        const matched = allOptions.find(c => c.value === val);
+        if (matched) {
+            this.displayEl.textContent = matched.title;
+        } else {
+            const selectedOpt = this.selectEl.options[this.selectEl.selectedIndex];
+            this.displayEl.textContent = selectedOpt ? selectedOpt.textContent : val;
+        }
+        if (this.isOpen) this.renderMenu();
+    }
+
+    toggle() {
+        if (this.isOpen) {
+            this.close();
+        } else {
+            closeAllPopovers(this);
+            this.open();
+        }
+    }
+
+    open() {
+        if (this.isOpen) return;
+        closeAllPopovers(this);
+        this.isOpen = true;
+        this.boxEl.classList.add('is-active');
+        this.renderMenu();
+    }
+
+    close() {
+        if (!this.isOpen) return;
+        this.isOpen = false;
