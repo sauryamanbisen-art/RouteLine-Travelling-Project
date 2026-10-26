@@ -1,10 +1,13 @@
 import { initAuth, getCurrentUser, isAuthenticated, requireAuthentication } from '../home/auth/auth.js';
-import { initModeSelectorPill } from '../home/global/mode-selector.js';
+import { initModeSelectorPill, initUnifiedSearchDock } from '../home/global/mode-selector.js';
+import { initCustomSearchControls } from '../home/global/custom-search-controls.js';
 import { saveBooking } from '../services/booking-store.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initAuth({ autoPrompt: false });
     initModeSelectorPill();
+    initUnifiedSearchDock();
+    initCustomSearchControls();
     // Initialize the bus search functionality
     // 1. Initial Setup
     const fromInput = document.getElementById('from-input');
