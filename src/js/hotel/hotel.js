@@ -1,10 +1,12 @@
 import { initAuth } from '../home/auth/auth.js';
 import { initModeSelectorPill, initUnifiedSearchDock } from '../home/global/mode-selector.js';
+import { initCustomSearchControls, closeAllPopovers } from '../home/global/custom-search-controls.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     initAuth({ autoPrompt: false });
     initModeSelectorPill();
     initUnifiedSearchDock();
+    initCustomSearchControls();
     // 1. Initial Setup for Dates
     const checkinInput = document.getElementById('checkin-input');
     const checkoutInput = document.getElementById('checkout-input');
@@ -18,10 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tomorrowStr = tomorrow.toISOString().split('T')[0];
     
     if (checkinInput && checkoutInput) {
-        checkinInput.value = todayStr;
+        if (!checkinInput.value) checkinInput.value = todayStr;
         checkinInput.min = todayStr;
         
-        checkoutInput.value = tomorrowStr;
+        if (!checkoutInput.value) checkoutInput.value = tomorrowStr;
         checkoutInput.min = tomorrowStr;
         
         // Ensure checkout is always after checkin
@@ -49,9 +51,15 @@ document.addEventListener('DOMContentLoaded', () => {
     let children = 0;
 
     if (guestsField && guestsPanel) {
-        // Toggle dropdown
+        // Toggle dropdown with mutual exclusion
         guestsField.addEventListener('click', (e) => {
-            guestsPanel.classList.toggle('show');
+            const isCurrentlyShown = guestsPanel.classList.contains('show');
+            closeAllPopovers();
+            if (!isCurrentlyShown) {
+                guestsPanel.classList.add('show');
+            } else {
+                guestsPanel.classList.remove('show');
+            }
             e.stopPropagation();
         });
 
