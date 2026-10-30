@@ -1,426 +1,1092 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bus Booking | RouteLine</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="../../src/css/home/global/style.css">
-    <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
-    <link rel="stylesheet" href="../../src/css/home/global/custom-search-controls.css">
-    <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
-    <link rel="stylesheet" href="../../src/css/bus/bus.css">
-    <link rel="stylesheet" href="../../src/css/home/homepage.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pune to Delhi Buses | RouteLine Travel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000f1d",
+            "primary-container": "#0f2537",
+            "surface": "#f8f9ff",
+            "brand-ochre": "#854d19",
+            "brand-ochre-hover": "#714013",
+            "brand-ochre-light": "#fef3c7",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#43474c"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/home/global/style.css">
+  <link rel="stylesheet" href="../../src/css/bus/bus.css">
 </head>
-<body>
-    <header class="header">
-        <div class="header-container">
-            <div class="logo">
-                <img src="../../public/logo.svg" alt="RouteLine Logo">
-                <a href="../../index.html" style="color: white; text-decoration: none;">RouteLine</a>
-            </div>
-            
-            <nav class="nav-links">
-                <a href="../../index.html">Trains</a>
-                <a href="../flight/flight-search.html">Flights</a>
-                <a href="bus-results.html" class="active">Buses</a>
-                <a href="../hotel/hotel-results.html">Hotels</a>
-                <a href="#">Offers</a>
-            </nav>
-            
-            <div class="header-actions">
-                <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
-                <div class="divider"></div>
-                <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
-                <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
-            </div>
-        </div>
-    </header>
+<body class="bus-experience bg-[#f8f9ff] text-[#0b1c30]">
 
-    <section class="hero-unified" style="background-image: url('../../src/assets/bus_background_img.png');">
-        <div class="hero-unified-overlay"></div>
+  <!-- Top RouteLine Global Navbar -->
+  <header class="w-full bg-white border-b border-[#e5eeff] sticky top-0 z-50 shadow-sm">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      
+      <!-- Logo & Mode Navigation -->
+      <div class="flex items-center gap-8">
+        <a href="../../index.html" class="flex items-center gap-2 text-decoration-none">
+          <div class="w-9 h-9 rounded-lg bg-[#000f1d] flex items-center justify-center text-white font-black text-sm tracking-tighter">RL</div>
+          <span class="text-xl font-extrabold text-[#000f1d] tracking-tight font-sans">RouteLine</span>
+        </a>
+
+        <!-- Service Links -->
+        <nav class="hidden md:flex items-center gap-1 text-sm font-semibold text-gray-600">
+          <a href="bus-results.html" class="px-3.5 py-1.5 rounded-full text-[#000f1d] font-bold bg-[#eff4ff]">Buses</a>
+          <a href="../../index.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Trains</a>
+          <a href="../flight/flight-search.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Flights</a>
+          <a href="../hotel/hotel-results.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Hotels</a>
+          <a href="../home/cabs.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Cabs</a>
+        </nav>
+      </div>
+
+      <!-- Right Header Actions -->
+      <div class="flex items-center gap-4 text-xs font-semibold text-gray-700">
+        <a href="#" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">headset_mic</span>
+          <span>24/7 Support</span>
+        </a>
+        <a href="../train/ticket.html" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">receipt_long</span>
+          <span>Manage Booking</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-1 cursor-pointer">
+          <span>₹ INR (₹)</span>
+          <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </div>
+        <div class="flex items-center gap-2 pl-2">
+          <button type="button" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#000f1d] text-white text-xs font-semibold hover:bg-black transition-all">
+            <span class="material-symbols-outlined text-[16px]">account_circle</span>
+            <span>Account</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- 5-Step Booking Progress Stepper -->
+  <div class="rl-bus-stepper-container w-full bg-white py-3.5 px-4 shadow-sm">
+    <div class="max-w-[1000px] mx-auto flex items-center justify-between text-xs sm:text-sm font-semibold">
+      
+      <!-- Step 1: Active -->
+      <div class="stepper-step active flex items-center gap-2">
+        <span class="stepper-circle">1</span>
+        <span class="font-bold text-[#000f1d]">Select Bus</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <!-- Step 2 -->
+      <div class="stepper-step">
+        <span class="stepper-circle">2</span>
+        <span>Select Seats</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <!-- Step 3 -->
+      <div class="stepper-step">
+        <span class="stepper-circle">3</span>
+        <span>Passenger Details</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <!-- Step 4 -->
+      <div class="stepper-step">
+        <span class="stepper-circle">4</span>
+        <span>Review &amp; Pay</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <!-- Step 5 -->
+      <div class="stepper-step">
+        <span class="stepper-circle">5</span>
+        <span>Confirmation</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Search Header Bar -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 pt-5 pb-2">
+    <div class="rl-search-card bg-white rounded-2xl border border-[#e2e8f0] shadow-sm overflow-hidden">
+      <div class="p-4 sm:p-5 flex flex-wrap lg:flex-nowrap items-center justify-between gap-4">
         
-        <!-- Strict standardized header height across all 4 pages -->
-        <div class="hero-unified-header">
-            <h1 class="hero-unified-title">Hit the road,<br>Discover new places.</h1>
-            <p class="hero-unified-subtitle">Compare thousands of bus routes and operators. Find the best seats at the lowest prices instantly.</p>
+        <!-- From -->
+        <div class="flex-1 min-w-[180px] flex items-center gap-3 px-3 py-2 border-b lg:border-b-0 lg:border-r border-gray-100">
+          <span class="material-symbols-outlined text-[24px] text-gray-500">apartment</span>
+          <div>
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">FROM</div>
+            <div class="text-base font-bold text-[#000f1d]" id="searchOriginDisplay">Pune</div>
+          </div>
         </div>
 
-        <!-- Pixel-perfect search dock (identical position, width & height across all pages) -->
-        <div class="search-dock-wrapper">
-            <!-- Mode & Trip Toggle Row -->
-            <div class="dock-mode-row">
-                <!-- Mode Capsule -->
-                <div class="dock-mode-capsule">
-                    <a href="../../index.html" class="dock-mode-btn">
-                        <span class="material-symbols-outlined dock-icon">train</span> Trains
-                    </a>
-                    <a href="../flight/flight-search.html" class="dock-mode-btn">
-                        <span class="material-symbols-outlined dock-icon">flight</span> Flights
-                    </a>
-                    <a href="bus-results.html" class="dock-mode-btn active">
-                        <span class="material-symbols-outlined dock-icon">directions_bus</span> Buses
-                    </a>
-                    <a href="../hotel/hotel-results.html" class="dock-mode-btn">
-                        <span class="material-symbols-outlined dock-icon">hotel</span> Hotels
-                    </a>
-                </div>
-
-                <!-- Trip Type Capsule -->
-                <div class="dock-trip-capsule">
-                    <button type="button" class="dock-trip-btn active" data-trip="one-way">One way</button>
-                    <button type="button" class="dock-trip-btn" data-trip="round-trip">Round trip</button>
-                </div>
-            </div>
-
-            <!-- Main White Search Card Dock -->
-            <div class="search-dock-card">
-                <form id="search-form" action="bus-results.html" method="GET">
-                    <div class="dock-inputs-row">
-                        <!-- From City -->
-                        <div class="dock-input-box city-box">
-                            <span class="material-symbols-outlined dock-box-icon">directions_bus</span>
-                            <div class="dock-box-content">
-                                <label class="dock-box-label">From</label>
-                                <input type="text" id="from-input" name="origin" value="Delhi" list="city-list" class="dock-box-input" autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <!-- Swap Button -->
-                        <button type="button" class="dock-swap-btn" id="swap-btn" aria-label="Swap Origin and Destination">
-                            <span class="material-symbols-outlined">sync_alt</span>
-                        </button>
-
-                        <!-- To City -->
-                        <div class="dock-input-box city-box">
-                            <span class="material-symbols-outlined dock-box-icon">directions_bus</span>
-                            <div class="dock-box-content">
-                                <label class="dock-box-label">To</label>
-                                <input type="text" id="to-input" name="destination" value="Manali" list="city-list" class="dock-box-input" autocomplete="off" required>
-                            </div>
-                        </div>
-
-                        <div class="dock-divider"></div>
-
-                        <!-- Departure Date -->
-                        <div class="dock-input-box date-box" id="departureDateBox">
-                            <div class="dock-box-content">
-                                <label class="dock-box-label">Travel Date</label>
-                                <input type="date" id="depart-input" name="date" class="dock-box-input rl-native-date-hidden" required>
-                                <div class="dock-date-display-wrapper">
-                                    <span class="dock-date-display" id="busDepartureDateDisplay">Select Date</span>
-                                </div>
-                            </div>
-                            <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
-                        </div>
-
-                        <!-- Return Date -->
-                        <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
-                            <div class="dock-box-content">
-                                <label class="dock-box-label">Return</label>
-                                <input type="date" name="returnDate" id="returnDateInput" disabled class="dock-box-input rl-native-date-hidden" placeholder="Select Date">
-                                <div class="dock-date-display-wrapper">
-                                    <span class="dock-date-display is-placeholder" id="busReturnDateDisplay">Select Date</span>
-                                </div>
-                            </div>
-                            <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
-                        </div>
-
-                        <div class="dock-divider"></div>
-
-                        <!-- Bus Type & Class Selector -->
-                        <div class="dock-input-box dock-dropdown-trigger class-selector-box" id="classSelectorBox" data-mode="bus">
-                            <div class="dock-box-content">
-                                <label class="dock-box-label">Bus Type &amp; Class</label>
-                                <select name="class" id="bus-class-select" style="display: none;">
-                                    <option value="All" selected>All Bus Types</option>
-                                    <option value="AC Sleeper">AC Sleeper (2+1)</option>
-                                    <option value="AC Seater">AC Seater (2+2)</option>
-                                    <option value="Volvo">Volvo Multi-Axle</option>
-                                    <option value="Non-AC Sleeper">Non-AC Sleeper</option>
-                                </select>
-                                <div class="dock-class-display-wrapper">
-                                    <span class="dock-class-display" id="busClassDisplay">All Bus Types</span>
-                                </div>
-                            </div>
-                            <span class="material-symbols-outlined rl-dropdown-chevron" style="font-size: 19px; color: #9ca3af;">expand_more</span>
-                        </div>
-
-                        <!-- Search CTA Button -->
-                        <button type="submit" class="dock-search-btn" id="search-btn">
-                            <span class="material-symbols-outlined">search</span>
-                            <span>Search Buses</span>
-                        </button>
-                    </div>
-                </form>
-
-                <div class="result-banner" id="result-banner" style="margin: 0; padding: 0 20px;">
-                    <span id="result-text" style="color:var(--success); font-weight: 600; font-size: 0.9rem;"></span>
-                </div>
-
-                <!-- Mint Green Assurance Ribbon -->
-                <div class="dock-assurance-ribbon">
-                    <div class="dock-assurance-item">
-                        <span class="material-symbols-outlined">check_box</span>
-                        <span>Confirmed Bus Inventory</span>
-                    </div>
-                    <div class="dock-assurance-divider"></div>
-                    <div class="dock-assurance-item">
-                        <span class="material-symbols-outlined">verified</span>
-                        <span>Instant Auto-Refunds</span>
-                    </div>
-                    <div class="dock-assurance-divider"></div>
-                    <div class="dock-assurance-item">
-                        <span class="material-symbols-outlined">headset_mic</span>
-                        <span>24/7 Human Dispatch Desk</span>
-                    </div>
-                    <div class="dock-assurance-divider"></div>
-                    <div class="dock-assurance-item">
-                        <span class="material-symbols-outlined">lock</span>
-                        <span>Zero Card Surcharges</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Swap Icon -->
+        <div class="hidden lg:flex items-center justify-center">
+          <button type="button" id="swapBusRouteBtn" class="w-8 h-8 rounded-full bg-[#f1f5f9] hover:bg-[#e2e8f0] text-gray-600 flex items-center justify-center transition-transform active:rotate-180">
+            <span class="material-symbols-outlined text-[16px]">sync_alt</span>
+          </button>
         </div>
-    </section>
 
-    <!-- Dynamic Bus Search Results Section -->
-    <section id="bus-results-section" style="display: none; max-width: 1200px; margin: 30px auto; padding: 0 20px;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <div>
-                <h2 style="font-size: 1.4rem; font-weight: 800; color: #0f172a; margin: 0;" id="bus-results-title">Available Buses</h2>
-                <p style="font-size: 0.85rem; color: #64748b; margin: 4px 0 0;" id="bus-results-subtitle">Instant confirmed bus tickets with contactless boarding.</p>
-            </div>
-            <span style="background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; font-size: 0.78rem; font-weight: 800; padding: 4px 12px; border-radius: 20px;">
-                Verified Operators
-            </span>
+        <!-- To -->
+        <div class="flex-1 min-w-[180px] flex items-center gap-3 px-3 py-2 border-b lg:border-b-0 lg:border-r border-gray-100">
+          <span class="material-symbols-outlined text-[24px] text-gray-500">location_on</span>
+          <div>
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">TO</div>
+            <div class="text-base font-bold text-[#000f1d]" id="searchDestDisplay">Delhi</div>
+          </div>
         </div>
-        <div id="bus-cards-container" style="display: flex; flex-direction: column; gap: 16px;"></div>
-    </section>
 
-    <datalist id="city-list">
-        <option value="Delhi"></option>
-        <option value="Manali"></option>
-        <option value="Jaipur"></option>
-        <option value="Chandigarh"></option>
-        <option value="Shimla"></option>
-        <option value="Agra"></option>
-        <option value="Mumbai"></option>
-        <option value="Pune"></option>
-        <option value="Bangalore"></option>
-        <option value="Chennai"></option>
-        <option value="Hyderabad"></option>
-        <option value="Kochi"></option>
-    </datalist>
-
-    <!-- Quick Services — Bus -->
-    <section class="quick-services">
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="map"></i></div><span>Track<br>My Bus</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="ticket"></i></div><span>Cancel<br>Ticket</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="bus"></i></div><span>Charter<br>Bus</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="calendar-range"></i></div><span>Bus<br>Schedule</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="armchair"></i></div><span>Seat<br>Selection</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="luggage"></i></div><span>Luggage<br>Policy</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="users"></i></div><span>Group<br>Booking</span></a>
-        <a href="#" class="service-item"><div class="icon-circle"><i data-lucide="shield-check"></i></div><span>Travel<br>Insurance</span></a>
-    </section>
-
-    <!-- Popular Destinations -->
-    <section class="destinations-wrapper"><div class="rl-section-header"><h2>Popular Destinations</h2><a href="#" class="rl-view-all">View All</a></div>
-        <div class="destinations-grid">
-            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&h=260&fit=crop" alt="Manali"><div class="destination-card-body"><h3>Manali</h3><p class="dest-state">Himachal Pradesh</p><div class="destination-card-footer"><span class="dest-price">From ₹799</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
-            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=260&fit=crop" alt="Goa"><div class="destination-card-body"><h3>Goa</h3><p class="dest-state">Goa</p><div class="destination-card-footer"><span class="dest-price">From ₹999</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
-            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&h=260&fit=crop" alt="Jaipur"><div class="destination-card-body"><h3>Jaipur</h3><p class="dest-state">Rajasthan</p><div class="destination-card-footer"><span class="dest-price">From ₹499</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
-            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=260&fit=crop" alt="Kerala"><div class="destination-card-body"><h3>Kerala</h3><p class="dest-state">Kerala</p><div class="destination-card-footer"><span class="dest-price">From ₹899</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
-            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&h=260&fit=crop" alt="Mumbai"><div class="destination-card-body"><h3>Mumbai</h3><p class="dest-state">Maharashtra</p><div class="destination-card-footer"><span class="dest-price">From ₹599</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
-            <a href="#" class="destination-card"><img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=260&fit=crop" alt="Varanasi"><div class="destination-card-body"><h3>Varanasi</h3><p class="dest-state">Uttar Pradesh</p><div class="destination-card-footer"><span class="dest-price">From ₹649</span><span class="dest-arrow"><i data-lucide="arrow-right" style="width:14px;height:14px;"></i></span></div></div></a>
+        <!-- Travel Date -->
+        <div class="flex-1 min-w-[180px] flex items-center gap-3 px-3 py-2 border-b lg:border-b-0 lg:border-r border-gray-100">
+          <span class="material-symbols-outlined text-[24px] text-gray-500">calendar_month</span>
+          <div>
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">TRAVEL DATE</div>
+            <div class="text-base font-bold text-[#000f1d]" id="searchDateDisplay">Sun, 15 Nov 2026</div>
+          </div>
         </div>
-    </section>
 
-    <!-- Trending Routes -->
-    <section class="destinations-wrapper"><div class="rl-section-header"><h2>Trending Routes</h2><a href="#" class="rl-view-all">View All</a></div><div class="routes-grid"><a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="plane"></i></span></div><h3>Delhi → Mumbai</h3><p class="route-modes">Train · Bus · Flight</p><div class="route-card-footer"><span class="route-price">From ₹599</span><span class="route-arrow">→</span></div></a><a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="plane"></i></span></div><h3>Mumbai → Goa</h3><p class="route-modes">Train · Bus · Flight</p><div class="route-card-footer"><span class="route-price">From ₹499</span><span class="route-arrow">→</span></div></a><a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span></div><h3>Delhi → Jaipur</h3><p class="route-modes">Train · Bus</p><div class="route-card-footer"><span class="route-price">From ₹299</span><span class="route-arrow">→</span></div></a><a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="plane"></i></span></div><h3>Bangalore → Hyderabad</h3><p class="route-modes">Train · Bus · Flight</p><div class="route-card-footer"><span class="route-price">From ₹399</span><span class="route-arrow">→</span></div></a><a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="train"></i></span><span class="route-icon"><i data-lucide="bus-front"></i></span></div><h3>Kolkata → Puri</h3><p class="route-modes">Train · Bus</p><div class="route-card-footer"><span class="route-price">From ₹349</span><span class="route-arrow">→</span></div></a><a href="#" class="route-card"><div class="route-card-icons"><span class="route-icon"><i data-lucide="bus-front"></i></span><span class="route-icon"><i data-lucide="car"></i></span></div><h3>Chennai → Pondicherry</h3><p class="route-modes">Bus · Cab</p><div class="route-card-footer"><span class="route-price">From ₹279</span><span class="route-arrow">→</span></div></a></div></section>
+        <!-- Return Date -->
+        <div class="flex-1 min-w-[160px] flex items-center gap-3 px-3 py-2 border-b lg:border-b-0 lg:border-r border-gray-100 opacity-70 cursor-pointer hover:opacity-100">
+          <span class="material-symbols-outlined text-[24px] text-gray-400">calendar_add_on</span>
+          <div>
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider">RETURN</div>
+            <div class="text-sm font-semibold text-gray-500">Add Return</div>
+          </div>
+        </div>
 
-    <!-- Multi-City -->
-    <section class="destinations-wrapper"><div class="multi-city-inner"><div class="multi-city-text"><h2>One Trip.<br>Multiple Destinations.</h2><p>Plan multiple stops in one journey with RouteLine.</p><a href="#" class="multi-city-cta">Plan Multi-City Trip</a></div><div class="multi-city-journey"><div class="journey-stop-card"><span class="stop-number">1</span><span class="stop-name">Delhi</span><img src="./src/assets/delhi.jpg" alt="Delhi"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">2</span><span class="stop-name">Jaipur</span><img src="./src/assets/jaipur.jpg" alt="Jaipur"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">3</span><span class="stop-name">Jodhpur</span><img src="./src/assets/jodhpur.jpg" alt="Jodhpur"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">4</span><span class="stop-name">Udaipur</span><img src="./src/assets/udaipur.jpg" alt="Udaipur"></div><span class="journey-arrow">→</span><div class="journey-stop-card"><span class="stop-number">5</span><span class="stop-name">Mumbai</span><img src="./src/assets/mumbai.jpg" alt="Mumbai"></div></div></div></section>
+        <!-- Modify CTA Button -->
+        <div class="pl-2">
+          <button type="button" id="modifySearchBtn" class="rl-ochre-btn px-7 py-2.5 rounded-full text-white font-bold text-sm flex items-center gap-2 shadow-sm">
+            <span class="material-symbols-outlined text-[18px]">search</span>
+            <span>Modify</span>
+          </button>
+        </div>
 
-    <!-- Travel Collections -->
-    <section class="rl-section"><div class="rl-section-header"><h2>Travel Collections</h2></div><p class="rl-section-subtitle">Find a journey that matches your mood</p><div class="collections-grid"><a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=360&fit=crop" alt="Weekend Getaways"><div class="collection-card-overlay"><span>Weekend<br>Getaways</span></div></a><a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&h=360&fit=crop" alt="Family Trips"><div class="collection-card-overlay"><span>Family<br>Trips</span></div></a><a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=400&h=360&fit=crop" alt="Romantic Escapes"><div class="collection-card-overlay"><span>Romantic<br>Escapes</span></div></a><a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=400&h=360&fit=crop" alt="Adventure Trips"><div class="collection-card-overlay"><span>Adventure<br>Trips</span></div></a><a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=360&fit=crop" alt="Beach Holidays"><div class="collection-card-overlay"><span>Beach<br>Holidays</span></div></a><a href="#" class="collection-card"><img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=360&fit=crop" alt="Spiritual Journeys"><div class="collection-card-overlay"><span>Spiritual<br>Journeys</span></div></a></div></section>
+      </div>
 
-        <!-- Deals + Reviews -->
-    <div class="deals-reviews-container" id="deals-reviews">
-        <!-- Deals Column -->
-        <div class="deals-wrapper">
-            <div class="rl-section-header">
-                <h2>Best Deals & Offers</h2>
-                <a href="#" class="rl-view-all">View All</a>
+      <!-- Trust Ribbon inside card -->
+      <div class="bg-[#eff6ff] px-5 py-2.5 border-t border-[#dce9ff] flex flex-wrap items-center justify-between text-xs font-semibold text-[#1e3a8a] gap-2">
+        <div class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-blue-600">verified</span>
+          <span>Confirmed Bus Inventory</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-blue-600">bolt</span>
+          <span>Instant Auto-Refunds</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-blue-600">support_agent</span>
+          <span>24/7 Human Dispatch Desk</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-[16px] text-blue-600">lock</span>
+          <span>Zero Card Surcharges</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick Filter Service Pills Row -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 py-3">
+    <div class="flex items-center gap-2.5 overflow-x-auto pb-1 text-xs font-semibold text-gray-700 scrollbar-none">
+      <button class="px-4 py-2 rounded-full bg-white border border-gray-200 shadow-2xs hover:border-[#854d19] flex items-center gap-2 shrink-0">
+        <span class="material-symbols-outlined text-[16px] text-amber-700">satellite_alt</span>
+        <span>Track Bus Live</span>
+      </button>
+      <button class="px-4 py-2 rounded-full bg-white border border-gray-200 shadow-2xs hover:border-[#854d19] flex items-center gap-2 shrink-0">
+        <span class="material-symbols-outlined text-[16px] text-amber-700">sync</span>
+        <span>Easy Cancel</span>
+      </button>
+      <button class="px-4 py-2 rounded-full bg-white border border-gray-200 shadow-2xs hover:border-[#854d19] flex items-center gap-2 shrink-0">
+        <span class="material-symbols-outlined text-[16px] text-amber-700">directions_bus</span>
+        <span>Charter Bus</span>
+      </button>
+      <button class="px-4 py-2 rounded-full bg-white border border-gray-200 shadow-2xs hover:border-[#854d19] flex items-center gap-2 shrink-0">
+        <span class="material-symbols-outlined text-[16px] text-amber-700">shield</span>
+        <span>Travel Insurance Included</span>
+      </button>
+      <button class="px-4 py-2 rounded-full bg-white border border-gray-200 shadow-2xs hover:border-[#854d19] flex items-center gap-2 shrink-0">
+        <span class="material-symbols-outlined text-[16px] text-amber-700">luggage</span>
+        <span>Luggage Allowance (25kg)</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- Main Content: Sidebar Filters & Results List -->
+  <main class="max-w-[1340px] mx-auto px-4 sm:px-6 py-4">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- LEFT COLUMN: Filters Sidebar (3 cols) -->
+      <aside class="lg:col-span-3 bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-6">
+        
+        <!-- Filter Header -->
+        <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+          <div class="flex items-center gap-2 font-bold text-sm text-[#000f1d]">
+            <span class="material-symbols-outlined text-[18px]">tune</span>
+            <span>Filters</span>
+          </div>
+          <button type="button" id="resetFiltersBtn" class="text-xs font-bold text-[#854d19] hover:underline cursor-pointer">Reset All</button>
+        </div>
+
+        <!-- 1. DEPARTURE TIME -->
+        <div>
+          <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider mb-2.5">DEPARTURE TIME</label>
+          <div class="grid grid-cols-2 gap-2 text-xs">
+            <button type="button" class="time-slot-btn" data-slot="morning">
+              <span class="material-symbols-outlined text-[20px] text-amber-500 block mb-0.5">wb_sunny</span>
+              <div class="font-bold text-gray-800">Morning</div>
+              <div class="text-[10px] text-gray-500">06:00 - 12:00</div>
+            </button>
+            <button type="button" class="time-slot-btn" data-slot="afternoon">
+              <span class="material-symbols-outlined text-[20px] text-orange-400 block mb-0.5">partly_cloudy_day</span>
+              <div class="font-bold text-gray-800">Afternoon</div>
+              <div class="text-[10px] text-gray-500">12:00 - 18:00</div>
+            </button>
+            <button type="button" class="time-slot-btn active" data-slot="evening">
+              <span class="material-symbols-outlined text-[20px] text-amber-700 block mb-0.5">wb_twilight</span>
+              <div class="font-bold text-gray-800">Evening</div>
+              <div class="text-[10px] text-gray-500">18:00 - 23:00</div>
+            </button>
+            <button type="button" class="time-slot-btn" data-slot="night">
+              <span class="material-symbols-outlined text-[20px] text-indigo-500 block mb-0.5">bedtime</span>
+              <div class="font-bold text-gray-800">Night</div>
+              <div class="text-[10px] text-gray-500">23:00 - 06:00</div>
+            </button>
+          </div>
+        </div>
+
+        <!-- 2. PRICE RANGE -->
+        <div class="pt-2 border-t border-gray-100">
+          <div class="flex items-center justify-between mb-2">
+            <label class="text-[11px] font-bold text-gray-500 uppercase tracking-wider">PRICE RANGE</label>
+            <span class="text-xs font-bold text-[#854d19]" id="priceRangeLabel">₹1,200 - ₹3,500</span>
+          </div>
+          <input type="range" id="priceRangeInput" min="1200" max="4500" value="3500" step="100" class="w-full accent-[#854d19] cursor-pointer">
+          <div class="flex justify-between text-[11px] font-semibold text-gray-400 mt-1">
+            <span>₹1,200</span>
+            <span>₹4,500</span>
+          </div>
+        </div>
+
+        <!-- 3. BUS TYPE -->
+        <div class="pt-2 border-t border-gray-100 space-y-2.5">
+          <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider">BUS TYPE</label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" checked class="bus-type-filter rounded text-[#854d19] focus:ring-0" value="AC Sleeper (2+1)">
+              <span>AC Sleeper (2+1)</span>
+            </div>
+            <span class="text-gray-400 text-[11px]">(32)</span>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" checked class="bus-type-filter rounded text-[#854d19] focus:ring-0" value="Multi-Axle Volvo / Scania">
+              <span>Multi-Axle Volvo / Scania</span>
+            </div>
+            <span class="text-gray-400 text-[11px]">(18)</span>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="bus-type-filter rounded text-[#854d19] focus:ring-0" value="Bharat Benz AC">
+              <span>Bharat Benz AC</span>
+            </div>
+            <span class="text-gray-400 text-[11px]">(9)</span>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="bus-type-filter rounded text-[#854d19] focus:ring-0" value="Non-AC Sleeper">
+              <span>Non-AC Sleeper</span>
+            </div>
+            <span class="text-gray-400 text-[11px]">(6)</span>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="bus-type-filter rounded text-[#854d19] focus:ring-0" value="Semi-Sleeper">
+              <span>Semi-Sleeper</span>
+            </div>
+            <span class="text-gray-400 text-[11px]">(4)</span>
+          </label>
+        </div>
+
+        <!-- 4. BUS OPERATORS -->
+        <div class="pt-2 border-t border-gray-100 space-y-2.5">
+          <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider">BUS OPERATORS</label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" checked class="operator-filter rounded text-[#854d19] focus:ring-0" value="Zingbus Plus">
+              <span>Zingbus Plus</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="bg-[#ecfdf5] text-[#047857] px-1.5 py-0.5 rounded text-[10px] font-bold">★ 4.8</span>
+              <span class="text-gray-400 text-[11px]">(14)</span>
+            </div>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" checked class="operator-filter rounded text-[#854d19] focus:ring-0" value="IntrCity SmartBus">
+              <span>IntrCity SmartBus</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="bg-[#ecfdf5] text-[#047857] px-1.5 py-0.5 rounded text-[10px] font-bold">★ 4.7</span>
+              <span class="text-gray-400 text-[11px]">(11)</span>
+            </div>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="operator-filter rounded text-[#854d19] focus:ring-0" value="VRL Travels">
+              <span>VRL Travels</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="bg-[#ecfdf5] text-[#047857] px-1.5 py-0.5 rounded text-[10px] font-bold">★ 4.6</span>
+              <span class="text-gray-400 text-[11px]">(8)</span>
+            </div>
+          </label>
+          <label class="flex items-center justify-between text-xs text-gray-700 cursor-pointer">
+            <div class="flex items-center gap-2">
+              <input type="checkbox" class="operator-filter rounded text-[#854d19] focus:ring-0" value="Orange Tours">
+              <span>Orange Tours</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="bg-[#ecfdf5] text-[#047857] px-1.5 py-0.5 rounded text-[10px] font-bold">★ 4.5</span>
+              <span class="text-gray-400 text-[11px]">(7)</span>
+            </div>
+          </label>
+        </div>
+
+        <!-- 5. BOARDING POINTS (PUNE) -->
+        <div class="pt-2 border-t border-gray-100 space-y-2.5">
+          <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider">BOARDING POINTS (PUNE)</label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" checked class="rounded text-[#854d19] focus:ring-0">
+            <span>Swargate (Main Stand)</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" checked class="rounded text-[#854d19] focus:ring-0">
+            <span>Wakad (Near Ginger Hotel)</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" class="rounded text-[#854d19] focus:ring-0">
+            <span>Hinjawadi Phase 1</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" class="rounded text-[#854d19] focus:ring-0">
+            <span>Nigdi Nishant Bridge</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" class="rounded text-[#854d19] focus:ring-0">
+            <span>Viman Nagar Corner</span>
+          </label>
+        </div>
+
+        <!-- 6. DROPPING POINTS (DELHI) -->
+        <div class="pt-2 border-t border-gray-100 space-y-2.5">
+          <label class="block text-[11px] font-bold text-gray-500 uppercase tracking-wider">DROPPING POINTS (DELHI)</label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" checked class="rounded text-[#854d19] focus:ring-0">
+            <span>Kashmiri Gate ISBT</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" class="rounded text-[#854d19] focus:ring-0">
+            <span>Anand Vihar Terminal</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" class="rounded text-[#854d19] focus:ring-0">
+            <span>Dhaula Kuan Metro</span>
+          </label>
+          <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+            <input type="checkbox" class="rounded text-[#854d19] focus:ring-0">
+            <span>Majnu Ka Tilla</span>
+          </label>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT COLUMN: Bus Results List (9 cols) -->
+      <section class="lg:col-span-9 space-y-4">
+        
+        <!-- Results Header & Sorting Bar -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1">
+          <div>
+            <div class="flex items-center gap-3">
+              <h1 class="text-xl sm:text-2xl font-black text-[#000f1d] tracking-tight font-sans">Pune to Delhi</h1>
+              <span class="px-3 py-1 rounded-full bg-[#fef3c7] text-[#92400e] text-xs font-bold" id="totalBusesBadge">48 Buses Available</span>
+            </div>
+            <p class="text-xs text-gray-500 font-medium mt-0.5">Sun, 15 Nov 2026 • Fares Inclusive of GST &amp; Insurance</p>
+          </div>
+
+          <!-- Sorting Pills Group -->
+          <div class="flex items-center bg-[#f1f5f9] p-1 rounded-full text-xs font-semibold text-gray-600">
+            <button type="button" class="sort-tab-btn active px-3.5 py-1.5 rounded-full bg-white text-[#000f1d] font-bold shadow-2xs" data-sort="recommended">Recommended</button>
+            <button type="button" class="sort-tab-btn px-3.5 py-1.5 rounded-full hover:text-[#000f1d]" data-sort="cheapest">Cheapest</button>
+            <button type="button" class="sort-tab-btn px-3.5 py-1.5 rounded-full hover:text-[#000f1d]" data-sort="fastest">Fastest</button>
+            <button type="button" class="sort-tab-btn px-3.5 py-1.5 rounded-full hover:text-[#000f1d]" data-sort="rating">Top Rated</button>
+          </div>
+        </div>
+
+        <!-- Bus Cards Container -->
+        <div id="busCardsList" class="space-y-4">
+          
+          <!-- CARD 1: Zingbus Electric Superfast -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs hover:shadow-md transition-shadow">
+            
+            <!-- Top Badges Ribbon -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-gray-100 text-xs">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-[#e8f8f0] text-[#047857] font-extrabold text-[10px] tracking-wide">ROUTELINE VERIFIED</span>
+                <span class="text-gray-600 font-semibold text-[11px]">22% OFF With Code PUNE2DELHI</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-[#059669] font-bold text-[11px]">
+                <span class="w-2 h-2 rounded-full bg-[#10b981] animate-pulse"></span>
+                <span>LIVE GPS ACTIVE</span>
+              </div>
             </div>
 
-            <div class="deals-grid">
-                <a href="#" class="deal-card deal-train">
-                    <div class="deal-content">
-                        <h4>Train Tickets</h4>
-                        <p class="deal-offer">Up to<br><span>20% OFF</span></p>
-                    </div>
-                    <img src="./src/assets/train_img.png" alt="Train">
+            <!-- Content Grid: Operator / Schedule / Price CTA -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              
+              <!-- Operator & Type (4 cols) -->
+              <div class="md:col-span-4 space-y-1">
+                <h3 class="text-base sm:text-lg font-extrabold text-[#000f1d] font-sans">Zingbus Electric Superfast</h3>
+                <p class="text-xs text-gray-500 font-medium">2+1 Premium AC Sleeper (Single &amp; Double Berths)</p>
+                <div class="flex items-center gap-2 pt-1">
+                  <span class="px-2 py-0.5 rounded bg-[#059669] text-white text-[11px] font-bold flex items-center gap-1">
+                    <span>★ 4.8</span>
+                  </span>
+                  <span class="text-xs text-gray-400 font-medium">1,840 ratings</span>
+                </div>
+              </div>
+
+              <!-- Journey Schedule & Corridor (5 cols) -->
+              <div class="md:col-span-5 flex items-center justify-between gap-3 text-center">
+                <!-- Departure -->
+                <div class="text-left">
+                  <div class="text-xl font-black text-[#000f1d] font-sans">16:30</div>
+                  <div class="text-xs font-semibold text-gray-800">Swargate</div>
+                  <div class="text-[11px] text-gray-400">Pune</div>
+                </div>
+
+                <!-- Duration & Stops -->
+                <div class="flex-1 px-2 flex flex-col items-center">
+                  <span class="text-[11px] font-bold text-gray-500 mb-1">23h 45m</span>
+                  <div class="w-full max-w-[120px] h-[2px] bg-gray-200 relative flex items-center justify-center">
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute left-0"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#854d19] absolute"></span>
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute right-0"></span>
+                  </div>
+                  <span class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-1">0 STOPS OVERALL</span>
+                </div>
+
+                <!-- Arrival -->
+                <div class="text-right">
+                  <div class="text-xl font-black text-[#000f1d] font-sans flex items-baseline justify-end gap-1">
+                    <span>16:15</span>
+                    <span class="text-[10px] font-bold text-amber-700">+1 Day</span>
+                  </div>
+                  <div class="text-xs font-semibold text-gray-800">Kashmiri Gate</div>
+                  <div class="text-[11px] text-gray-400">Delhi ISBT</div>
+                </div>
+              </div>
+
+              <!-- Price & CTA (3 cols) -->
+              <div class="md:col-span-3 text-right flex flex-col items-end justify-center space-y-1">
+                <div class="flex items-baseline gap-2">
+                  <span class="text-xs text-gray-400 line-through">₹3,199</span>
+                  <span class="text-2xl font-black text-[#000f1d] font-sans">₹2,499</span>
+                </div>
+                <div class="text-[11px] font-bold text-red-600">Only 14 Seats left!</div>
+                <a href="seat-selection.html?bus=zingbus-superfast" class="select-seats-btn rl-ochre-btn px-6 py-2 rounded-full text-white font-bold text-xs shadow-sm flex items-center gap-1 mt-1 cursor-pointer">
+                  <span>Select Seats</span>
+                  <span class="material-symbols-outlined text-[16px]">chevron_right</span>
                 </a>
-                <a href="#" class="deal-card deal-bus">
-                    <div class="deal-content">
-                        <h4>Bus Journeys</h4>
-                        <p class="deal-offer green">Save<br><span>₹200+</span></p>
-                    </div>
-                    <img src="./src/assets/bus_img.jpeg" alt="Bus">
-                </a>
-                <a href="#" class="deal-card deal-hotel">
-                    <div class="deal-content">
-                        <h4>Hotels</h4>
-                        <p class="deal-offer purple">Up to<br><span>40% OFF</span></p>
-                    </div>
-                    <img src="./src/assets/hotel_img.png" alt="Hotel">
-                </a>
-                <a href="#" class="deal-card deal-flight">
-                    <div class="deal-content">
-                        <h4>Flight Deals</h4>
-                        <p class="deal-offer dark-purple">Special<br><span>Fares</span></p>
-                    </div>
-                    <img src="./src/assets/plane_img.png" alt="Flight">
-                </a>
-            </div>
-        </div>
+              </div>
 
-        <!-- Reviews Column -->
-        <div class="reviews-wrapper">
-            <div class="rl-section-header">
-                <h2>What Travellers Say</h2>
-                <a href="#" class="rl-view-all">View All</a>
             </div>
 
-            <div class="reviews-slider">
-                <div class="reviews-track" id="reviews-track">
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        </div>
-                        <p>"Planning my Delhi → Jaipur → Udaipur trip was incredibly easy. Got confirmed tickets and great hotel deals!"</p>
-                        <div class="review-author">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Rahul Verma">
-                            <div class="review-author-info">
-                                <span class="name">Rahul Verma</span>
-                                <span class="city">Mumbai</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        </div>
-                        <p>"Booked a family trip to Kerala — buses, trains, and hotel all in one place. Saved so much time!"</p>
-                        <div class="review-author">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Sneha Iyer">
-                            <div class="review-author-info">
-                                <span class="name">Sneha Iyer</span>
-                                <span class="city">Bangalore</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="review-card">
-                        <div class="review-stars">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="#f5a623" stroke="#f5a623" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-                        </div>
-                        <p>"The multi-city feature is a game changer. Planned 5 stops in Rajasthan without any hassle."</p>
-                        <div class="review-author">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Amit Sharma">
-                            <div class="review-author-info">
-                                <span class="name">Amit Sharma</span>
-                                <span class="city">Delhi</span>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Bottom Amenities & Cancellation Policy -->
+            <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-gray-500 gap-2">
+              <div class="flex items-center gap-3 sm:gap-4 flex-wrap text-[11px]">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">wifi</span> Free Wi-Fi</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">water_drop</span> Water Bottle</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">bed</span> Blanket &amp; Pillow</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">usb</span> USB Type-C</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">navigation</span> Live Tracking</span>
+              </div>
+              <div class="flex items-center gap-2 text-[11px]">
+                <span class="flex items-center gap-1 text-gray-600 font-medium"><span class="material-symbols-outlined text-[14px] text-green-600">verified_user</span> Instant Free Cancellation</span>
+                <a href="#" class="text-gray-400 hover:text-black underline">Policies</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CARD 2: IntrCity SmartBus Premium Lounge -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs hover:shadow-md transition-shadow">
+            
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 mb-3 border-b border-gray-100 text-xs">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-md bg-[#fef3c7] text-[#92400e] font-extrabold text-[10px] tracking-wide">FREE SNACK KIT &amp; LOUNGE ACCESS</span>
+                <span class="text-gray-600 font-semibold text-[11px]">Punctuality Guarantee (100% On-time)</span>
+              </div>
+              <div class="flex items-center gap-1 text-gray-500 font-semibold text-[11px]">
+                <span class="material-symbols-outlined text-[14px]">air</span>
+                <span>HEPA AIR FILTERED</span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="md:col-span-4 space-y-1">
+                <h3 class="text-base sm:text-lg font-extrabold text-[#000f1d] font-sans">IntrCity SmartBus Premium Lounge</h3>
+                <p class="text-xs text-gray-500 font-medium">Multi-Axle Volvo AC Sleeper 2+1 (Private Pods)</p>
+                <div class="flex items-center gap-2 pt-1">
+                  <span class="px-2 py-0.5 rounded bg-[#059669] text-white text-[11px] font-bold flex items-center gap-1">
+                    <span>★ 4.7</span>
+                  </span>
+                  <span class="text-xs text-gray-400 font-medium">3,218 ratings</span>
                 </div>
+              </div>
+
+              <div class="md:col-span-5 flex items-center justify-between gap-3 text-center">
+                <div class="text-left">
+                  <div class="text-xl font-black text-[#000f1d] font-sans">18:00</div>
+                  <div class="text-xs font-semibold text-gray-800">Wakad Flyover</div>
+                  <div class="text-[11px] text-gray-400">Pune</div>
+                </div>
+
+                <div class="flex-1 px-2 flex flex-col items-center">
+                  <span class="text-[11px] font-bold text-gray-500 mb-1">22h 30m</span>
+                  <div class="w-full max-w-[120px] h-[2px] bg-gray-200 relative flex items-center justify-center">
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute left-0"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#854d19] absolute"></span>
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute right-0"></span>
+                  </div>
+                  <span class="text-[10px] font-extrabold text-[#d97706] uppercase tracking-tight mt-1">FASTEST OPTION</span>
+                </div>
+
+                <div class="text-right">
+                  <div class="text-xl font-black text-[#000f1d] font-sans flex items-baseline justify-end gap-1">
+                    <span>16:30</span>
+                    <span class="text-[10px] font-bold text-amber-700">+1 Day</span>
+                  </div>
+                  <div class="text-xs font-semibold text-gray-800">Anand Vihar</div>
+                  <div class="text-[11px] text-gray-400">Delhi Terminal</div>
+                </div>
+              </div>
+
+              <div class="md:col-span-3 text-right flex flex-col items-end justify-center space-y-1">
+                <div class="text-2xl font-black text-[#000f1d] font-sans">₹2,850</div>
+                <div class="text-[11px] font-bold text-red-600">Only 8 Seats left!</div>
+                <a href="seat-selection.html?bus=intrcity-smartbus" class="select-seats-btn rl-ochre-btn px-6 py-2 rounded-full text-white font-bold text-xs shadow-sm flex items-center gap-1 mt-1 cursor-pointer">
+                  <span>Select Seats</span>
+                  <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                </a>
+              </div>
             </div>
 
-            <div class="review-pagination" id="review-dots">
-                <span class="dot active" data-index="0"></span>
-                <span class="dot" data-index="1"></span>
-                <span class="dot" data-index="2"></span>
+            <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-gray-500 gap-2">
+              <div class="flex items-center gap-3 sm:gap-4 flex-wrap text-[11px]">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">mode_fan</span> Air Purifier</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">water_drop</span> Packaged Water</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">speed</span> High-Speed 5G</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">meeting_room</span> Smart Lounge Access</span>
+              </div>
+              <div class="flex items-center gap-2 text-[11px]">
+                <span class="flex items-center gap-1 text-gray-600 font-medium"><span class="material-symbols-outlined text-[14px] text-gray-500">schedule</span> Zero Cancellation upto 6h</span>
+                <a href="#" class="text-gray-400 hover:text-black underline">View Bus Photos</a>
+              </div>
             </div>
+
+          </div>
+
+          <!-- CARD 3: VRL Travels Executive AC Sleeper -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs hover:shadow-md transition-shadow">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="md:col-span-4 space-y-1">
+                <h3 class="text-base sm:text-lg font-extrabold text-[#000f1d] font-sans">VRL Travels Executive AC Sleeper</h3>
+                <p class="text-xs text-gray-500 font-medium">I-Shift Multi-Axle Premium Comfort 2+1</p>
+                <div class="flex items-center gap-2 pt-1">
+                  <span class="px-2 py-0.5 rounded bg-[#059669] text-white text-[11px] font-bold flex items-center gap-1">
+                    <span>★ 4.6</span>
+                  </span>
+                  <span class="text-xs text-gray-400 font-medium">840 ratings</span>
+                </div>
+              </div>
+
+              <div class="md:col-span-5 flex items-center justify-between gap-3 text-center">
+                <div class="text-left">
+                  <div class="text-xl font-black text-[#000f1d] font-sans">19:30</div>
+                  <div class="text-xs font-semibold text-gray-800">Hinjawadi Ph 1</div>
+                  <div class="text-[11px] text-gray-400">Pune</div>
+                </div>
+
+                <div class="flex-1 px-2 flex flex-col items-center">
+                  <span class="text-[11px] font-bold text-gray-500 mb-1">24h 00m</span>
+                  <div class="w-full max-w-[120px] h-[2px] bg-gray-200 relative flex items-center justify-center">
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute left-0"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#854d19] absolute"></span>
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute right-0"></span>
+                  </div>
+                  <span class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-1">DIRECT ROUTE</span>
+                </div>
+
+                <div class="text-right">
+                  <div class="text-xl font-black text-[#000f1d] font-sans flex items-baseline justify-end gap-1">
+                    <span>19:30</span>
+                    <span class="text-[10px] font-bold text-amber-700">+1 Day</span>
+                  </div>
+                  <div class="text-xs font-semibold text-gray-800">Dhaula Kuan</div>
+                  <div class="text-[11px] text-gray-400">Delhi Metro Hub</div>
+                </div>
+              </div>
+
+              <div class="md:col-span-3 text-right flex flex-col items-end justify-center space-y-1">
+                <div class="text-2xl font-black text-[#000f1d] font-sans">₹2,199</div>
+                <div class="text-[11px] font-bold text-gray-500">18 Seats available</div>
+                <a href="seat-selection.html?bus=vrl-travels" class="select-seats-btn rl-ochre-btn px-6 py-2 rounded-full text-white font-bold text-xs shadow-sm flex items-center gap-1 mt-1 cursor-pointer">
+                  <span>Select Seats</span>
+                  <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-gray-500 gap-2">
+              <div class="flex items-center gap-3 sm:gap-4 flex-wrap text-[11px]">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">water_drop</span> Bottled Water</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">bed</span> Clean Blankets</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">power</span> In-Seat Charging</span>
+              </div>
+              <div class="flex items-center gap-2 text-[11px]">
+                <span class="text-gray-600 font-medium">Rest Stop: Dhaba with Hygienic Restrooms</span>
+                <a href="#" class="text-gray-400 hover:text-black underline">Details</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- CARD 4: Orange Tours & Travels -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs hover:shadow-md transition-shadow">
+            
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="md:col-span-4 space-y-1">
+                <h3 class="text-base sm:text-lg font-extrabold text-[#000f1d] font-sans">Orange Tours &amp; Travels</h3>
+                <p class="text-xs text-gray-500 font-medium">Bharat Benz Air Suspension AC Sleeper (2+1)</p>
+                <div class="flex items-center gap-2 pt-1">
+                  <span class="px-2 py-0.5 rounded bg-[#059669] text-white text-[11px] font-bold flex items-center gap-1">
+                    <span>★ 4.5</span>
+                  </span>
+                  <span class="text-xs text-gray-400 font-medium">620 ratings</span>
+                </div>
+              </div>
+
+              <div class="md:col-span-5 flex items-center justify-between gap-3 text-center">
+                <div class="text-left">
+                  <div class="text-xl font-black text-[#000f1d] font-sans">21:00</div>
+                  <div class="text-xs font-semibold text-gray-800">Nigdi Bridge</div>
+                  <div class="text-[11px] text-gray-400">Pune</div>
+                </div>
+
+                <div class="flex-1 px-2 flex flex-col items-center">
+                  <span class="text-[11px] font-bold text-gray-500 mb-1">23h 15m</span>
+                  <div class="w-full max-w-[120px] h-[2px] bg-gray-200 relative flex items-center justify-center">
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute left-0"></span>
+                    <span class="w-2 h-2 rounded-full bg-[#854d19] absolute"></span>
+                    <span class="w-2 h-2 rounded-full bg-gray-400 absolute right-0"></span>
+                  </div>
+                  <span class="text-[10px] font-bold text-gray-400 uppercase tracking-tight mt-1">LATE NIGHT DEP</span>
+                </div>
+
+                <div class="text-right">
+                  <div class="text-xl font-black text-[#000f1d] font-sans flex items-baseline justify-end gap-1">
+                    <span>20:15</span>
+                    <span class="text-[10px] font-bold text-amber-700">+1 Day</span>
+                  </div>
+                  <div class="text-xs font-semibold text-gray-800">Kashmiri Gate</div>
+                  <div class="text-[11px] text-gray-400">Delhi ISBT</div>
+                </div>
+              </div>
+
+              <div class="md:col-span-3 text-right flex flex-col items-end justify-center space-y-1">
+                <div class="text-2xl font-black text-[#000f1d] font-sans">₹2,350</div>
+                <div class="text-[11px] font-bold text-red-600">Only 5 Seats left!</div>
+                <a href="seat-selection.html?bus=orange-tours" class="select-seats-btn rl-ochre-btn px-6 py-2 rounded-full text-white font-bold text-xs shadow-sm flex items-center gap-1 mt-1 cursor-pointer">
+                  <span>Select Seats</span>
+                  <span class="material-symbols-outlined text-[16px]">chevron_right</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-gray-100 flex flex-wrap items-center justify-between text-xs text-gray-500 gap-2">
+              <div class="flex items-center gap-3 sm:gap-4 flex-wrap text-[11px]">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">wifi</span> Free Wi-Fi</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">lightbulb</span> Personal Reading Lamp</span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-gray-400">sos</span> Emergency SOS</span>
+              </div>
+              <div class="flex items-center gap-2 text-[11px]">
+                <span class="flex items-center gap-1 text-gray-600 font-medium"><span class="material-symbols-outlined text-[14px] text-green-600">verified</span> Verified Punctual Driver</span>
+                <a href="#" class="text-gray-400 hover:text-black underline">Reviews</a>
+              </div>
+            </div>
+
+          </div>
+
         </div>
+
+        <!-- Load More / Remaining Buses -->
+        <div class="text-center pt-4 pb-6">
+          <button type="button" class="px-8 py-3 rounded-xl bg-white border border-gray-300 hover:border-gray-400 text-sm font-bold text-[#000f1d] shadow-2xs hover:shadow transition-all inline-flex items-center gap-2">
+            <span>Show Remaining 44 Buses</span>
+            <span class="material-symbols-outlined text-[18px]">expand_more</span>
+          </button>
+          <p class="text-xs text-gray-400 font-medium mt-2">Prices subject to real-time seat inventory adjustments</p>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Popular Destinations Section -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 pt-10 pb-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-[#000f1d] font-sans">Popular Destinations</h2>
+        <p class="text-xs text-gray-500 font-medium">Top-rated vacation spots &amp; intercity express hubs across India</p>
+      </div>
+      <a href="#" class="text-xs font-bold text-[#854d19] hover:underline flex items-center gap-1">
+        <span>View All</span>
+        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+      </a>
     </div>
 
-        <!-- Why RouteLine -->
-    <section class="rl-section why-routeline" id="why-routeline">
-        <div class="why-container">
-            <div class="why-item">
-                <div class="why-icon"><i data-lucide="badge-check"></i></div>
-                <div class="why-text">
-                    <h4>Best Price Guarantee</h4>
-                    <p>We ensure the best prices</p>
-                </div>
-            </div>
-            <div class="why-divider"></div>
-            <div class="why-item">
-                <div class="why-icon"><i data-lucide="calendar-days"></i></div>
-                <div class="why-text">
-                    <h4>Easy Booking</h4>
-                    <p>Quick & hassle-free</p>
-                </div>
-            </div>
-            <div class="why-divider"></div>
-            <div class="why-item">
-                <div class="why-icon"><i data-lucide="lock"></i></div>
-                <div class="why-text">
-                    <h4>Safe & Secure</h4>
-                    <p>Your safety is our priority</p>
-                </div>
-            </div>
-            <div class="why-divider"></div>
-            <div class="why-item">
-                <div class="why-icon"><i data-lucide="headset"></i></div>
-                <div class="why-text">
-                    <h4>24/7 Support</h4>
-                    <p>We are always here to help</p>
-                </div>
-            </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <a href="#" class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-2xs hover:shadow-md transition-shadow">
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&h=260&fit=crop" alt="Manali" class="w-full h-28 object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async">
+        <div class="p-3">
+          <h3 class="font-extrabold text-sm text-[#000f1d]">Manali</h3>
+          <p class="text-[11px] text-gray-400">Himachal Pradesh</p>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+            <span class="text-xs font-black text-[#000f1d]">From ₹799</span>
+            <span class="material-symbols-outlined text-[14px] text-[#854d19]">arrow_forward</span>
+          </div>
         </div>
-    </section>
+      </a>
+      <a href="#" class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-2xs hover:shadow-md transition-shadow">
+        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=260&fit=crop" alt="Goa" class="w-full h-28 object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async">
+        <div class="p-3">
+          <h3 class="font-extrabold text-sm text-[#000f1d]">Goa</h3>
+          <p class="text-[11px] text-gray-400">Coastal Beach Hub</p>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+            <span class="text-xs font-black text-[#000f1d]">From ₹999</span>
+            <span class="material-symbols-outlined text-[14px] text-[#854d19]">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-2xs hover:shadow-md transition-shadow">
+        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&h=260&fit=crop" alt="Jaipur" class="w-full h-28 object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async">
+        <div class="p-3">
+          <h3 class="font-extrabold text-sm text-[#000f1d]">Jaipur</h3>
+          <p class="text-[11px] text-gray-400">Rajasthan</p>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+            <span class="text-xs font-black text-[#000f1d]">From ₹499</span>
+            <span class="material-symbols-outlined text-[14px] text-[#854d19]">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-2xs hover:shadow-md transition-shadow">
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=260&fit=crop" alt="Kerala" class="w-full h-28 object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async">
+        <div class="p-3">
+          <h3 class="font-extrabold text-sm text-[#000f1d]">Kerala</h3>
+          <p class="text-[11px] text-gray-400">Alleppey Backwaters</p>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+            <span class="text-xs font-black text-[#000f1d]">From ₹899</span>
+            <span class="material-symbols-outlined text-[14px] text-[#854d19]">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-2xs hover:shadow-md transition-shadow">
+        <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&h=260&fit=crop" alt="Mumbai" class="w-full h-28 object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async">
+        <div class="p-3">
+          <h3 class="font-extrabold text-sm text-[#000f1d]">Mumbai</h3>
+          <p class="text-[11px] text-gray-400">Maharashtra</p>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+            <span class="text-xs font-black text-[#000f1d]">From ₹599</span>
+            <span class="material-symbols-outlined text-[14px] text-[#854d19]">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+      <a href="#" class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-2xs hover:shadow-md transition-shadow">
+        <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=260&fit=crop" alt="Varanasi" class="w-full h-28 object-cover group-hover:scale-105 transition-transform" loading="lazy" decoding="async">
+        <div class="p-3">
+          <h3 class="font-extrabold text-sm text-[#000f1d]">Varanasi</h3>
+          <p class="text-[11px] text-gray-400">Uttar Pradesh</p>
+          <div class="flex items-center justify-between mt-2 pt-2 border-t border-gray-100">
+            <span class="text-xs font-black text-[#000f1d]">From ₹649</span>
+            <span class="material-symbols-outlined text-[14px] text-[#854d19]">arrow_forward</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
 
-    <!-- App Download -->
-    <section class="app-section"><div class="app-inner"><div class="app-text"><h2>Your Entire Journey,<br>In Your Pocket.</h2><p>Book tickets, check PNR status, get live updates and manage your trips anywhere, anytime.</p></div><div class="app-download-area"><div><p class="app-download-label">Download the RouteLine App</p><div class="app-buttons"><a href="#"><i data-lucide="play"></i><div class="app-btn-text"><span class="small">GET IT ON</span><span class="big">Google Play</span></div></a><a href="#"><i data-lucide="apple"></i><div class="app-btn-text"><span class="small">Download on the</span><span class="big">App Store</span></div></a></div></div><div class="app-qr"><div class="app-qr-box"><i data-lucide="qr-code" style="width:64px;height:64px;color:#333;"></i></div><span>Scan to download</span></div></div></div></section>
+  <!-- Trending Routes Section -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 pt-6 pb-12">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h2 class="text-xl sm:text-2xl font-extrabold text-[#000f1d] font-sans">Trending Routes</h2>
+        <p class="text-xs text-gray-500 font-medium">Seamless multi-modal connections across bus, train &amp; cabs</p>
+      </div>
+      <a href="#" class="text-xs font-bold text-[#854d19] hover:underline flex items-center gap-1">
+        <span>View All</span>
+        <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+      </a>
+    </div>
 
-    <!-- Footer -->
-    <footer class="site-footer"><div class="footer-inner"><a href="../../index.html" class="footer-logo"><img src="../../public/logo.svg" alt="RouteLine">RouteLine</a><div class="footer-links"><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Contact</a><a href="#">Terms</a><a href="#">Privacy</a></div><p class="footer-copy">© 2026 RouteLine. All rights reserved.</p></div></footer>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-2">
+        <div class="flex items-center gap-1 text-gray-400 text-xs">
+          <span class="material-symbols-outlined text-[16px]">train</span>
+          <span class="material-symbols-outlined text-[16px]">directions_bus</span>
+          <span class="material-symbols-outlined text-[16px]">flight</span>
+        </div>
+        <h3 class="font-bold text-xs text-[#000f1d]">Delhi → Mumbai</h3>
+        <p class="text-[10px] text-gray-400">Train • Bus • Flight</p>
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-xs font-black text-[#000f1d]">From ₹599</span>
+          <span class="text-gray-400">→</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-2">
+        <div class="flex items-center gap-1 text-gray-400 text-xs">
+          <span class="material-symbols-outlined text-[16px]">train</span>
+          <span class="material-symbols-outlined text-[16px]">directions_bus</span>
+          <span class="material-symbols-outlined text-[16px]">flight</span>
+        </div>
+        <h3 class="font-bold text-xs text-[#000f1d]">Mumbai → Goa</h3>
+        <p class="text-[10px] text-gray-400">Train • Bus • Flight</p>
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-xs font-black text-[#000f1d]">From ₹499</span>
+          <span class="text-gray-400">→</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-2">
+        <div class="flex items-center gap-1 text-gray-400 text-xs">
+          <span class="material-symbols-outlined text-[16px]">train</span>
+          <span class="material-symbols-outlined text-[16px]">directions_bus</span>
+        </div>
+        <h3 class="font-bold text-xs text-[#000f1d]">Delhi → Jaipur</h3>
+        <p class="text-[10px] text-gray-400">Train • Bus</p>
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-xs font-black text-[#000f1d]">From ₹299</span>
+          <span class="text-gray-400">→</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-2">
+        <div class="flex items-center gap-1 text-gray-400 text-xs">
+          <span class="material-symbols-outlined text-[16px]">train</span>
+          <span class="material-symbols-outlined text-[16px]">flight</span>
+        </div>
+        <h3 class="font-bold text-xs text-[#000f1d]">Bangalore → Hyderabad</h3>
+        <p class="text-[10px] text-gray-400">Train • Bus • Flight</p>
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-xs font-black text-[#000f1d]">From ₹399</span>
+          <span class="text-gray-400">→</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-2">
+        <div class="flex items-center gap-1 text-gray-400 text-xs">
+          <span class="material-symbols-outlined text-[16px]">train</span>
+          <span class="material-symbols-outlined text-[16px]">directions_bus</span>
+        </div>
+        <h3 class="font-bold text-xs text-[#000f1d]">Kolkata → Puri</h3>
+        <p class="text-[10px] text-gray-400">Train • Bus</p>
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-xs font-black text-[#000f1d]">From ₹349</span>
+          <span class="text-gray-400">→</span>
+        </div>
+      </div>
+      <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-2xs space-y-2">
+        <div class="flex items-center gap-1 text-gray-400 text-xs">
+          <span class="material-symbols-outlined text-[16px]">directions_bus</span>
+          <span class="material-symbols-outlined text-[16px]">directions_car</span>
+        </div>
+        <h3 class="font-bold text-xs text-[#000f1d]">Chennai → Pondicherry</h3>
+        <p class="text-[10px] text-gray-400">Bus • Cab</p>
+        <div class="flex items-center justify-between pt-1">
+          <span class="text-xs font-black text-[#000f1d]">From ₹279</span>
+          <span class="text-gray-400">→</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script type="module" src="../../src/js/bus/bus.js"></script>
-    <script>
-        lucide.createIcons();
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const track = document.getElementById('reviews-track');
-            const dots = document.querySelectorAll('#review-dots .dot');
-            if (track && dots.length > 0) {
-                dots.forEach((dot, index) => {
-                    dot.addEventListener('click', () => {
-                        dots.forEach(d => d.classList.remove('active'));
-                        dot.classList.add('active');
-                        track.style.transform = `translateX(-${index * 100}%)`;
-                    });
-                });
-            }
+  <!-- RouteLine Full-Bleed Dark Navy Footer -->
+  <footer class="w-full bg-[#000f1d] text-white pt-12 pb-8 border-t border-gray-800">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-gray-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-black text-sm">RL</div>
+          <div>
+            <div class="text-lg font-black tracking-tight font-sans">RouteLine</div>
+            <div class="text-xs text-gray-400 font-medium">Your Entire Journey, In Your Pocket</div>
+          </div>
+        </div>
+
+        <!-- App Store Download Badges -->
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2 cursor-pointer hover:bg-white/10">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">smart_display</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">Google Play</div>
+            </div>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2 cursor-pointer hover:bg-white/10">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">phone_iphone</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">App Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Links & Copyright -->
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">About</a>
+          <a href="#" class="hover:text-white transition-colors">Blog</a>
+          <a href="#" class="hover:text-white transition-colors">Careers</a>
+          <a href="#" class="hover:text-white transition-colors">Contact</a>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        </div>
+        <div>&copy; 2026 RouteLine. All rights reserved.</div>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Client-side script for Screen 1 -->
+  <script type="module">
+    import { getBusState, updateBusState, BUS_OPERATORS } from '../../src/js/bus/bus-state.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const state = getBusState();
+
+      // Read query params if any
+      const params = new URLSearchParams(window.location.search);
+      const origin = params.get('origin');
+      const destination = params.get('destination');
+      const date = params.get('date');
+
+      if (origin && destination) {
+        state.search.origin = origin;
+        state.search.destination = destination;
+        if (date) state.search.travelDate = date;
+        updateBusState({ search: state.search });
+      }
+
+      // Populate display values
+      const originEl = document.getElementById('searchOriginDisplay');
+      const destEl = document.getElementById('searchDestDisplay');
+      const dateEl = document.getElementById('searchDateDisplay');
+
+      if (originEl) originEl.textContent = state.search.origin;
+      if (destEl) destEl.textContent = state.search.destination;
+      if (dateEl) dateEl.textContent = state.search.travelDate;
+
+      // Select Seats buttons handler
+      document.querySelectorAll('.select-seats-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const href = btn.getAttribute('href');
+          const busId = href.split('bus=')[1] || 'zingbus-superfast';
+          const selectedBus = BUS_OPERATORS.find(b => b.id === busId) || BUS_OPERATORS[0];
+          
+          updateBusState({
+            selectedBusId: selectedBus.id,
+            selectedBus: selectedBus
+          });
+
+          window.location.href = `seat-selection.html?bus=${selectedBus.id}`;
         });
-    </script>
+      });
+
+      // Time slot filters toggle
+      const timeSlotBtns = document.querySelectorAll('.time-slot-btn');
+      timeSlotBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          timeSlotBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+        });
+      });
+
+      // Sorting tabs toggle
+      const sortBtns = document.querySelectorAll('.sort-tab-btn');
+      sortBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          sortBtns.forEach(b => {
+            b.classList.remove('active', 'bg-white', 'text-[#000f1d]', 'font-bold', 'shadow-2xs');
+          });
+          btn.classList.add('active', 'bg-white', 'text-[#000f1d]', 'font-bold', 'shadow-2xs');
+        });
+      });
+
+      // Price slider
+      const priceSlider = document.getElementById('priceRangeInput');
+      const priceLabel = document.getElementById('priceRangeLabel');
+      if (priceSlider && priceLabel) {
+        priceSlider.addEventListener('input', (e) => {
+          priceLabel.textContent = `₹1,200 - ₹${Number(e.target.value).toLocaleString('en-IN')}`;
+        });
+      }
+
+      // Reset filters button
+      const resetBtn = document.getElementById('resetFiltersBtn');
+      if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
+          timeSlotBtns.forEach(b => b.classList.remove('active'));
+          const eveningBtn = document.querySelector('.time-slot-btn[data-slot="evening"]');
+          if (eveningBtn) eveningBtn.classList.add('active');
+          if (priceSlider) priceSlider.value = 3500;
+          if (priceLabel) priceLabel.textContent = '₹1,200 - ₹3,500';
+          document.querySelectorAll('.bus-type-filter, .operator-filter').forEach(cb => cb.checked = true);
+        });
+      }
+
+      // Swap button
+      const swapBtn = document.getElementById('swapBusRouteBtn');
+      if (swapBtn) {
+        swapBtn.addEventListener('click', () => {
+          const temp = state.search.origin;
+          state.search.origin = state.search.destination;
+          state.search.destination = temp;
+          updateBusState({ search: state.search });
+          if (originEl) originEl.textContent = state.search.origin;
+          if (destEl) destEl.textContent = state.search.destination;
+        });
+      }
+    });
+  </script>
 </body>
 </html>
