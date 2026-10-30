@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Confirmed | RouteLine Bus Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000f1d",
+            "primary-container": "#0f2537",
+            "surface": "#f8f9ff",
+            "brand-ochre": "#854d19",
+            "brand-ochre-hover": "#714013",
+            "brand-ochre-light": "#fef3c7",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#43474c"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/home/global/style.css">
+  <link rel="stylesheet" href="../../src/css/bus/bus.css">
+</head>
+<body class="bus-experience bg-[#f8f9ff] text-[#0b1c30]">
+
+  <!-- Top Global Navbar -->
+  <header class="w-full bg-white border-b border-[#e5eeff] sticky top-0 z-50 shadow-sm no-print">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="../../index.html" class="flex items-center gap-2 text-decoration-none">
+          <div class="w-9 h-9 rounded-lg bg-[#000f1d] flex items-center justify-center text-white font-black text-sm tracking-tighter">RL</div>
+          <span class="text-xl font-extrabold text-[#000f1d] tracking-tight font-sans">RouteLine</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1 text-sm font-semibold text-gray-600">
+          <a href="bus-results.html" class="px-3.5 py-1.5 rounded-full text-[#000f1d] font-bold bg-[#eff4ff]">Buses</a>
+          <a href="../../index.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Trains</a>
+          <a href="../flight/flight-search.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Flights</a>
+          <a href="../hotel/hotel-results.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Hotels</a>
+          <a href="../home/cabs.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Cabs</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-semibold text-gray-700">
+        <a href="#" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">headset_mic</span>
+          <span>24/7 Support</span>
+        </a>
+        <a href="../train/ticket.html" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">receipt_long</span>
+          <span>Manage Booking</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-1 cursor-pointer">
+          <span>₹ INR (₹)</span>
+          <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </div>
+        <div class="flex items-center gap-2 pl-2">
+          <button type="button" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#000f1d] text-white text-xs font-semibold hover:bg-black transition-all">
+            <span class="material-symbols-outlined text-[16px]">account_circle</span>
+            <span>Account</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5-Step Progress Stepper -->
+  <div class="rl-bus-stepper-container w-full bg-white py-3.5 px-4 shadow-sm no-print">
+    <div class="max-w-[1000px] mx-auto flex items-center justify-between text-xs sm:text-sm font-semibold">
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Select Bus</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Select Seats</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Passenger Details</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Review &amp; Pay</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step active flex items-center gap-2">
+        <span class="stepper-circle">5</span>
+        <span class="font-bold text-[#000f1d]">Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Success Announcement & Quick Actions -->
+  <section class="max-w-[1000px] mx-auto px-4 sm:px-6 pt-8 pb-4 text-center space-y-4">
+    
+    <!-- Big Green Checkmark Icon -->
+    <div class="w-14 h-14 rounded-full bg-[#ecfdf5] border-2 border-[#10b981] mx-auto flex items-center justify-center text-[#059669] shadow-sm">
+      <span class="material-symbols-outlined text-[32px] font-black">check</span>
+    </div>
+
+    <!-- Main Heading -->
+    <div class="space-y-1">
+      <h1 class="text-2xl sm:text-3xl font-black text-[#000f1d] tracking-tight font-sans">Your Bus Ticket Is Confirmed!</h1>
+      <p class="text-xs sm:text-sm text-gray-500 font-medium">Your journey is confirmed and locked in. Have a safe and comfortable trip with RouteLine.</p>
+    </div>
+
+    <!-- Booking Identifiers Bar -->
+    <div class="flex flex-wrap items-center justify-center gap-3 text-xs pt-1">
+      <span class="px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-700 font-semibold shadow-2xs">
+        BOOKING ID: <strong class="text-[#000f1d]" id="confirmBookingId">RL-BUS-8492041</strong>
+      </span>
+      <span class="px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-700 font-semibold shadow-2xs">
+        PNR: <strong class="text-[#854d19]" id="confirmPnr">ZNGB-PN-739192</strong>
+      </span>
+      <span class="px-3 py-1 rounded-full bg-[#ecfdf5] text-[#047857] font-bold flex items-center gap-1 border border-[#a7f3d0]">
+        <span class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></span>
+        <span>CONFIRMED</span>
+      </span>
+      <span class="px-3 py-1 rounded-full bg-white border border-gray-200 text-gray-500 font-medium shadow-2xs" id="confirmBookingDate">
+        Booked: 02 Nov 2026, 18:24 IST
+      </span>
+    </div>
+
+    <!-- Action Buttons Row -->
+    <div class="flex flex-wrap items-center justify-center gap-2.5 pt-2 no-print">
+      <button type="button" id="downloadPdfBtn" class="rl-ochre-btn px-6 py-2.5 rounded-full text-white font-bold text-xs shadow-sm flex items-center gap-1.5 cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]">download</span>
+        <span>Download PDF Ticket</span>
+      </button>
+      <button type="button" id="printTicketBtn" class="px-5 py-2.5 rounded-full bg-white border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs shadow-2xs flex items-center gap-1.5 cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]">print</span>
+        <span>Print Pass</span>
+      </button>
+      <button type="button" id="shareWhatsAppBtn" class="px-5 py-2.5 rounded-full bg-white border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs shadow-2xs flex items-center gap-1.5 cursor-pointer">
+        <span class="material-symbols-outlined text-[16px] text-emerald-600">chat</span>
+        <span>Share via WhatsApp</span>
+      </button>
+      <button type="button" id="addToCalBtn" class="px-5 py-2.5 rounded-full bg-white border border-gray-200 hover:border-gray-300 text-gray-700 font-bold text-xs shadow-2xs flex items-center gap-1.5 cursor-pointer">
+        <span class="material-symbols-outlined text-[16px]">calendar_month</span>
+        <span>Add to Calendar</span>
+      </button>
+    </div>
+
+  </section>
+
+  <!-- DIGITAL E-TICKET CARD (Main Visual Ticket) -->
+  <main class="max-w-[860px] mx-auto px-4 sm:px-6 py-4">
+    <div class="print-ticket-target bg-white rounded-3xl border border-[#e2e8f0] shadow-md overflow-hidden relative">
+      
+      <!-- Top Decorative Dark Navy Bar -->
+      <div class="h-2 w-full bg-[#000f1d]"></div>
+
+      <!-- Ticket Header: Operator & Vehicle Info -->
+      <div class="p-6 pb-4 flex flex-wrap items-center justify-between gap-4 border-b border-gray-100">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-[#000f1d] flex items-center justify-center text-white">
+            <span class="material-symbols-outlined text-[24px]">directions_bus</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="text-base sm:text-lg font-black text-[#000f1d] font-sans" id="ticketBusName">Zingbus Electric Superfast</h2>
+              <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[10px] font-extrabold uppercase">AC SLEEPER 2+1</span>
+            </div>
+            <p class="text-xs text-gray-500 font-medium">Vehicle No: DL 01 EQ 3842 • Live GPS Tracking Equipped</p>
+          </div>
+        </div>
+
+        <span class="px-3 py-1 rounded-full bg-[#ecfdf5] text-[#047857] text-xs font-bold border border-[#a7f3d0] flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">verified</span>
+          <span>RouteLine Verified Partner</span>
+        </span>
+      </div>
+
+      <!-- Journey Route & Schedule Row -->
+      <div class="p-6 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        
+        <!-- Departure -->
+        <div class="md:col-span-5 space-y-1">
+          <div class="flex items-center gap-1.5 text-[10px] font-extrabold text-amber-800 uppercase tracking-wider">
+            <span class="w-2 h-2 rounded-full bg-amber-600"></span>
+            <span>DEPARTURE</span>
+          </div>
+          <div class="text-2xl font-black text-[#000f1d] font-sans flex items-baseline gap-1.5">
+            <span id="ticketDepTime">16:30</span>
+            <span class="text-xs text-gray-400 font-semibold">IST</span>
+          </div>
+          <div class="text-xs font-bold text-gray-700" id="ticketDepDate">Sun, 15 Nov 2026</div>
+          <div class="text-sm font-extrabold text-[#000f1d]" id="ticketDepCity">Swargate, Pune</div>
+          <p class="text-[11px] text-gray-500 leading-tight" id="ticketDepLandmark">Near Laxmi Narayan Theatre, Gate No. 2 Bus Bay</p>
+        </div>
+
+        <!-- Duration & Arrow Graphic -->
+        <div class="md:col-span-2 flex flex-col items-center justify-center text-center">
+          <span class="text-[11px] font-bold text-gray-500 mb-1">23h 45m</span>
+          <div class="w-full max-w-[80px] h-[2px] bg-gray-200 relative flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px] text-gray-400 absolute">arrow_forward</span>
+          </div>
+          <span class="text-[9px] font-black text-blue-700 uppercase tracking-tight mt-1 px-2 py-0.5 rounded bg-blue-50">DIRECT EXPRESS</span>
+        </div>
+
+        <!-- Arrival -->
+        <div class="md:col-span-5 space-y-1 text-left md:text-right">
+          <div class="flex items-center md:justify-end gap-1.5 text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider">
+            <span>ARRIVAL</span>
+            <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+          </div>
+          <div class="text-2xl font-black text-[#000f1d] font-sans flex items-baseline md:justify-end gap-1.5">
+            <span id="ticketArrTime">16:15</span>
+            <span class="text-[10px] font-bold text-amber-700">+1 DAY</span>
+          </div>
+          <div class="text-xs font-bold text-gray-700">Mon, 16 Nov 2026</div>
+          <div class="text-sm font-extrabold text-[#000f1d]" id="ticketArrCity">Kashmiri Gate, Delhi</div>
+          <p class="text-[11px] text-gray-500 leading-tight" id="ticketArrLandmark">ISBT, Metro Gate No. 1 Inter-State Platform</p>
+        </div>
+
+      </div>
+
+      <!-- Passenger & Seat Details Row -->
+      <div class="px-6 py-4 bg-[#f8fafc] border-t border-b border-gray-100 space-y-3">
+        <div class="text-[10px] font-extrabold text-gray-400 uppercase tracking-wider">PASSENGER &amp; SEAT DETAILS</div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="ticketPaxGrid">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- Included Amenities in Ticket -->
+      <div class="p-6 pb-2 space-y-2">
+        <div class="text-[10px] font-extrabold text-gray-400 uppercase tracking-wider">INCLUDED IN THIS TICKET</div>
+        <div class="flex flex-wrap gap-2 text-xs">
+          <span class="px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] font-semibold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">lunch_dining</span>
+            <span>Warm Veg Thali Dinner</span>
+          </span>
+          <span class="px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] font-semibold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">water_bottle</span>
+            <span>2x Sealed 1L Packaged Water</span>
+          </span>
+          <span class="px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] font-semibold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">shield</span>
+            <span>RouteLine Travel Shield (₹5 Lakh)</span>
+          </span>
+          <span class="px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] font-semibold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">usb</span>
+            <span>Individual USB Fast Charging Port</span>
+          </span>
+          <span class="px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] font-semibold flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[14px]">autorenew</span>
+            <span>Zero-Fee Cancellation Protection</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Ticket Perforation Divider with cutouts -->
+      <div class="ticket-perforation my-4">
+        <div class="ticket-cutout-left"></div>
+        <div class="ticket-cutout-right"></div>
+      </div>
+
+      <!-- Express Boarding Pass & QR Section -->
+      <div class="p-6 pt-2 flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Left: QR Code & Verification Pin -->
+        <div class="flex items-center gap-4">
+          <div class="w-24 h-24 p-2 bg-white border border-gray-300 rounded-xl shadow-2xs flex items-center justify-center">
+            <svg viewBox="0 0 100 100" class="w-full h-full text-[#000f1d]">
+              <rect width="100" height="100" fill="white"/>
+              <rect x="5" y="5" width="28" height="28" fill="#000f1d"/>
+              <rect x="9" y="9" width="20" height="20" fill="white"/>
+              <rect x="13" y="13" width="12" height="12" fill="#000f1d"/>
+              <rect x="67" y="5" width="28" height="28" fill="#000f1d"/>
+              <rect x="71" y="9" width="20" height="20" fill="white"/>
+              <rect x="75" y="13" width="12" height="12" fill="#000f1d"/>
+              <rect x="5" y="67" width="28" height="28" fill="#000f1d"/>
+              <rect x="9" y="71" width="20" height="20" fill="white"/>
+              <rect x="13" y="75" width="12" height="12" fill="#000f1d"/>
+              <rect x="38" y="10" width="8" height="8" fill="#000f1d"/>
+              <rect x="50" y="15" width="6" height="6" fill="#000f1d"/>
+              <rect x="36" y="38" width="28" height="28" fill="#854d19" rx="4"/>
+              <text x="50" y="56" fill="white" font-size="12" font-weight="900" text-anchor="middle" font-family="sans-serif">RL</text>
+              <rect x="70" y="38" width="8" height="10" fill="#000f1d"/>
+              <rect x="38" y="70" width="10" height="12" fill="#000f1d"/>
+              <rect x="68" y="68" width="12" height="10" fill="#000f1d"/>
+            </svg>
+          </div>
+
+          <div class="space-y-1">
+            <div class="text-sm font-black text-[#000f1d] font-sans">Express Boarding Pass</div>
+            <p class="text-[11px] text-gray-500 max-w-[280px]">Show this digital QR code to bus captain during check-in. Valid across all stops.</p>
+            <div class="pt-1">
+              <span class="px-2.5 py-1 rounded bg-[#f1f5f9] font-mono font-bold text-xs text-[#000f1d]">
+                VERIFICATION PIN: 8692
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Payment & Whatsapp Tracker Tag -->
+        <div class="text-left md:text-right space-y-1">
+          <div class="text-xs text-gray-500">Total Amount Paid: <strong class="text-base font-black text-[#000f1d] font-sans" id="ticketTotalPaid">₹5,470</strong></div>
+          <div class="text-[11px] text-gray-500 font-medium">✓ Paid via UPI: rahulverma@okhdfcbank</div>
+          <div class="text-[10px] text-gray-400 font-mono">Txn Ref: UPI-BH1281948228</div>
+          <div class="pt-1">
+            <span class="px-3 py-1 rounded-full bg-[#eff6ff] text-[#1e40af] text-[10px] font-bold inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-[13px]">chat</span>
+              <span>WhatsApp tracking activates 2 hrs prior</span>
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Route Corridor & Rest Stops Section (Map Graphic) -->
+  <section class="max-w-[860px] mx-auto px-4 sm:px-6 py-4 no-print">
+    <div class="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-2xs space-y-4">
+      
+      <div class="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-gray-100">
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-[20px] text-gray-600">map</span>
+          <div>
+            <h3 class="text-sm font-extrabold text-[#000f1d] font-sans">Route Corridor &amp; Rest Stops</h3>
+            <p class="text-[11px] text-gray-500">Pune (Swargate) → Mumbai Bypass → Surat → Vadodara → Jaipur Bypass → Delhi ISBT</p>
+          </div>
+        </div>
+        <span class="px-2.5 py-0.5 rounded-full bg-[#eff6ff] text-[#1e40af] text-[11px] font-bold">3 Scheduled Comfort Breaks</span>
+      </div>
+
+      <!-- Stylized Interactive Map / Corridor Graphic -->
+      <div class="w-full h-44 rounded-xl bg-[#e5eefb] border border-[#cbd5e1] overflow-hidden relative flex items-center justify-center">
+        <!-- SVG Map Background -->
+        <svg viewBox="0 0 800 200" class="w-full h-full object-cover opacity-60">
+          <path d="M 0,50 Q 200,80 400,30 T 800,100" fill="none" stroke="#bfdbfe" stroke-width="40"/>
+          <path d="M 0,150 Q 300,100 600,160 T 800,140" fill="none" stroke="#dbeafe" stroke-width="50"/>
+          <!-- Route Line -->
+          <path d="M 80,150 C 220,120 350,140 500,80 S 720,50 740,40" fill="none" stroke="#854d19" stroke-width="4" stroke-dasharray="6,4"/>
+          <!-- Waypoint Dots -->
+          <circle cx="80" cy="150" r="8" fill="#854d19"/>
+          <circle cx="80" cy="150" r="4" fill="white"/>
+          <text x="80" y="175" fill="#000f1d" font-size="12" font-weight="bold" text-anchor="middle">Pune</text>
+
+          <circle cx="280" cy="125" r="5" fill="#3b82f6"/>
+          <text x="280" y="115" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">Surat Stop</text>
+
+          <circle cx="480" cy="85" r="5" fill="#3b82f6"/>
+          <text x="480" y="75" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">Vadodara Stop</text>
+
+          <circle cx="620" cy="65" r="5" fill="#3b82f6"/>
+          <text x="620" y="55" fill="#475569" font-size="10" font-weight="600" text-anchor="middle">Jaipur Bypass</text>
+
+          <circle cx="740" cy="40" r="8" fill="#059669"/>
+          <circle cx="740" cy="40" r="4" fill="white"/>
+          <text x="740" y="25" fill="#000f1d" font-size="12" font-weight="bold" text-anchor="middle">Delhi ISBT</text>
+        </svg>
+
+        <!-- Highway Overlay Badge -->
+        <div class="absolute bottom-3 left-4 px-3 py-1 rounded-lg bg-[#000f1d]/90 text-white text-[10px] font-bold flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span>Planned Highway Route: NH48 Super Corridor | 1,434 KM TOTAL</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Post-Booking Instructions & Support (3 Cards Grid) -->
+  <section class="max-w-[860px] mx-auto px-4 sm:px-6 py-4 no-print">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs">
+      
+      <!-- Card 1: Boarding Instructions -->
+      <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-2 flex flex-col justify-between">
+        <div class="space-y-2">
+          <span class="w-8 h-8 rounded-xl bg-[#eff6ff] text-[#1e40af] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]">badge</span>
+          </span>
+          <h4 class="font-extrabold text-[#000f1d] text-sm font-sans">Boarding Instructions</h4>
+          <p class="text-gray-500 leading-relaxed text-[11px]">Reach the Swargate bay by 16:15 IST (15 mins before departure). Present this digital ticket and a valid Govt Photo ID (Aadhaar / Voter / DL).</p>
+        </div>
+        <a href="#" class="text-[#854d19] font-bold hover:underline flex items-center gap-1 pt-2">
+          <span>View Bay Gate Map</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Card 2: 24/7 Concierge Support -->
+      <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-2 flex flex-col justify-between">
+        <div class="space-y-2">
+          <span class="w-8 h-8 rounded-xl bg-[#eff6ff] text-[#1e40af] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]">support_agent</span>
+          </span>
+          <h4 class="font-extrabold text-[#000f1d] text-sm font-sans">24/7 Concierge Support</h4>
+          <p class="text-gray-500 leading-relaxed text-[11px]">Need luggage assistance or driver contact? RouteLine dispatch officers are on standby for your PNR anytime.</p>
+          <div class="font-black text-sm text-[#000f1d]">+91 80 4040 2200</div>
+        </div>
+        <a href="tel:+918040402200" class="text-[#854d19] font-bold hover:underline flex items-center gap-1 pt-2">
+          <span>Call Zingbus Desk</span>
+          <span class="material-symbols-outlined text-[14px]">call</span>
+        </a>
+      </div>
+
+      <!-- Card 3: Modify or Reschedule -->
+      <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-2 flex flex-col justify-between">
+        <div class="space-y-2">
+          <span class="w-8 h-8 rounded-xl bg-[#eff6ff] text-[#1e40af] flex items-center justify-center">
+            <span class="material-symbols-outlined text-[18px]">update</span>
+          </span>
+          <h4 class="font-extrabold text-[#000f1d] text-sm font-sans">Modify or Reschedule</h4>
+          <p class="text-gray-500 leading-relaxed text-[11px]">Change passenger names, switch boarding point to Katraj, or reschedule up to 6 hours before departure free of charge.</p>
+        </div>
+        <a href="../train/ticket.html" class="text-[#854d19] font-bold hover:underline flex items-center gap-1 pt-2">
+          <span>Manage Reservation</span>
+          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Assurance Strip -->
+  <section class="max-w-[860px] mx-auto px-4 sm:px-6 py-4 no-print">
+    <div class="p-4 rounded-2xl bg-white border border-[#e2e8f0] grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold text-gray-700 text-center">
+      <div>
+        <div class="font-bold text-[#000f1d]">Zero Cancellation Fee</div>
+        <div class="text-[10px] text-gray-400">Protected by RL Shield</div>
+      </div>
+      <div>
+        <div class="font-bold text-[#000f1d]">Instant Auto-Refund</div>
+        <div class="text-[10px] text-gray-400">Direct to original UPI</div>
+      </div>
+      <div>
+        <div class="font-bold text-[#000f1d]">Guaranteed Berth</div>
+        <div class="text-[10px] text-gray-400">Direct operator lock</div>
+      </div>
+      <div>
+        <div class="font-bold text-[#000f1d]">Eco EV Transit</div>
+        <div class="text-[10px] text-gray-400">Reduced carbon travel</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Return Home Button -->
+  <div class="text-center py-6 no-print">
+    <a href="../../index.html" class="inline-flex items-center gap-2 text-xs font-bold text-gray-600 hover:text-black">
+      <span class="material-symbols-outlined text-[16px]">arrow_back</span>
+      <span>Return to RouteLine Home</span>
+    </a>
+  </div>
+
+  <!-- RouteLine Footer -->
+  <footer class="w-full bg-[#000f1d] text-white pt-10 pb-8 border-t border-gray-800 no-print">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-black text-sm">RL</div>
+          <div>
+            <div class="text-lg font-black tracking-tight font-sans">RouteLine</div>
+            <div class="text-xs text-gray-400 font-medium">Your Entire Journey, In Your Pocket</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">smart_display</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">Google Play</div>
+            </div>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">phone_iphone</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">App Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">About</a>
+          <a href="#" class="hover:text-white transition-colors">Blog</a>
+          <a href="#" class="hover:text-white transition-colors">Careers</a>
+          <a href="#" class="hover:text-white transition-colors">Contact</a>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        </div>
+        <div>&copy; 2026 RouteLine. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Screen 5: Booking Confirmation & Persistence -->
+  <script type="module">
+    import { getBusState } from '../../src/js/bus/bus-state.js';
+    import { saveBooking } from '../../src/js/services/booking-store.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const state = getBusState();
+
+      // Top meta
+      const pnrEl = document.getElementById('confirmPnr');
+      const bookingIdEl = document.getElementById('confirmBookingId');
+      if (pnrEl) pnrEl.textContent = state.bookingConfirmation.pnr;
+      if (bookingIdEl) bookingIdEl.textContent = state.bookingConfirmation.bookingId;
+
+      // Ticket operator & journey
+      const busName = document.getElementById('ticketBusName');
+      const depTime = document.getElementById('ticketDepTime');
+      const depDate = document.getElementById('ticketDepDate');
+      const depCity = document.getElementById('ticketDepCity');
+      const depLandmark = document.getElementById('ticketDepLandmark');
+      const arrTime = document.getElementById('ticketArrTime');
+      const arrCity = document.getElementById('ticketArrCity');
+      const arrLandmark = document.getElementById('ticketArrLandmark');
+      const totalPaid = document.getElementById('ticketTotalPaid');
+
+      if (busName && state.selectedBus) busName.textContent = state.selectedBus.name;
+      if (depTime && state.selectedBus) depTime.textContent = state.selectedBus.departureTime;
+      if (depDate) depDate.textContent = state.search.travelDate;
+      if (depCity && state.boardingPoint) depCity.textContent = `${state.boardingPoint.name}, ${state.boardingPoint.city}`;
+      if (depLandmark && state.boardingPoint) depLandmark.textContent = state.boardingPoint.landmark;
+      if (arrTime && state.selectedBus) arrTime.textContent = state.selectedBus.arrivalTime;
+      if (arrCity && state.droppingPoint) arrCity.textContent = `${state.droppingPoint.name}, ${state.droppingPoint.city}`;
+      if (arrLandmark && state.droppingPoint) arrLandmark.textContent = state.droppingPoint.landmark;
+      if (totalPaid) totalPaid.textContent = `₹${state.pricing.totalPayable.toLocaleString('en-IN')}`;
+
+      // Passenger cards on ticket
+      const paxGrid = document.getElementById('ticketPaxGrid');
+      if (paxGrid) {
+        paxGrid.innerHTML = state.passengers.map((p, idx) => `
+          <div class="flex items-center justify-between p-2.5 rounded-xl bg-white border border-gray-200">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-[#000f1d] text-white flex items-center justify-center text-xs font-bold">${idx + 1}</span>
+              <div>
+                <div class="font-extrabold text-xs text-[#000f1d]">${p.name}</div>
+                <div class="text-[10px] text-gray-500">${p.gender}, ${p.age} yrs • Adult</div>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-800 text-xs font-black">Seat ${state.selectedSeats[idx] || 'L4'}</span>
+              <div class="text-[9px] text-gray-400 mt-0.5">Lower Berth Window</div>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      // Persist confirmed booking into RouteLine Central Booking Store
+      try {
+        saveBooking({
+          id: state.bookingConfirmation.bookingId,
+          bookingReference: state.bookingConfirmation.pnr,
+          type: 'bus',
+          status: 'UPCOMING',
+          title: `${state.selectedBus.name} (AC Sleeper 2+1)`,
+          fromCode: state.search.origin.slice(0, 3).toUpperCase(),
+          fromName: state.search.origin,
+          toCode: state.search.destination.slice(0, 3).toUpperCase(),
+          toName: state.search.destination,
+          journeyDate: state.search.travelDate,
+          departureTime: state.selectedBus.departureTime,
+          arrivalTime: state.selectedBus.arrivalTime,
+          duration: state.selectedBus.duration,
+          platform: state.selectedBus.pickupBay || 'Pickup Bay #4',
+          classType: '2+1 Premium AC Sleeper',
+          classCode: 'AC-SL',
+          quota: 'Standard',
+          passengers: state.passengers.map((p, idx) => ({
+            name: p.name,
+            seat: `Seat ${state.selectedSeats[idx]} (Lower Berth Window)`,
+            status: 'CONFIRMED'
+          })),
+          totalFare: state.pricing.totalPayable,
+          paymentMethod: 'UPI Instant / Verified',
+          details: {
+            operator: state.selectedBus.name,
+            vehicleNo: 'DL 01 EQ 3842',
+            verificationPin: '8692',
+            liveTracking: true
+          }
+        });
+      } catch (err) {
+        console.warn('[BusConfirmation] Auto-save booking store note:', err);
+      }
+
+      // Print button
+      const printBtn = document.getElementById('printTicketBtn');
+      if (printBtn) {
+        printBtn.addEventListener('click', () => {
+          window.print();
+        });
+      }
+
+      // Download PDF Ticket button
+      const downloadBtn = document.getElementById('downloadPdfBtn');
+      if (downloadBtn) {
+        downloadBtn.addEventListener('click', () => {
+          window.print();
+        });
+      }
+
+      // Share via WhatsApp
+      const shareBtn = document.getElementById('shareWhatsAppBtn');
+      if (shareBtn) {
+        shareBtn.addEventListener('click', () => {
+          const text = encodeURIComponent(
+            `RouteLine Bus Ticket Confirmed!\nPNR: ${state.bookingConfirmation.pnr}\nOperator: ${state.selectedBus.name}\nRoute: ${state.search.origin} → ${state.search.destination}\nDeparture: ${state.selectedBus.departureTime}, ${state.search.travelDate}\nSeats: ${state.selectedSeats.join(', ')}\nTotal: ₹${state.pricing.totalPayable}`
+          );
+          window.open(`https://api.whatsapp.com/send?text=${text}`, '_blank');
+        });
+      }
+
+      // Add to calendar
+      const calBtn = document.getElementById('addToCalBtn');
+      if (calBtn) {
+        calBtn.addEventListener('click', () => {
+          alert("Calendar event for Zingbus Superfast added to your itinerary!");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
