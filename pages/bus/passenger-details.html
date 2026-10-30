@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passenger Details &amp; Add-ons | RouteLine Bus Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000f1d",
+            "primary-container": "#0f2537",
+            "surface": "#f8f9ff",
+            "brand-ochre": "#854d19",
+            "brand-ochre-hover": "#714013",
+            "brand-ochre-light": "#fef3c7",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#43474c"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/home/global/style.css">
+  <link rel="stylesheet" href="../../src/css/bus/bus.css">
+</head>
+<body class="bus-experience bg-[#f8f9ff] text-[#0b1c30]">
+
+  <!-- Top Global Navbar -->
+  <header class="w-full bg-white border-b border-[#e5eeff] sticky top-0 z-50 shadow-sm">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="../../index.html" class="flex items-center gap-2 text-decoration-none">
+          <div class="w-9 h-9 rounded-lg bg-[#000f1d] flex items-center justify-center text-white font-black text-sm tracking-tighter">RL</div>
+          <span class="text-xl font-extrabold text-[#000f1d] tracking-tight font-sans">RouteLine</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1 text-sm font-semibold text-gray-600">
+          <a href="bus-results.html" class="px-3.5 py-1.5 rounded-full text-[#000f1d] font-bold bg-[#eff4ff]">Buses</a>
+          <a href="../../index.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Trains</a>
+          <a href="../flight/flight-search.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Flights</a>
+          <a href="../hotel/hotel-results.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Hotels</a>
+          <a href="../home/cabs.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Cabs</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-semibold text-gray-700">
+        <a href="#" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">headset_mic</span>
+          <span>24/7 Support</span>
+        </a>
+        <a href="../train/ticket.html" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">receipt_long</span>
+          <span>Manage Booking</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-1 cursor-pointer">
+          <span>₹ INR (₹)</span>
+          <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </div>
+        <div class="flex items-center gap-2 pl-2">
+          <button type="button" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#000f1d] text-white text-xs font-semibold hover:bg-black transition-all">
+            <span class="material-symbols-outlined text-[16px]">account_circle</span>
+            <span>Account</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5-Step Progress Stepper -->
+  <div class="rl-bus-stepper-container w-full bg-white py-3.5 px-4 shadow-sm">
+    <div class="max-w-[1000px] mx-auto flex items-center justify-between text-xs sm:text-sm font-semibold">
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Select Bus</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Select Seats</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step active flex items-center gap-2">
+        <span class="stepper-circle">3</span>
+        <span class="font-bold text-[#000f1d]">Passenger Details</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step">
+        <span class="stepper-circle">4</span>
+        <span>Review &amp; Pay</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step">
+        <span class="stepper-circle">5</span>
+        <span>Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub-header bar -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 pt-4 pb-2">
+    <div class="flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-semibold">
+      <a href="seat-selection.html" class="flex items-center gap-1.5 text-gray-600 hover:text-black">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>Back to Seat Selection</span>
+      </a>
+
+      <div class="flex items-center gap-2 font-bold text-[#000f1d]">
+        <span id="routeBannerText">Pune → Delhi</span>
+        <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-700 text-[10px] font-extrabold uppercase tracking-wide">ELECTRIC SUPERFAST</span>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs text-gray-500 font-medium">
+        <span id="metaDateText">Sun, 15 Nov 2026</span>
+        <span>•</span>
+        <span id="metaBerthsText">2 Berths (L4, L7)</span>
+        <span>•</span>
+        <span id="metaCorridorText">Swargate 16:30 → Kashmiri Gate 16:15 (+1)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Passenger Details & Enhancement Services Area -->
+  <main class="max-w-[1340px] mx-auto px-4 sm:px-6 py-4">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- LEFT COLUMN: Contact + Passengers + Enhancements (8 cols) -->
+      <section class="lg:col-span-8 space-y-6">
+        
+        <!-- CARD 1: Contact Information -->
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-2xs space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px] text-gray-600">contact_mail</span>
+              <div>
+                <h2 class="text-base font-black text-[#000f1d] font-sans">Contact Information</h2>
+                <p class="text-xs text-gray-500">Your m-Ticket and real-time transit alerts will be sent here</p>
+              </div>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full bg-[#ecfdf5] text-[#047857] text-[11px] font-extrabold tracking-wide">Instant Delivery</span>
+          </div>
+
+          <!-- Email & Phone Inputs -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">EMAIL ADDRESS</label>
+              <div class="relative">
+                <input type="email" id="contactEmailInput" value="rahul.verma@example.com" class="w-full px-3.5 py-2.5 rounded-xl border border-gray-200 focus:border-[#854d19] focus:ring-0 text-xs font-semibold text-[#000f1d]">
+                <span class="material-symbols-outlined text-[16px] text-emerald-600 absolute right-3 top-3">check_circle</span>
+              </div>
+              <p class="text-[10px] text-gray-400 mt-1">e-Ticket PDF &amp; tax invoice</p>
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">MOBILE NUMBER</label>
+              <div class="flex">
+                <span class="inline-flex items-center px-3 rounded-l-xl border border-r-0 border-gray-200 bg-[#f8fafc] text-xs font-bold text-gray-600">+91</span>
+                <input type="tel" id="contactPhoneInput" value="9820154321" class="flex-1 px-3.5 py-2.5 rounded-r-xl border border-gray-200 focus:border-[#854d19] focus:ring-0 text-xs font-semibold text-[#000f1d]">
+              </div>
+              <p class="text-[10px] text-gray-400 mt-1">SMS boarding passcode will be sent</p>
+            </div>
+          </div>
+
+          <!-- WhatsApp Updates Toggle -->
+          <div class="p-3 rounded-xl bg-[#f8fafc] border border-gray-200 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="material-symbols-outlined text-[20px] text-emerald-600">chat</span>
+              <div>
+                <div class="text-xs font-bold text-[#000f1d]">Receive WhatsApp updates &amp; live bus GPS tracking</div>
+                <div class="text-[11px] text-gray-500">Get rest stop timers, driver contact &amp; arrival broadcasts</div>
+              </div>
+            </div>
+            <label class="rl-switch">
+              <input type="checkbox" id="whatsappToggle" checked>
+              <span class="rl-slider"></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- CARD 2: Passenger Details (Dynamic List) -->
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-2xs space-y-5">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+            <div>
+              <h2 class="text-base font-black text-[#000f1d] font-sans">Passenger Details</h2>
+              <p class="text-xs text-gray-500">Names should match government-issued identity cards</p>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full bg-[#fef3c7] text-[#92400e] text-xs font-bold" id="paxBerthsBadge">2 Berths</span>
+          </div>
+
+          <!-- Dynamic Container for Passenger Forms -->
+          <div id="passengersFormContainer" class="space-y-6">
+            <!-- Dynamically generated according to selected seats -->
+          </div>
+
+          <!-- Save Passenger Details Checkbox -->
+          <div class="pt-2 border-t border-gray-100">
+            <label class="flex items-center gap-2 text-xs text-gray-700 cursor-pointer">
+              <input type="checkbox" id="savePaxCheckbox" checked class="rounded text-[#854d19] focus:ring-0">
+              <span>Save passenger details to your RouteLine account for 1-click checkout next time</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- SECTION 3: ENHANCE YOUR JOURNEY (EXTRA SERVICES) -->
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <h2 class="text-base font-black text-[#000f1d] font-sans">Enhance Your Journey</h2>
+            <span class="px-2.5 py-0.5 rounded bg-[#fef3c7] text-[#92400e] text-[10px] font-extrabold uppercase tracking-wide">SPECIAL OPERATOR RATES</span>
+          </div>
+
+          <!-- Sub-Card A: Extra Luggage Allowance -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[20px] text-gray-600">luggage</span>
+              <div>
+                <h3 class="text-xs font-bold text-[#000f1d]">Extra Luggage Allowance</h3>
+                <p class="text-[11px] text-gray-500">Complimentary allowance includes 1 handbag + 1 standard bag (up to 15 kg per passenger)</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div class="p-3 rounded-xl border border-gray-200 flex items-center justify-between hover:border-[#854d19] transition-colors">
+                <div>
+                  <div class="text-xs font-bold text-[#000f1d]">+10 kg Extra Cargo</div>
+                  <div class="text-[10px] text-gray-400">Tag &amp; cabin-hold space</div>
+                  <div class="text-xs font-black text-[#000f1d] mt-1">₹250</div>
+                </div>
+                <button type="button" id="luggage10Btn" class="px-3 py-1 rounded-full border border-gray-300 text-xs font-bold text-gray-700 hover:bg-gray-50 cursor-pointer">
+                  Add +
+                </button>
+              </div>
+
+              <div class="p-3 rounded-xl border border-gray-200 flex items-center justify-between hover:border-[#854d19] transition-colors">
+                <div>
+                  <div class="text-xs font-bold text-[#000f1d]">+20 kg Bulky Package</div>
+                  <div class="text-[10px] text-gray-400">Instruments, boxes, sports gear</div>
+                  <div class="text-xs font-black text-[#000f1d] mt-1">₹450</div>
+                </div>
+                <button type="button" id="luggage20Btn" class="px-3 py-1 rounded-full border border-gray-300 text-xs font-bold text-gray-700 hover:bg-gray-50 cursor-pointer">
+                  Add +
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-Card B: Highway Halt Meals & Beverages -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[20px] text-gray-600">restaurant</span>
+                <div>
+                  <h3 class="text-xs font-bold text-[#000f1d]">Highway Halt Meals &amp; Beverages</h3>
+                  <p class="text-[11px] text-gray-500">Pre-booked &amp; sealed at hygiene-inspected Highway Hubs</p>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-[#ecfdf5] text-[#047857] text-[10px] font-extrabold flex items-center gap-1">
+                <span class="material-symbols-outlined text-[13px]">verified</span>
+                <span>FSSAI Certified</span>
+              </span>
+            </div>
+
+            <div class="space-y-3 pt-1">
+              
+              <!-- Item 1: Warm Executive Veg Thali -->
+              <div class="p-3 rounded-xl border border-gray-200 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-[22px] text-amber-700 mt-0.5">lunch_dining</span>
+                  <div>
+                    <div class="text-xs font-bold text-[#000f1d]">Warm Executive Veg Thali (Dinner Halt)</div>
+                    <div class="text-[11px] text-gray-500">4 Fresh Butter Rotis, Shahi Paneer, Dal Makhani, Jeera Rice, Gulab Jamun</div>
+                    <div class="text-xs font-black text-[#000f1d] mt-0.5">₹220</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center border border-gray-300 rounded-full bg-white text-xs font-bold">
+                    <button type="button" id="decVegThali" class="px-2.5 py-1 text-gray-600 hover:text-black cursor-pointer">-</button>
+                    <span id="vegThaliCount" class="px-2">1</span>
+                    <button type="button" id="incVegThali" class="px-2.5 py-1 text-gray-600 hover:text-black cursor-pointer">+</button>
+                  </div>
+                  <span class="text-xs font-black text-[#000f1d] min-w-[45px] text-right" id="vegThaliTotal">₹220</span>
+                </div>
+              </div>
+
+              <!-- Item 2: Hot Cutting Chai & Sandwich -->
+              <div class="p-3 rounded-xl border border-gray-200 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-[22px] text-amber-700 mt-0.5">coffee</span>
+                  <div>
+                    <div class="text-xs font-bold text-[#000f1d]">Hot Cutting Chai &amp; Paneer Sandwich Combo</div>
+                    <div class="text-[11px] text-gray-500">Grilled triple-layer club sandwich + freshly brewed ginger tea thermos pack</div>
+                    <div class="text-xs font-black text-[#000f1d] mt-0.5">₹110</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <button type="button" id="addChaiBtn" class="px-4 py-1 rounded-full border border-gray-300 text-xs font-bold text-gray-700 hover:bg-gray-50 cursor-pointer">
+                    Add +
+                  </button>
+                </div>
+              </div>
+
+              <!-- Item 3: Chilled Mineral Water (Twin Pack) -->
+              <div class="p-3 rounded-xl border border-gray-200 flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="material-symbols-outlined text-[22px] text-blue-600 mt-0.5">water_bottle</span>
+                  <div>
+                    <div class="text-xs font-bold text-[#000f1d]">Chilled Sealed Mineral Water (Twin Pack)</div>
+                    <div class="text-[11px] text-gray-500">2 x 1 Litre certified brand packaged drinking water served at boarding</div>
+                    <div class="text-xs font-black text-[#000f1d] mt-0.5">₹45</div>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <div class="flex items-center border border-gray-300 rounded-full bg-white text-xs font-bold">
+                    <button type="button" id="decWater" class="px-2.5 py-1 text-gray-600 hover:text-black cursor-pointer">-</button>
+                    <span id="waterCount" class="px-2">1</span>
+                    <button type="button" id="incWater" class="px-2.5 py-1 text-gray-600 hover:text-black cursor-pointer">+</button>
+                  </div>
+                  <span class="text-xs font-black text-[#000f1d] min-w-[45px] text-right" id="waterTotal">₹45</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Sub-Card C: RouteLine Comprehensive Travel Shield -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[22px] text-emerald-600">shield</span>
+                <div>
+                  <h3 class="text-xs font-bold text-[#000f1d]">RouteLine Comprehensive Travel Shield</h3>
+                  <p class="text-[11px] text-gray-500">Enjoy peaceful sleep with instant cashless claim assistance during transit.</p>
+                </div>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-[#ecfdf5] text-[#047857] text-[10px] font-extrabold">RECOMMENDED</span>
+            </div>
+
+            <div class="flex flex-wrap items-center gap-4 text-[11px] text-gray-600 pt-1">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-emerald-600">medical_services</span> Medical cover ₹5,00,000</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-emerald-600">luggage</span> Lost baggage up to ₹10,000</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-emerald-600">schedule</span> Trip delay compensation</span>
+            </div>
+
+            <div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+              <label class="flex items-center gap-2 text-xs font-bold text-gray-800 cursor-pointer">
+                <input type="checkbox" id="travelShieldCheckbox" checked class="rounded text-[#854d19] focus:ring-0">
+                <span id="travelShieldLabel">Yes, protect all 2 travellers (Only ₹29 / person)</span>
+              </label>
+              <span class="text-xs font-black text-[#000f1d]" id="travelShieldPrice">₹58</span>
+            </div>
+          </div>
+
+          <!-- Sub-Card D: RouteLine Zero-Fee Cancellation Pass -->
+          <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[22px] text-amber-700">change_circle</span>
+                <div>
+                  <h3 class="text-xs font-bold text-[#000f1d]">RouteLine Zero-Fee Cancellation Pass</h3>
+                  <p class="text-[11px] text-gray-500 leading-relaxed">Change of plans? Cancel anytime up to 2 hours before Swargate departure and receive an instant 100% refund into your source bank account.</p>
+                </div>
+              </div>
+              <label class="rl-switch shrink-0 ml-4">
+                <input type="checkbox" id="cancellationPassToggle" checked>
+                <span class="rl-slider"></span>
+              </label>
+            </div>
+
+            <div class="pt-2 border-t border-gray-100 flex items-center justify-between text-xs font-semibold">
+              <span class="text-emerald-700 flex items-center gap-1">
+                <span class="material-symbols-outlined text-[16px]">check</span>
+                <span>No cancellation penalty questioned.</span>
+              </span>
+              <span class="font-black text-[#000f1d]">+ ₹99 total</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: Sticky Fare Summary Sidebar (4 cols) -->
+      <aside class="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
+        
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-4">
+          
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+            <div>
+              <h3 class="text-base font-black text-[#000f1d] font-sans">Fare Summary</h3>
+              <div class="text-[11px] text-gray-500 font-medium" id="fareSummarySubText">2 Berths + Zingbus Superfast</div>
+            </div>
+            <span class="material-symbols-outlined text-[22px] text-amber-700">directions_bus</span>
+          </div>
+
+          <!-- Line items -->
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between text-gray-600">
+              <span id="fareBaseRateLabel">Base Seat Fare (L4, L7)</span>
+              <span class="font-bold text-[#000f1d]" id="fareBaseRateVal">₹4,998</span>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Operator Taxes &amp; Highway Toll</span>
+              <span class="font-bold text-[#000f1d]">₹250</span>
+            </div>
+            <div class="flex justify-between text-gray-600" id="fareShieldRow">
+              <span class="flex items-center gap-1">Travel Shield (<span id="fareShieldPax">2</span> Passengers) <span class="text-emerald-600">✓</span></span>
+              <span class="font-bold text-[#000f1d]" id="fareShieldVal">₹58</span>
+            </div>
+            <div class="flex justify-between text-gray-600" id="fareRefreshmentsRow">
+              <span>Highway Halt Refreshments</span>
+              <span class="font-bold text-[#000f1d]" id="fareRefreshmentsVal">₹265</span>
+            </div>
+            <div class="flex justify-between text-gray-600" id="fareCancelPassRow">
+              <span>Zero-Fee Cancellation Pass</span>
+              <span class="font-bold text-[#000f1d]">₹99</span>
+            </div>
+          </div>
+
+          <!-- Promo Applied Banner -->
+          <div class="p-2.5 rounded-xl bg-[#ecfdf5] border border-[#a7f3d0] flex items-center justify-between text-xs">
+            <div class="flex items-center gap-1.5 text-emerald-800 font-bold">
+              <span class="material-symbols-outlined text-[16px]">sell</span>
+              <span>Applied: ROUTE200</span>
+            </div>
+            <span class="font-extrabold text-emerald-800">-₹200</span>
+          </div>
+
+          <!-- Total Payable -->
+          <div class="pt-3 border-t border-gray-100 flex items-baseline justify-between">
+            <div>
+              <div class="text-sm font-bold text-gray-700">Total Payable</div>
+              <div class="text-[10px] text-gray-400">Includes all statutory GST (5%)</div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs text-gray-400 line-through mr-1" id="fareGrossTotalVal">₹5,670</span>
+              <span class="text-2xl font-black text-[#000f1d] font-sans" id="fareFinalTotalVal">₹5,470</span>
+            </div>
+          </div>
+
+          <!-- Proceed CTA -->
+          <button type="button" id="proceedToReviewBtn" class="w-full rl-ochre-btn py-3 rounded-full text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+            <span>Proceed to Review &amp; Pay</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+
+          <!-- Security Badges -->
+          <div class="flex items-center justify-center gap-4 text-[11px] text-gray-500 font-medium pt-1">
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">lock</span> 256-bit encrypted</span>
+            <span>•</span>
+            <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">bolt</span> Instant PNR</span>
+          </div>
+
+          <!-- Operator Snippet Box -->
+          <div class="p-3.5 rounded-xl bg-[#f8fafc] border border-gray-200 text-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <div class="font-bold text-[#000f1d]" id="operatorSnippetName">Zingbus Plus Electric</div>
+              <span class="text-emerald-700 font-bold text-[11px]">★ 4.8 (1,840)</span>
+            </div>
+            <div class="flex flex-wrap gap-2 text-[10px] text-gray-500">
+              <span>Individual USB Plug</span> •
+              <span>Free High-speed Wi-Fi</span> •
+              <span>Personal AC Control</span> •
+              <span>Fresh Linen Provided</span>
+            </div>
+          </div>
+
+          <!-- Boarding Station Instructions Box -->
+          <div class="p-3.5 rounded-xl bg-[#fffbeb] border border-[#fde68a] text-[11px] text-amber-900 space-y-1">
+            <div class="font-bold flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-[16px] text-amber-700">info</span>
+              <span>Boarding Station Instructions</span>
+            </div>
+            <p class="leading-relaxed">Please arrive at Swargate Pickup Bay #4 by 16:15 PM (15 minutes prior to departure). Show your digital m-Ticket SMS or QR code directly to the driver steward.</p>
+          </div>
+
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- Bottom Trust Ribbon -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 py-6">
+    <div class="p-4 rounded-2xl bg-white border border-[#e2e8f0] grid grid-cols-2 md:grid-cols-4 gap-4 text-xs font-semibold text-gray-700">
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px] text-emerald-600">verified</span>
+        <div>
+          <div class="text-[#000f1d] font-bold">Best Price Guarantee</div>
+          <div class="text-[10px] text-gray-400">Direct operator inventory</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px] text-emerald-600">bolt</span>
+        <div>
+          <div class="text-[#000f1d] font-bold">Instant Auto-Refunds</div>
+          <div class="text-[10px] text-gray-400">Direct to UPI / card</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px] text-emerald-600">lock</span>
+        <div>
+          <div class="text-[#000f1d] font-bold">Safe &amp; Encrypted</div>
+          <div class="text-[10px] text-gray-400">Bank-grade data shield</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-[20px] text-emerald-600">support_agent</span>
+        <div>
+          <div class="text-[#000f1d] font-bold">24/7 Human Dispatch</div>
+          <div class="text-[10px] text-gray-400">Live operator escalations</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RouteLine Footer -->
+  <footer class="w-full bg-[#000f1d] text-white pt-10 pb-8 border-t border-gray-800">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-black text-sm">RL</div>
+          <div>
+            <div class="text-lg font-black tracking-tight font-sans">RouteLine</div>
+            <div class="text-xs text-gray-400 font-medium">Your Entire Journey, In Your Pocket</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">smart_display</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">Google Play</div>
+            </div>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">phone_iphone</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">App Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">About</a>
+          <a href="#" class="hover:text-white transition-colors">Blog</a>
+          <a href="#" class="hover:text-white transition-colors">Careers</a>
+          <a href="#" class="hover:text-white transition-colors">Contact</a>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        </div>
+        <div>&copy; 2026 RouteLine. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Screen 3: Passenger Details -->
+  <script type="module">
+    import { getBusState, updateBusState, recalculatePricing } from '../../src/js/bus/bus-state.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      let state = getBusState();
+
+      // Top subheader values
+      const routeText = document.getElementById('routeBannerText');
+      const metaDate = document.getElementById('metaDateText');
+      const metaBerths = document.getElementById('metaBerthsText');
+      const metaCorridor = document.getElementById('metaCorridorText');
+
+      if (routeText) routeText.textContent = `${state.search.origin} → ${state.search.destination}`;
+      if (metaDate) metaDate.textContent = state.search.travelDate;
+      if (metaBerths) metaBerths.textContent = `${state.selectedSeats.length} Berths (${state.selectedSeats.join(', ')})`;
+      if (metaCorridor && state.boardingPoint && state.droppingPoint) {
+        metaCorridor.textContent = `${state.boardingPoint.name} ${state.boardingPoint.time} → ${state.droppingPoint.name} ${state.droppingPoint.time}`;
+      }
+
+      // Render Passenger Details Cards for each selected seat
+      function renderPassengerForms() {
+        const container = document.getElementById('passengersFormContainer');
+        const badge = document.getElementById('paxBerthsBadge');
+        if (!container) return;
+
+        const count = state.selectedSeats.length;
+        if (badge) badge.textContent = `${count} Berth${count > 1 ? 's' : ''}`;
+
+        // Ensure state.passengers has same length
+        while (state.passengers.length < count) {
+          const idx = state.passengers.length;
+          state.passengers.push({
+            id: idx + 1,
+            seatId: state.selectedSeats[idx] || `S${idx + 1}`,
+            name: idx === 0 ? 'Rahul Verma' : (idx === 1 ? 'Priya Sharma' : `Traveler ${idx + 1}`),
+            age: idx === 0 ? '28' : (idx === 1 ? '26' : '30'),
+            gender: idx === 0 ? 'Male' : (idx === 1 ? 'Female' : 'Male'),
+            type: idx === 0 ? 'Primary Passenger' : 'Co-Traveler',
+            berthLabel: `Berth ${state.selectedSeats[idx]} (Lower Deck)`
+          });
+        }
+        if (state.passengers.length > count) {
+          state.passengers = state.passengers.slice(0, count);
+        }
+
+        container.innerHTML = state.passengers.map((p, idx) => `
+          <div class="p-4 rounded-xl border border-gray-200 bg-[#f8fafc]/50 space-y-3" data-pax-idx="${idx}">
+            <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+              <div class="flex items-center gap-2">
+                <span class="w-6 h-6 rounded-full bg-[#000f1d] text-white flex items-center justify-center text-xs font-bold">${idx + 1}</span>
+                <span class="font-extrabold text-xs text-[#000f1d]">Passenger ${idx + 1}</span>
+                <span class="px-2 py-0.5 rounded-full bg-[#eff4ff] text-[#1e40af] text-[10px] font-bold">Berth ${state.selectedSeats[idx]} (Lower Deck)</span>
+              </div>
+              <span class="px-2 py-0.5 rounded bg-gray-100 text-gray-600 text-[10px] font-bold">${idx === 0 ? 'Primary Passenger' : 'Co-Traveler'}</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
+              
+              <!-- Full Name (6 cols) -->
+              <div class="sm:col-span-6">
+                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">FULL NAME</label>
+                <input type="text" class="pax-name-input w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#854d19] focus:ring-0 text-xs font-semibold text-[#000f1d]" value="${p.name || ''}" placeholder="e.g. Rahul Verma" data-idx="${idx}">
+              </div>
+
+              <!-- Age (2 cols) -->
+              <div class="sm:col-span-2">
+                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">AGE</label>
+                <input type="number" class="pax-age-input w-full px-3 py-2 rounded-xl border border-gray-200 focus:border-[#854d19] focus:ring-0 text-xs font-semibold text-[#000f1d]" value="${p.age || '28'}" placeholder="Age" min="1" max="120" data-idx="${idx}">
+              </div>
+
+              <!-- Gender Button Group (4 cols) -->
+              <div class="sm:col-span-4">
+                <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">GENDER</label>
+                <div class="flex rounded-xl border border-gray-200 overflow-hidden bg-white text-xs font-bold text-gray-600">
+                  <button type="button" class="gender-btn flex-1 py-2 text-center transition-colors ${p.gender === 'Male' ? 'bg-[#000f1d] text-white' : 'hover:bg-gray-50'}" data-gender="Male" data-idx="${idx}">Male</button>
+                  <button type="button" class="gender-btn flex-1 py-2 text-center transition-colors border-l border-r border-gray-200 ${p.gender === 'Female' ? 'bg-[#000f1d] text-white' : 'hover:bg-gray-50'}" data-gender="Female" data-idx="${idx}">Female</button>
+                  <button type="button" class="gender-btn flex-1 py-2 text-center transition-colors ${p.gender === 'Other' ? 'bg-[#000f1d] text-white' : 'hover:bg-gray-50'}" data-gender="Other" data-idx="${idx}">Other</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        `).join('');
+
+        // Wire inputs
+        container.querySelectorAll('.pax-name-input').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const idx = Number(e.target.dataset.idx);
+            state.passengers[idx].name = e.target.value;
+            updateBusState({ passengers: state.passengers });
+          });
+        });
+
+        container.querySelectorAll('.pax-age-input').forEach(input => {
+          input.addEventListener('input', (e) => {
+            const idx = Number(e.target.dataset.idx);
+            state.passengers[idx].age = e.target.value;
+            updateBusState({ passengers: state.passengers });
+          });
+        });
+
+        container.querySelectorAll('.gender-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            const idx = Number(btn.dataset.idx);
+            const gender = btn.dataset.gender;
+            state.passengers[idx].gender = gender;
+            updateBusState({ passengers: state.passengers });
+            renderPassengerForms();
+          });
+        });
+      }
+
+      // Services Sync & Calculations
+      function updatePricingDisplay() {
+        const pricing = recalculatePricing(state);
+        state.pricing = pricing;
+
+        const subText = document.getElementById('fareSummarySubText');
+        const baseRateLabel = document.getElementById('fareBaseRateLabel');
+        const baseRateVal = document.getElementById('fareBaseRateVal');
+        const shieldVal = document.getElementById('fareShieldVal');
+        const shieldPax = document.getElementById('fareShieldPax');
+        const refreshmentsVal = document.getElementById('fareRefreshmentsVal');
+        const grossVal = document.getElementById('fareGrossTotalVal');
+        const finalVal = document.getElementById('fareFinalTotalVal');
+
+        const seatCount = state.selectedSeats.length;
+        if (subText) subText.textContent = `${seatCount} Berths + Zingbus Superfast`;
+        if (baseRateLabel) baseRateLabel.textContent = `Base Seat Fare (${state.selectedSeats.join(', ')})`;
+        if (baseRateVal) baseRateVal.textContent = `₹${pricing.baseFare.toLocaleString('en-IN')}`;
+        if (shieldVal) shieldVal.textContent = `₹${pricing.travelShield.toLocaleString('en-IN')}`;
+        if (shieldPax) shieldPax.textContent = seatCount;
+        if (refreshmentsVal) refreshmentsVal.textContent = `₹${pricing.refreshments.toLocaleString('en-IN')}`;
+        if (grossVal) grossVal.textContent = `₹${pricing.grossTotal.toLocaleString('en-IN')}`;
+        if (finalVal) finalVal.textContent = `₹${pricing.totalPayable.toLocaleString('en-IN')}`;
+
+        // Row visibilities
+        const shieldRow = document.getElementById('fareShieldRow');
+        const refreshmentsRow = document.getElementById('fareRefreshmentsRow');
+        const cancelPassRow = document.getElementById('fareCancelPassRow');
+
+        if (shieldRow) shieldRow.style.display = pricing.travelShield > 0 ? 'flex' : 'none';
+        if (refreshmentsRow) refreshmentsRow.style.display = pricing.refreshments > 0 ? 'flex' : 'none';
+        if (cancelPassRow) cancelPassRow.style.display = state.services.cancellationPass ? 'flex' : 'none';
+
+        // Update Travel shield label
+        const shieldLabel = document.getElementById('travelShieldLabel');
+        const shieldPrice = document.getElementById('travelShieldPrice');
+        if (shieldLabel) shieldLabel.textContent = `Yes, protect all ${seatCount} travellers (Only ₹29 / person)`;
+        if (shieldPrice) shieldPrice.textContent = `₹${29 * seatCount}`;
+
+        updateBusState({ pricing: pricing, services: state.services });
+      }
+
+      // Meal Counters
+      const vegCountEl = document.getElementById('vegThaliCount');
+      const vegTotalEl = document.getElementById('vegThaliTotal');
+      const incVeg = document.getElementById('incVegThali');
+      const decVeg = document.getElementById('decVegThali');
+
+      if (incVeg) {
+        incVeg.addEventListener('click', () => {
+          state.services.vegThali = (state.services.vegThali || 0) + 1;
+          if (vegCountEl) vegCountEl.textContent = state.services.vegThali;
+          if (vegTotalEl) vegTotalEl.textContent = `₹${state.services.vegThali * 220}`;
+          updatePricingDisplay();
+        });
+      }
+      if (decVeg) {
+        decVeg.addEventListener('click', () => {
+          if ((state.services.vegThali || 0) > 0) {
+            state.services.vegThali--;
+            if (vegCountEl) vegCountEl.textContent = state.services.vegThali;
+            if (vegTotalEl) vegTotalEl.textContent = `₹${state.services.vegThali * 220}`;
+            updatePricingDisplay();
+          }
+        });
+      }
+
+      // Water Counters
+      const waterCountEl = document.getElementById('waterCount');
+      const waterTotalEl = document.getElementById('waterTotal');
+      const incWater = document.getElementById('incWater');
+      const decWater = document.getElementById('decWater');
+
+      if (incWater) {
+        incWater.addEventListener('click', () => {
+          state.services.mineralWater = (state.services.mineralWater || 0) + 1;
+          if (waterCountEl) waterCountEl.textContent = state.services.mineralWater;
+          if (waterTotalEl) waterTotalEl.textContent = `₹${state.services.mineralWater * 45}`;
+          updatePricingDisplay();
+        });
+      }
+      if (decWater) {
+        decWater.addEventListener('click', () => {
+          if ((state.services.mineralWater || 0) > 0) {
+            state.services.mineralWater--;
+            if (waterCountEl) waterCountEl.textContent = state.services.mineralWater;
+            if (waterTotalEl) waterTotalEl.textContent = `₹${state.services.mineralWater * 45}`;
+            updatePricingDisplay();
+          }
+        });
+      }
+
+      // Chai Combo
+      const addChaiBtn = document.getElementById('addChaiBtn');
+      if (addChaiBtn) {
+        addChaiBtn.addEventListener('click', () => {
+          state.services.chaiCombo = (state.services.chaiCombo || 0) + 1;
+          addChaiBtn.textContent = `Added (${state.services.chaiCombo}) ✓`;
+          addChaiBtn.classList.add('bg-emerald-50', 'border-emerald-300', 'text-emerald-800');
+          updatePricingDisplay();
+        });
+      }
+
+      // Travel Shield Toggle
+      const shieldCb = document.getElementById('travelShieldCheckbox');
+      if (shieldCb) {
+        shieldCb.checked = state.services.travelShield;
+        shieldCb.addEventListener('change', (e) => {
+          state.services.travelShield = e.target.checked;
+          updatePricingDisplay();
+        });
+      }
+
+      // Cancellation Pass Toggle
+      const cancelPassToggle = document.getElementById('cancellationPassToggle');
+      if (cancelPassToggle) {
+        cancelPassToggle.checked = state.services.cancellationPass;
+        cancelPassToggle.addEventListener('change', (e) => {
+          state.services.cancellationPass = e.target.checked;
+          updatePricingDisplay();
+        });
+      }
+
+      // Contact Info Inputs
+      const emailInput = document.getElementById('contactEmailInput');
+      const phoneInput = document.getElementById('contactPhoneInput');
+      const waToggle = document.getElementById('whatsappToggle');
+
+      if (emailInput) {
+        emailInput.value = state.contactInfo.email;
+        emailInput.addEventListener('input', (e) => {
+          state.contactInfo.email = e.target.value;
+          updateBusState({ contactInfo: state.contactInfo });
+        });
+      }
+      if (phoneInput) {
+        phoneInput.value = state.contactInfo.mobile;
+        phoneInput.addEventListener('input', (e) => {
+          state.contactInfo.mobile = e.target.value;
+          updateBusState({ contactInfo: state.contactInfo });
+        });
+      }
+      if (waToggle) {
+        waToggle.checked = state.contactInfo.whatsappUpdates;
+        waToggle.addEventListener('change', (e) => {
+          state.contactInfo.whatsappUpdates = e.target.checked;
+          updateBusState({ contactInfo: state.contactInfo });
+        });
+      }
+
+      // Initial Renders
+      renderPassengerForms();
+      updatePricingDisplay();
+
+      // Proceed to Review & Pay
+      const proceedBtn = document.getElementById('proceedToReviewBtn');
+      if (proceedBtn) {
+        proceedBtn.addEventListener('click', () => {
+          // Validate passenger names
+          for (let i = 0; i < state.passengers.length; i++) {
+            if (!state.passengers[i].name || !state.passengers[i].name.trim()) {
+              alert(`Please enter the full name for Passenger ${i + 1}`);
+              return;
+            }
+          }
+          if (!state.contactInfo.email || !state.contactInfo.mobile) {
+            alert("Please provide contact email and mobile number.");
+            return;
+          }
+
+          window.location.href = 'review-payment.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
