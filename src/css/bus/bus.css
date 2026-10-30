@@ -1,67 +1,298 @@
-/* Bus Dashboard Specific Overrides */
-.hero {
-    background: url('../../assets/bus_background_img.png') no-repeat center center/cover;
-    overflow: hidden;
-    position: relative;
+/* ==========================================================================
+   RouteLine - Bus Experience & Booking Design System (bus.css)
+   Complies with BUSDESIGN.md & Google Stitch Screenshot Specifications
+   ========================================================================== */
+
+:root {
+  --rl-bus-bg: #f8f9ff;
+  --rl-bus-navy: #000f1d;
+  --rl-bus-navy-deep: #0b1c30;
+  --rl-bus-surface: #ffffff;
+  --rl-bus-ochre: #854d19;
+  --rl-bus-ochre-hover: #714013;
+  --rl-bus-ochre-light: #fff7ed;
+  --rl-bus-border: #e2e8f0;
+  --rl-bus-border-soft: #edf2f7;
+  --rl-bus-text-muted: #64748b;
+  --rl-bus-green: #059669;
+  --rl-bus-green-bg: #ecfdf5;
+  --rl-bus-amber: #d97706;
+  --rl-bus-amber-bg: #fef3c7;
 }
 
-.road-stage {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1; /* Below overlay */
+body.bus-experience {
+  background-color: var(--rl-bus-bg);
+  color: var(--rl-bus-navy-deep);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
-#road-canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
+/* Display & Headline Headings */
+.font-display {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-.hero-overlay {
-    z-index: 2;
-    background: linear-gradient(to bottom, rgba(8,16,34,.60), transparent 70%);
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+/* Stepper Bar */
+.rl-bus-stepper-container {
+  background: #ffffff;
+  border-bottom: 1px solid var(--rl-bus-border);
 }
 
-.hero-content, .booking-widget {
-    position: relative;
-    z-index: 5;
+.stepper-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #94a3b8;
+  white-space: nowrap;
 }
 
-.travellers-panel {
-    display: none; 
-    position: absolute; 
-    top: 100%; 
-    left: 0; 
-    background: white; 
-    border-radius: 8px; 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
-    padding: 15px; 
-    width: 200px; 
-    z-index: 100; 
-    margin-top: 10px;
+.stepper-step.active {
+  color: var(--rl-bus-navy-deep);
+  font-weight: 700;
 }
 
-.travellers-panel.show {
-    display: block;
+.stepper-step.completed {
+  color: #334155;
 }
 
-.stepper button {
-    width: 28px; 
-    height: 28px; 
-    border-radius: 50%; 
-    border: 1px solid #ccc; 
-    background: white; 
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
+.stepper-circle {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  background-color: #f1f5f9;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
 }
 
-.stepper button:hover {
-    background: #f0f0f0;
+.stepper-step.active .stepper-circle {
+  background-color: var(--rl-bus-navy-deep);
+  color: #ffffff;
+  border-color: var(--rl-bus-navy-deep);
+}
+
+.stepper-step.completed .stepper-circle {
+  background-color: #0b1c30;
+  color: #ffffff;
+  border-color: #0b1c30;
+}
+
+.stepper-divider {
+  flex: 1;
+  height: 1px;
+  background-color: #e2e8f0;
+  min-width: 24px;
+}
+
+/* Bus Search Card */
+.rl-search-card {
+  background: #ffffff;
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(11, 28, 48, 0.05);
+}
+
+.rl-ochre-btn {
+  background-color: var(--rl-bus-ochre);
+  color: #ffffff;
+  transition: all 0.2s ease;
+}
+
+.rl-ochre-btn:hover {
+  background-color: var(--rl-bus-ochre-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(133, 77, 25, 0.25);
+}
+
+.rl-ochre-btn:active {
+  transform: translateY(0);
+}
+
+/* Filter Departure Slot Pill Buttons */
+.time-slot-btn {
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.time-slot-btn:hover {
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.time-slot-btn.active {
+  border-color: #c88a4b;
+  background: #fff8f0;
+  box-shadow: 0 2px 8px rgba(200, 138, 75, 0.15);
+}
+
+/* Bus Cabin Sleeper Layout */
+.bus-cabin-shell {
+  background-color: #f1f6fd;
+  border: 1.5px solid #d6e4f8;
+  border-radius: 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.berth-card {
+  border-radius: 12px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 64px;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.berth-card.available {
+  background-color: #ffffff;
+  border: 1.5px solid #dce6f5;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(11, 28, 48, 0.04);
+}
+
+.berth-card.available:hover {
+  border-color: #c88a4b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(133, 77, 25, 0.15);
+}
+
+.berth-card.selected {
+  background-color: var(--rl-bus-ochre);
+  border: 1.5px solid #6b3b0f;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(133, 77, 25, 0.3);
+  cursor: pointer;
+}
+
+.berth-card.selected * {
+  color: #ffffff !important;
+}
+
+.berth-card.booked {
+  background-color: #f1f5f9;
+  border: 1.5px solid #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.85;
+}
+
+.berth-card.female {
+  background-color: #fff1f2;
+  border: 1.5px solid #fda4af;
+  color: #be123c;
+  cursor: pointer;
+}
+
+.berth-card.female:hover {
+  border-color: #e11d48;
+}
+
+/* Custom Toggle Switch */
+.rl-switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.rl-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.rl-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #cbd5e1;
+  transition: .3s;
+  border-radius: 24px;
+}
+
+.rl-slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+input:checked + .rl-slider {
+  background-color: var(--rl-bus-ochre);
+}
+
+input:checked + .rl-slider:before {
+  transform: translateX(20px);
+}
+
+/* Digital Ticket Perforation Effect */
+.ticket-perforation {
+  position: relative;
+  border-top: 2px dashed #cbd5e1;
+  margin: 20px 0;
+}
+
+.ticket-cutout-left {
+  position: absolute;
+  left: -28px;
+  top: -14px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--rl-bus-bg);
+  border-radius: 0 28px 28px 0;
+  border-right: 1px solid #e2e8f0;
+}
+
+.ticket-cutout-right {
+  position: absolute;
+  right: -28px;
+  top: -14px;
+  width: 28px;
+  height: 28px;
+  background-color: var(--rl-bus-bg);
+  border-radius: 28px 0 0 28px;
+  border-left: 1px solid #e2e8f0;
+}
+
+/* Print Styles for E-Ticket */
+@media print {
+  header, footer, .rl-bus-stepper-container, .no-print {
+    display: none !important;
+  }
+  
+  body.bus-experience {
+    background: #ffffff !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  
+  .print-ticket-target {
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid;
+  }
 }

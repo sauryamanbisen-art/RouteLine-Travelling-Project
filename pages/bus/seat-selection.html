@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Seats | RouteLine Bus Booking</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+  <script src="/vendor/lucide.min.js"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000f1d",
+            "primary-container": "#0f2537",
+            "surface": "#f8f9ff",
+            "brand-ochre": "#854d19",
+            "brand-ochre-hover": "#714013",
+            "brand-ochre-light": "#fef3c7",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#43474c"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
+  <link rel="stylesheet" href="../../src/css/home/global/style.css">
+  <link rel="stylesheet" href="../../src/css/bus/bus.css">
+</head>
+<body class="bus-experience bg-[#f8f9ff] text-[#0b1c30]">
+
+  <!-- Top Global Navbar -->
+  <header class="w-full bg-white border-b border-[#e5eeff] sticky top-0 z-50 shadow-sm">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="../../index.html" class="flex items-center gap-2 text-decoration-none">
+          <div class="w-9 h-9 rounded-lg bg-[#000f1d] flex items-center justify-center text-white font-black text-sm tracking-tighter">RL</div>
+          <span class="text-xl font-extrabold text-[#000f1d] tracking-tight font-sans">RouteLine</span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1 text-sm font-semibold text-gray-600">
+          <a href="bus-results.html" class="px-3.5 py-1.5 rounded-full text-[#000f1d] font-bold bg-[#eff4ff]">Buses</a>
+          <a href="../../index.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Trains</a>
+          <a href="../flight/flight-search.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Flights</a>
+          <a href="../hotel/hotel-results.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Hotels</a>
+          <a href="../home/cabs.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Cabs</a>
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4 text-xs font-semibold text-gray-700">
+        <a href="#" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">headset_mic</span>
+          <span>24/7 Support</span>
+        </a>
+        <a href="../train/ticket.html" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
+          <span class="material-symbols-outlined text-[18px] text-gray-600">receipt_long</span>
+          <span>Manage Booking</span>
+        </a>
+        <div class="hidden sm:flex items-center gap-1 cursor-pointer">
+          <span>₹ INR (₹)</span>
+          <span class="material-symbols-outlined text-[16px]">expand_more</span>
+        </div>
+        <div class="flex items-center gap-2 pl-2">
+          <button type="button" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#000f1d] text-white text-xs font-semibold hover:bg-black transition-all">
+            <span class="material-symbols-outlined text-[16px]">account_circle</span>
+            <span>Account</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 5-Step Progress Stepper -->
+  <div class="rl-bus-stepper-container w-full bg-white py-3.5 px-4 shadow-sm">
+    <div class="max-w-[1000px] mx-auto flex items-center justify-between text-xs sm:text-sm font-semibold">
+      <div class="stepper-step completed flex items-center gap-2">
+        <span class="stepper-circle">✓</span>
+        <span class="text-gray-800">Select Bus</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step active flex items-center gap-2">
+        <span class="stepper-circle">2</span>
+        <span class="font-bold text-[#000f1d]">Select Seats</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step">
+        <span class="stepper-circle">3</span>
+        <span>Passenger Details</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step">
+        <span class="stepper-circle">4</span>
+        <span>Review &amp; Pay</span>
+      </div>
+      <div class="stepper-divider"></div>
+
+      <div class="stepper-step">
+        <span class="stepper-circle">5</span>
+        <span>Confirmation</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub-header bar -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 pt-4 pb-2">
+    <div class="flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm font-semibold">
+      <a href="bus-results.html" class="flex items-center gap-1.5 text-gray-600 hover:text-black">
+        <span class="material-symbols-outlined text-[18px]">arrow_back</span>
+        <span>Back to Buses</span>
+      </a>
+
+      <div class="flex items-center gap-2 font-bold text-[#000f1d]">
+        <span id="seatRouteDisplay">Pune → Delhi</span>
+        <span class="text-gray-400 font-normal">•</span>
+        <span class="text-xs uppercase tracking-wide text-gray-500" id="seatDateDisplay">SUN, 15 NOV 2026</span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span class="px-2.5 py-1 rounded-full bg-[#ecfdf5] text-[#047857] text-xs font-bold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px]">check_circle</span>
+          <span>24 Seats Left</span>
+        </span>
+        <span class="px-2.5 py-1 rounded-full bg-[#f1f5f9] text-gray-700 text-xs font-semibold flex items-center gap-1">
+          <span class="material-symbols-outlined text-[14px] text-amber-600">bolt</span>
+          <span>Fast Booking Mode</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bus Overview Card -->
+  <section class="max-w-[1340px] mx-auto px-4 sm:px-6 py-2">
+    <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs">
+      <div class="flex flex-wrap lg:flex-nowrap items-center justify-between gap-6">
+        
+        <!-- Left: Bus Details -->
+        <div class="space-y-1">
+          <div class="flex items-center gap-2">
+            <span class="px-2 py-0.5 rounded bg-[#001209] text-[#85f8c4] text-[10px] font-extrabold tracking-wider">EV SLEEPER</span>
+            <h2 class="text-lg font-black text-[#000f1d] font-sans" id="selectedBusName">Zingbus Electric Superfast</h2>
+            <span class="text-xs text-gray-500 font-medium">(2+1 AC Sleeper)</span>
+            <span class="text-xs text-amber-600 font-bold">★ 4.8 (1.8k)</span>
+          </div>
+
+          <!-- Times & Corridor -->
+          <div class="flex items-center gap-6 pt-1 text-xs">
+            <div>
+              <span class="text-base font-black text-[#000f1d] font-sans" id="busDepTime">16:30</span>
+              <span class="text-gray-500 font-medium ml-1" id="busDepLoc">Swargate, Pune</span>
+            </div>
+            <div class="flex items-center gap-2 text-gray-400">
+              <span class="text-[11px] font-bold text-gray-500">23H 45M</span>
+              <span class="text-gray-300">————</span>
+              <span class="text-[10px] font-bold text-gray-400 uppercase">Direct Route</span>
+              <span class="text-gray-300">————</span>
+            </div>
+            <div>
+              <span class="text-base font-black text-[#000f1d] font-sans" id="busArrTime">16:15</span>
+              <span class="text-[10px] font-bold text-amber-700 ml-1">+1 Day</span>
+              <span class="text-gray-500 font-medium ml-1" id="busArrLoc">Kashmiri Gate, Delhi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Badges -->
+        <div class="flex flex-wrap items-center gap-2.5 text-xs text-gray-600 font-medium">
+          <span class="px-3 py-1.5 rounded-lg bg-[#eff6ff] text-[#1e40af] flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">clean_hands</span>
+            <span>Clean &amp; Sanitized</span>
+          </span>
+          <span class="px-3 py-1.5 rounded-lg bg-[#eff6ff] text-[#1e40af] flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">satellite_alt</span>
+            <span>Live GPS Tracking</span>
+          </span>
+          <span class="px-3 py-1.5 rounded-lg bg-[#eff6ff] text-[#1e40af] flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[16px]">water_bottle</span>
+            <span>Complimentary Water Bottle</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Seat Selection & Booking Summary Area -->
+  <main class="max-w-[1340px] mx-auto px-4 sm:px-6 py-4">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      
+      <!-- LEFT COLUMN: Seat Layout + Boarding/Dropping + Fleet Info (8 cols) -->
+      <section class="lg:col-span-8 space-y-6">
+        
+        <!-- 1. CHOOSE YOUR SLEEP BERTHS CARD -->
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-2xs space-y-5">
+          
+          <div class="flex items-center justify-between pb-2">
+            <div>
+              <h2 class="text-lg font-black text-[#000f1d] font-sans">Choose Your Sleep Berths</h2>
+              <p class="text-xs text-gray-500">Click any available berth to add or release your selection.</p>
+            </div>
+
+            <!-- Lower Deck / Upper Deck Switcher -->
+            <div class="flex items-center bg-[#f1f5f9] p-1 rounded-full text-xs font-semibold text-gray-600">
+              <button type="button" id="deckLowerBtn" class="deck-btn active px-4 py-1.5 rounded-full bg-white text-[#000f1d] font-bold shadow-2xs">Lower Deck</button>
+              <button type="button" id="deckUpperBtn" class="deck-btn px-4 py-1.5 rounded-full hover:text-[#000f1d]">Upper Deck</button>
+            </div>
+          </div>
+
+          <!-- Bus Cabin Interior Layout Shell -->
+          <div class="bus-cabin-shell p-6 bg-[#f1f6fd] border border-[#d6e4f8] rounded-3xl">
+            
+            <!-- Top Status Bar: Entry Door & Driver Cabin -->
+            <div class="flex items-center justify-between pb-4 mb-4 border-b border-[#d8e5f8] text-xs font-bold text-gray-600">
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 border border-[#dce6f5] text-emerald-800">
+                <span class="material-symbols-outlined text-[18px]">meeting_room</span>
+                <span>ENTRY DOOR / STEPS</span>
+              </div>
+              <div class="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#000f1d] text-white">
+                <span class="material-symbols-outlined text-[18px]">airline_seat_recline_extra</span>
+                <span>DRIVER CABIN</span>
+              </div>
+            </div>
+
+            <!-- Column Headers -->
+            <div class="grid grid-cols-12 gap-4 pb-2 text-[10px] font-extrabold uppercase tracking-wider text-gray-400">
+              <div class="col-span-4 text-center">WINDOW SIDE</div>
+              <div class="col-span-1"></div>
+              <div class="col-span-7 text-center">CO-TRAVELLER DOUBLE BERTHS</div>
+            </div>
+
+            <!-- Berths Interactive Grid -->
+            <div id="berthsContainer" class="space-y-3">
+              <!-- Dynamically populated or rendered -->
+            </div>
+
+            <!-- Aisle Indicator -->
+            <div class="text-center py-2 text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
+              <span>▲</span>
+              <span>WIDE AISLE</span>
+              <span>▲</span>
+            </div>
+
+          </div>
+
+          <!-- Seat Legend -->
+          <div class="flex flex-wrap items-center justify-center gap-5 pt-3 border-t border-gray-100 text-xs font-semibold text-gray-600">
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-white border border-[#dce6f5]"></span>
+              <span>Available (₹2,400)</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-[#854d19] border border-[#714013]"></span>
+              <span class="font-bold text-[#854d19]">Selected</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-[#f1f5f9] border border-gray-300 flex items-center justify-center text-[10px] text-gray-400">🔒</span>
+              <span>Booked</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="w-4 h-4 rounded bg-[#fff1f2] border border-[#fda4af]"></span>
+              <span class="text-[#be123c]">Female Reserved</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- 2. BOARDING & DROPPING POINTS CARD -->
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-6 shadow-2xs space-y-4">
+          <div class="flex items-center justify-between pb-2 border-b border-gray-100">
+            <div class="flex items-center gap-2 font-black text-sm text-[#000f1d] font-sans">
+              <span class="material-symbols-outlined text-[20px] text-gray-600">location_on</span>
+              <span>Boarding &amp; Dropping Points</span>
+            </div>
+            <span class="px-2.5 py-0.5 rounded-full bg-[#ecfdf5] text-[#047857] text-[11px] font-extrabold tracking-wide">CONFIRM TIMINGS</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Boarding (Pune) -->
+            <div class="space-y-3">
+              <div class="text-xs font-bold text-amber-800 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-[#854d19]"></span>
+                <span>Select Boarding (Pune)</span>
+              </div>
+              <div class="space-y-2" id="boardingPointsList">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- Dropping (Delhi) -->
+            <div class="space-y-3">
+              <div class="text-xs font-bold text-emerald-800 flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+                <span>Select Dropping (Delhi)</span>
+              </div>
+              <div class="space-y-2" id="droppingPointsList">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. VERIFIED FLEET GUARANTEE CARD -->
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-5">
+          <div class="space-y-2 flex-1">
+            <span class="px-2 py-0.5 rounded bg-[#eff4ff] text-[#1e40af] text-[10px] font-black uppercase tracking-wider">VERIFIED FLEET GUARANTEE</span>
+            <h3 class="text-base font-extrabold text-[#000f1d] font-sans">Ergonomic Sleeper Cabins with Zero-Emission Transit</h3>
+            <p class="text-xs text-gray-500 leading-relaxed">Experience world-class highway travel equipped with individual reading lights, 220V charging ports, high-speed onboard Wi-Fi, and climate-controlled berths.</p>
+            <div class="flex items-center gap-4 text-xs font-semibold text-gray-600 pt-1">
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-amber-700">wifi</span> Free 5G Wi-Fi</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-amber-700">power</span> Universal Sockets</span>
+              <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-amber-700">ac_unit</span> Individual AC Vents</span>
+            </div>
+          </div>
+          <div class="w-full md:w-56 text-center">
+            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=300&h=180&fit=crop" alt="Volvo EV" class="w-full h-24 object-cover rounded-xl border border-gray-200">
+            <span class="text-[10px] font-bold text-gray-400 mt-1 block">Volvo 9600 EV Premium Coach</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: Sticky Booking Summary Sidebar (4 cols) -->
+      <aside class="lg:col-span-4 space-y-4 lg:sticky lg:top-20">
+        
+        <div class="bg-white rounded-2xl border border-[#e2e8f0] p-5 shadow-2xs space-y-5">
+          
+          <div class="flex items-center justify-between pb-3 border-b border-gray-100">
+            <h3 class="text-base font-black text-[#000f1d] font-sans">Booking Summary</h3>
+            <span class="px-2 py-0.5 rounded bg-[#fef3c7] text-[#92400e] text-xs font-bold" id="seatsCountBadge">2 Seats</span>
+          </div>
+
+          <!-- Selected Berths Chips -->
+          <div>
+            <div class="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">SELECTED BERTHS</div>
+            <div class="flex flex-wrap gap-2" id="selectedBerthsChipsContainer">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Boarding & Dropping Points Selected Summary -->
+          <div class="space-y-2">
+            <div class="p-2.5 rounded-xl bg-[#eff6ff] border border-[#bfdbfe] text-xs flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-blue-600">location_on</span>
+              <div>
+                <span class="text-[10px] font-bold text-blue-500 uppercase block">BOARDING AT</span>
+                <span class="font-bold text-[#000f1d]" id="summaryBoardingText">Swargate, Pune (16:30)</span>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded-xl bg-[#eff6ff] border border-[#bfdbfe] text-xs flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-blue-600">directions_bus</span>
+              <div>
+                <span class="text-[10px] font-bold text-blue-500 uppercase block">DROPPING AT</span>
+                <span class="font-bold text-[#000f1d]" id="summaryDroppingText">Kashmiri Gate, Delhi (16:15)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Fare Breakdown -->
+          <div class="space-y-2 text-xs pt-2 border-t border-gray-100">
+            <div class="flex justify-between text-gray-600">
+              <span id="baseFareLabel">Base Seat Fare (2 x ₹2,400)</span>
+              <span class="font-bold text-[#000f1d]" id="summaryBaseFare">₹4,800</span>
+            </div>
+            <div class="flex justify-between text-gray-600">
+              <span>Operator GST &amp; Toll (5%)</span>
+              <span class="font-bold text-[#000f1d]" id="summaryTaxes">₹250</span>
+            </div>
+            <div class="flex justify-between text-emerald-600 font-semibold">
+              <span>Auto-Applied Discount</span>
+              <span id="summaryDiscount">-₹0</span>
+            </div>
+            <div class="pt-3 border-t border-gray-100 flex items-baseline justify-between">
+              <div>
+                <div class="text-sm font-bold text-gray-700">Total Payable</div>
+                <div class="text-[10px] text-gray-400">Inclusive of all local taxes</div>
+              </div>
+              <div class="text-2xl font-black text-[#000f1d] font-sans" id="summaryTotalPayable">₹5,248</div>
+            </div>
+          </div>
+
+          <!-- Continue CTA -->
+          <button type="button" id="continueToPassengersBtn" class="w-full rl-ochre-btn py-3 rounded-full text-white font-bold text-sm shadow-sm flex items-center justify-center gap-2 cursor-pointer">
+            <span>Continue to Passenger Details</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+
+          <!-- Refund Guarantee Note -->
+          <div class="p-3 rounded-xl bg-[#f8fafc] border border-gray-200 text-xs text-gray-600 flex items-start gap-2">
+            <span class="material-symbols-outlined text-[18px] text-emerald-600 shrink-0">verified</span>
+            <span class="text-[11px] leading-tight"><strong>100% Refund Guarantee</strong> if cancelled up to 24h prior to departure. Instant auto-refunds.</span>
+          </div>
+
+        </div>
+
+        <!-- Need Help Box -->
+        <div class="p-4 rounded-xl bg-white border border-[#e2e8f0] text-xs flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="material-symbols-outlined text-[20px] text-gray-500">support_agent</span>
+            <div>
+              <div class="font-bold text-[#000f1d]">Need seat assistance?</div>
+              <div class="text-[11px] text-gray-500">Zingbus Dispatch: +91 80 4040 2200</div>
+            </div>
+          </div>
+          <a href="tel:+918040402200" class="p-2 rounded-full bg-[#f1f5f9] hover:bg-[#e2e8f0] text-gray-700">
+            <span class="material-symbols-outlined text-[18px]">call</span>
+          </a>
+        </div>
+
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- RouteLine Footer -->
+  <footer class="w-full bg-[#000f1d] text-white pt-10 pb-8 border-t border-gray-800 mt-12">
+    <div class="max-w-[1340px] mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-800">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-black text-sm">RL</div>
+          <div>
+            <div class="text-lg font-black tracking-tight font-sans">RouteLine</div>
+            <div class="text-xs text-gray-400 font-medium">Your Entire Journey, In Your Pocket</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">smart_display</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">Google Play</div>
+            </div>
+          </div>
+          <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
+            <span class="material-symbols-outlined text-[20px] text-gray-300">phone_iphone</span>
+            <div class="text-left">
+              <div class="text-[9px] text-gray-400 uppercase">DOWNLOAD ON</div>
+              <div class="text-xs font-bold text-white">App Store</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+        <div class="flex items-center gap-6">
+          <a href="#" class="hover:text-white transition-colors">About</a>
+          <a href="#" class="hover:text-white transition-colors">Blog</a>
+          <a href="#" class="hover:text-white transition-colors">Careers</a>
+          <a href="#" class="hover:text-white transition-colors">Contact</a>
+          <a href="#" class="hover:text-white transition-colors">Terms</a>
+          <a href="#" class="hover:text-white transition-colors">Privacy</a>
+        </div>
+        <div>&copy; 2026 RouteLine. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Screen 2: Seat Selection -->
+  <script type="module">
+    import { 
+      getBusState, 
+      updateBusState, 
+      SEAT_BERTHS_DATA, 
+      BOARDING_POINTS, 
+      DROPPING_POINTS, 
+      BUS_OPERATORS 
+    } from '../../src/js/bus/bus-state.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      let state = getBusState();
+
+      // Read selected bus from URL param if present
+      const params = new URLSearchParams(window.location.search);
+      const busParam = params.get('bus');
+      if (busParam) {
+        const found = BUS_OPERATORS.find(b => b.id === busParam);
+        if (found) {
+          state.selectedBusId = found.id;
+          state.selectedBus = found;
+          updateBusState({ selectedBusId: found.id, selectedBus: found });
+        }
+      }
+
+      // Populate Bus details in header
+      const bus = state.selectedBus || BUS_OPERATORS[0];
+      const busNameEl = document.getElementById('selectedBusName');
+      const depTimeEl = document.getElementById('busDepTime');
+      const depLocEl = document.getElementById('busDepLoc');
+      const arrTimeEl = document.getElementById('busArrTime');
+      const arrLocEl = document.getElementById('busArrLoc');
+      const routeDisp = document.getElementById('seatRouteDisplay');
+      const dateDisp = document.getElementById('seatDateDisplay');
+
+      if (busNameEl) busNameEl.textContent = bus.name;
+      if (depTimeEl) depTimeEl.textContent = bus.departureTime;
+      if (depLocEl) depLocEl.textContent = bus.departureLocation;
+      if (arrTimeEl) arrTimeEl.textContent = bus.arrivalTime;
+      if (arrLocEl) arrLocEl.textContent = bus.arrivalLocation;
+      if (routeDisp) routeDisp.textContent = `${state.search.origin} → ${state.search.destination}`;
+      if (dateDisp) dateDisp.textContent = state.search.travelDate.toUpperCase();
+
+      let currentDeck = state.activeDeck || 'lower';
+
+      // Deck switchers
+      const deckLowerBtn = document.getElementById('deckLowerBtn');
+      const deckUpperBtn = document.getElementById('deckUpperBtn');
+
+      function switchDeck(deck) {
+        currentDeck = deck;
+        state.activeDeck = deck;
+        updateBusState({ activeDeck: deck });
+
+        if (deck === 'lower') {
+          deckLowerBtn.classList.add('active', 'bg-white', 'text-[#000f1d]', 'font-bold', 'shadow-2xs');
+          deckUpperBtn.classList.remove('active', 'bg-white', 'text-[#000f1d]', 'font-bold', 'shadow-2xs');
+        } else {
+          deckUpperBtn.classList.add('active', 'bg-white', 'text-[#000f1d]', 'font-bold', 'shadow-2xs');
+          deckLowerBtn.classList.remove('active', 'bg-white', 'text-[#000f1d]', 'font-bold', 'shadow-2xs');
+        }
+        renderBerths();
+      }
+
+      deckLowerBtn.addEventListener('click', () => switchDeck('lower'));
+      deckUpperBtn.addEventListener('click', () => switchDeck('upper'));
+
+      // Render Berths Grid (2+1 Sleeper Layout)
+      function renderBerths() {
+        const container = document.getElementById('berthsContainer');
+        if (!container) return;
+
+        const deckData = SEAT_BERTHS_DATA[currentDeck];
+        const singleBerths = deckData.singleWindow;
+        const doubleBerths = deckData.doubleBerths;
+
+        // Group into rows (5 rows)
+        let html = '';
+        for (let row = 0; row < singleBerths.length; row++) {
+          const s = singleBerths[row];
+          const d1 = doubleBerths[row * 2];
+          const d2 = doubleBerths[row * 2 + 1];
+
+          const isSelectedS = state.selectedSeats.includes(s.id);
+          const isSelectedD1 = d1 ? state.selectedSeats.includes(d1.id) : false;
+          const isSelectedD2 = d2 ? state.selectedSeats.includes(d2.id) : false;
+
+          html += `
+            <div class="grid grid-cols-12 gap-4 items-center">
+              
+              <!-- Left Single Berth (4 cols) -->
+              <div class="col-span-4">
+                <div class="berth-card ${getBerthClasses(s, isSelectedS)}" 
+                     data-seat-id="${s.id}" data-price="${s.price}" data-deck="${s.deck}" data-type="Single">
+                  <div class="flex items-center justify-between">
+                    <span class="text-xs font-bold font-sans">${s.id}</span>
+                    <span class="material-symbols-outlined text-[15px] ${isSelectedS ? 'text-white' : 'text-gray-400'}">
+                      ${isSelectedS ? 'check_circle' : (s.status === 'booked' ? 'lock' : (s.status === 'female' ? 'female' : 'bed'))}
+                    </span>
+                  </div>
+                  <div class="text-[11px] font-extrabold ${isSelectedS ? 'text-white' : (s.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]')}">
+                    ${s.status === 'booked' ? 'BOOKED' : '₹' + s.price.toLocaleString('en-IN')}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Aisle Spacer (1 col) -->
+              <div class="col-span-1 text-center">
+                <span class="text-gray-300 text-xs">·</span>
+              </div>
+
+              <!-- Right Double Berths (7 cols) -->
+              <div class="col-span-7 grid grid-cols-2 gap-2">
+                ${d1 ? `
+                  <div class="berth-card ${getBerthClasses(d1, isSelectedD1)}"
+                       data-seat-id="${d1.id}" data-price="${d1.price}" data-deck="${d1.deck}" data-type="Double">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold font-sans">${d1.id}</span>
+                      <span class="material-symbols-outlined text-[15px] ${isSelectedD1 ? 'text-white' : 'text-gray-400'}">
+                        ${isSelectedD1 ? 'check_circle' : (d1.status === 'booked' ? 'lock' : 'bed')}
+                      </span>
+                    </div>
+                    <div class="text-[11px] font-extrabold ${isSelectedD1 ? 'text-white' : (d1.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]')}">
+                      ${d1.status === 'booked' ? 'BOOKED' : '₹' + d1.price.toLocaleString('en-IN')}
+                    </div>
+                  </div>
+                ` : `<div></div>`}
+
+                ${d2 ? `
+                  <div class="berth-card ${getBerthClasses(d2, isSelectedD2)}"
+                       data-seat-id="${d2.id}" data-price="${d2.price}" data-deck="${d2.deck}" data-type="Double">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-bold font-sans">${d2.id}</span>
+                      <span class="material-symbols-outlined text-[15px] ${isSelectedD2 ? 'text-white' : 'text-gray-400'}">
+                        ${isSelectedD2 ? 'check_circle' : (d2.status === 'booked' ? 'lock' : 'bed')}
+                      </span>
+                    </div>
+                    <div class="text-[11px] font-extrabold ${isSelectedD2 ? 'text-white' : (d2.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]')}">
+                      ${d2.status === 'booked' ? 'BOOKED' : '₹' + d2.price.toLocaleString('en-IN')}
+                    </div>
+                  </div>
+                ` : `<div></div>`}
+              </div>
+
+            </div>
+          `;
+        }
+
+        container.innerHTML = html;
+
+        // Attach click listeners to available / selectable berths
+        container.querySelectorAll('.berth-card').forEach(card => {
+          card.addEventListener('click', () => {
+            const seatId = card.getAttribute('data-seat-id');
+            const price = Number(card.getAttribute('data-price'));
+            const deck = card.getAttribute('data-deck');
+            const type = card.getAttribute('data-type');
+
+            if (card.classList.contains('booked')) return;
+
+            toggleSeat(seatId, price, deck, type);
+          });
+        });
+      }
+
+      function getBerthClasses(berth, isSelected) {
+        if (isSelected) return 'selected';
+        if (berth.status === 'booked') return 'booked';
+        if (berth.status === 'female') return 'female';
+        return 'available';
+      }
+
+      function toggleSeat(seatId, price, deck, type) {
+        let selectedSeats = [...state.selectedSeats];
+        let selectedSeatsData = [...(state.selectedSeatsData || [])];
+
+        const index = selectedSeats.indexOf(seatId);
+        if (index > -1) {
+          if (selectedSeats.length === 1) {
+            alert("At least 1 seat must be selected to proceed with bus booking.");
+            return;
+          }
+          selectedSeats.splice(index, 1);
+          selectedSeatsData = selectedSeatsData.filter(s => s.id !== seatId);
+        } else {
+          if (selectedSeats.length >= 6) {
+            alert("A maximum of 6 berths can be selected per booking.");
+            return;
+          }
+          selectedSeats.push(seatId);
+          selectedSeatsData.push({
+            id: seatId,
+            label: seatId,
+            deck: deck,
+            type: type,
+            price: price || 2400
+          });
+        }
+
+        state.selectedSeats = selectedSeats;
+        state.selectedSeatsData = selectedSeatsData;
+
+        // Update passengers array to match count
+        ensurePassengersMatchSeats();
+
+        updateBusState({
+          selectedSeats: selectedSeats,
+          selectedSeatsData: selectedSeatsData,
+          passengers: state.passengers
+        });
+
+        renderBerths();
+        renderSummary();
+      }
+
+      function ensurePassengersMatchSeats() {
+        const seats = state.selectedSeats;
+        const currentPax = state.passengers || [];
+        const newPax = [];
+
+        seats.forEach((seatId, idx) => {
+          const existing = currentPax[idx];
+          if (existing) {
+            newPax.push({
+              ...existing,
+              id: idx + 1,
+              seatId: seatId,
+              berthLabel: `Berth ${seatId} (Lower Deck)`
+            });
+          } else {
+            newPax.push({
+              id: idx + 1,
+              seatId: seatId,
+              name: idx === 0 ? 'Rahul Verma' : `Traveler ${idx + 1}`,
+              age: idx === 0 ? '28' : '26',
+              gender: idx === 0 ? 'Male' : 'Female',
+              type: idx === 0 ? 'Primary Passenger' : 'Co-Traveler',
+              berthLabel: `Berth ${seatId} (Lower Deck)`
+            });
+          }
+        });
+
+        state.passengers = newPax;
+      }
+
+      // Render Boarding & Dropping Points Radios
+      function renderPoints() {
+        const bList = document.getElementById('boardingPointsList');
+        const dList = document.getElementById('droppingPointsList');
+
+        if (bList) {
+          bList.innerHTML = BOARDING_POINTS.map((bp, idx) => {
+            const isChecked = (state.boardingPoint?.id === bp.id) || (idx === 0 && !state.boardingPoint);
+            return `
+              <label class="p-3 rounded-xl border flex items-start gap-3 cursor-pointer transition-all ${isChecked ? 'bg-[#eff6ff] border-[#93c5fd] shadow-2xs' : 'bg-white border-gray-200 hover:border-gray-300'}">
+                <input type="radio" name="boardingPoint" value="${bp.id}" ${isChecked ? 'checked' : ''} class="mt-1 text-[#854d19] focus:ring-0">
+                <div class="text-xs flex-1">
+                  <div class="font-bold text-[#000f1d]">${bp.time} - ${bp.name}</div>
+                  <div class="text-gray-500 text-[11px]">${bp.landmark}</div>
+                </div>
+              </label>
+            `;
+          }).join('');
+
+          bList.querySelectorAll('input[name="boardingPoint"]').forEach(r => {
+            r.addEventListener('change', (e) => {
+              const selected = BOARDING_POINTS.find(b => b.id === e.target.value);
+              state.boardingPoint = selected;
+              updateBusState({ boardingPoint: selected });
+              renderPoints();
+              renderSummary();
+            });
+          });
+        }
+
+        if (dList) {
+          dList.innerHTML = DROPPING_POINTS.map((dp, idx) => {
+            const isChecked = (state.droppingPoint?.id === dp.id) || (idx === 0 && !state.droppingPoint);
+            return `
+              <label class="p-3 rounded-xl border flex items-start gap-3 cursor-pointer transition-all ${isChecked ? 'bg-[#eff6ff] border-[#93c5fd] shadow-2xs' : 'bg-white border-gray-200 hover:border-gray-300'}">
+                <input type="radio" name="droppingPoint" value="${dp.id}" ${isChecked ? 'checked' : ''} class="mt-1 text-[#854d19] focus:ring-0">
+                <div class="text-xs flex-1">
+                  <div class="font-bold text-[#000f1d]">${dp.time} - ${dp.name}</div>
+                  <div class="text-gray-500 text-[11px]">${dp.landmark}</div>
+                </div>
+              </label>
+            `;
+          }).join('');
+
+          dList.querySelectorAll('input[name="droppingPoint"]').forEach(r => {
+            r.addEventListener('change', (e) => {
+              const selected = DROPPING_POINTS.find(d => d.id === e.target.value);
+              state.droppingPoint = selected;
+              updateBusState({ droppingPoint: selected });
+              renderPoints();
+              renderSummary();
+            });
+          });
+        }
+      }
+
+      // Render Summary in Right Sidebar
+      function renderSummary() {
+        const count = state.selectedSeats.length;
+        const countBadge = document.getElementById('seatsCountBadge');
+        if (countBadge) countBadge.textContent = `${count} Seat${count > 1 ? 's' : ''}`;
+
+        // Chips
+        const chipsContainer = document.getElementById('selectedBerthsChipsContainer');
+        if (chipsContainer) {
+          chipsContainer.innerHTML = state.selectedSeats.map(seatId => `
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#f1f5f9] border border-gray-200 text-xs font-bold text-[#000f1d]">
+              <span>${seatId} (Lower Single)</span>
+              <button type="button" class="remove-seat-btn text-gray-400 hover:text-red-600 font-normal" data-seat-id="${seatId}">✕</button>
+            </span>
+          `).join('');
+
+          chipsContainer.querySelectorAll('.remove-seat-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const sId = btn.getAttribute('data-seat-id');
+              toggleSeat(sId, 2400, 'Lower', 'Single');
+            });
+          });
+        }
+
+        // Boarding / Dropping text
+        const bText = document.getElementById('summaryBoardingText');
+        const dText = document.getElementById('summaryDroppingText');
+        if (bText && state.boardingPoint) {
+          bText.textContent = `${state.boardingPoint.name}, Pune (${state.boardingPoint.time})`;
+        }
+        if (dText && state.droppingPoint) {
+          dText.textContent = `${state.droppingPoint.name}, Delhi (${state.droppingPoint.time})`;
+        }
+
+        // Pricing
+        const seatBaseRate = 2400;
+        const totalBaseFare = seatBaseRate * count;
+        const taxes = 250;
+        const totalPayable = totalBaseFare + taxes;
+
+        const baseLabel = document.getElementById('baseFareLabel');
+        const baseVal = document.getElementById('summaryBaseFare');
+        const totalVal = document.getElementById('summaryTotalPayable');
+
+        if (baseLabel) baseLabel.textContent = `Base Seat Fare (${count} x ₹${seatBaseRate.toLocaleString('en-IN')})`;
+        if (baseVal) baseVal.textContent = `₹${totalBaseFare.toLocaleString('en-IN')}`;
+        if (totalVal) totalVal.textContent = `₹${totalPayable.toLocaleString('en-IN')}`;
+      }
+
+      // Initial Renders
+      renderBerths();
+      renderPoints();
+      renderSummary();
+
+      // Continue to Passenger Details CTA
+      const continueBtn = document.getElementById('continueToPassengersBtn');
+      if (continueBtn) {
+        continueBtn.addEventListener('click', () => {
+          if (state.selectedSeats.length === 0) {
+            alert("Please select at least 1 berth before continuing.");
+            return;
+          }
+          window.location.href = 'passenger-details.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
+
