@@ -6,11 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RouteLine | Your journey, Just a Tap Away</title>
     <meta name="description" content="Search great deals on trains, flights, buses, and hotels in one place with RouteLine.">
-    <!-- Use Inter font to match the clean design -->
+    <!-- Preconnect to font domains for fast DNS/TLS handshake -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Preload Hero LCP background image with high fetch priority -->
+    <link rel="preload" as="image" href="./src/assets/vandhe-bharat.png" fetchpriority="high">
+
+    <!-- Fonts with display=swap to eliminate render blocking and FOIT -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Lucide icons via CDN for vanilla JS -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
+    
+    <!-- Local defer-loaded Lucide script to avoid 1.4s CDN render-blocking stall -->
+    <script src="/vendor/lucide.min.js" defer></script>
     <link rel="stylesheet" href="./src/css/home/global/style.css">
     <link rel="stylesheet" href="./src/css/home/global/unified-search-dock.css">
     <link rel="stylesheet" href="./src/css/home/global/custom-search-controls.css">
@@ -233,7 +241,7 @@
         <div class="destinations-grid">
             <a href="#" class="destination-card">
                 <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?w=400&h=260&fit=crop"
-                    alt="Manali">
+                    alt="Manali" loading="lazy" decoding="async">
                 <div class="destination-card-body">
                     <h3>Manali</h3>
                     <p class="dest-state">Himachal Pradesh</p>
@@ -246,7 +254,7 @@
             </a>
 
             <a href="#" class="destination-card">
-                <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=260&fit=crop" alt="Goa">
+                <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?w=400&h=260&fit=crop" alt="Goa" loading="lazy" decoding="async">
                 <div class="destination-card-body">
                     <h3>Goa</h3>
                     <p class="dest-state">Goa</p>
@@ -260,7 +268,7 @@
 
             <a href="#" class="destination-card">
                 <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?w=400&h=260&fit=crop"
-                    alt="Jaipur">
+                    alt="Jaipur" loading="lazy" decoding="async">
                 <div class="destination-card-body">
                     <h3>Jaipur</h3>
                     <p class="dest-state">Rajasthan</p>
@@ -274,7 +282,7 @@
 
             <a href="#" class="destination-card">
                 <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=400&h=260&fit=crop"
-                    alt="Kerala">
+                    alt="Kerala" loading="lazy" decoding="async">
                 <div class="destination-card-body">
                     <h3>Kerala</h3>
                     <p class="dest-state">Kerala</p>
@@ -288,7 +296,7 @@
 
             <a href="#" class="destination-card">
                 <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=400&h=260&fit=crop"
-                    alt="Mumbai">
+                    alt="Mumbai" loading="lazy" decoding="async">
                 <div class="destination-card-body">
                     <h3>Mumbai</h3>
                     <p class="dest-state">Maharashtra</p>
@@ -302,7 +310,7 @@
 
             <a href="#" class="destination-card">
                 <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=260&fit=crop"
-                    alt="Varanasi">
+                    alt="Varanasi" loading="lazy" decoding="async">
                 <div class="destination-card-body">
                     <h3>Varanasi</h3>
                     <p class="dest-state">Uttar Pradesh</p>
@@ -419,31 +427,31 @@
                 <div class="journey-stop-card">
                     <span class="stop-number">1</span>
                     <span class="stop-name">Delhi</span>
-                    <img src="./src/assets/delhi.jpg" alt="Delhi">
+                    <img src="./src/assets/delhi.jpg" alt="Delhi" loading="lazy" decoding="async">
                 </div>
                 <span class="journey-arrow">→</span>
                 <div class="journey-stop-card">
                     <span class="stop-number">2</span>
                     <span class="stop-name">Jaipur</span>
-                    <img src="./src/assets/jaipur.jpg" alt="Jaipur">
+                    <img src="./src/assets/jaipur.jpg" alt="Jaipur" loading="lazy" decoding="async">
                 </div>
                 <span class="journey-arrow">→</span>
                 <div class="journey-stop-card">
                     <span class="stop-number">3</span>
                     <span class="stop-name">Jodhpur</span>
-                    <img src="./src/assets/jodhpur.jpg" alt="Jodhpur">
+                    <img src="./src/assets/jodhpur.jpg" alt="Jodhpur" loading="lazy" decoding="async">
                 </div>
                 <span class="journey-arrow">→</span>
                 <div class="journey-stop-card">
                     <span class="stop-number">4</span>
                     <span class="stop-name">Udaipur</span>
-                    <img src="./src/assets/udaipur.jpg" alt="Udaipur">
+                    <img src="./src/assets/udaipur.jpg" alt="Udaipur" loading="lazy" decoding="async">
                 </div>
                 <span class="journey-arrow">→</span>
                 <div class="journey-stop-card">
                     <span class="stop-number">5</span>
                     <span class="stop-name">Mumbai</span>
-                    <img src="./src/assets/mumbai.jpg" alt="Mumbai">
+                    <img src="./src/assets/mumbai.jpg" alt="Mumbai" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -459,7 +467,7 @@
         <div class="collections-grid">
             <a href="#" class="collection-card">
                 <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=360&fit=crop"
-                    alt="Weekend Getaways">
+                    alt="Weekend Getaways" loading="lazy" decoding="async">
                 <div class="collection-card-overlay">
                     <span>Weekend<br>Getaways</span>
                 </div>
@@ -467,7 +475,7 @@
 
             <a href="#" class="collection-card">
                 <img src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=400&h=360&fit=crop"
-                    alt="Family Trips">
+                    alt="Family Trips" loading="lazy" decoding="async">
                 <div class="collection-card-overlay">
                     <span>Family<br>Trips</span>
                 </div>
@@ -475,7 +483,7 @@
 
             <a href="#" class="collection-card">
                 <img src="https://images.unsplash.com/photo-1518621736915-f3b1c41bfd00?w=400&h=360&fit=crop"
-                    alt="Romantic Escapes">
+                    alt="Romantic Escapes" loading="lazy" decoding="async">
                 <div class="collection-card-overlay">
                     <span>Romantic<br>Escapes</span>
                 </div>
@@ -483,7 +491,7 @@
 
             <a href="#" class="collection-card">
                 <img src="https://images.unsplash.com/photo-1533130061792-64b345e4a833?w=400&h=360&fit=crop"
-                    alt="Adventure Trips">
+                    alt="Adventure Trips" loading="lazy" decoding="async">
                 <div class="collection-card-overlay">
                     <span>Adventure<br>Trips</span>
                 </div>
@@ -491,7 +499,7 @@
 
             <a href="#" class="collection-card">
                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=360&fit=crop"
-                    alt="Beach Holidays">
+                    alt="Beach Holidays" loading="lazy" decoding="async">
                 <div class="collection-card-overlay">
                     <span>Beach<br>Holidays</span>
                 </div>
@@ -499,7 +507,7 @@
 
             <a href="#" class="collection-card">
                 <img src="https://images.unsplash.com/photo-1561361513-2d000a50f0dc?w=400&h=360&fit=crop"
-                    alt="Spiritual Journeys">
+                    alt="Spiritual Journeys" loading="lazy" decoding="async">
                 <div class="collection-card-overlay">
                     <span>Spiritual<br>Journeys</span>
                 </div>
@@ -522,28 +530,28 @@
                         <h4>Train Tickets</h4>
                         <p class="deal-offer">Up to<br><span>20% OFF</span></p>
                     </div>
-                    <img src="./src/assets/train_img.png" alt="Train">
+                    <img src="./src/assets/train_img.png" alt="Train" loading="lazy" decoding="async">
                 </a>
                 <a href="#" class="deal-card deal-bus">
                     <div class="deal-content">
                         <h4>Bus Journeys</h4>
                         <p class="deal-offer green">Save<br><span>₹200+</span></p>
                     </div>
-                    <img src="./src/assets/bus_img.jpeg" alt="Bus">
+                    <img src="./src/assets/bus_img.jpeg" alt="Bus" loading="lazy" decoding="async">
                 </a>
                 <a href="#" class="deal-card deal-hotel">
                     <div class="deal-content">
                         <h4>Hotels</h4>
                         <p class="deal-offer purple">Up to<br><span>40% OFF</span></p>
                     </div>
-                    <img src="./src/assets/hotel_img.png" alt="Hotel">
+                    <img src="./src/assets/hotel_img.png" alt="Hotel" loading="lazy" decoding="async">
                 </a>
                 <a href="pages/flight/flight-search.html" class="deal-card deal-flight">
                     <div class="deal-content">
                         <h4>Flight Deals</h4>
                         <p class="deal-offer dark-purple">Special<br><span>Fares</span></p>
                     </div>
-                    <img src="./src/assets/plane_img.png" alt="Flight">
+                    <img src="./src/assets/plane_img.png" alt="Flight" loading="lazy" decoding="async">
                 </a>
             </div>
         </div>
@@ -567,7 +575,7 @@
                         </div>
                         <p>"Planning my Delhi → Jaipur → Udaipur trip was incredibly easy. Got confirmed tickets and great hotel deals!"</p>
                         <div class="review-author">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Rahul Verma">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face" alt="Rahul Verma" loading="lazy" decoding="async">
                             <div class="review-author-info">
                                 <span class="name">Rahul Verma</span>
                                 <span class="city">Mumbai</span>
@@ -584,7 +592,7 @@
                         </div>
                         <p>"Booked a family trip to Kerala — buses, trains, and hotel all in one place. Saved so much time!"</p>
                         <div class="review-author">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Sneha Iyer">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&h=80&fit=crop&crop=face" alt="Sneha Iyer" loading="lazy" decoding="async">
                             <div class="review-author-info">
                                 <span class="name">Sneha Iyer</span>
                                 <span class="city">Bangalore</span>
@@ -601,7 +609,7 @@
                         </div>
                         <p>"The multi-city feature is a game changer. Planned 5 stops in Rajasthan without any hassle."</p>
                         <div class="review-author">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Amit Sharma">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&h=80&fit=crop&crop=face" alt="Amit Sharma" loading="lazy" decoding="async">
                             <div class="review-author-info">
                                 <span class="name">Amit Sharma</span>
                                 <span class="city">Delhi</span>
@@ -714,8 +722,14 @@
 
     <script type="module" src="./src/js/home/global/main.js"></script>
     <script>
-        // Initialize lucide icons
-        lucide.createIcons();
+        // Initialize lucide icons once script/DOM is ready
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        } else {
+            window.addEventListener('DOMContentLoaded', () => {
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            });
+        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
