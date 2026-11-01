@@ -8,7 +8,7 @@
  * - Clean visits on new devices start with zero bookings.
  */
 
-import { getCurrentUser, isAuthenticated } from '../home/auth/auth.js';
+import { getCurrentUser } from '../home/auth/auth.js';
 
 export const STORAGE_KEY_BOOKINGS_V2 = 'routeline_user_bookings_v2';
 export const STORAGE_GUEST_SESSION_ID = 'routeline_guest_session_id';
