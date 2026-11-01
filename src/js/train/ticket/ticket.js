@@ -139,7 +139,7 @@ export function saveBookedTicket(ticket) {
 export function getTicketByPnr(pnr) {
   if (!pnr) return null;
   const cleanPnr = String(pnr).trim().replace(/\D/g, '');
-  const { authorized, booking, unowned } = getBookingByRef(cleanPnr || pnr);
+  const { booking, unowned } = getBookingByRef(cleanPnr || pnr);
 
   if (unowned) {
     return { unauthorized: true, pnr: cleanPnr || pnr };
