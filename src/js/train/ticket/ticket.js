@@ -17,8 +17,7 @@ import {
   saveBooking,
   cancelBooking,
   filterBookingsByTab,
-  filterBookingsByType,
-  getGuestSessionId
+  filterBookingsByType
 } from '../../services/booking-store.js';
 
 export const STORAGE_KEY_TICKETS = 'routeline_booked_tickets';
