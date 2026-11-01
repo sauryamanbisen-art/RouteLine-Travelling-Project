@@ -125,7 +125,7 @@ export function extractStationCode(input) {
   }
 
   // 5. Fallback: first word uppercase
-  const firstWord = trimmed.split(/[\s\-\/]+/)[0];
+  const firstWord = trimmed.split(/[\s\-/]+/)[0];
   return firstWord.toUpperCase();
 }
 
