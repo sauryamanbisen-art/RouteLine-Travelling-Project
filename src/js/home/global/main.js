@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (dateInput && !dateInput.classList.contains('rl-native-date-hidden') && e.target !== dateInput && typeof dateInput.showPicker === 'function') {
                 try {
                     dateInput.showPicker();
-                } catch (err) {
+                } catch {
                     dateInput.focus();
                 }
             }
