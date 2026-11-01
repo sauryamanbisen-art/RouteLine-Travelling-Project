@@ -139,7 +139,7 @@ export function setupAirportAutocomplete({
     setTimeout(() => {
       try {
         inputEl.select();
-      } catch (err) {}
+      } catch {}
     }, 15);
   });
 
