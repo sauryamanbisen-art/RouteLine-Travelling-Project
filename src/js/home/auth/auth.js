@@ -233,22 +233,19 @@ export async function loginUser(arg1, arg2, arg3 = true) {
  * Registers a new user with hashed password storage
  */
 export async function signupUser(arg1, arg2, arg3, arg4, arg5) {
-  let name, email, password, confirmPassword, phone;
+  let name, email, password, confirmPassword;
   if (typeof arg1 === 'object' && arg1 !== null) {
     name = arg1.name;
     email = arg1.email;
     password = arg1.password;
     confirmPassword = arg1.confirmPassword || arg1.password;
-    phone = arg1.phone;
   } else {
     name = arg1;
     email = arg2;
     password = arg3;
     if (arg5) {
-      phone = arg4;
       confirmPassword = arg5;
     } else if (arg4 && /^\+?[\d\s-]{7,15}$/.test(arg4)) {
-      phone = arg4;
       confirmPassword = arg3;
     } else {
       confirmPassword = arg4 || arg3;
