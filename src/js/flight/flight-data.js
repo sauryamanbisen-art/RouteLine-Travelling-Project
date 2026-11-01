@@ -82,7 +82,6 @@ export function getAirportById(id) {
 }
 
 /**
-/**
  * Simple Levenshtein distance helper for fuzzy typo tolerance
  */
 function levenshteinDistance(a, b) {
@@ -514,7 +513,7 @@ export function getMeals() {
  * @param {string} [flightId]
  * @returns {Array<string>}
  */
-export function getOccupiedSeats(flightId = '') {
+export function getOccupiedSeats(_flightId = '') {
   return [
     '1B', '2A', '2C', '3D', '4B', '5E', '6C', 
     '7A', '8D', '9E', '10F', '12B', '12E', 
