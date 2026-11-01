@@ -10,7 +10,6 @@ import {
   RAILRADAR_CONFIG, 
   setRailRadarApiKey, 
   getTrainSchedule, 
-  getLiveStatus as getRailRadarLiveStatus,
   getRouteGeometry,
   getCoachPosition,
   getStationCoachPosition,
@@ -31,7 +30,7 @@ import {
 } from './pnr-status.js';
 
 import { openPaymentModal, closePaymentModal } from '../home/global/payment.js';
-import { requireAuthentication, isAuthenticated, initAuth, getCurrentUser } from '../home/auth/auth.js';
+import { requireAuthentication, initAuth, getCurrentUser } from '../home/auth/auth.js';
 import { initCustomSearchControls } from '../home/global/custom-search-controls.js';
 
 // Station Name to IRCTC Station Code Resolution Map
