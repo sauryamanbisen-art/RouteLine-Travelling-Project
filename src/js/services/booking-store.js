@@ -26,7 +26,7 @@ export function getGuestSessionId() {
       sessionStorage.setItem(STORAGE_GUEST_SESSION_ID, id);
     }
     return id;
-  } catch (e) {
+  } catch {
     return 'guest_fallback';
   }
 }
