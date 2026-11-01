@@ -34,7 +34,7 @@ export async function hashPassword(password, salt = PASSWORD_SALT) {
       return Array.from(new Uint8Array(hashBuf))
         .map(b => b.toString(16).padStart(2, '0'))
         .join('');
-    } catch (e) {
+    } catch {
       // Fallback below
     }
   }
@@ -122,7 +122,7 @@ function ensureUsersStore() {
       }
     }
     // Note: NEVER set default STORAGE_AUTH_USER. New browsers start as unauthenticated guests!
-  } catch (e) {
+  } catch {
     localStorage.setItem(STORAGE_REGISTERED_USERS, JSON.stringify(SEED_USERS));
   }
 }
@@ -134,7 +134,7 @@ function getRegisteredUsers() {
   ensureUsersStore();
   try {
     return JSON.parse(localStorage.getItem(STORAGE_REGISTERED_USERS)) || SEED_USERS;
-  } catch (e) {
+  } catch {
     return SEED_USERS;
   }
 }
@@ -158,7 +158,7 @@ export function getCurrentUser() {
     if (!raw) return null;
     const user = JSON.parse(raw);
     return user && user.email ? user : null;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
