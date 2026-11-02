@@ -321,6 +321,22 @@ function ensureModalDOMElements() {
 }
 
 /**
+ * Fills the PNR input, updates its digit counter, and runs a lookup
+ */
+function selectAndSearchPnr(pnr) {
+  const input = document.getElementById('pnr-number-input');
+  const counter = document.getElementById('pnr-digit-counter');
+  if (!input || !pnr) return;
+
+  input.value = pnr;
+  if (counter) {
+    counter.textContent = `${pnr.length}/10`;
+    counter.classList.add('valid');
+  }
+  handlePNRSearch(pnr);
+}
+
+/**
  * Renders verified working PNR chips dynamically under the input field
  */
 export function renderQuickChips() {
@@ -371,17 +387,7 @@ export function renderQuickChips() {
   container.querySelectorAll('.pnr-chip-btn').forEach(btn => {
     btn.addEventListener('click', (e) => {
       e.preventDefault();
-      const pnr = btn.getAttribute('data-pnr');
-      const input = document.getElementById('pnr-number-input');
-      const counter = document.getElementById('pnr-digit-counter');
-      if (input && pnr) {
-        input.value = pnr;
-        if (counter) {
-          counter.textContent = `${pnr.length}/10`;
-          counter.classList.add('valid');
-        }
-        handlePNRSearch(pnr);
-      }
+      selectAndSearchPnr(btn.getAttribute('data-pnr'));
     });
   });
 }
