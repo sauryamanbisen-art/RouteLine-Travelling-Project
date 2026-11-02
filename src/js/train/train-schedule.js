@@ -4,8 +4,7 @@
  */
 
 import { getTrainSchedule } from './railradar.js';
-import { getCoachSvg, renderCoachStrip } from './coach-position.js';
-import { openPNRModal, initPNRModule } from './pnr-status.js';
+import { renderCoachStrip } from './coach-position.js';
 import { initAuth } from '../home/auth/auth.js';
 
 // Fallback Train Schedule Database for robust, zero-fail experience
@@ -157,7 +156,6 @@ const FALLBACK_SCHEDULES = {
   }
 };
 
-let currentTrainData = null;
 let currentRouteList = [];
 
 /**
@@ -267,7 +265,6 @@ function displayTrainSchedule(data) {
   const train = data.train || {};
   const route = data.route || [];
 
-  currentTrainData = train;
   currentRouteList = route;
 
   // Overview elements
