@@ -7,13 +7,11 @@
 
 import { 
   getSeatAvailability, 
-  getTicketFare, 
-  getTrainSchedule, 
-  getLiveStatus
+  getTicketFare
 } from './railradar.js';
 import { openPaymentModal } from '../home/global/payment.js';
-import { openPNRModal, initPNRModule } from './pnr-status.js';
-import { initAuth, getCurrentUser, isAuthenticated, requireAuthentication } from '../home/auth/auth.js';
+import { initPNRModule } from './pnr-status.js';
+import { initAuth, getCurrentUser, requireAuthentication } from '../home/auth/auth.js';
 
 // Popular railway stations cache for autocomplete
 const POPULAR_STATIONS = [
@@ -157,7 +155,7 @@ function setupEventListeners() {
       if (typeof dateInput.showPicker === 'function') {
         try {
           dateInput.showPicker();
-        } catch (e) {
+        } catch {
           dateInput.focus();
         }
       } else {
@@ -680,7 +678,7 @@ function formatDisplayDate(dateStr) {
       month: 'short',
       year: 'numeric'
     });
-  } catch (e) {
+  } catch {
     return dateStr;
   }
 }
