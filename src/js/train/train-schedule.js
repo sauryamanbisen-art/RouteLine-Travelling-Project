@@ -273,11 +273,12 @@ function displayTrainSchedule(data) {
   document.getElementById('ts-train-cat').textContent = train.category || 'Express';
   document.getElementById('ts-train-type').textContent = train.type || 'Passenger';
 
+  const returnTrainEl = document.getElementById('ts-train-return');
   if (train.returnTrain) {
-    document.getElementById('ts-train-return').style.display = 'inline-block';
-    document.getElementById('ts-train-return').textContent = `Return: ${train.returnTrain}`;
+    returnTrainEl.style.display = 'inline-block';
+    returnTrainEl.textContent = `Return: ${train.returnTrain}`;
   } else {
-    document.getElementById('ts-train-return').style.display = 'none';
+    returnTrainEl.style.display = 'none';
   }
 
   // Endpoints
