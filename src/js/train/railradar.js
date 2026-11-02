@@ -167,40 +167,13 @@ export async function getRouteGeometry(trainNo = "12919") {
     return { success: false, error: 'Train number is required' };
   }
   const cleanNo = String(trainNo).trim();
-  const cacheKey = `geom_${cleanNo}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/route?format=geojson&stops=true`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch route geometry for train ${cleanNo} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getRouteGeometry(${cleanNo}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching route geometry' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `geom_${cleanNo}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/route?format=geojson&stops=true`,
+    httpErrorMessage: (status) => `Failed to fetch route geometry for train ${cleanNo} (HTTP ${status})`,
+    logMessage: `[RailRadar] getRouteGeometry(${cleanNo}) error:`,
+    networkErrorMessage: 'Network error fetching route geometry'
+  });
 }
 
 /**
@@ -214,40 +187,13 @@ export async function getCoachPosition(trainNo = "12952") {
     return { success: false, error: 'Train number is required' };
   }
   const cleanNo = String(trainNo).trim();
-  const cacheKey = `coach_${cleanNo}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/coaches`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch coach layout for train ${cleanNo} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getCoachPosition(${cleanNo}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching coach layout' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `coach_${cleanNo}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/coaches`,
+    httpErrorMessage: (status) => `Failed to fetch coach layout for train ${cleanNo} (HTTP ${status})`,
+    logMessage: `[RailRadar] getCoachPosition(${cleanNo}) error:`,
+    networkErrorMessage: 'Network error fetching coach layout'
+  });
 }
 
 /**
