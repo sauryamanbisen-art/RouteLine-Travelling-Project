@@ -702,17 +702,7 @@ function renderPNRErrorState(pnr, errorResponse) {
   // Wire working PNR pick buttons
   resultsArea.querySelectorAll('.btn-working-pnr-pick').forEach(btn => {
     btn.addEventListener('click', () => {
-      const selectedPnr = btn.getAttribute('data-pnr');
-      const input = document.getElementById('pnr-number-input');
-      const counter = document.getElementById('pnr-digit-counter');
-      if (input && selectedPnr) {
-        input.value = selectedPnr;
-        if (counter) {
-          counter.textContent = `${selectedPnr.length}/10`;
-          counter.classList.add('valid');
-        }
-        handlePNRSearch(selectedPnr);
-      }
+      selectAndSearchPnr(btn.getAttribute('data-pnr'));
     });
   });
 
