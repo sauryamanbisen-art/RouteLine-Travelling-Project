@@ -238,40 +238,13 @@ export async function getSeatAvailability(params = {}) {
   const cls = (params.cls || "3A").toUpperCase();
   const quota = (params.quota || "GN").toUpperCase();
 
-  const cacheKey = `seats_${trainNo}_${date}_${src}_${dst}_${cls}_${quota}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(trainNo)}/seats?journeyDate=${encodeURIComponent(date)}&source=${encodeURIComponent(src)}&destination=${encodeURIComponent(dst)}&classCode=${encodeURIComponent(cls)}&quotaCode=${encodeURIComponent(quota)}`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch seat availability for train ${trainNo} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getSeatAvailability(${trainNo}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching seat availability' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `seats_${trainNo}_${date}_${src}_${dst}_${cls}_${quota}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(trainNo)}/seats?journeyDate=${encodeURIComponent(date)}&source=${encodeURIComponent(src)}&destination=${encodeURIComponent(dst)}&classCode=${encodeURIComponent(cls)}&quotaCode=${encodeURIComponent(quota)}`,
+    httpErrorMessage: (status) => `Failed to fetch seat availability for train ${trainNo} (HTTP ${status})`,
+    logMessage: `[RailRadar] getSeatAvailability(${trainNo}) error:`,
+    networkErrorMessage: 'Network error fetching seat availability'
+  });
 }
 
 /**
@@ -294,40 +267,13 @@ export async function getTicketFare(params = {}) {
   const cls = (params.cls || "3A").toUpperCase();
   const quota = (params.quota || "GN").toUpperCase();
 
-  const cacheKey = `fare_${trainNo}_${date}_${src}_${dst}_${cls}_${quota}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(trainNo)}/fare?journeyDate=${encodeURIComponent(date)}&source=${encodeURIComponent(src)}&destination=${encodeURIComponent(dst)}&classCode=${encodeURIComponent(cls)}&quotaCode=${encodeURIComponent(quota)}`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch ticket fare for train ${trainNo} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getTicketFare(${trainNo}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching ticket fare' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `fare_${trainNo}_${date}_${src}_${dst}_${cls}_${quota}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(trainNo)}/fare?journeyDate=${encodeURIComponent(date)}&source=${encodeURIComponent(src)}&destination=${encodeURIComponent(dst)}&classCode=${encodeURIComponent(cls)}&quotaCode=${encodeURIComponent(quota)}`,
+    httpErrorMessage: (status) => `Failed to fetch ticket fare for train ${trainNo} (HTTP ${status})`,
+    logMessage: `[RailRadar] getTicketFare(${trainNo}) error:`,
+    networkErrorMessage: 'Network error fetching ticket fare'
+  });
 }
 
 /**
