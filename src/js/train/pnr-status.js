@@ -435,7 +435,7 @@ function setupModalListeners() {
       }
     });
 
-    input.addEventListener('paste', (e) => {
+    input.addEventListener('paste', () => {
       setTimeout(() => {
         const sanitized = input.value.replace(/\D/g, '').slice(0, 10);
         input.value = sanitized;
@@ -582,7 +582,7 @@ export async function handlePNRSearch(pnr) {
         if (liveRes && liveRes.success) {
           liveTelemetry = liveRes.data;
         }
-      } catch (err) {
+      } catch {
         // Safe ignore
       }
 
@@ -729,7 +729,7 @@ async function simulateActivePRSForPNR(pnr) {
   try {
     const liveRes = await getLiveStatus('12952');
     if (liveRes && liveRes.success) liveStatus = liveRes.data;
-  } catch (e) {}
+  } catch {}
 
   resetPNRSubmitBtn();
 
