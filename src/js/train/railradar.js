@@ -209,40 +209,13 @@ export async function getStationCoachPosition(trainNo = "12952", station = "BRC"
   }
   const cleanNo = String(trainNo).trim();
   const cleanStation = String(station).trim().toUpperCase();
-  const cacheKey = `stncoach_${cleanNo}_${cleanStation}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/coaches/${encodeURIComponent(cleanStation)}`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch coach position for train ${cleanNo} at ${cleanStation} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getStationCoachPosition(${cleanNo}, ${cleanStation}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching platform coach position' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `stncoach_${cleanNo}_${cleanStation}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/coaches/${encodeURIComponent(cleanStation)}`,
+    httpErrorMessage: (status) => `Failed to fetch coach position for train ${cleanNo} at ${cleanStation} (HTTP ${status})`,
+    logMessage: `[RailRadar] getStationCoachPosition(${cleanNo}, ${cleanStation}) error:`,
+    networkErrorMessage: 'Network error fetching platform coach position'
+  });
 }
 
 /**
