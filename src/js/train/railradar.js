@@ -291,50 +291,32 @@ export async function getTrainsBetween(src = "UJN", dst = "INDB", date = "") {
   const cleanSrc = String(src).trim().toUpperCase();
   const cleanDst = String(dst).trim().toUpperCase();
   const cleanDate = date ? String(date).trim() : '';
-  const cacheKey = `between_${cleanSrc}_${cleanDst}_${cleanDate}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
 
   let url = `${RAILRADAR_CONFIG.baseUrl}/trains/between/${encodeURIComponent(cleanSrc)}/${encodeURIComponent(cleanDst)}`;
   if (cleanDate.length > 0) {
     url += `?date=${encodeURIComponent(cleanDate)}`;
   }
 
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch trains between ${cleanSrc} and ${cleanDst} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        trains: [],
-        raw: data 
+  return requestRailRadar({
+    cacheKey: `between_${cleanSrc}_${cleanDst}_${cleanDate}`,
+    url,
+    httpErrorMessage: (status) => `Failed to fetch trains between ${cleanSrc} and ${cleanDst} (HTTP ${status})`,
+    logMessage: `[RailRadar] getTrainsBetween(${cleanSrc}, ${cleanDst}) error:`,
+    networkErrorMessage: 'Network error fetching trains between stations',
+    extraErrorFields: { trains: [] },
+    buildSuccess: (data) => {
+      const trainsList = data.data?.trains || [];
+      return {
+        success: true,
+        data: data.data,
+        trains: trainsList,
+        count: data.data?.count !== undefined ? data.data.count : trainsList.length,
+        from: data.data?.from,
+        to: data.data?.to,
+        meta: data.meta
       };
     }
-
-    const trainsList = data.data?.trains || [];
-    const result = { 
-      success: true, 
-      data: data.data, 
-      trains: trainsList,
-      count: data.data?.count !== undefined ? data.data.count : trainsList.length,
-      from: data.data?.from,
-      to: data.data?.to,
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getTrainsBetween(${cleanSrc}, ${cleanDst}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching trains between stations',
-      trains: [] 
-    };
-  }
+  });
 }
 
 /**
