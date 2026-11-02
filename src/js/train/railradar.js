@@ -57,6 +57,66 @@ export function getRailRadarHeaders() {
 }
 
 /**
+ * Shared RailRadar GET request handler with TTL cache and consistent error shaping
+ */
+async function requestRailRadar({
+  cacheKey,
+  url,
+  headers = getRailRadarHeaders(),
+  timeoutMs = 0,
+  httpErrorMessage,
+  httpErrorCode = (data, status) => data.error?.code || status,
+  logMessage,
+  networkErrorMessage,
+  timeoutErrorMessage,
+  extraErrorFields = {},
+  buildSuccess = (data) => ({ success: true, data: data.data, meta: data.meta })
+}) {
+  const cached = getCached(cacheKey);
+  if (cached) return cached;
+
+  try {
+    const fetchOptions = timeoutMs > 0
+      ? { headers, signal: AbortSignal.timeout(timeoutMs) }
+      : { headers };
+    const res = await fetch(url, fetchOptions);
+    const data = await res.json();
+
+    if (!res.ok || data.success === false) {
+      const errorMsg = data.error?.message || data.message || httpErrorMessage(res.status);
+      return {
+        success: false,
+        error: errorMsg,
+        code: httpErrorCode(data, res.status),
+        ...extraErrorFields,
+        raw: data
+      };
+    }
+
+    const result = buildSuccess(data);
+    setCached(cacheKey, result);
+    return result;
+  } catch (err) {
+    console.error(logMessage, timeoutMs > 0 ? err : (err.message || err));
+    const error = (timeoutErrorMessage && err.name === 'TimeoutError')
+      ? timeoutErrorMessage
+      : (err.message || networkErrorMessage);
+    return {
+      success: false,
+      error,
+      ...extraErrorFields
+    };
+  }
+}
+
+function getPnrHeaders() {
+  return {
+    ...getRailRadarHeaders(),
+    'Content-Type': 'application/json'
+  };
+}
+
+/**
  * 1. Train Schedule & Timetable
  * Fetches timetable, halt stations, arrival/departure times, platforms, and lat/lng.
  * @param {string} trainNo - e.g. "12919"
