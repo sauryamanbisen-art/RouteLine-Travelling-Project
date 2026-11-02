@@ -335,50 +335,24 @@ export async function getPNRStatus(pnr) {
     return { success: false, error: 'Please enter a valid 10-digit PNR number' };
   }
 
-  const cacheKey = `pnr_${cleanPnr}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/pnr/${encodeURIComponent(cleanPnr)}`;
-
-  try {
-    const res = await fetch(url, { 
-      headers: {
-        'Authorization': `Bearer ${RAILRADAR_CONFIG.apiKey}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      signal: AbortSignal.timeout(8000)
-    });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Status Error: ${res.status}`;
-      return {
-        success: false,
-        error: errorMsg,
-        code: data.error?.code || `HTTP_${res.status}`,
-        pnr: cleanPnr,
-        raw: data
-      };
-    }
-
-    const result = {
+  return requestRailRadar({
+    cacheKey: `pnr_${cleanPnr}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/pnr/${encodeURIComponent(cleanPnr)}`,
+    headers: getPnrHeaders(),
+    timeoutMs: 8000,
+    httpErrorMessage: (status) => `Status Error: ${status}`,
+    httpErrorCode: (data, status) => data.error?.code || `HTTP_${status}`,
+    logMessage: `[RailRadar] Failed to fetch PNR status for ${cleanPnr}:`,
+    networkErrorMessage: 'Failed to fetch PNR status',
+    timeoutErrorMessage: 'PRS enquiry timed out. Please try again.',
+    extraErrorFields: { pnr: cleanPnr },
+    buildSuccess: (data) => ({
       success: true,
       data: data.data,
       meta: data.meta,
       pnr: cleanPnr
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] Failed to fetch PNR status for ${cleanPnr}:`, err);
-    return {
-      success: false,
-      error: err.name === 'TimeoutError' ? 'PRS enquiry timed out. Please try again.' : (err.message || 'Failed to fetch PNR status'),
-      pnr: cleanPnr
-    };
-  }
+    })
+  });
 }
 
 /**
@@ -393,35 +367,19 @@ export async function getPNRPrediction(pnr) {
     return { success: false, error: '10-digit PNR number is required' };
   }
   const cleanPnr = String(pnr).trim().replace(/\D/g, '');
-  const cacheKey = `pnr_pred_${cleanPnr}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
 
-  const url = `${RAILRADAR_CONFIG.baseUrl}/pnr/${encodeURIComponent(cleanPnr)}/prediction`;
-
-  try {
-    const res = await fetch(url, { 
-      headers: {
-        'Authorization': `Bearer ${RAILRADAR_CONFIG.apiKey}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      signal: AbortSignal.timeout(8000)
-    });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Prediction Error: ${res.status}`;
-      return {
-        success: false,
-        error: errorMsg,
-        code: data.error?.code || `HTTP_${res.status}`,
-        pnr: cleanPnr,
-        raw: data
-      };
-    }
-
-    const result = {
+  return requestRailRadar({
+    cacheKey: `pnr_pred_${cleanPnr}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/pnr/${encodeURIComponent(cleanPnr)}/prediction`,
+    headers: getPnrHeaders(),
+    timeoutMs: 8000,
+    httpErrorMessage: (status) => `Prediction Error: ${status}`,
+    httpErrorCode: (data, status) => data.error?.code || `HTTP_${status}`,
+    logMessage: `[RailRadar] Failed to fetch PNR prediction for ${cleanPnr}:`,
+    networkErrorMessage: 'Failed to fetch confirmation prediction',
+    timeoutErrorMessage: 'Prediction enquiry timed out.',
+    extraErrorFields: { pnr: cleanPnr },
+    buildSuccess: (data) => ({
       success: true,
       data: data.data,
       probability: data.data?.probability,
@@ -429,17 +387,8 @@ export async function getPNRPrediction(pnr) {
       trends: data.data?.trends || [],
       meta: data.meta,
       pnr: cleanPnr
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] Failed to fetch PNR prediction for ${cleanPnr}:`, err);
-    return {
-      success: false,
-      error: err.name === 'TimeoutError' ? 'Prediction enquiry timed out.' : (err.message || 'Failed to fetch confirmation prediction'),
-      pnr: cleanPnr
-    };
-  }
+    })
+  });
 }
 
 /**
@@ -454,35 +403,19 @@ export async function getPNRRefund(pnr) {
     return { success: false, error: '10-digit PNR number is required' };
   }
   const cleanPnr = String(pnr).trim().replace(/\D/g, '');
-  const cacheKey = `pnr_refund_${cleanPnr}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
 
-  const url = `${RAILRADAR_CONFIG.baseUrl}/pnr/${encodeURIComponent(cleanPnr)}/refund`;
-
-  try {
-    const res = await fetch(url, { 
-      headers: {
-        'Authorization': `Bearer ${RAILRADAR_CONFIG.apiKey}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      signal: AbortSignal.timeout(7000)
-    });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Refund Error: ${res.status}`;
-      return {
-        success: false,
-        error: errorMsg,
-        code: data.error?.code || `HTTP_${res.status}`,
-        pnr: cleanPnr,
-        raw: data
-      };
-    }
-
-    const result = {
+  return requestRailRadar({
+    cacheKey: `pnr_refund_${cleanPnr}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/pnr/${encodeURIComponent(cleanPnr)}/refund`,
+    headers: getPnrHeaders(),
+    timeoutMs: 7000,
+    httpErrorMessage: (status) => `Refund Error: ${status}`,
+    httpErrorCode: (data, status) => data.error?.code || `HTTP_${status}`,
+    logMessage: `[RailRadar] Failed to fetch refund details for ${cleanPnr}:`,
+    networkErrorMessage: 'Failed to fetch refund details',
+    timeoutErrorMessage: 'Refund enquiry timed out.',
+    extraErrorFields: { pnr: cleanPnr },
+    buildSuccess: (data) => ({
       success: true,
       data: data.data,
       refundAmount: data.data?.refundAmount,
@@ -490,17 +423,8 @@ export async function getPNRRefund(pnr) {
       cancellationStatus: data.data?.cancellationStatus,
       meta: data.meta,
       pnr: cleanPnr
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] Failed to fetch refund details for ${cleanPnr}:`, err);
-    return {
-      success: false,
-      error: err.name === 'TimeoutError' ? 'Refund enquiry timed out.' : (err.message || 'Failed to fetch refund details'),
-      pnr: cleanPnr
-    };
-  }
+    })
+  });
 }
 
 // Bundle of all RailRadar methods
