@@ -127,40 +127,13 @@ export async function getTrainSchedule(trainNo = "12919") {
     return { success: false, error: 'Train number is required' };
   }
   const cleanNo = String(trainNo).trim();
-  const cacheKey = `sched_${cleanNo}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}?haltsOnly=true`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch schedule for train ${cleanNo} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getTrainSchedule(${cleanNo}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching train schedule' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `sched_${cleanNo}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}?haltsOnly=true`,
+    httpErrorMessage: (status) => `Failed to fetch schedule for train ${cleanNo} (HTTP ${status})`,
+    logMessage: `[RailRadar] getTrainSchedule(${cleanNo}) error:`,
+    networkErrorMessage: 'Network error fetching train schedule'
+  });
 }
 
 /**
@@ -174,40 +147,13 @@ export async function getLiveStatus(trainNo = "12919") {
     return { success: false, error: 'Train number is required' };
   }
   const cleanNo = String(trainNo).trim();
-  const cacheKey = `live_${cleanNo}`;
-  const cached = getCached(cacheKey);
-  if (cached) return cached;
-
-  const url = `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/live`;
-
-  try {
-    const res = await fetch(url, { headers: getRailRadarHeaders() });
-    const data = await res.json();
-
-    if (!res.ok || data.success === false) {
-      const errorMsg = data.error?.message || data.message || `Failed to fetch live status for train ${cleanNo} (HTTP ${res.status})`;
-      return { 
-        success: false, 
-        error: errorMsg, 
-        code: data.error?.code || res.status,
-        raw: data 
-      };
-    }
-
-    const result = { 
-      success: true, 
-      data: data.data, 
-      meta: data.meta 
-    };
-    setCached(cacheKey, result);
-    return result;
-  } catch (err) {
-    console.error(`[RailRadar] getLiveStatus(${cleanNo}) error:`, err.message || err);
-    return { 
-      success: false, 
-      error: err.message || 'Network error fetching live status' 
-    };
-  }
+  return requestRailRadar({
+    cacheKey: `live_${cleanNo}`,
+    url: `${RAILRADAR_CONFIG.baseUrl}/trains/${encodeURIComponent(cleanNo)}/live`,
+    httpErrorMessage: (status) => `Failed to fetch live status for train ${cleanNo} (HTTP ${status})`,
+    logMessage: `[RailRadar] getLiveStatus(${cleanNo}) error:`,
+    networkErrorMessage: 'Network error fetching live status'
+  });
 }
 
 /**
