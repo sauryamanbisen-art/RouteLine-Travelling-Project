@@ -39,29 +39,31 @@
 }
 
 .logo {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 12px;
-    font-size: 22px;
-    font-weight: 700;
+    gap: 0;
     text-decoration: none !important;
     color: #ffffff !important;
-    letter-spacing: -0.2px;
+    height: 40px;
+    line-height: 1;
+    flex-shrink: 0;
 }
 
-.logo img {
-    width: 32px;
-    height: 32px;
+.logo img,
+.logo img.header-logo,
+img.header-logo {
+    height: 40px;
+    width: auto;
+    max-height: 40px;
     object-fit: contain;
     display: block;
 }
 
 .logo a {
+    display: inline-flex;
+    align-items: center;
     color: #ffffff !important;
     text-decoration: none !important;
-    font-weight: 700;
-    font-size: 22px;
-    letter-spacing: -0.2px;
 }
 
 .nav-links {
@@ -966,8 +968,9 @@
 }
 
 .footer-logo img {
-    width: 28px;
     height: 28px;
+    width: auto;
+    object-fit: contain;
 }
 
 .footer-links {
