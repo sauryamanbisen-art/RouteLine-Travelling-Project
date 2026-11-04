@@ -38,42 +38,26 @@
 </head>
 <body class="bus-experience bg-[#f8f9ff] text-[#0b1c30]">
 
-  <!-- Top Global Navbar -->
-  <header class="w-full bg-white border-b border-[#e5eeff] sticky top-0 z-50 shadow-sm">
-    <div class="max-w-[1340px] mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-8">
-        <a href="../../index.html" class="flex items-center gap-2 text-decoration-none">
-          <div class="w-9 h-9 rounded-lg bg-[#000f1d] flex items-center justify-center text-white font-black text-sm tracking-tighter">RL</div>
-          <span class="text-xl font-extrabold text-[#000f1d] tracking-tight font-sans">RouteLine</span>
-        </a>
-        <nav class="hidden md:flex items-center gap-1 text-sm font-semibold text-gray-600">
-          <a href="bus-results.html" class="px-3.5 py-1.5 rounded-full text-[#000f1d] font-bold bg-[#eff4ff]">Buses</a>
-          <a href="../../index.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Trains</a>
-          <a href="../flight/flight-search.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Flights</a>
-          <a href="../hotel/hotel-results.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Hotels</a>
-          <a href="../home/cabs.html" class="px-3.5 py-1.5 hover:text-[#000f1d] transition-colors">Cabs</a>
-        </nav>
-      </div>
+  <!-- Top RouteLine Global Navbar -->
+  <header class="header header-solid">
+    <div class="header-container">
+      <a href="../../index.html" class="logo" aria-label="RouteLine Home">
+        <img src="../../public/Golden RouteLine Diamond Logo.png" alt="RouteLine" class="header-logo">
+      </a>
 
-      <div class="flex items-center gap-4 text-xs font-semibold text-gray-700">
-        <a href="#" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
-          <span class="material-symbols-outlined text-[18px] text-gray-600">headset_mic</span>
-          <span>24/7 Support</span>
-        </a>
-        <a href="../train/ticket.html" class="hidden sm:flex items-center gap-1.5 hover:text-black transition-colors">
-          <span class="material-symbols-outlined text-[18px] text-gray-600">receipt_long</span>
-          <span>Manage Booking</span>
-        </a>
-        <div class="hidden sm:flex items-center gap-1 cursor-pointer">
-          <span>₹ INR (₹)</span>
-          <span class="material-symbols-outlined text-[16px]">expand_more</span>
-        </div>
-        <div class="flex items-center gap-2 pl-2">
-          <button type="button" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#000f1d] text-white text-xs font-semibold hover:bg-black transition-all">
-            <span class="material-symbols-outlined text-[16px]">account_circle</span>
-            <span>Account</span>
-          </button>
-        </div>
+      <nav class="nav-links">
+        <a href="../../index.html">Trains</a>
+        <a href="../flight/flight-search.html">Flights</a>
+        <a href="bus-results.html" class="active">Buses</a>
+        <a href="../hotel/hotel-results.html">Hotels</a>
+        <a href="#">Offers</a>
+      </nav>
+
+      <div class="header-actions">
+        <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
+        <div class="divider"></div>
+        <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
       </div>
     </div>
   </header>
@@ -428,12 +412,9 @@
   <footer class="w-full bg-[#000f1d] text-white pt-10 pb-8 border-t border-gray-800 mt-12">
     <div class="max-w-[1340px] mx-auto px-4 sm:px-6">
       <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-6 border-b border-gray-800">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center text-white font-black text-sm">RL</div>
-          <div>
-            <div class="text-lg font-black tracking-tight font-sans">RouteLine</div>
-            <div class="text-xs text-gray-400 font-medium">Your Entire Journey, In Your Pocket</div>
-          </div>
+        <div class="flex items-center gap-4">
+          <img src="../../public/Golden RouteLine Diamond Logo.png" alt="RouteLine" class="h-8 w-auto">
+          <div class="text-xs text-gray-400 font-medium hidden sm:block">Your Entire Journey, In Your Pocket</div>
         </div>
         <div class="flex items-center gap-3">
           <div class="px-4 py-2 rounded-xl bg-white/5 border border-white/10 flex items-center gap-2">
