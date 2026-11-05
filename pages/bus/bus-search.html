@@ -5,30 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Search Buses | RouteLine Intercity Travel</title>
   <meta name="description" content="Compare thousands of bus routes and operators. Find the best seats at the lowest prices instantly on RouteLine.">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#000f1d",
+            "primary-container": "#0f2537",
+            "surface": "#f8f9ff",
+            "brand-ochre": "#854d19",
+            "brand-ochre-hover": "#714013",
+            "brand-ochre-light": "#fef3c7",
+            "on-surface": "#0b1c30",
+            "on-surface-variant": "#43474c"
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            body: ['"Inter"', 'sans-serif']
+          }
+        }
+      }
+    };
+  </script>
   <script src="/vendor/lucide.min.js"></script>
   <link rel="stylesheet" href="../../src/css/home/global/style.css">
   <link rel="stylesheet" href="../../src/css/bus/bus.css">
   <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
   <link rel="stylesheet" href="../../src/css/home/global/custom-search-controls.css">
+  <link rel="stylesheet" href="../../src/css/home/auth/auth-modal.css">
   <style>
+    /* Bus Portal Specific Nuances */
     .hero-bus {
       background-image: url('../../src/assets/bus_background_img.png');
       background-size: cover;
       background-position: center 38%;
       background-repeat: no-repeat;
     }
+    .bus-quick-services .icon-circle {
+      background: #fff5ed;
+      color: #d97736;
+    }
+    .bus-quick-services .service-item:hover .icon-circle {
+      background: #ffe8d7;
+      color: #b45309;
+    }
+    .dest-card img {
+      transition: transform 0.4s ease;
+    }
+    .dest-card:hover img {
+      transform: scale(1.05);
+    }
   </style>
 </head>
-<body class="bg-[#f8f9ff]">
+
+<body class="bg-[#f8f9ff] font-body text-on-surface antialiased selection:bg-[#fef3c7] selection:text-[#854d19]">
+  <!-- Top RouteLine Global Navbar -->
   <header class="header">
     <div class="header-container">
       <a href="../../index.html" class="logo" aria-label="RouteLine Home">
         <img src="../../public/Golden RouteLine Diamond Logo.png" alt="RouteLine" class="header-logo" decoding="async">
       </a>
+
       <nav class="nav-links">
         <a href="../../index.html">Trains</a>
         <a href="../flight/flight-search.html">Flights</a>
@@ -36,22 +81,32 @@
         <a href="../hotel/hotel-results.html">Hotels</a>
         <a href="#">Offers</a>
       </nav>
+
       <div class="header-actions">
         <a href="#" class="help-link"><i data-lucide="help-circle" class="icon-small"></i> Help</a>
         <div class="divider"></div>
         <a href="#" class="login-link"><i data-lucide="user" class="icon-small"></i> Login / Sign up</a>
+        <div class="rl-user-profile-widget" id="rl-user-profile-widget" style="display: none;"></div>
       </div>
     </div>
   </header>
+
   <main class="w-full">
+    <!-- Unified Hero Banner with Scenic Mountain Highway & Luxury Coach -->
     <section class="hero-unified hero-bus">
       <div class="hero-unified-overlay"></div>
+      
+      <!-- Standardized Hero Header -->
       <div class="hero-unified-header">
         <h1 class="hero-unified-title" style="color: #ea9b62;">Hit the road,<br>Discover new places.</h1>
         <p class="hero-unified-subtitle">Compare thousands of bus routes and operators. Find the best seats at the lowest prices instantly.</p>
       </div>
+
+      <!-- Pixel-perfect search dock (identical position, width & height across all portals) -->
       <div class="search-dock-wrapper">
+        <!-- Mode & Trip Toggle Row -->
         <div class="dock-mode-row">
+          <!-- Mode Capsule -->
           <div class="dock-mode-capsule">
             <a href="../../index.html" class="dock-mode-btn">
               <span class="material-symbols-outlined dock-icon">train</span> Trains
@@ -66,14 +121,19 @@
               <span class="material-symbols-outlined dock-icon">hotel</span> Hotels
             </a>
           </div>
+
+          <!-- Trip Type Capsule -->
           <div class="dock-trip-capsule" id="tripTypeGroup">
             <button type="button" id="btnOneWay" class="dock-trip-btn active" data-trip="one-way">One way</button>
             <button type="button" id="btnRoundTrip" class="dock-trip-btn" data-trip="round-trip">Round trip</button>
           </div>
         </div>
+
+        <!-- Main White Search Card Dock -->
         <div class="search-dock-card">
           <form id="busSearchForm" class="m-0 p-0" action="bus-results.html" method="GET">
             <div class="dock-inputs-row">
+              <!-- From City -->
               <div class="dock-input-box city-box">
                 <span class="material-symbols-outlined dock-box-icon" style="color: #e09e6c;">directions_bus</span>
                 <div class="dock-box-content">
@@ -81,9 +141,13 @@
                   <input type="text" id="fromInput" name="origin" value="Delhi" required class="dock-box-input" autocomplete="off" placeholder="Enter departure city" />
                 </div>
               </div>
+
+              <!-- Swap Button -->
               <button type="button" id="swapBtn" class="dock-swap-btn" aria-label="Swap Origin and Destination">
                 <span class="material-symbols-outlined">sync_alt</span>
               </button>
+
+              <!-- To City -->
               <div class="dock-input-box city-box">
                 <span class="material-symbols-outlined dock-box-icon" style="color: #e09e6c;">directions_bus</span>
                 <div class="dock-box-content">
@@ -91,7 +155,10 @@
                   <input type="text" id="toInput" name="destination" value="Manali" required class="dock-box-input" autocomplete="off" placeholder="Enter destination city" />
                 </div>
               </div>
+
               <div class="dock-divider"></div>
+
+              <!-- Travel Date -->
               <div class="dock-input-box date-box" id="departureDateBox">
                 <div class="dock-box-content">
                   <label for="departDateInput" class="dock-box-label">TRAVEL DATE</label>
@@ -103,6 +170,8 @@
                 </div>
                 <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
               </div>
+
+              <!-- Return Date -->
               <div class="dock-input-box date-box is-disabled dock-return-box" id="returnBox">
                 <div class="dock-box-content">
                   <label for="returnDateInput" class="dock-box-label">RETURN</label>
@@ -113,7 +182,10 @@
                 </div>
                 <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
               </div>
+
               <div class="dock-divider"></div>
+
+              <!-- Bus Type & Class Selector -->
               <div class="dock-input-box dock-dropdown-trigger class-selector-box" id="busClassSelectorBox" data-mode="bus">
                 <div class="dock-box-content">
                   <label class="dock-box-label">BUS TYPE &amp; CLASS</label>
@@ -130,12 +202,16 @@
                 </div>
                 <span class="material-symbols-outlined rl-dropdown-chevron" style="font-size: 19px; color: #9ca3af;">expand_more</span>
               </div>
+
+              <!-- Search CTA Button -->
               <button type="submit" class="dock-search-btn" style="background: linear-gradient(135deg, #c1a26c 0%, #b88b4a 100%);">
                 <span class="material-symbols-outlined">search</span>
                 <span>Search Buses</span>
               </button>
             </div>
           </form>
+
+          <!-- Mint Green Assurance Ribbon -->
           <div class="dock-assurance-ribbon">
             <div class="dock-assurance-item">
               <span class="material-symbols-outlined">check_box</span>
@@ -160,6 +236,41 @@
         </div>
       </div>
     </section>
-  </main>
+
+    <!-- Quick Services Row (8 Round Pill Icons) -->
+    <section class="quick-services bus-quick-services">
+      <a href="javascript:void(0)" class="service-item quick-service-link" data-search-route="Delhi-Manali">
+        <div class="icon-circle"><i data-lucide="map"></i></div>
+        <span>Route<br>Map</span>
+      </a>
+      <a href="bus-results.html" class="service-item">
+        <div class="icon-circle"><i data-lucide="ticket"></i></div>
+        <span>Bus<br>Tickets</span>
+      </a>
+      <a href="bus-results.html" class="service-item">
+        <div class="icon-circle"><i data-lucide="bus"></i></div>
+        <span>Bus<br>Operators</span>
+      </a>
+      <a href="bus-results.html" class="service-item">
+        <div class="icon-circle"><i data-lucide="calendar-range"></i></div>
+        <span>Bus<br>Schedule</span>
+      </a>
+      <a href="seat-selection.html" class="service-item">
+        <div class="icon-circle"><i data-lucide="armchair"></i></div>
+        <span>Seat<br>Layout</span>
+      </a>
+      <a href="javascript:void(0)" class="service-item" onclick="alert('RouteLine Bus Baggage Allowance: 1 standard check-in luggage (up to 15 kg) + 1 personal handbag included free with every seat.')">
+        <div class="icon-circle"><i data-lucide="luggage"></i></div>
+        <span>Luggage<br>Policy</span>
+      </a>
+      <a href="javascript:void(0)" class="service-item" onclick="alert('For charter and group bookings (10+ seats), please contact RouteLine Corporate Desk at 1800-4040-BUS.')">
+        <div class="icon-circle"><i data-lucide="users"></i></div>
+        <span>Group<br>Booking</span>
+      </a>
+      <a href="javascript:void(0)" class="service-item" onclick="alert('RouteLine Comprehensive Travel Shield covers medical emergencies up to ₹5,00,000, lost baggage, and transit delays.')">
+        <div class="icon-circle"><i data-lucide="shield-check"></i></div>
+        <span>Bus<br>Insurance</span>
+      </a>
+    </section>
 </body>
 </html>
