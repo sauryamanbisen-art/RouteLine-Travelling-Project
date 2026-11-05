@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="../../src/css/home/global/style.css">
   <link rel="stylesheet" href="../../src/css/bus/bus.css">
   <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+  <link rel="stylesheet" href="../../src/css/home/global/custom-search-controls.css">
   <style>
     .hero-bus {
       background-image: url('../../src/assets/bus_background_img.png');
@@ -90,27 +91,23 @@
                   <input type="text" id="toInput" name="destination" value="Manali" required class="dock-box-input" autocomplete="off" placeholder="Enter destination city" />
                 </div>
               </div>
+              <div class="dock-divider"></div>
+              <div class="dock-input-box date-box" id="departureDateBox">
+                <div class="dock-box-content">
+                  <label for="departDateInput" class="dock-box-label">TRAVEL DATE</label>
+                  <input type="date" id="departDateInput" name="dateRaw" value="2026-11-02" required class="dock-box-input rl-native-date-hidden" />
+                  <input type="hidden" id="travelDateFormatted" name="date" value="Mon, 2 Nov 2026" />
+                  <div class="dock-date-display-wrapper">
+                    <span class="dock-date-display" id="busDepartDateDisplay">Mon, 2 Nov 2026</span>
+                  </div>
+                </div>
+                <span class="material-symbols-outlined dock-box-icon-end" style="font-size: 19px; color: #9ca3af;">calendar_today</span>
+              </div>
             </div>
           </form>
         </div>
       </div>
     </section>
   </main>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const swapBtn = document.getElementById('swapBtn');
-      const fromInput = document.getElementById('fromInput');
-      const toInput = document.getElementById('toInput');
-      if (swapBtn && fromInput && toInput) {
-        swapBtn.addEventListener('click', () => {
-          swapBtn.style.transform = 'rotate(180deg)';
-          const temp = fromInput.value;
-          fromInput.value = toInput.value;
-          toInput.value = temp;
-          setTimeout(() => { swapBtn.style.transform = ''; }, 300);
-        });
-      }
-    });
-  </script>
 </body>
 </html>
