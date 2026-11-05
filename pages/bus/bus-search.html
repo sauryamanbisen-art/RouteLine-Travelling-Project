@@ -80,6 +80,9 @@
                   <input type="text" id="fromInput" name="origin" value="Delhi" required class="dock-box-input" autocomplete="off" placeholder="Enter departure city" />
                 </div>
               </div>
+              <button type="button" id="swapBtn" class="dock-swap-btn" aria-label="Swap Origin and Destination">
+                <span class="material-symbols-outlined">sync_alt</span>
+              </button>
               <div class="dock-input-box city-box">
                 <span class="material-symbols-outlined dock-box-icon" style="color: #e09e6c;">directions_bus</span>
                 <div class="dock-box-content">
@@ -93,5 +96,21 @@
       </div>
     </section>
   </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const swapBtn = document.getElementById('swapBtn');
+      const fromInput = document.getElementById('fromInput');
+      const toInput = document.getElementById('toInput');
+      if (swapBtn && fromInput && toInput) {
+        swapBtn.addEventListener('click', () => {
+          swapBtn.style.transform = 'rotate(180deg)';
+          const temp = fromInput.value;
+          fromInput.value = toInput.value;
+          toInput.value = temp;
+          setTimeout(() => { swapBtn.style.transform = ''; }, 300);
+        });
+      }
+    });
+  </script>
 </body>
 </html>
