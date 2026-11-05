@@ -11,9 +11,18 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet">
   <script src="/vendor/lucide.min.js"></script>
   <link rel="stylesheet" href="../../src/css/home/global/style.css">
+  <link rel="stylesheet" href="../../src/css/bus/bus.css">
+  <link rel="stylesheet" href="../../src/css/home/global/unified-search-dock.css">
+  <style>
+    .hero-bus {
+      background-image: url('../../src/assets/bus_background_img.png');
+      background-size: cover;
+      background-position: center 38%;
+      background-repeat: no-repeat;
+    }
+  </style>
 </head>
 <body class="bg-[#f8f9ff]">
-  <!-- Top RouteLine Global Navbar -->
   <header class="header">
     <div class="header-container">
       <a href="../../index.html" class="logo" aria-label="RouteLine Home">
@@ -33,5 +42,14 @@
       </div>
     </div>
   </header>
+  <main class="w-full">
+    <section class="hero-unified hero-bus">
+      <div class="hero-unified-overlay"></div>
+      <div class="hero-unified-header">
+        <h1 class="hero-unified-title" style="color: #ea9b62;">Hit the road,<br>Discover new places.</h1>
+        <p class="hero-unified-subtitle">Compare thousands of bus routes and operators. Find the best seats at the lowest prices instantly.</p>
+      </div>
+    </section>
+  </main>
 </body>
 </html>
