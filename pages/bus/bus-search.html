@@ -70,6 +70,26 @@
             <button type="button" id="btnRoundTrip" class="dock-trip-btn" data-trip="round-trip">Round trip</button>
           </div>
         </div>
+        <div class="search-dock-card">
+          <form id="busSearchForm" class="m-0 p-0" action="bus-results.html" method="GET">
+            <div class="dock-inputs-row">
+              <div class="dock-input-box city-box">
+                <span class="material-symbols-outlined dock-box-icon" style="color: #e09e6c;">directions_bus</span>
+                <div class="dock-box-content">
+                  <label for="fromInput" class="dock-box-label">FROM</label>
+                  <input type="text" id="fromInput" name="origin" value="Delhi" required class="dock-box-input" autocomplete="off" placeholder="Enter departure city" />
+                </div>
+              </div>
+              <div class="dock-input-box city-box">
+                <span class="material-symbols-outlined dock-box-icon" style="color: #e09e6c;">directions_bus</span>
+                <div class="dock-box-content">
+                  <label for="toInput" class="dock-box-label">TO</label>
+                  <input type="text" id="toInput" name="destination" value="Manali" required class="dock-box-input" autocomplete="off" placeholder="Enter destination city" />
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </section>
   </main>
