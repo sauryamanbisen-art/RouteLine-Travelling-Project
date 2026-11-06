@@ -48,7 +48,7 @@
       <nav class="nav-links">
         <a href="../../index.html">Trains</a>
         <a href="../flight/flight-search.html">Flights</a>
-        <a href="bus-results.html" class="active">Buses</a>
+        <a href="bus-search.html" class="active">Buses</a>
         <a href="../hotel/hotel-results.html">Hotels</a>
         <a href="#">Offers</a>
       </nav>
@@ -405,10 +405,10 @@
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-1">
           <div>
             <div class="flex items-center gap-3">
-              <h1 class="text-xl sm:text-2xl font-black text-[#000f1d] tracking-tight font-sans">Pune to Delhi</h1>
+              <h1 class="text-xl sm:text-2xl font-black text-[#000f1d] tracking-tight font-sans" id="routeTitleHeader">Pune to Delhi</h1>
               <span class="px-3 py-1 rounded-full bg-[#fef3c7] text-[#92400e] text-xs font-bold" id="totalBusesBadge">48 Buses Available</span>
             </div>
-            <p class="text-xs text-gray-500 font-medium mt-0.5">Sun, 15 Nov 2026 • Fares Inclusive of GST &amp; Insurance</p>
+            <p class="text-xs text-gray-500 font-medium mt-0.5" id="routeSubtitleHeader">Sun, 15 Nov 2026 • Fares Inclusive of GST &amp; Insurance</p>
           </div>
 
           <!-- Sorting Pills Group -->
@@ -985,10 +985,22 @@
       const originEl = document.getElementById('searchOriginDisplay');
       const destEl = document.getElementById('searchDestDisplay');
       const dateEl = document.getElementById('searchDateDisplay');
+      const routeTitleEl = document.getElementById('routeTitleHeader');
+      const routeSubtitleEl = document.getElementById('routeSubtitleHeader');
 
       if (originEl) originEl.textContent = state.search.origin;
       if (destEl) destEl.textContent = state.search.destination;
       if (dateEl) dateEl.textContent = state.search.travelDate;
+      if (routeTitleEl) routeTitleEl.textContent = `${state.search.origin} to ${state.search.destination}`;
+      if (routeSubtitleEl) routeSubtitleEl.textContent = `${state.search.travelDate} • Fares Inclusive of GST & Insurance`;
+
+      // Modify Search button: return to bus search portal
+      const modifyBtn = document.getElementById('modifySearchBtn');
+      if (modifyBtn) {
+        modifyBtn.addEventListener('click', () => {
+          window.location.href = 'bus-search.html';
+        });
+      }
 
       // Select Seats buttons handler
       document.querySelectorAll('.select-seats-btn').forEach(btn => {
