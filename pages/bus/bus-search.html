@@ -495,5 +495,137 @@
       </div>
     </div>
   </footer>
+
+  <!-- Search & Navigation Client Logic -->
+  <script type="module">
+    import { getBusState, updateBusState } from '../../src/js/bus/bus-state.js';
+    import { initCustomSearchControls } from '../../src/js/home/global/custom-search-controls.js';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // Initialize Lucide icons
+      if (window.lucide) {
+        window.lucide.createIcons();
+      }
+
+      // Initialize custom luxury date pickers & class dropdowns
+      initCustomSearchControls();
+
+      // Elements
+      const form = document.getElementById('busSearchForm');
+      const fromInput = document.getElementById('fromInput');
+      const toInput = document.getElementById('toInput');
+      const swapBtn = document.getElementById('swapBtn');
+      const departDateInput = document.getElementById('departDateInput');
+      const travelDateFormatted = document.getElementById('travelDateFormatted');
+      const busDepartDateDisplay = document.getElementById('busDepartDateDisplay');
+      const returnDateInput = document.getElementById('returnDateInput');
+      const returnBox = document.getElementById('returnBox');
+      const btnOneWay = document.getElementById('btnOneWay');
+      const btnRoundTrip = document.getElementById('btnRoundTrip');
+      const busTypeSelect = document.getElementById('busTypeSelect');
+
+      // Date helper: format YYYY-MM-DD to "Mon, 2 Nov 2026"
+      const DAYS_SHORT = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+      const MONTHS_SHORT = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      
+      function formatDisplayDate(isoStr) {
+        if (!isoStr) return '';
+        const parts = isoStr.split('-');
+        if (parts.length !== 3) return isoStr;
+        const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+        if (isNaN(d.getTime())) return isoStr;
+        return `${DAYS_SHORT[d.getDay()]}, ${d.getDate()} ${MONTHS_SHORT[d.getMonth()]} ${d.getFullYear()}`;
+      }
+
+      // Sync hidden formatted date when date changes
+      if (departDateInput) {
+        departDateInput.addEventListener('change', () => {
+          const formatted = formatDisplayDate(departDateInput.value);
+          if (travelDateFormatted) travelDateFormatted.value = formatted;
+        });
+      }
+
+      // Swap button animation & swap
+      if (swapBtn && fromInput && toInput) {
+        swapBtn.addEventListener('click', () => {
+          swapBtn.style.transform = 'rotate(180deg)';
+          const temp = fromInput.value;
+          fromInput.value = toInput.value;
+          toInput.value = temp;
+          setTimeout(() => {
+            swapBtn.style.transform = '';
+          }, 300);
+        });
+      }
+
+      // Trip type toggles
+      if (btnOneWay && btnRoundTrip && returnBox && returnDateInput) {
+        btnOneWay.addEventListener('click', () => {
+          btnOneWay.classList.add('active');
+          btnRoundTrip.classList.remove('active');
+          returnDateInput.disabled = true;
+          returnBox.classList.add('is-disabled');
+          const disp = document.getElementById('busReturnDateDisplay');
+          if (disp) {
+            disp.textContent = 'Select Date';
+            disp.classList.add('is-placeholder');
+          }
+        });
+
+        btnRoundTrip.addEventListener('click', () => {
+          btnRoundTrip.classList.add('active');
+          btnOneWay.classList.remove('active');
+          returnDateInput.disabled = false;
+          returnBox.classList.remove('is-disabled');
+          
+          // Default return = depart + 3 days
+          const curIso = departDateInput.value || '2026-11-02';
+          const parts = curIso.split('-');
+          const d = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
+          d.setDate(d.getDate() + 3);
+          const y = d.getFullYear();
+          const m = String(d.getMonth() + 1).padStart(2, '0');
+          const day = String(d.getDate()).padStart(2, '0');
+          const retIso = `${y}-${m}-${day}`;
+          returnDateInput.value = retIso;
+          const disp = document.getElementById('busReturnDateDisplay');
+          if (disp) {
+            disp.textContent = formatDisplayDate(retIso);
+            disp.classList.remove('is-placeholder');
+          }
+        });
+      }
+
+      // Form submission: redirect to bus-results.html (the booking page)
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const origin = fromInput ? fromInput.value.trim() : 'Delhi';
+          const destination = toInput ? toInput.value.trim() : 'Manali';
+          const rawDate = departDateInput ? departDateInput.value : '2026-11-02';
+          const displayDate = busDepartDateDisplay?.textContent?.trim() || formatDisplayDate(rawDate);
+          const busType = busTypeSelect ? busTypeSelect.value : 'All';
+
+          // Update local bus state
+          const state = getBusState();
+          state.search.origin = origin;
+          state.search.destination = destination;
+          state.search.travelDate = displayDate;
+          state.search.travelDateRaw = rawDate;
+          updateBusState({ search: state.search });
+
+          // Navigate directly to the bus results / booking page
+          const searchParams = new URLSearchParams({
+            origin: origin,
+            destination: destination,
+            date: displayDate,
+            type: busType
+          });
+
+          window.location.href = `bus-results.html?${searchParams.toString()}`;
+        });
+      }
+    });
+  </script>
 </body>
 </html>
