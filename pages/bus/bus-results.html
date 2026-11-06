@@ -994,7 +994,7 @@
       if (routeTitleEl) routeTitleEl.textContent = `${state.search.origin} to ${state.search.destination}`;
       if (routeSubtitleEl) routeSubtitleEl.textContent = `${state.search.travelDate} • Fares Inclusive of GST & Insurance`;
 
-      // Modify Search button: return to bus search portal
+      // Modify Search button: seamless return to bus search portal
       const modifyBtn = document.getElementById('modifySearchBtn');
       if (modifyBtn) {
         modifyBtn.addEventListener('click', () => {
