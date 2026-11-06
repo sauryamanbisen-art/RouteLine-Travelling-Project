@@ -1,6 +1,7 @@
 /**
  * RouteLine - Bus Booking State Management & Data Layer (bus-state.js)
  * Manages the 5-screen bus booking flow:
+ * Screen 0: Bus Home Search Portal (bus-search.html)
  * Screen 1: Bus Search Results
  * Screen 2: Bus Seat Selection
  * Screen 3: Passenger Details & Extra Services
