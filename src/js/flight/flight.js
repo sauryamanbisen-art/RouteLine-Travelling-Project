@@ -110,7 +110,7 @@ import { initCustomSearchControls } from '../home/global/custom-search-controls.
     resize();
 
     var start = performance.now();
-    var frame;
+    var frameId = null;
     function draw(now){
       var elapsed = reduceMotion ? 0 : ((now - start) / 1000) * speed;
       gl.uniform1f(loc.time, elapsed);
@@ -119,9 +119,14 @@ import { initCustomSearchControls } from '../home/global/custom-search-controls.
       gl.uniform3f(loc.skyTop, skyTop[0], skyTop[1], skyTop[2]);
       gl.uniform3f(loc.skyBottom, skyBottom[0], skyBottom[1], skyBottom[2]);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      frame = requestAnimationFrame(draw);
+      if (!reduceMotion) {
+        frameId = requestAnimationFrame(draw);
+      }
     }
-    frame = requestAnimationFrame(draw);
+    frameId = requestAnimationFrame(draw);
+    window.addEventListener('beforeunload', function() {
+      if (frameId) cancelAnimationFrame(frameId);
+    });
   }
 
   /* =========================================================
