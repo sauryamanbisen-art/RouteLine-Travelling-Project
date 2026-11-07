@@ -164,6 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize luxury custom calendar and class selection controls
     initCustomSearchControls();
 
+    // Safety check: ensure all dynamically mounted Lucide icons in search controls are rendered
+    if (typeof window !== 'undefined' && window.lucide && typeof window.lucide.createIcons === 'function') {
+        window.lucide.createIcons();
+    }
+
     // Delegated click on any .input-group containing a date input to open the picker
     document.addEventListener('click', (e) => {
         const group = e.target.closest('.input-group');
