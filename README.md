@@ -69,6 +69,7 @@
 
 * **Front-End Core:** Semantic HTML5, Vanilla JavaScript (Modular ES6+), Vanilla CSS3 (Custom Variables, BEM, Glassmorphism).
 * **Visual Effects:** WebGL 2D/3D Fragment Shaders (`flight.js`), vector Lucide icons.
+* **Icon Resilience & Asset Loading:** Multi-tiered Lucide icon loading architecture supporting local offline preview (`file:///`), local development servers (VS Code Live Server), Vite dev/production builds, and GitHub Pages hosting (`/RouteLine-Travelling-Project/`) with automatic Cloudflare Edge CDN fallback and non-module execution runners.
 * **Build System & Tooling:** Vite 8.2.0 (Multi-Page Rollup configuration), Oxlint 1.75.0 for high-speed static linting.
 * **External APIs:** RailRadar v1 REST API (`https://api.railradar.in/v1`) with Bearer token authentication and 45s in-memory TTL caching.
 * **State Management:** Browser `localStorage` and `sessionStorage` persistence for user sessions and ticket history.
