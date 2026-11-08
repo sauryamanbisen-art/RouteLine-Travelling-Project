@@ -137,7 +137,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const btn = document.getElementById('search-btn');
             const originalText = btn.innerHTML;
             btn.innerHTML = '<i data-lucide="loader" class="spin"></i> Searching...';
-            lucide.createIcons();
+            if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                lucide.createIcons();
+            }
             btn.style.pointerEvents = 'none';
             btn.style.opacity = '0.8';
             
@@ -145,7 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             setTimeout(() => {
                 btn.innerHTML = originalText;
-                lucide.createIcons();
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
                 btn.style.pointerEvents = 'auto';
                 btn.style.opacity = '1';
                 
