@@ -169,6 +169,17 @@ document.addEventListener('DOMContentLoaded', () => {
         window.lucide.createIcons();
     }
 
+    // Ensure icons in dynamically opened dialogs (auth modal, PNR modal) render cleanly
+    document.addEventListener('click', (e) => {
+        if (e.target.closest('[data-action="open-auth-modal"], [data-action="open-pnr-modal"], .help-link, .login-link')) {
+            setTimeout(() => {
+                if (typeof window !== 'undefined' && window.lucide && typeof window.lucide.createIcons === 'function') {
+                    window.lucide.createIcons();
+                }
+            }, 50);
+        }
+    });
+
     // Delegated click on any .input-group containing a date input to open the picker
     document.addEventListener('click', (e) => {
         const group = e.target.closest('.input-group');
