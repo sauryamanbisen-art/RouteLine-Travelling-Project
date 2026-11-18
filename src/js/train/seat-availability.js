@@ -801,8 +801,7 @@ function setupResultsListeners() {
   // 1. Book Now Button -> Opens Payment Gateway (Protected by requireAuthentication)
   document.getElementById('sa-book-now-btn')?.addEventListener('click', () => {
     requireAuthentication(() => {
-      const { trainNo, trainName, from, to, date, classCode, fareData, calendarData, selectedIndex } = currentQueryState;
-      const selectedDay = calendarData[selectedIndex] || calendarData[0] || {};
+      const { trainNo, trainName, from, to, classCode, fareData } = currentQueryState;
       const totalFare = fareData?.totalFare || 865;
       const currentUser = getCurrentUser();
       const paxName = currentUser?.name || 'Verified Traveler';
