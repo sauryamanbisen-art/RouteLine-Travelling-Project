@@ -241,44 +241,57 @@
       if (alertBox) alertBox.style.display = 'none';
     }
 
+    const TAB_META = {
+      login: {
+        showTabs: true,
+        activeTabBtn: loginTabBtn,
+        activeForm: loginForm,
+        badgeText: 'ROUTELINE SECURE PASS',
+        badgeIcon: 'shield-check',
+        title: 'WELCOME TO ROUTELINE',
+        subtitle: 'Sign in to access your flight bookings, frequent flyer privileges, or continue exploring as a guest.'
+      },
+      signup: {
+        showTabs: true,
+        activeTabBtn: signupTabBtn,
+        activeForm: signupForm,
+        badgeText: 'ROUTELINE SECURE PASS',
+        badgeIcon: 'shield-check',
+        title: 'WELCOME TO ROUTELINE',
+        subtitle: 'Create your RouteLine account to access flight bookings, privileges, and seamless travel.'
+      },
+      forgot: {
+        showTabs: false,
+        activeTabBtn: null,
+        activeForm: forgotForm,
+        badgeText: 'ROUTELINE RECOVERY',
+        badgeIcon: 'key',
+        title: 'RESET YOUR PASSWORD',
+        subtitle: 'Enter the email associated with your account and we\'ll assist with verifying access.'
+      }
+    };
+
+    const allAuthForms = [loginForm, signupForm, forgotForm];
+
     function switchTab(tab = 'login') {
       clearAlert();
-      if (tab === 'signup') {
-        tabsContainer.style.display = 'flex';
-        loginTabBtn.classList.remove('active');
-        signupTabBtn.classList.add('active');
-        loginForm.classList.remove('active');
-        forgotForm.classList.remove('active');
-        signupForm.classList.add('active');
-        badgeText.textContent = 'ROUTELINE SECURE PASS';
-        badgeIcon.setAttribute('data-lucide', 'shield-check');
-        modalTitle.textContent = 'WELCOME TO ROUTELINE';
-        modalSub.textContent = 'Create your RouteLine account to access flight bookings, privileges, and seamless travel.';
-      } else if (tab === 'forgot') {
-        tabsContainer.style.display = 'none';
-        loginForm.classList.remove('active');
-        signupForm.classList.remove('active');
-        forgotForm.classList.add('active');
-        badgeText.textContent = 'ROUTELINE RECOVERY';
-        badgeIcon.setAttribute('data-lucide', 'key');
-        modalTitle.textContent = 'RESET YOUR PASSWORD';
-        modalSub.textContent = 'Enter the email associated with your account and we\'ll assist with verifying access.';
-      } else {
-        tabsContainer.style.display = 'flex';
-        signupTabBtn.classList.remove('active');
-        loginTabBtn.classList.add('active');
-        signupForm.classList.remove('active');
-        forgotForm.classList.remove('active');
-        loginForm.classList.add('active');
-        badgeText.textContent = 'ROUTELINE SECURE PASS';
-        badgeIcon.setAttribute('data-lucide', 'shield-check');
-        modalTitle.textContent = 'WELCOME TO ROUTELINE';
-        modalSub.textContent = 'Sign in to access your flight bookings, frequent flyer privileges, or continue exploring as a guest.';
+      const config = TAB_META[tab] || TAB_META.login;
+
+      tabsContainer.style.display = config.showTabs ? 'flex' : 'none';
+      if (config.activeTabBtn) {
+        loginTabBtn.classList.toggle('active', config.activeTabBtn === loginTabBtn);
+        signupTabBtn.classList.toggle('active', config.activeTabBtn === signupTabBtn);
       }
 
-      loginForm.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
-      signupForm.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
-      forgotForm.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
+      allAuthForms.forEach(form => {
+        form.classList.toggle('active', form === config.activeForm);
+        form.querySelector('.rl-form-scrollable-fields')?.scrollTo({ top: 0, behavior: 'instant' });
+      });
+
+      badgeText.textContent = config.badgeText;
+      badgeIcon.setAttribute('data-lucide', config.badgeIcon);
+      modalTitle.textContent = config.title;
+      modalSub.textContent = config.subtitle;
 
       if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
     }
