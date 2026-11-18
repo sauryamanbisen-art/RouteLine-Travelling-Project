@@ -550,7 +550,7 @@ export async function handleCheckAvailability() {
 
     // Fallback generation if RailRadar returned empty calendar
     if (!calendar || calendar.length === 0) {
-      calendar = generateRealisticCalendar(date, classCode);
+      calendar = generateRealisticCalendar(date);
     }
 
     if (!fareBreakdown) {
@@ -565,7 +565,7 @@ export async function handleCheckAvailability() {
   } catch (err) {
     console.error('[Seat Availability] Error checking seats:', err);
     // Render graceful realistic calendar
-    currentQueryState.calendarData = generateRealisticCalendar(date, classCode);
+    currentQueryState.calendarData = generateRealisticCalendar(date);
     currentQueryState.fareData = calculateEstimatedFare(classCode);
     renderSeatAvailabilityResults();
   } finally {
@@ -580,7 +580,7 @@ export async function handleCheckAvailability() {
 /**
  * Generates a realistic rolling 14-day PRS calendar
  */
-function generateRealisticCalendar(startDateStr, classCode) {
+function generateRealisticCalendar(startDateStr) {
   const result = [];
   const parts = startDateStr.split('-');
   const baseDate = parts.length === 3 
