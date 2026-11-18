@@ -673,6 +673,16 @@ function formatDisplayDate(dateStr) {
 }
 
 /**
+ * Resolves badge CSS modifier from a PRS calendar day entry
+ */
+function getAvailabilityStatusClass(day) {
+  const statusUpper = (day.status || '').toUpperCase();
+  if (statusUpper.includes('AVL') || day.isAvailable) return 'available';
+  if (statusUpper.includes('RAC')) return 'rac';
+  return 'waitlist';
+}
+
+/**
  * Renders the full interactive seat availability results view
  */
 function renderSeatAvailabilityResults() {
@@ -682,17 +692,7 @@ function renderSeatAvailabilityResults() {
   const { trainNo, trainName, from, to, date, classCode, quotaCode, calendarData, fareData, selectedIndex } = currentQueryState;
   const selectedDay = calendarData[selectedIndex] || calendarData[0] || {};
   const totalFare = fareData?.totalFare || 865;
-
-  // Determine status class
-  let statusClass = 'available';
-  const statusUpper = (selectedDay.status || '').toUpperCase();
-  if (statusUpper.includes('AVL') || selectedDay.isAvailable) {
-    statusClass = 'available';
-  } else if (statusUpper.includes('RAC')) {
-    statusClass = 'rac';
-  } else {
-    statusClass = 'waitlist';
-  }
+  const statusClass = getAvailabilityStatusClass(selectedDay);
 
   // Available classes for train
   const classOptions = ['SL', '3A', '2A', '1A', '3E', 'CC'];
@@ -775,11 +775,7 @@ function renderSeatAvailabilityResults() {
 
         <div class="sa-calendar-scroll">
           ${calendarData.map((day, idx) => {
-            let dClass = 'available';
-            const sUp = (day.status || '').toUpperCase();
-            if (sUp.includes('AVL') || day.isAvailable) dClass = 'available';
-            else if (sUp.includes('RAC')) dClass = 'rac';
-            else dClass = 'waitlist';
+            const dClass = getAvailabilityStatusClass(day);
 
             return `
               <div class="sa-day-card ${idx === selectedIndex ? 'selected' : ''}" data-index="${idx}">
