@@ -978,34 +978,28 @@
         return true;
       }
 
+      function filterRouteFlights(flights) {
+        const checkedAirlines = Array.from(airlinesFilterList.querySelectorAll('.airline-check:checked')).map(c => c.value);
+        const allowNonStop = stopNonStop ? stopNonStop.checked : true;
+        const allowOneStop = stopOneStop ? stopOneStop.checked : false;
+
+        return flights.filter(flight => {
+          if (flight.basePrice > maxPrice) return false;
+          if (checkedAirlines.length > 0 && !checkedAirlines.includes(flight.airline)) return false;
+
+          const isNonStop = flight.stops.toLowerCase().includes('non');
+          if (isNonStop && !allowNonStop) return false;
+          if (!isNonStop && !allowOneStop) return false;
+
+          return matchesDepartureSlot(flight.departureTime, selectedSlot);
+        });
+      }
+
       // Main Render Filtered Flights Function
       function renderFilteredFlights() {
         if (baseRouteFlights.length === 0) return;
 
-        let list = [...baseRouteFlights];
-
-        // 1. Price Filter
-        list = list.filter(f => f.basePrice <= maxPrice);
-
-        // 2. Airline Filter
-        const checkedAirlines = Array.from(airlinesFilterList.querySelectorAll('.airline-check:checked')).map(c => c.value);
-        if (checkedAirlines.length > 0) {
-          list = list.filter(f => checkedAirlines.includes(f.airline));
-        }
-
-        // 3. Stops Filter
-        const allowNonStop = stopNonStop ? stopNonStop.checked : true;
-        const allowOneStop = stopOneStop ? stopOneStop.checked : false;
-
-        list = list.filter(f => {
-          const isNon = f.stops.toLowerCase().includes('non');
-          if (isNon && !allowNonStop) return false;
-          if (!isNon && !allowOneStop) return false;
-          return true;
-        });
-
-        // 4. Departure Time Slot Filter
-        list = list.filter(f => matchesDepartureSlot(f.departureTime, selectedSlot));
+        let list = filterRouteFlights(baseRouteFlights);
 
         // 5. Sorting
         if (sortMode === 'cheapest') {
