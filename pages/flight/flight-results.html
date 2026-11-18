@@ -1070,6 +1070,88 @@
         return { badgeBg, topBadges, amenitiesText, perkTag };
       }
 
+      function renderFlightCard(flight) {
+        const { badgeBg, topBadges, amenitiesText, perkTag } = getAirlinePresentation(flight.airlineCode);
+        const destTerminal = flight.destinationAirport?.includes('Terminal 3') ? 'Indira Gandhi T3' : 'Indira Gandhi T2';
+
+        return `
+          <div class="flight-card bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:border-gray-200 transition-all space-y-3.5">
+            <!-- Row 1: Carrier & Badges -->
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg ${badgeBg} font-mono font-bold flex items-center justify-center text-xs shadow-sm">
+                  ${flight.airlineCode}
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="font-sans font-bold text-sm text-gray-900">${flight.airline}</span>
+                  <span class="text-xs text-gray-500 font-mono">${flight.flightNumber} • ${flight.aircraft}</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                ${topBadges}
+              </div>
+            </div>
+
+            <!-- Row 2: Timing, Route Vector -->
+            <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 py-1">
+              <!-- Departure (4 cols) -->
+              <div class="md:col-span-4 text-left">
+                <div class="text-3xl font-extrabold text-gray-900 tracking-tight">${flight.departureTime}</div>
+                <div class="text-lg font-extrabold text-gray-900 font-sans tracking-tight">${flight.originCode}</div>
+                <div class="text-xs text-gray-500 font-medium">Pune Intl Airport</div>
+              </div>
+
+              <!-- Flight vector line (4 cols) -->
+              <div class="md:col-span-4 flex flex-col items-center justify-center px-2">
+                <span class="text-xs text-gray-500 font-medium mb-1">${flight.duration}</span>
+                <div class="relative w-full flex items-center justify-center">
+                  <div class="h-[1px] w-full bg-blue-100"></div>
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-700 absolute left-0"></span>
+                  <span class="material-symbols-outlined text-[16px] text-amber-700 bg-white px-1">flight</span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-amber-700 absolute right-0"></span>
+                </div>
+                <span class="text-[11px] font-semibold text-amber-800 mt-1">Non-stop</span>
+              </div>
+
+              <!-- Arrival (4 cols) -->
+              <div class="md:col-span-4 text-right">
+                <div class="text-3xl font-extrabold text-gray-900 tracking-tight">${flight.arrivalTime}</div>
+                <div class="text-lg font-extrabold text-gray-900 font-sans tracking-tight">${flight.destinationCode}</div>
+                <div class="text-xs text-gray-500 font-medium">${destTerminal}</div>
+              </div>
+            </div>
+
+            <!-- Row 3: Amenities ribbon -->
+            <div class="w-full bg-[#f0f4fa] rounded-xl px-4 py-2 flex flex-wrap items-center gap-3 text-xs text-gray-600 font-medium">
+              ${amenitiesText}
+            </div>
+
+            <!-- Row 4: Price & Action CTA -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+              <div class="flex items-center gap-3 flex-wrap">
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-2xl font-black text-gray-900 tracking-tight">₹${flight.basePrice.toLocaleString('en-IN')}</span>
+                  <span class="text-xs text-gray-500 font-medium">per adult</span>
+                </div>
+                ${perkTag}
+              </div>
+
+              <div class="flex items-center gap-4">
+                <button type="button" class="view-details-link text-xs font-bold text-gray-800 hover:text-amber-800 transition-colors cursor-pointer" data-flight-id="${flight.id}">
+                  Flight Details
+                </button>
+                <button type="button"
+                        class="select-flight-btn px-6 py-2.5 rounded-full bg-[#24180d] hover:bg-[#382615] text-white font-bold text-xs shadow-sm transition-all flex items-center gap-2 active:scale-95 cursor-pointer"
+                        data-flight-id="${flight.id}">
+                  <span>View Details &amp; Select</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
       // Main Render Filtered Flights Function
       function renderFilteredFlights() {
         if (baseRouteFlights.length === 0) return;
@@ -1104,92 +1186,7 @@
         }
 
         emptyState.classList.add('hidden');
-
-        flightsList.innerHTML = list.map(flight => {
-          const { badgeBg, topBadges, amenitiesText, perkTag } = getAirlinePresentation(flight.airlineCode);
-
-          const depTime = flight.departureTime;
-          const arrTime = flight.arrivalTime;
-          const duration = flight.duration;
-          const destTerminal = flight.destinationAirport?.includes('Terminal 3') ? 'Indira Gandhi T3' : 'Indira Gandhi T2';
-
-          return `
-            <div class="flight-card bg-white rounded-2xl p-5 shadow-sm border border-gray-100 hover:border-gray-200 transition-all space-y-3.5">
-              <!-- Row 1: Carrier & Badges -->
-              <div class="flex flex-wrap items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg ${badgeBg} font-mono font-bold flex items-center justify-center text-xs shadow-sm">
-                    ${flight.airlineCode}
-                  </div>
-                  <div class="flex items-center gap-2">
-                    <span class="font-sans font-bold text-sm text-gray-900">${flight.airline}</span>
-                    <span class="text-xs text-gray-500 font-mono">${flight.flightNumber} • ${flight.aircraft}</span>
-                  </div>
-                </div>
-                <div class="flex items-center gap-2">
-                  ${topBadges}
-                </div>
-              </div>
-
-              <!-- Row 2: Timing, Route Vector -->
-              <div class="grid grid-cols-1 md:grid-cols-12 items-center gap-4 py-1">
-                <!-- Departure (4 cols) -->
-                <div class="md:col-span-4 text-left">
-                  <div class="text-3xl font-extrabold text-gray-900 tracking-tight">${depTime}</div>
-                  <div class="text-lg font-extrabold text-gray-900 font-sans tracking-tight">${flight.originCode}</div>
-                  <div class="text-xs text-gray-500 font-medium">Pune Intl Airport</div>
-                </div>
-
-                <!-- Flight vector line (4 cols) -->
-                <div class="md:col-span-4 flex flex-col items-center justify-center px-2">
-                  <span class="text-xs text-gray-500 font-medium mb-1">${duration}</span>
-                  <div class="relative w-full flex items-center justify-center">
-                    <div class="h-[1px] w-full bg-blue-100"></div>
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-700 absolute left-0"></span>
-                    <span class="material-symbols-outlined text-[16px] text-amber-700 bg-white px-1">flight</span>
-                    <span class="w-1.5 h-1.5 rounded-full bg-amber-700 absolute right-0"></span>
-                  </div>
-                  <span class="text-[11px] font-semibold text-amber-800 mt-1">Non-stop</span>
-                </div>
-
-                <!-- Arrival (4 cols) -->
-                <div class="md:col-span-4 text-right">
-                  <div class="text-3xl font-extrabold text-gray-900 tracking-tight">${arrTime}</div>
-                  <div class="text-lg font-extrabold text-gray-900 font-sans tracking-tight">${flight.destinationCode}</div>
-                  <div class="text-xs text-gray-500 font-medium">${destTerminal}</div>
-                </div>
-              </div>
-
-              <!-- Row 3: Amenities ribbon -->
-              <div class="w-full bg-[#f0f4fa] rounded-xl px-4 py-2 flex flex-wrap items-center gap-3 text-xs text-gray-600 font-medium">
-                ${amenitiesText}
-              </div>
-
-              <!-- Row 4: Price & Action CTA -->
-              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
-                <div class="flex items-center gap-3 flex-wrap">
-                  <div class="flex items-baseline gap-1.5">
-                    <span class="text-2xl font-black text-gray-900 tracking-tight">₹${flight.basePrice.toLocaleString('en-IN')}</span>
-                    <span class="text-xs text-gray-500 font-medium">per adult</span>
-                  </div>
-                  ${perkTag}
-                </div>
-
-                <div class="flex items-center gap-4">
-                  <button type="button" class="view-details-link text-xs font-bold text-gray-800 hover:text-amber-800 transition-colors cursor-pointer" data-flight-id="${flight.id}">
-                    Flight Details
-                  </button>
-                  <button type="button" 
-                          class="select-flight-btn px-6 py-2.5 rounded-full bg-[#24180d] hover:bg-[#382615] text-white font-bold text-xs shadow-sm transition-all flex items-center gap-2 active:scale-95 cursor-pointer"
-                          data-flight-id="${flight.id}">
-                    <span>View Details &amp; Select</span>
-                    <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
+        flightsList.innerHTML = list.map(renderFlightCard).join('');
 
         // Attach Click Listener to buttons & Flight Details links
         document.querySelectorAll('.select-flight-btn, .view-details-link').forEach(btn => {
