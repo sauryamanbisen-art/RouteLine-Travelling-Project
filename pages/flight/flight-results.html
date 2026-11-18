@@ -968,6 +968,16 @@
       if (resetFiltersBtn) resetFiltersBtn.addEventListener('click', resetFilters);
       if (clearAllFiltersBtn) clearAllFiltersBtn.addEventListener('click', resetFilters);
 
+      function matchesDepartureSlot(departureTime, slot) {
+        if (!slot) return true;
+        const hour = parseInt(departureTime.split(':')[0], 10);
+        if (slot === 'early') return hour < 6;
+        if (slot === 'morning') return hour >= 6 && hour < 12;
+        if (slot === 'afternoon') return hour >= 12 && hour < 18;
+        if (slot === 'night') return hour >= 18;
+        return true;
+      }
+
       // Main Render Filtered Flights Function
       function renderFilteredFlights() {
         if (baseRouteFlights.length === 0) return;
@@ -995,21 +1005,7 @@
         });
 
         // 4. Departure Time Slot Filter
-        if (selectedSlot === 'early') {
-          list = list.filter(f => parseInt(f.departureTime.split(':')[0], 10) < 6);
-        } else if (selectedSlot === 'morning') {
-          list = list.filter(f => {
-            const h = parseInt(f.departureTime.split(':')[0], 10);
-            return h >= 6 && h < 12;
-          });
-        } else if (selectedSlot === 'afternoon') {
-          list = list.filter(f => {
-            const h = parseInt(f.departureTime.split(':')[0], 10);
-            return h >= 12 && h < 18;
-          });
-        } else if (selectedSlot === 'night') {
-          list = list.filter(f => parseInt(f.departureTime.split(':')[0], 10) >= 18);
-        }
+        list = list.filter(f => matchesDepartureSlot(f.departureTime, selectedSlot));
 
         // 5. Sorting
         if (sortMode === 'cheapest') {
