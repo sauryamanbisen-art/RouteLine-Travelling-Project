@@ -995,24 +995,27 @@
         });
       }
 
-      // Main Render Filtered Flights Function
-      function renderFilteredFlights() {
-        if (baseRouteFlights.length === 0) return;
-
-        let list = filterRouteFlights(baseRouteFlights);
-
-        // 5. Sorting
-        if (sortMode === 'cheapest') {
-          list.sort((a, b) => a.basePrice - b.basePrice);
-        } else if (sortMode === 'fastest') {
-          list.sort((a, b) => a.duration.localeCompare(b.duration));
-        } else if (sortMode === 'recommended') {
-          list.sort((a, b) => {
+      function sortFlightsByMode(flights, mode) {
+        const sorted = [...flights];
+        if (mode === 'cheapest') {
+          sorted.sort((a, b) => a.basePrice - b.basePrice);
+        } else if (mode === 'fastest') {
+          sorted.sort((a, b) => a.duration.localeCompare(b.duration));
+        } else if (mode === 'recommended') {
+          sorted.sort((a, b) => {
             if (a.airlineCode === '6E') return -1;
             if (b.airlineCode === '6E') return 1;
             return a.basePrice - b.basePrice;
           });
         }
+        return sorted;
+      }
+
+      // Main Render Filtered Flights Function
+      function renderFilteredFlights() {
+        if (baseRouteFlights.length === 0) return;
+
+        const list = sortFlightsByMode(filterRouteFlights(baseRouteFlights), sortMode);
 
         flightMatchesCount.textContent = `${list.length} non-stop flights`;
 
