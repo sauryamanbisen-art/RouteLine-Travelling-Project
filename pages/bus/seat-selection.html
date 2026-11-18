@@ -534,6 +534,33 @@
       deckLowerBtn.addEventListener('click', () => switchDeck('lower'));
       deckUpperBtn.addEventListener('click', () => switchDeck('upper'));
 
+      function renderBerthCard(berth, berthType) {
+        if (!berth) return '<div></div>';
+        const isSelected = state.selectedSeats.includes(berth.id);
+        const iconName = isSelected
+          ? 'check_circle'
+          : (berth.status === 'booked' ? 'lock' : (berth.status === 'female' ? 'female' : 'bed'));
+        const priceColorClass = isSelected
+          ? 'text-white'
+          : (berth.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]');
+        const priceLabel = berth.status === 'booked' ? 'BOOKED' : '₹' + berth.price.toLocaleString('en-IN');
+
+        return `
+          <div class="berth-card ${getBerthClasses(berth, isSelected)}"
+               data-seat-id="${berth.id}" data-price="${berth.price}" data-deck="${berth.deck}" data-type="${berthType}">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold font-sans">${berth.id}</span>
+              <span class="material-symbols-outlined text-[15px] ${isSelected ? 'text-white' : 'text-gray-400'}">
+                ${iconName}
+              </span>
+            </div>
+            <div class="text-[11px] font-extrabold ${priceColorClass}">
+              ${priceLabel}
+            </div>
+          </div>
+        `;
+      }
+
       // Render Berths Grid (2+1 Sleeper Layout)
       function renderBerths() {
         const container = document.getElementById('berthsContainer');
@@ -546,31 +573,16 @@
         // Group into rows (5 rows)
         let html = '';
         for (let row = 0; row < singleBerths.length; row++) {
-          const s = singleBerths[row];
-          const d1 = doubleBerths[row * 2];
-          const d2 = doubleBerths[row * 2 + 1];
-
-          const isSelectedS = state.selectedSeats.includes(s.id);
-          const isSelectedD1 = d1 ? state.selectedSeats.includes(d1.id) : false;
-          const isSelectedD2 = d2 ? state.selectedSeats.includes(d2.id) : false;
+          const singleBerth = singleBerths[row];
+          const doubleLeft = doubleBerths[row * 2];
+          const doubleRight = doubleBerths[row * 2 + 1];
 
           html += `
             <div class="grid grid-cols-12 gap-4 items-center">
               
               <!-- Left Single Berth (4 cols) -->
               <div class="col-span-4">
-                <div class="berth-card ${getBerthClasses(s, isSelectedS)}" 
-                     data-seat-id="${s.id}" data-price="${s.price}" data-deck="${s.deck}" data-type="Single">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-bold font-sans">${s.id}</span>
-                    <span class="material-symbols-outlined text-[15px] ${isSelectedS ? 'text-white' : 'text-gray-400'}">
-                      ${isSelectedS ? 'check_circle' : (s.status === 'booked' ? 'lock' : (s.status === 'female' ? 'female' : 'bed'))}
-                    </span>
-                  </div>
-                  <div class="text-[11px] font-extrabold ${isSelectedS ? 'text-white' : (s.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]')}">
-                    ${s.status === 'booked' ? 'BOOKED' : '₹' + s.price.toLocaleString('en-IN')}
-                  </div>
-                </div>
+                ${renderBerthCard(singleBerth, 'Single')}
               </div>
 
               <!-- Aisle Spacer (1 col) -->
@@ -580,35 +592,8 @@
 
               <!-- Right Double Berths (7 cols) -->
               <div class="col-span-7 grid grid-cols-2 gap-2">
-                ${d1 ? `
-                  <div class="berth-card ${getBerthClasses(d1, isSelectedD1)}"
-                       data-seat-id="${d1.id}" data-price="${d1.price}" data-deck="${d1.deck}" data-type="Double">
-                    <div class="flex items-center justify-between">
-                      <span class="text-xs font-bold font-sans">${d1.id}</span>
-                      <span class="material-symbols-outlined text-[15px] ${isSelectedD1 ? 'text-white' : 'text-gray-400'}">
-                        ${isSelectedD1 ? 'check_circle' : (d1.status === 'booked' ? 'lock' : 'bed')}
-                      </span>
-                    </div>
-                    <div class="text-[11px] font-extrabold ${isSelectedD1 ? 'text-white' : (d1.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]')}">
-                      ${d1.status === 'booked' ? 'BOOKED' : '₹' + d1.price.toLocaleString('en-IN')}
-                    </div>
-                  </div>
-                ` : `<div></div>`}
-
-                ${d2 ? `
-                  <div class="berth-card ${getBerthClasses(d2, isSelectedD2)}"
-                       data-seat-id="${d2.id}" data-price="${d2.price}" data-deck="${d2.deck}" data-type="Double">
-                    <div class="flex items-center justify-between">
-                      <span class="text-xs font-bold font-sans">${d2.id}</span>
-                      <span class="material-symbols-outlined text-[15px] ${isSelectedD2 ? 'text-white' : 'text-gray-400'}">
-                        ${isSelectedD2 ? 'check_circle' : (d2.status === 'booked' ? 'lock' : 'bed')}
-                      </span>
-                    </div>
-                    <div class="text-[11px] font-extrabold ${isSelectedD2 ? 'text-white' : (d2.status === 'booked' ? 'text-gray-400' : 'text-[#854d19]')}">
-                      ${d2.status === 'booked' ? 'BOOKED' : '₹' + d2.price.toLocaleString('en-IN')}
-                    </div>
-                  </div>
-                ` : `<div></div>`}
+                ${renderBerthCard(doubleLeft, 'Double')}
+                ${renderBerthCard(doubleRight, 'Double')}
               </div>
 
             </div>
