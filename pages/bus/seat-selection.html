@@ -697,60 +697,49 @@
         state.passengers = newPax;
       }
 
+      function renderPointRadioList({ containerId, points, radioName, stateKey }) {
+        const listEl = document.getElementById(containerId);
+        if (!listEl) return;
+
+        const currentPoint = state[stateKey];
+        listEl.innerHTML = points.map((point, idx) => {
+          const isChecked = (currentPoint?.id === point.id) || (idx === 0 && !currentPoint);
+          return `
+            <label class="p-3 rounded-xl border flex items-start gap-3 cursor-pointer transition-all ${isChecked ? 'bg-[#eff6ff] border-[#93c5fd] shadow-2xs' : 'bg-white border-gray-200 hover:border-gray-300'}">
+              <input type="radio" name="${radioName}" value="${point.id}" ${isChecked ? 'checked' : ''} class="mt-1 text-[#854d19] focus:ring-0">
+              <div class="text-xs flex-1">
+                <div class="font-bold text-[#000f1d]">${point.time} - ${point.name}</div>
+                <div class="text-gray-500 text-[11px]">${point.landmark}</div>
+              </div>
+            </label>
+          `;
+        }).join('');
+
+        listEl.querySelectorAll(`input[name="${radioName}"]`).forEach(radio => {
+          radio.addEventListener('change', (e) => {
+            const selected = points.find(p => p.id === e.target.value);
+            state[stateKey] = selected;
+            updateBusState({ [stateKey]: selected });
+            renderPoints();
+            renderSummary();
+          });
+        });
+      }
+
       // Render Boarding & Dropping Points Radios
       function renderPoints() {
-        const bList = document.getElementById('boardingPointsList');
-        const dList = document.getElementById('droppingPointsList');
-
-        if (bList) {
-          bList.innerHTML = BOARDING_POINTS.map((bp, idx) => {
-            const isChecked = (state.boardingPoint?.id === bp.id) || (idx === 0 && !state.boardingPoint);
-            return `
-              <label class="p-3 rounded-xl border flex items-start gap-3 cursor-pointer transition-all ${isChecked ? 'bg-[#eff6ff] border-[#93c5fd] shadow-2xs' : 'bg-white border-gray-200 hover:border-gray-300'}">
-                <input type="radio" name="boardingPoint" value="${bp.id}" ${isChecked ? 'checked' : ''} class="mt-1 text-[#854d19] focus:ring-0">
-                <div class="text-xs flex-1">
-                  <div class="font-bold text-[#000f1d]">${bp.time} - ${bp.name}</div>
-                  <div class="text-gray-500 text-[11px]">${bp.landmark}</div>
-                </div>
-              </label>
-            `;
-          }).join('');
-
-          bList.querySelectorAll('input[name="boardingPoint"]').forEach(r => {
-            r.addEventListener('change', (e) => {
-              const selected = BOARDING_POINTS.find(b => b.id === e.target.value);
-              state.boardingPoint = selected;
-              updateBusState({ boardingPoint: selected });
-              renderPoints();
-              renderSummary();
-            });
-          });
-        }
-
-        if (dList) {
-          dList.innerHTML = DROPPING_POINTS.map((dp, idx) => {
-            const isChecked = (state.droppingPoint?.id === dp.id) || (idx === 0 && !state.droppingPoint);
-            return `
-              <label class="p-3 rounded-xl border flex items-start gap-3 cursor-pointer transition-all ${isChecked ? 'bg-[#eff6ff] border-[#93c5fd] shadow-2xs' : 'bg-white border-gray-200 hover:border-gray-300'}">
-                <input type="radio" name="droppingPoint" value="${dp.id}" ${isChecked ? 'checked' : ''} class="mt-1 text-[#854d19] focus:ring-0">
-                <div class="text-xs flex-1">
-                  <div class="font-bold text-[#000f1d]">${dp.time} - ${dp.name}</div>
-                  <div class="text-gray-500 text-[11px]">${dp.landmark}</div>
-                </div>
-              </label>
-            `;
-          }).join('');
-
-          dList.querySelectorAll('input[name="droppingPoint"]').forEach(r => {
-            r.addEventListener('change', (e) => {
-              const selected = DROPPING_POINTS.find(d => d.id === e.target.value);
-              state.droppingPoint = selected;
-              updateBusState({ droppingPoint: selected });
-              renderPoints();
-              renderSummary();
-            });
-          });
-        }
+        renderPointRadioList({
+          containerId: 'boardingPointsList',
+          points: BOARDING_POINTS,
+          radioName: 'boardingPoint',
+          stateKey: 'boardingPoint'
+        });
+        renderPointRadioList({
+          containerId: 'droppingPointsList',
+          points: DROPPING_POINTS,
+          radioName: 'droppingPoint',
+          stateKey: 'droppingPoint'
+        });
       }
 
       // Render Summary in Right Sidebar
