@@ -315,9 +315,9 @@ function setupAutocomplete() {
 }
 
 /**
- * Station Autocomplete helper
+ * Shared autocomplete dropdown binder for station and train inputs
  */
-function setupStationAutocomplete(inputId, dropdownId, onSelect) {
+function bindAutocomplete({ inputId, dropdownId, getMatches, renderItem, onItemClick }) {
   const input = document.getElementById(inputId);
   const dropdown = document.getElementById(dropdownId);
   if (!input || !dropdown) return;
@@ -329,30 +329,19 @@ function setupStationAutocomplete(inputId, dropdownId, onSelect) {
       return;
     }
 
-    const matches = POPULAR_STATIONS.filter(s => 
-      s.code.includes(val) || s.name.toUpperCase().includes(val)
-    ).slice(0, 6);
-
+    const matches = getMatches(val).slice(0, 6);
     if (matches.length === 0) {
       dropdown.style.display = 'none';
       return;
     }
 
-    dropdown.innerHTML = matches.map(s => `
-      <div class="sa-autocomplete-item" data-code="${s.code}" data-name="${s.name}">
-        <strong>${s.code}</strong>
-        <span>${s.name}</span>
-      </div>
-    `).join('');
+    dropdown.innerHTML = matches.map(renderItem).join('');
     dropdown.style.display = 'block';
 
     dropdown.querySelectorAll('.sa-autocomplete-item').forEach(item => {
       item.addEventListener('click', () => {
-        const code = item.getAttribute('data-code');
-        const name = item.getAttribute('data-name');
-        input.value = `${code} - ${name}`;
+        onItemClick(item, input);
         dropdown.style.display = 'none';
-        if (onSelect) onSelect({ code, name });
       });
     });
   });
@@ -365,53 +354,53 @@ function setupStationAutocomplete(inputId, dropdownId, onSelect) {
 }
 
 /**
+ * Station Autocomplete helper
+ */
+function setupStationAutocomplete(inputId, dropdownId, onSelect) {
+  bindAutocomplete({
+    inputId,
+    dropdownId,
+    getMatches: (val) => POPULAR_STATIONS.filter(s =>
+      s.code.includes(val) || s.name.toUpperCase().includes(val)
+    ),
+    renderItem: (s) => `
+      <div class="sa-autocomplete-item" data-code="${s.code}" data-name="${s.name}">
+        <strong>${s.code}</strong>
+        <span>${s.name}</span>
+      </div>
+    `,
+    onItemClick: (item, input) => {
+      const code = item.getAttribute('data-code');
+      const name = item.getAttribute('data-name');
+      input.value = `${code} - ${name}`;
+      if (onSelect) onSelect({ code, name });
+    }
+  });
+}
+
+/**
  * Train Autocomplete helper
  */
 function setupTrainAutocomplete(inputId, dropdownId, onSelect) {
-  const input = document.getElementById(inputId);
-  const dropdown = document.getElementById(dropdownId);
-  if (!input || !dropdown) return;
-
-  input.addEventListener('input', (e) => {
-    const val = e.target.value.trim().toUpperCase();
-    if (!val) {
-      dropdown.style.display = 'none';
-      return;
-    }
-
-    const matches = POPULAR_TRAINS.filter(t => 
+  bindAutocomplete({
+    inputId,
+    dropdownId,
+    getMatches: (val) => POPULAR_TRAINS.filter(t =>
       t.number.includes(val) || t.name.toUpperCase().includes(val)
-    ).slice(0, 6);
-
-    if (matches.length === 0) {
-      dropdown.style.display = 'none';
-      return;
-    }
-
-    dropdown.innerHTML = matches.map(t => `
+    ),
+    renderItem: (t) => `
       <div class="sa-autocomplete-item" data-number="${t.number}" data-name="${t.name}" data-src="${t.src}" data-dst="${t.dst}">
         <strong>${t.number}</strong>
         <span>${t.name}</span>
       </div>
-    `).join('');
-    dropdown.style.display = 'block';
-
-    dropdown.querySelectorAll('.sa-autocomplete-item').forEach(item => {
-      item.addEventListener('click', () => {
-        const number = item.getAttribute('data-number');
-        const name = item.getAttribute('data-name');
-        const src = item.getAttribute('data-src');
-        const dst = item.getAttribute('data-dst');
-        input.value = `${number} - ${name}`;
-        dropdown.style.display = 'none';
-        if (onSelect) onSelect({ number, name, src, dst });
-      });
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!input.contains(e.target) && !dropdown.contains(e.target)) {
-      dropdown.style.display = 'none';
+    `,
+    onItemClick: (item, input) => {
+      const number = item.getAttribute('data-number');
+      const name = item.getAttribute('data-name');
+      const src = item.getAttribute('data-src');
+      const dst = item.getAttribute('data-dst');
+      input.value = `${number} - ${name}`;
+      if (onSelect) onSelect({ number, name, src, dst });
     }
   });
 }
