@@ -728,55 +728,53 @@
         updateBusState({ pricing: pricing, services: state.services });
       }
 
-      // Meal Counters
-      const vegCountEl = document.getElementById('vegThaliCount');
-      const vegTotalEl = document.getElementById('vegThaliTotal');
-      const incVeg = document.getElementById('incVegThali');
-      const decVeg = document.getElementById('decVegThali');
+      function bindServiceCounter({ serviceKey, unitPrice, countId, totalId, incId, decId }) {
+        const countEl = document.getElementById(countId);
+        const totalEl = document.getElementById(totalId);
+        const incBtn = document.getElementById(incId);
+        const decBtn = document.getElementById(decId);
 
-      if (incVeg) {
-        incVeg.addEventListener('click', () => {
-          state.services.vegThali = (state.services.vegThali || 0) + 1;
-          if (vegCountEl) vegCountEl.textContent = state.services.vegThali;
-          if (vegTotalEl) vegTotalEl.textContent = `₹${state.services.vegThali * 220}`;
+        const syncCounterDisplay = () => {
+          const qty = state.services[serviceKey];
+          if (countEl) countEl.textContent = qty;
+          if (totalEl) totalEl.textContent = `₹${qty * unitPrice}`;
           updatePricingDisplay();
-        });
-      }
-      if (decVeg) {
-        decVeg.addEventListener('click', () => {
-          if ((state.services.vegThali || 0) > 0) {
-            state.services.vegThali--;
-            if (vegCountEl) vegCountEl.textContent = state.services.vegThali;
-            if (vegTotalEl) vegTotalEl.textContent = `₹${state.services.vegThali * 220}`;
-            updatePricingDisplay();
-          }
-        });
+        };
+
+        if (incBtn) {
+          incBtn.addEventListener('click', () => {
+            state.services[serviceKey] = (state.services[serviceKey] || 0) + 1;
+            syncCounterDisplay();
+          });
+        }
+        if (decBtn) {
+          decBtn.addEventListener('click', () => {
+            if ((state.services[serviceKey] || 0) > 0) {
+              state.services[serviceKey]--;
+              syncCounterDisplay();
+            }
+          });
+        }
       }
 
-      // Water Counters
-      const waterCountEl = document.getElementById('waterCount');
-      const waterTotalEl = document.getElementById('waterTotal');
-      const incWater = document.getElementById('incWater');
-      const decWater = document.getElementById('decWater');
+      // Meal & Water Counters
+      bindServiceCounter({
+        serviceKey: 'vegThali',
+        unitPrice: 220,
+        countId: 'vegThaliCount',
+        totalId: 'vegThaliTotal',
+        incId: 'incVegThali',
+        decId: 'decVegThali'
+      });
 
-      if (incWater) {
-        incWater.addEventListener('click', () => {
-          state.services.mineralWater = (state.services.mineralWater || 0) + 1;
-          if (waterCountEl) waterCountEl.textContent = state.services.mineralWater;
-          if (waterTotalEl) waterTotalEl.textContent = `₹${state.services.mineralWater * 45}`;
-          updatePricingDisplay();
-        });
-      }
-      if (decWater) {
-        decWater.addEventListener('click', () => {
-          if ((state.services.mineralWater || 0) > 0) {
-            state.services.mineralWater--;
-            if (waterCountEl) waterCountEl.textContent = state.services.mineralWater;
-            if (waterTotalEl) waterTotalEl.textContent = `₹${state.services.mineralWater * 45}`;
-            updatePricingDisplay();
-          }
-        });
-      }
+      bindServiceCounter({
+        serviceKey: 'mineralWater',
+        unitPrice: 45,
+        countId: 'waterCount',
+        totalId: 'waterTotal',
+        incId: 'incWater',
+        decId: 'decWater'
+      });
 
       // Chai Combo
       const addChaiBtn = document.getElementById('addChaiBtn');
