@@ -38,6 +38,7 @@
     height: 48px;
 }
 
+/* Golden RouteLine Diamond brand mark: 40px height, 143px width (3.57:1 ratio), zero-shift navigation across all home portals */
 .logo {
     display: inline-flex;
     align-items: center;
