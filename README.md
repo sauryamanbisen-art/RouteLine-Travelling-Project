@@ -59,6 +59,7 @@
 | **Centralized Authentication** | RouteLine Secure Pass modal supporting user registration, login, guest browsing mode, and session persistence in `localStorage`. (`src/js/auth/auth.js`) |
 | **Unified Checkout Simulator** | 256-bit checkout gateway supporting UPI, Cards, NetBanking, and Wallet with automatic berth allocation and authentic 10-digit PNR generation. (`src/js/global/payment.js`) |
 | **Electronic Reservation Slip (ERS)** | IRCTC-compliant ERS view with barcode, passenger manifests, print/PDF layout, and one-click ticket cancellations. (`ticket.html`) |
+| **Unified Brand Navigation** | Pixel-perfect Golden RouteLine Diamond brand identity with zero layout shift and unified navigation geometry across Trains, Flights, Buses, and Hotels. (`src/css/home/global/components.css`) |
 | **Visuals & Partner Integrations** | Custom WebGL cloud shader background on flights (`flight-results.html`), Uber cab bridge (`cabs.html`), and Zoop India food-to-berth bridge (`order-food.html`). |
 
 ---
