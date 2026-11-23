@@ -596,6 +596,20 @@
         });
       }
 
+      // Quick route filling handler for popular destination and trending route cards
+      document.querySelectorAll('.dest-card, .quick-service-link').forEach(card => {
+        card.addEventListener('click', (e) => {
+          const route = card.dataset.searchRoute;
+          if (route) {
+            e.preventDefault();
+            const [orig, dest] = route.split('-');
+            if (fromInput) fromInput.value = orig;
+            if (toInput) toInput.value = dest;
+            if (form) form.dispatchEvent(new Event('submit', { cancelable: true }));
+          }
+        });
+      });
+
       // Form submission: redirect to bus-results.html (the booking page)
       if (form) {
         form.addEventListener('submit', (e) => {
