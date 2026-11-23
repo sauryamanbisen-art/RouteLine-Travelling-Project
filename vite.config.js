@@ -18,6 +18,7 @@ export default defineConfig({
         flightReview: resolve(__dirname, 'pages/flight/review-payment.html'),
         flightConfirmation: resolve(__dirname, 'pages/flight/booking-confirmation.html'),
         flightDesignSystem: resolve(__dirname, 'pages/flight/design-system.html'),
+        busSearch: resolve(__dirname, 'pages/bus/bus-search.html'),
         busResults: resolve(__dirname, 'pages/bus/bus-results.html'),
         busSeats: resolve(__dirname, 'pages/bus/seat-selection.html'),
         busPassengers: resolve(__dirname, 'pages/bus/passenger-details.html'),
