@@ -615,6 +615,7 @@
           updateBusState({ search: state.search });
 
           // Navigate directly to the bus results / booking page
+          // Clean serialized parameters
           const searchParams = new URLSearchParams({
             origin: origin,
             destination: destination,
