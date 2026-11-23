@@ -5,7 +5,7 @@
 [![Vite 8](https://img.shields.io/badge/Bundler-Vite_8.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Docker](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Oxlint](https://img.shields.io/badge/Linter-Oxlint-orange)](https://oxc.rs/)
-[![Status](https://img.shields.io/badge/Phase_4-In_Development-blue)](#development-phases--roadmap)
+[![Status](https://img.shields.io/badge/Bus_Booking-Completed-brightgreen)](#development-phases--roadmap)
 [![PRD](https://img.shields.io/badge/Docs-PRD_1.0-brightgreen)](./RouteLine_PRD.md)
 
 ---
