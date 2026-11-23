@@ -296,3 +296,8 @@ input:checked + .rl-slider:before {
     page-break-inside: avoid;
   }
 }
+
+/* Bus Search Button Active Press Effect */
+.dock-search-btn:active {
+  transform: scale(0.98);
+}
