@@ -50,6 +50,7 @@
 | Domain | Implemented Functionality & Page Link |
 |:---|:---|
 | **Multi-Modal Hero Search** | Context-aware switching across Trains, Flights, Buses, and Hotels with active indicator pill, 40+ station autocomplete, and quick service actions. (`index.html`) |
+| **Bus Home Search Portal** | Dedicated intercity coach search portal with dual-capsule trip modes, live inventory lock, and direct booking flow transition. (`pages/bus/bus-search.html`) |
 | **RailRadar Live Railway Engine** | Real-time Indian Railway API integration (`src/js/train/railradar.js`) with in-memory caching covering 11 live endpoints: Train Timetables, GPS Running Status, Route Geometry, Coach Positions, and Fares. |
 | **Train Search & Results** | Real-time train listings, class availability badges (1A, 2A, 3A, SL), interactive booking drawers, and passenger intake. (`train-results.html`) |
 | **Live Timetable & Coach Layout** | Station-by-station arrival/departure times, platform numbers, halt durations, and coach/rake composition visualizer. (`train-schedule.html`) |
