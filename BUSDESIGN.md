@@ -231,3 +231,8 @@ The interface balances soft friendliness with structured utility. Generous round
 
 ### App Promo / Banner
 - Dark Navy full-width band (`#0F2537`) containing white display typography, official Google Play and App Store pill download badges, and an integrated rounded QR code container.
+
+## Bus Home Search Portal (Screen 0)
+- **Hero Background:** `src/assets/bus_background_img.png` with mountain road and coach framing.
+- **Search Dock:** Standard 1280px dock with Origin, Destination, Date, Return, Bus Type selector, and Champagne Gold CTA.
+- **Direct Booking Link:** Transitions seamlessly to `bus-results.html` with query parameters.
