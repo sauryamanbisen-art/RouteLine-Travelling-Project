@@ -7,6 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "oxlint",
+    "test": "node scripts/verify-assets.js && node scripts/test-icons.js",
+    "verify:icons": "node scripts/test-icons.js",
     "preview": "vite preview"
   },
   "dependencies": {
