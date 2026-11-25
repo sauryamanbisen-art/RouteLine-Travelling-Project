@@ -10,7 +10,7 @@
 | **Status** | Active / In Development (Phase 4: Route Intelligence & Spatial Tracking) |
 | **Author / Product Lead** | Sauryaman Bisen & RouteLine Core Engineering Team |
 | **Target Audience** | Engineering, Product, UI/UX Design, DevOps, Executive Stakeholders |
-| **Last Updated** | October 2026 |
+| **Last Updated** | November 2026 (v1.2.0 Architecture & Resilience Update) |
 | **Repository** | `sauryamanbisen-art/RouteLine-Travelling-Project` |
 
 ---
@@ -373,4 +373,5 @@ Static Partner Redirects           ====> SPRINT 1-5 ====>  Embedded Native Servi
 * **Live Railway API Documentation:** [RailRadar v1 API Portal](https://api.railradar.in/v1)
 * **Repository Architecture:** Multi-page Vite configuration with decoupled CSS/JS modules
 * **Design Guidelines:** RouteLine Modern Dark Tech Theme (Inter font, Lucide icons, glassmorphism)
+* **Icon Resilience Architecture:** Multi-tiered Lucide icon loading with root/public vendor scripts, automated Cloudflare CDN fallback, and non-module initialization
 * **Author & Contact:** Sauryaman Bisen (`sauryamanbisen-art`)
