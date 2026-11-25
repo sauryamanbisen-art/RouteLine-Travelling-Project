@@ -2,6 +2,8 @@
 
 > **Your journey, Just a Tap Away.** An intelligent, all-in-one travel operating system connecting Indian Railways, Flights, Buses, Urban Metros, and Station Cabs with live transit telemetry and spatial trip tracking.
 
+[![Version](https://img.shields.io/badge/Release-v1.2.0-gold)](./CHANGELOG.md)
+[![Tests](https://img.shields.io/badge/Tests-Passing-brightgreen)](./docs/verification-report.md)
 [![Vite 8](https://img.shields.io/badge/Bundler-Vite_8.2-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![Docker](https://img.shields.io/badge/Container-Docker-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![Oxlint](https://img.shields.io/badge/Linter-Oxlint-orange)](https://oxc.rs/)
