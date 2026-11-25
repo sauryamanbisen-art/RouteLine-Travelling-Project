@@ -17,8 +17,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" />
     
-    <!-- Local defer-loaded Lucide script to avoid 1.4s CDN render-blocking stall -->
-    <script src="/vendor/lucide.min.js" defer></script>
+    <!-- Lucide Icons: Local vendor with unpkg CDN fallback -->
+    <script src="./vendor/lucide.min.js"></script>
+    <script>
+        if (typeof lucide === 'undefined') {
+            document.write('<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"><\/script>');
+        }
+    </script>
     <link rel="stylesheet" href="./src/css/home/global/style.css">
     <link rel="stylesheet" href="./src/css/home/global/unified-search-dock.css">
     <link rel="stylesheet" href="./src/css/home/global/custom-search-controls.css">
@@ -721,13 +726,19 @@
     <script type="module" src="./src/js/home/global/main.js"></script>
     <script>
         // Initialize lucide icons once script/DOM is ready
-        if (typeof lucide !== 'undefined') {
-            lucide.createIcons();
-        } else {
-            window.addEventListener('DOMContentLoaded', () => {
-                if (typeof lucide !== 'undefined') lucide.createIcons();
-            });
-        }
+        (function() {
+            function runLucide() {
+                if (typeof lucide !== 'undefined' && lucide.createIcons) {
+                    lucide.createIcons();
+                }
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', runLucide);
+            } else {
+                runLucide();
+            }
+            window.addEventListener('load', runLucide);
+        })();
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {

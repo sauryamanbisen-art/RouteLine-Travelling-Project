@@ -8,7 +8,28 @@
     <meta name="description" content="Check live Indian Railways train schedules, timetable, route halts, platform numbers, arrival and departure timings on RouteLine.">
     <!-- Fonts & Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="/vendor/lucide.min.js"></script>
+  <!-- Lucide Icons: Local vendor with unpkg CDN fallback -->
+  <script src="../../vendor/lucide.min.js"></script>
+  <script>
+    if (typeof lucide === 'undefined') {
+      document.write('<script src="https://unpkg.com/lucide@0.469.0/dist/umd/lucide.min.js"><\/script>');
+    }
+  </script>
+  <script>
+    (function() {
+      function runLucide() {
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+          lucide.createIcons();
+        }
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', runLucide);
+      } else {
+        runLucide();
+      }
+      window.addEventListener('load', runLucide);
+    })();
+  </script>
     <link rel="stylesheet" href="../../src/css/home/global/style.css">
     <link rel="stylesheet" href="../../src/css/train/train.css">
     <link rel="stylesheet" href="../../src/css/train/pnr-status.css">
